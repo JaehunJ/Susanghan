@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: org.koin:koin-androidx-fragment:2.1.0-alpha-7@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7361b0e91f88d8fbfbb02f7b1f6cdbf2/jetified-koin-androidx-fragment-2.1.0-alpha-7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7361b0e91f88d8fbfbb02f7b1f6cdbf2/jetified-koin-androidx-fragment-2.1.0-alpha-7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7361b0e91f88d8fbfbb02f7b1f6cdbf2/jetified-koin-androidx-fragment-2.1.0-alpha-7/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.koin/koin-androidx-fragment/2.1.0-alpha-7/79c22a7ff10448e8422c4027badf4ac625d200d5/koin-androidx-fragment-2.1.0-alpha-7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.koin/koin-androidx-fragment/2.1.0-alpha-7/75bb040509605a0d27824ba9481331b323266383/koin-androidx-fragment-2.1.0-alpha-7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
