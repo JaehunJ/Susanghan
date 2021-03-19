@@ -1,21 +1,39 @@
 package com.susanghan.android.di
 
-import com.susanghan.android.ui.InjectCountData
-import com.susanghan.android.ui.PackageRepository
-import com.susanghan.android.ui.PrintService
-import org.koin.android.ext.koin.androidContext
+import com.susanghan.android.retrofit.SusanghanApi
+import com.susanghan.android.retrofit.SusanghanService
+import okhttp3.OkHttpClient
 import org.koin.dsl.module
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
-val myModule = module {
-    single {
-        PackageRepository(androidContext())
-
-        single {
-            PrintService(get())
-        }
-
-        factory {
-            InjectCountData()
-        }
-    }
+val viewModelModule = module {
+//    single {
+//        PackageRepository(androidContext())
+//
+//        single {
+//            PrintService(get())
+//        }
+//
+//        factory {
+//            InjectCountData()
+//        }
+//    }
 }
+
+val appModule = module {
+
+}
+
+val retrofitModule = module {
+    single<SusanghanApi> { provideRetrofitClient()}
+}
+
+private fun provideRetrofitClient()= Retrofit.Builder()
+    .baseUrl("")
+    .client(OkHttpClient())
+    .addConverterFactory(GsonConverterFactory.create())
+    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    .build()
+    .create(SusanghanApi::class.java)

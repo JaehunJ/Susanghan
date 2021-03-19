@@ -2,7 +2,9 @@ package com.susanghan.android
 
 import android.app.Application
 import android.content.Context
-import com.susanghan.android.di.myModule
+import com.susanghan.android.di.appModule
+import com.susanghan.android.di.retrofitModule
+import com.susanghan.android.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.fragment.koin.fragmentFactory
@@ -28,7 +30,7 @@ class SusanghanApplication:Application() {
             androidLogger()
             androidContext(this@SusanghanApplication)
             fragmentFactory()
-            modules(myModule)
+            modules(appModule, retrofitModule, viewModelModule)
         }
     }
 }

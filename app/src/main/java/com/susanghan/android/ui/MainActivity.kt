@@ -1,12 +1,10 @@
 package com.susanghan.android.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import com.susanghan.android.R
+import com.susanghan.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     val TAG = this.javaClass.simpleName
@@ -16,10 +14,13 @@ class MainActivity : AppCompatActivity() {
     val exampleData:LiveData<ExampleData>
     get() = _exampleLiveData
 
+//    private lateinit var _binding:ActivityMain
+    private lateinit var _binding:ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val androidViewModelF
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = _binding.root
+        setContentView(view)
     }
 }

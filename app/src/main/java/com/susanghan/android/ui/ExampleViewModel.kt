@@ -11,7 +11,7 @@ class ExampleViewModel:ViewModel() {
 
     private val _exampleLiveData : MutableLiveData<ExampleData> = MutableLiveData()
 
-    var printService:PrintService by inject()
+//    var printService:PrintService by inject()
     val exampleData:LiveData<ExampleData>
     get() = _exampleLiveData
 
@@ -29,7 +29,7 @@ class ExampleViewModel:ViewModel() {
     }
 
     fun printHello(){
-        printService.printHello()
+//        printService.printHello()
     }
 }
 
