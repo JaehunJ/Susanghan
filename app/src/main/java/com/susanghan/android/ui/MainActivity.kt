@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.susanghan.android.databinding.ActivityMainBinding
+import com.susanghan.android.ui.dialog.ServiceErrorDialog
 
 class MainActivity : AppCompatActivity() {
     val TAG = this.javaClass.simpleName
@@ -22,5 +23,8 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = _binding.root
         setContentView(view)
+
+        val dialog = ServiceErrorDialog()
+        dialog.show(supportFragmentManager, "service")
     }
 }

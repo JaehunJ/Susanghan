@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/action_order"
+    android:title="주문현황"/>
+    <item android:id="@+id/action_cs"
+        android:title="고객문의"/>
+    <item android:id="@+id/action_product"
+        android:title="제품관리"/>
+    <item android:id="@+id/action_more"
+        android:title="더보기"/>
+</menu>

@@ -2,7 +2,9 @@ package com.susanghan.android.di
 
 import com.susanghan.android.retrofit.SusanghanApi
 import com.susanghan.android.retrofit.SusanghanService
+import com.susanghan.android.ui.splash.SplashViewModel
 import okhttp3.OkHttpClient
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -23,7 +25,9 @@ val viewModelModule = module {
 }
 
 val appModule = module {
-
+    viewModel {
+        SplashViewModel()
+    }
 }
 
 val retrofitModule = module {

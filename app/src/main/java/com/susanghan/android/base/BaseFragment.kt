@@ -12,13 +12,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import java.lang.Exception
 
-abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, N:NavArgs>: Fragment() {
+abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel>: Fragment() {
     var navController: NavController? = null
     lateinit var binding:T
     abstract val layoutId:Int
 
     abstract val viewModel:VM
-    abstract val navArgs:N
+    abstract val navArgs:NavArgs
 
     /**
      * layout infalte후 호출
