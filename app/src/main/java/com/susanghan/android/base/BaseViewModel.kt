@@ -1,6 +1,7 @@
 package com.susanghan.android.base
 
 import androidx.databinding.Observable
+import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -17,5 +18,14 @@ abstract class BaseViewModel:ViewModel(), Observable, KoinComponent {
         compositeDisposable.dispose()
         compositeDisposable.clear()
         super.onCleared()
+    }
+
+    private val callbacks:PropertyChangeRegistry by lazy{PropertyChangeRegistry()}
+    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        callbacks.add(callback)
+    }
+
+    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        callbacks.remove(callback)
     }
 }

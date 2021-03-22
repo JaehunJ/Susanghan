@@ -1,9 +1,8 @@
-package com.susanghan.android.ui.splash
+package com.susanghan.android.ui.order
 
 import androidx.databinding.Observable
 import com.susanghan.android.base.BaseViewModel
 
-
-class SplashViewModel:BaseViewModel() {
+class OrderViewModel:BaseViewModel() {
 
 }
