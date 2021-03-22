@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="@+id/action_order"
+<item android:id="@+id/orderFragment"
     android:title="주문현황"/>
-    <item android:id="@+id/action_cs"
+    <item android:id="@+id/csFragment"
         android:title="고객문의"/>
-    <item android:id="@+id/action_product"
+    <item android:id="@+id/productFragment"
         android:title="제품관리"/>
-    <item android:id="@+id/action_more"
+    <item android:id="@+id/moreFragment"
         android:title="더보기"/>
 </menu>

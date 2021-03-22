@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="color_transparent">#00ffffff</color>
+    <color name="bottom_sheet_background">#000000</color>
+
     <color name="color_424cc1">#424cc1</color>
     <color name="color_2f389f">#2f389f</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.susanghan.android.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -34,5 +35,11 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHostFragment!!.findNavController()
         _binding.navBottom.setupWithNavController(navController)
+
+        _binding.navBottom.visibility = View.GONE
+
+
+
+//        val action = Splash
     }
 }
