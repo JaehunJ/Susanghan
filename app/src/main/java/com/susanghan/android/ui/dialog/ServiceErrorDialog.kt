@@ -1,15 +1,13 @@
 package com.susanghan.android.ui.dialog
 
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.susanghan.android.R
 import com.susanghan.android.databinding.DialogServiceErrorBinding
 
-class ServiceErrorDialog:BaseBottomSheetDialogFragment<DialogServiceErrorBinding>() {
+class ServiceErrorDialog(
+    val onConfirm: (() -> Unit)? = null
+):BaseBottomSheetDialogFragment<DialogServiceErrorBinding>() {
     override val bindingInflater = {layoutInflater:LayoutInflater, viewGroup:ViewGroup?, b:Boolean ->
         DialogServiceErrorBinding.inflate(layoutInflater, viewGroup, b)
     }
@@ -18,6 +16,7 @@ class ServiceErrorDialog:BaseBottomSheetDialogFragment<DialogServiceErrorBinding
         binding.llConfirm.setOnClickListener {
             dismiss()
             Log.e("#debug", "click confirm")
+            onConfirm?.invoke()
         }
     }
 }

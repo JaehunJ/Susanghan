@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.susanghan.android.ui.CommonActivityImpl
 import java.lang.Exception
 
 abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: Fragment() {
@@ -19,6 +20,8 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
 
     abstract val viewModel:VM
     abstract val navArgs:NavArgs
+
+    lateinit var activityFunction: CommonActivityImpl
 
     /**
      * layout infalte후 호출
@@ -52,6 +55,8 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
 
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
+
+        activityFunction = activity as CommonActivityImpl
 
         initView(savedInstanceState)
         initDataBinding()

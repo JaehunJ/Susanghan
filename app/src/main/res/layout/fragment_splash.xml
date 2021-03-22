@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/splash_top_1"
+            android:fontFamily="@font/spoqa"
             android:textColor="@color/white"
             android:textSize="36sp"/>
         <TextView
@@ -33,6 +34,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_top_1"
             android:textStyle="bold"
             android:id="@+id/tv_top_2"
+            android:fontFamily="@font/spoqa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/splash_top_2"
