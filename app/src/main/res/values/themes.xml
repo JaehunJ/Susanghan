@@ -4,8 +4,9 @@
         <!-- Primary brand color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:background">@color/white</item>
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+        <item name="android:statusBarColor">@color/color_transparent</item>
 
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

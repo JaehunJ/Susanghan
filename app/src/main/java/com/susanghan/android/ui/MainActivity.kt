@@ -4,6 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.susanghan.android.R
@@ -13,6 +16,12 @@ import com.susanghan.android.ui.dialog.ServiceErrorDialog
 class MainActivity : AppCompatActivity(), CommonActivityImpl {
     val TAG = this.javaClass.simpleName
 
+    private val _exampleLiveData : MutableLiveData<ExampleData> = MutableLiveData()
+
+    val exampleData:LiveData<ExampleData>
+    get() = _exampleLiveData
+
+//    private lateinit var _binding:ActivityMain
     private lateinit var _binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +34,11 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
         val navController = navHostFragment!!.findNavController()
         _binding.navBottom.setupWithNavController(navController)
 
-        //statusbar hide
+//        //statusbar hide
         this.window?.apply {
-            this.statusBarColor = Color.TRANSPARENT
+//            this.statusBarColor = Color.TRANSPARENT
             decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
 
         hideBottomNavi()
