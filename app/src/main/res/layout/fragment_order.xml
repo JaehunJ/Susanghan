@@ -266,9 +266,46 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/top"
+            app:layout_constraintBottom_toBottomOf="parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_marginTop="7dp"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="2020.12.28"/>
 
+                <!--차후에 recycler view로 변경-->
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

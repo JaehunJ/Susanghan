@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:id="@+id/ll_nav"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="vertical">
@@ -31,6 +31,10 @@
             android:id="@+id/nav_bottom"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            style="@style/BottomNavTextColor"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@color/bottom_nav_text_color"
+            app:itemRippleColor="@null"
             app:menu="@menu/menu_nav_bottom"/>
     </LinearLayout>
 </LinearLayout>

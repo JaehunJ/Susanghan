@@ -13,4 +13,8 @@
 
     <color name="color_424cc1">#424cc1</color>
     <color name="color_2f389f">#2f389f</color>
+
+    <!--bottom nav-->
+    <color name="bottom_nav_nor">#000000</color>
+    <color name="bottom_nav_select">#424CC1</color>
 </resources>

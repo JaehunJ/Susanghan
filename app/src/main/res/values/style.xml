@@ -21,4 +21,16 @@
         <item name="fontFamily">@font/spoqa</item>
     </style>
 
+    <!--bottom nav-->
+    <style name="BottomNavTextColor" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/ActiveText</item>
+        <item name="itemTextAppearanceInactive">@style/InactiveText</item>
+    </style>
+    <style name="ActiveText">
+        <item name="android:textColor">@color/bottom_nav_select</item>
+    </style>
+    <style name="InactiveText">
+        <item name="android:textColor">@color/bottom_nav_nor</item>
+    </style>
+
 </resources>

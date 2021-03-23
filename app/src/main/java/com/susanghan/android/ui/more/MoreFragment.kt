@@ -29,5 +29,4 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
     override fun initAfterBinding() {
 
     }
-
 }

@@ -12,5 +12,19 @@
     <string name="splash_top_0">수선의 모든 것</string>
     <string name="splash_top_1">수상한</string>
     <string name="splash_top_2">수선집</string>
+
+    <!--bottom nav-->
+    <string name="bottom_nav_item_0">주문현황</string>
+    <string name="bottom_nav_item_1">고객문의</string>
+    <string name="bottom_nav_item_2">제품관리</string>
+    <string name="bottom_nav_item_3">더보기</string>
+    
+    <!--more-->
+    <string name="more_my_item_0">정산 관리</string>
+    <string name="more_my_item_1">계정 관리</string>
+
+    <string name="more_common_item_0">공지사항</string>
+    <string name="more_common_item_1">문의하기</string>
+    <string name="more_common_item_2">약관 및 정책</string>
 </resources>
 
