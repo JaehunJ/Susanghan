@@ -30,16 +30,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/top_tab"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:background="#2F389F"
+                    app:tabPaddingStart="13dp"
+                    app:tabPaddingEnd="13dp"
                     app:tabTextColor="@color/white"
                     app:tabIndicator="@null"
-                    app:tabPaddingStart="18dp"
-                    app:tabPaddingEnd="18dp"
-                    app:tabGravity="start"
+                    app:tabMode="scrollable"
+
 
                     app:layout_constraintTop_toBottomOf="@id/tv_top_1"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -49,19 +54,21 @@
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="3dp"
                         android:text="@string/order_top_tab_0"/>
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/order_top_tab_0"/>
+                        android:layout_marginStart="3dp"
+                        android:text="@string/order_top_tab_1"/>
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/order_top_tab_0"/>
+                        android:text="@string/order_top_tab_2"/>
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/order_top_tab_0"/>
+                        android:text="@string/order_top_tab_3"/>
                 </com.google.android.material.tabs.TabLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,16 +100,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
-                    <include layout="@layout/layout_order_item"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
+                    <include layout="@layout/layout_order_item_old"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
