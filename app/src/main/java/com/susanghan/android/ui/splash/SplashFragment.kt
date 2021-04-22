@@ -25,8 +25,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override fun initAfterBinding() {
         activity?.let {
             val dialog = ServiceErrorDialog{
-                activityFunction.showBottomNavi()
-                val action = SplashFragmentDirections.actionSplashFragmentToOrderFragment()
+                val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
                 navController?.navigate(action)
             }
 

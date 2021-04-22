@@ -17,4 +17,6 @@
     <!--bottom nav-->
     <color name="bottom_nav_nor">#000000</color>
     <color name="bottom_nav_select">#424CC1</color>
+
+    <color name="deep_blue">#2F389F</color>
 </resources>

@@ -19,7 +19,7 @@
             android:id="@+id/action_splashFragment_to_signInFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true"
-            app:destination="@id/navigation" />
+            app:destination="@id/nav_signin" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -54,10 +54,7 @@
     <action
         android:id="@+id/action_global_productFragment"
         app:destination="@id/productFragment" />
-    <action
-        android:id="@+id/action_global_orderFragment"
-        app:destination="@id/orderFragment" />
-    <navigation android:id="@+id/navigation"
+    <navigation android:id="@+id/nav_signin"
         app:startDestination="@id/signInFragment">
         <fragment
             android:id="@+id/signInFragment"
@@ -89,10 +86,13 @@
             android:name="com.susanghan.android.ui.signup.SignUpFragment"
             android:label="fragment_sign_up"
             tools:layout="@layout/fragment_sign_up" />
+        <action
+            android:id="@+id/action_global_orderFragment"
+            app:destination="@id/orderFragment" />
     </navigation>
     <fragment
         android:id="@+id/orderDetailFragment"
-        android:name="com.susanghan.android.OrderDetailFragment"
+        android:name="com.susanghan.android.ui.order.detail.OrderDetailFragment"
         android:label="fragment_order_detail"
         tools:layout="@layout/fragment_order_detail" />
 </navigation>

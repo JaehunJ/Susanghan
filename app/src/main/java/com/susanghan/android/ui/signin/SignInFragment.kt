@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.susanghan.android.NavSigninDirections
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentSignInBinding
@@ -18,7 +19,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        binding.btnLogin.setOnClickListener {
+//            val action = SignInFragmentDirections.()
+            val action = NavSigninDirections.actionGlobalOrderFragment()
+            navController?.navigate(action)
+            activityFunction.showBottomNavi()
+        }
     }
 
     override fun initDataBinding() {

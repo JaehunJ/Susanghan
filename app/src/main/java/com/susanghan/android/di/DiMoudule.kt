@@ -2,6 +2,7 @@ package com.susanghan.android.di
 
 import com.susanghan.android.retrofit.SusanghanApi
 import com.susanghan.android.retrofit.SusanghanService
+import com.susanghan.android.ui.signin.SignInViewModel
 import com.susanghan.android.ui.splash.SplashViewModel
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -11,6 +12,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
+    viewModel {
+        SplashViewModel()
+    }
+    viewModel {
+        SignInViewModel()
+    }
 //    single {
 //        PackageRepository(androidContext())
 //
@@ -25,9 +32,7 @@ val viewModelModule = module {
 }
 
 val appModule = module {
-    viewModel {
-        SplashViewModel()
-    }
+
 }
 
 val retrofitModule = module {
