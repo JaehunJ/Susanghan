@@ -19,7 +19,11 @@ class FindIdFragment : BaseFragment<FragmentFindIdBinding, FindIdViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
+        binding.toolbar.tvTitle.text = "아이디 찾기"
 
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
     }
 
     override fun initDataBinding() {

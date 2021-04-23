@@ -44,7 +44,13 @@
         android:id="@+id/moreFragment"
         android:name="com.susanghan.android.ui.more.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_userNotificationFragment"
+            app:destination="@id/userNotificationFragment" />
+    </fragment>
+
+
     <action
         android:id="@+id/action_global_csFragment"
         app:destination="@id/csFragment" />
@@ -88,6 +94,8 @@
             tools:layout="@layout/fragment_sign_up" />
         <action
             android:id="@+id/action_global_orderFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/orderFragment" />
     </navigation>
     <fragment
@@ -95,4 +103,9 @@
         android:name="com.susanghan.android.ui.order.detail.OrderDetailFragment"
         android:label="fragment_order_detail"
         tools:layout="@layout/fragment_order_detail" />
+    <fragment
+        android:id="@+id/userNotificationFragment"
+        android:name="com.susanghan.android.ui.more.notice.UserNotificationFragment"
+        android:label="fragment_user_notification"
+        tools:layout="@layout/fragment_user_notification" />
 </navigation>

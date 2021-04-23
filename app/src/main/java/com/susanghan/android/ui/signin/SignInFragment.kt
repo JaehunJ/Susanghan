@@ -25,6 +25,16 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
             navController?.navigate(action)
             activityFunction.showBottomNavi()
         }
+
+        binding.tvFindId.setOnClickListener {
+            val action = SignInFragmentDirections.actionSignInFragmentToFindIdFragment()
+            navController?.navigate(action)
+        }
+
+        binding.tvFindPw.setOnClickListener {
+            val action = SignInFragmentDirections.actionSignInFragmentToFindPwFragment()
+            navController?.navigate(action)
+        }
     }
 
     override fun initDataBinding() {

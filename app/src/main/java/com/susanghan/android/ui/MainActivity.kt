@@ -1,17 +1,14 @@
 package com.susanghan.android.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.susanghan.android.R
 import com.susanghan.android.databinding.ActivityMainBinding
-import com.susanghan.android.ui.dialog.ServiceErrorDialog
 
 class MainActivity : AppCompatActivity(), CommonActivityImpl {
     val TAG = this.javaClass.simpleName
@@ -30,10 +27,25 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
         val view = _binding.root
         setContentView(view)
 
+        val index = R.id.orderFragment
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHostFragment!!.findNavController()
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when(destination.id){
+                R.id.orderFragment, R.id.csFragment, R.id.moreFragment->{
+                    showBottomNavi()
+                }
+                else->{
+                    hideBottomNavi()
+                }
+            }
+        }
+
         _binding.navBottom.setupWithNavController(navController)
         _binding.navBottom.itemIconTintList = null
+
+
 
 //        //statusbar hide
         this.window?.apply {

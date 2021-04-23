@@ -30,22 +30,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/tv_top_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/spoqa"
+                android:text="@string/splash_top_2"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/tv_top_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/top_tab"
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="24dp"
                     android:background="#2F389F"
-                    app:tabPaddingStart="13dp"
-                    app:tabPaddingEnd="13dp"
+                    app:tabMinWidth="0dp"
                     app:tabTextColor="@color/white"
+                    app:tabPaddingStart="16dp"
+                    app:tabPaddingEnd="16dp"
                     app:tabIndicator="@null"
                     app:tabMode="scrollable"
-
-
                     app:layout_constraintTop_toBottomOf="@id/tv_top_1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +67,6 @@
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="3dp"
                         android:text="@string/order_top_tab_0"/>
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"

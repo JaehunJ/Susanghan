@@ -19,7 +19,9 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        binding.ivNoti.setOnClickListener {
+            navController?.navigate(MoreFragmentDirections.actionMoreFragmentToUserNotificationFragment())
+        }
     }
 
     override fun initDataBinding() {

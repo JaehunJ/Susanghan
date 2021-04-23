@@ -19,4 +19,9 @@
     <color name="bottom_nav_select">#424CC1</color>
 
     <color name="deep_blue">#2F389F</color>
+    <color name="deep_blue_2">#424CC1</color>
+    <color name="deep_blue_3">#2F389F</color>
+    <color name="deep_bright_blue">#6F74DD</color>
+
+    <color name="deep_blue_6F74DD">#6F74DD</color>
 </resources>
