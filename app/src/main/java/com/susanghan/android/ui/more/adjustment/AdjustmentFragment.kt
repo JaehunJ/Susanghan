@@ -1,6 +1,8 @@
 package com.susanghan.android.ui.more.adjustment
 
 import android.os.Bundle
+import android.widget.PopupMenu
+import androidx.core.view.children
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
@@ -13,8 +15,28 @@ class AdjustmentFragment:BaseFragment<FragmentAdjustmentBinding, AdjustmentViewM
     override val viewModel: AdjustmentViewModel by viewModel()
     override val navArgs: NavArgs by navArgs()
 
-    override fun initView(savedInstanceState: Bundle?) {
+    val sort = listOf("최근 6개월", "최근 12개월", "전체")
 
+    override fun initView(savedInstanceState: Bundle?) {
+        binding.toolbar.tvTitle.text = "정산 관리"
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
+
+        binding.clSort.setOnClickListener {
+            val popup = PopupMenu(requireContext(), it)
+            popup.menuInflater.inflate(R.menu.menu_adjustment_sort, popup.menu)
+
+            popup.show()
+        }
+
+        val child = binding.llDummy.children
+
+        child.forEach {
+            it.setOnClickListener {
+                navController?.navigate(AdjustmentFragmentDirections.actionAdjustmentFragmentToAdjustmentDetailFragment())
+            }
+        }
     }
 
     override fun initDataBinding() {

@@ -1,4 +1,4 @@
-package com.susanghan.android.ui.signin.findpw
+package com.susanghan.android.ui.signin.findid
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,24 +9,24 @@ import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.databinding.FragmentFindPwBinding
+import com.susanghan.android.databinding.FragmentFindIdBinding
+import com.susanghan.android.databinding.FragmentFindIdResultBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FindPwFragment : BaseFragment<FragmentFindPwBinding, FindPwViewModel, NavArgs>() {
-    override val layoutId: Int = R.layout.fragment_find_pw
-    override val viewModel: FindPwViewModel by viewModel()
+class FindIdResultFragment : BaseFragment<FragmentFindIdResultBinding, FindIdResultViewModel, NavArgs>() {
+    override val layoutId: Int = R.layout.fragment_find_id_result
+    override val viewModel: FindIdResultViewModel by viewModel()
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.toolbar.tvTitle.text = "비밀번호 찾기"
+        binding.toolbar.tvTitle.text = "아이디 찾기"
 
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
 
         binding.btnConfirm.setOnClickListener {
-            val action = FindPwFragmentDirections.actionFindPwFragmentToSettingPwFragment()
-            navController?.navigate(action)
+            navController?.popBackStack()
         }
     }
 

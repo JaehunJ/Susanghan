@@ -95,7 +95,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_confirm"
                 android:layout_marginBottom="56dp"
-                android:text="로그인"
+                android:text="확인"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintVertical_bias="1"

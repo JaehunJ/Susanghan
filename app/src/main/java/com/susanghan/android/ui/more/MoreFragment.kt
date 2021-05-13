@@ -22,6 +22,31 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
         binding.ivNoti.setOnClickListener {
             navController?.navigate(MoreFragmentDirections.actionMoreFragmentToUserNotificationFragment())
         }
+
+        binding.llProfile.setOnClickListener {
+            val action = MoreFragmentDirections.actionMoreFragmentToProfileDetailFragment()
+            navController?.navigate(action)
+        }
+
+        binding.llMyWallet.setOnClickListener {
+            navController?.navigate(MoreFragmentDirections.actionMoreFragmentToAdjustmentFragment())
+        }
+
+        binding.llMyAccounts.setOnClickListener {
+            navController?.navigate(MoreFragmentDirections.actionMoreFragmentToAccountFragment())
+        }
+
+        binding.llCommonNotice.setOnClickListener {
+            navController?.navigate(MoreFragmentDirections.actionMoreFragmentToNotiFragment())
+        }
+
+        binding.llCommonQna.setOnClickListener {
+            navController?.navigate(MoreFragmentDirections.actionMoreFragmentToFaqFragment())
+        }
+
+        binding.llCommonTerm.setOnClickListener {
+
+        }
     }
 
     override fun initDataBinding() {

@@ -1,22 +1,26 @@
-package com.susanghan.android.ui.more.profile
+package com.susanghan.android.ui.signin.findpw
 
 import android.os.Bundle
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.databinding.FragmentProductBinding
-import com.susanghan.android.databinding.FragmentProfileDetailBinding
+import com.susanghan.android.databinding.FragmentSettingPwBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProfileDetailFragment:BaseFragment<FragmentProfileDetailBinding, ProfileDetailViewModel, NavArgs>() {
-    override val layoutId: Int = R.layout.fragment_profile_detail
-    override val viewModel: ProfileDetailViewModel by viewModel()
+class SettingPwFragment : BaseFragment<FragmentSettingPwBinding, SettingPwViewModel, NavArgs>() {
+    override val layoutId: Int = R.layout.fragment_setting_pw
+    override val viewModel: SettingPwViewModel by viewModel()
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.toolbar.tvTitle.text = "프로필 관리"
+        binding.toolbar.tvTitle.text = "비밀번호 재설정"
+
         binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
+
+        binding.btnConfirm.setOnClickListener {
             navController?.popBackStack()
         }
     }
@@ -28,4 +32,5 @@ class ProfileDetailFragment:BaseFragment<FragmentProfileDetailBinding, ProfileDe
     override fun initAfterBinding() {
 
     }
+
 }

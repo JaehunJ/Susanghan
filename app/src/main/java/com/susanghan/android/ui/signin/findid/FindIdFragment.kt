@@ -24,6 +24,11 @@ class FindIdFragment : BaseFragment<FragmentFindIdBinding, FindIdViewModel, NavA
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
+        
+        binding.btnConfirm.setOnClickListener {
+            val action = FindIdFragmentDirections.actionFindIdFragmentToFindIdResultFragment()
+            navController?.navigate(action)
+        }
     }
 
     override fun initDataBinding() {

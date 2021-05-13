@@ -37,6 +37,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
+            android:id="@+id/ll_profile"
             android:layout_marginTop="46dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="10dp"

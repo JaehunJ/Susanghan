@@ -1,10 +1,6 @@
 package com.susanghan.android.ui.signin
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.NavSigninDirections
@@ -33,6 +29,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
 
         binding.tvFindPw.setOnClickListener {
             val action = SignInFragmentDirections.actionSignInFragmentToFindPwFragment()
+            navController?.navigate(action)
+        }
+
+        binding.tvSignin1.setOnClickListener {
+            val action = SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
             navController?.navigate(action)
         }
     }

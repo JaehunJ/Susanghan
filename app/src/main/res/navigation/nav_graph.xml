@@ -40,15 +40,6 @@
         android:name="com.susanghan.android.ui.product.ProductFragment"
         android:label="fragment_product"
         tools:layout="@layout/fragment_product" />
-    <fragment
-        android:id="@+id/moreFragment"
-        android:name="com.susanghan.android.ui.more.MoreFragment"
-        android:label="fragment_more"
-        tools:layout="@layout/fragment_more" >
-        <action
-            android:id="@+id/action_moreFragment_to_userNotificationFragment"
-            app:destination="@id/userNotificationFragment" />
-    </fragment>
 
 
     <action
@@ -56,7 +47,7 @@
         app:destination="@id/csFragment" />
     <action
         android:id="@+id/action_global_moreFragment"
-        app:destination="@id/moreFragment" />
+        app:destination="@id/navigation_more" />
     <action
         android:id="@+id/action_global_productFragment"
         app:destination="@id/productFragment" />
@@ -81,31 +72,154 @@
             android:id="@+id/findIdFragment"
             android:name="com.susanghan.android.ui.signin.findid.FindIdFragment"
             android:label="fragment_find_id"
-            tools:layout="@layout/fragment_find_id" />
+            tools:layout="@layout/fragment_find_id" >
+            <action
+                app:popUpToInclusive="true"
+                app:popUpTo="@id/findIdFragment"
+                android:id="@+id/action_findIdFragment_to_findIdResultFragment"
+                app:destination="@id/findIdResultFragment" />
+        </fragment>
         <fragment
             android:id="@+id/findPwFragment"
             android:name="com.susanghan.android.ui.signin.findpw.FindPwFragment"
             android:label="fragment_find_pw"
-            tools:layout="@layout/fragment_find_pw" />
+            tools:layout="@layout/fragment_find_pw" >
+            <action
+                app:popUpToInclusive="true"
+                app:popUpTo="@id/findPwFragment"
+                android:id="@+id/action_findPwFragment_to_settingPwFragment"
+                app:destination="@id/settingPwFragment" />
+        </fragment>
         <fragment
             android:id="@+id/signUpFragment"
             android:name="com.susanghan.android.ui.signup.SignUpFragment"
             android:label="fragment_sign_up"
-            tools:layout="@layout/fragment_sign_up" />
+            tools:layout="@layout/fragment_sign_up" >
+            <action
+                app:popUpTo="@id/signUpFragment"
+                app:popUpToInclusive="true"
+                android:id="@+id/action_signUpFragment_to_signUpPwFragment"
+                app:destination="@id/signUpPwFragment" />
+        </fragment>
         <action
             android:id="@+id/action_global_orderFragment"
             app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true"
             app:destination="@id/orderFragment" />
+        <fragment
+            android:id="@+id/findIdResultFragment"
+            android:name="com.susanghan.android.ui.signin.findid.FindIdResultFragment"
+            android:label="fragment_find_id_result"
+            tools:layout="@layout/fragment_find_id_result" />
+        <fragment
+            android:id="@+id/settingPwFragment"
+            android:name="com.susanghan.android.ui.signin.findpw.SettingPwFragment"
+            android:label="fragment_setting_pw"
+            tools:layout="@layout/fragment_setting_pw" />
+        <fragment
+            android:id="@+id/signUpPwFragment"
+            android:name="com.susanghan.android.ui.signup.SignUpPwFragment"
+            android:label="fragment_sign_up_pw"
+            tools:layout="@layout/fragment_sign_up_pw" >
+            <action
+                app:popUpTo="@id/signUpPwFragment"
+                app:popUpToInclusive="true"
+                android:id="@+id/action_signUpPwFragment_to_signUpResultFragment"
+                app:destination="@id/signUpResultFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/signUpResultFragment"
+            android:name="com.susanghan.android.ui.signup.SignUpResultFragment"
+            android:label="fragment_sign_up_result"
+            tools:layout="@layout/fragment_sign_up_result" />
     </navigation>
     <fragment
         android:id="@+id/orderDetailFragment"
         android:name="com.susanghan.android.ui.order.detail.OrderDetailFragment"
         android:label="fragment_order_detail"
         tools:layout="@layout/fragment_order_detail" />
-    <fragment
-        android:id="@+id/userNotificationFragment"
-        android:name="com.susanghan.android.ui.more.notice.UserNotificationFragment"
-        android:label="fragment_user_notification"
-        tools:layout="@layout/fragment_user_notification" />
+    <navigation android:id="@+id/navigation_more"
+        app:startDestination="@id/moreFragment">
+        <fragment
+            android:id="@+id/withdrawFragment"
+            android:name="com.susanghan.android.ui.more.account.withdraw.WithdrawFragment"
+            android:label="WithdrawFragment"
+            tools:layout="@layout/fragment_withdraw" />
+        <fragment
+            android:id="@+id/adjustmentDetailFragment"
+            android:name="com.susanghan.android.ui.more.adjustment.detail.AdjustmentDetailFragment"
+            android:label="AdjustmentDetailFragment"
+            tools:layout="@layout/fragment_adjustment_detail" />
+        <fragment
+            android:id="@+id/userNotificationDetailFragment"
+            android:name="com.susanghan.android.ui.more.list.detail.NotiDetailFragment"
+            android:label="UserNotificationDetailFragment"
+            tools:layout="@layout/fragment_noti_detail" />
+        <fragment
+            android:id="@+id/userNotificationFragment"
+            android:name="com.susanghan.android.ui.more.notice.UserNotificationFragment"
+            android:label="fragment_user_notification"
+            tools:layout="@layout/fragment_user_notification">
+            <action
+                android:id="@+id/action_userNotificationFragment_to_userNotificationDetailFragment"
+                app:destination="@id/userNotificationDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/profileDetailFragment"
+            android:name="com.susanghan.android.ui.more.profile.ProfileDetailFragment"
+            android:label="ProfileDetailFragment"
+            tools:layout="@layout/fragment_profile_detail" />
+        <fragment
+            android:id="@+id/adjustmentFragment"
+            android:name="com.susanghan.android.ui.more.adjustment.AdjustmentFragment"
+            android:label="AdjustmentFragment"
+            tools:layout="@layout/fragment_adjustment">
+            <action
+                android:id="@+id/action_adjustmentFragment_to_adjustmentDetailFragment"
+                app:destination="@id/adjustmentDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/accountFragment"
+            android:name="com.susanghan.android.ui.more.account.AccountFragment"
+            android:label="AccountFragment"
+            tools:layout="@layout/fragment_account">
+            <action
+                android:id="@+id/action_accountFragment_to_withdrawFragment"
+                app:destination="@id/withdrawFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/faqFragment"
+            android:name="com.susanghan.android.ui.more.faq.FaqFragment"
+            android:label="FaqFragment"
+            tools:layout="@layout/fragment_faq" />
+        <fragment
+            android:id="@+id/notiFragment"
+            android:name="com.susanghan.android.ui.more.list.NotiFragment"
+            android:label="NotiFragment"
+            tools:layout="@layout/fragment_noti" />
+        <fragment
+            android:id="@+id/moreFragment"
+            android:name="com.susanghan.android.ui.more.MoreFragment"
+            android:label="fragment_more"
+            tools:layout="@layout/fragment_more">
+            <action
+                android:id="@+id/action_moreFragment_to_userNotificationFragment"
+                app:destination="@id/userNotificationFragment" />
+            <action
+                android:id="@+id/action_moreFragment_to_profileDetailFragment"
+                app:destination="@id/profileDetailFragment" />
+            <action
+                android:id="@+id/action_moreFragment_to_adjustmentFragment"
+                app:destination="@id/adjustmentFragment" />
+            <action
+                android:id="@+id/action_moreFragment_to_accountFragment"
+                app:destination="@id/accountFragment" />
+            <action
+                android:id="@+id/action_moreFragment_to_faqFragment"
+                app:destination="@id/faqFragment" />
+            <action
+                android:id="@+id/action_moreFragment_to_notiFragment"
+                app:destination="@id/notiFragment" />
+        </fragment>
+    </navigation>
 </navigation>

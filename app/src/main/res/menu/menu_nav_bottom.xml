@@ -13,7 +13,7 @@
 <!--        android:icon="@drawable/icon_product_selector"-->
 <!--        android:title="@string/bottom_nav_item_2" />-->
     <item
-        android:id="@id/moreFragment"
+        android:id="@id/navigation_more"
         android:icon="@drawable/icon_more_selector"
         android:title="@string/bottom_nav_item_3" />
 </menu>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include android:id="@+id/toolbar"
+            layout="@layout/layout_activity_toolbar"/>
+        
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="회원님의 아이디를\n찾았습니다."/>
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="아이디: abc***"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="30dp"
+                android:id="@+id/btn_confirm"
+                android:layout_marginBottom="32dp"
+                android:text="로그인"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintVertical_bias="1"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/round_white_6dp"
+                app:backgroundTint="@color/deep_blue"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

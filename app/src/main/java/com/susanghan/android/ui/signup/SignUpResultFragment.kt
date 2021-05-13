@@ -9,20 +9,16 @@ import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.databinding.FragmentSignUpBinding
+import com.susanghan.android.databinding.FragmentSignUpResultBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavArgs>() {
-    override val layoutId: Int = R.layout.fragment_sign_up
-    override val viewModel: SignUpViewModel by viewModel()
+class SignUpResultFragment : BaseFragment<FragmentSignUpResultBinding, SignUpResultViewModel, NavArgs>() {
+    override val layoutId: Int = R.layout.fragment_sign_up_result
+    override val viewModel: SignUpResultViewModel by viewModel()
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.btnConfirm.setOnClickListener {
-            val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment()
-            navController?.navigate(action)
-        }
+
     }
 
     override fun initDataBinding() {
@@ -32,4 +28,5 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
     override fun initAfterBinding() {
 
     }
+
 }
