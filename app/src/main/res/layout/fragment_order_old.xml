@@ -109,6 +109,7 @@
                 <!--차후에 recycler view로 변경-->
 
                 <LinearLayout
+                    android:id="@+id/ll_dummy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">

@@ -2,6 +2,7 @@ package com.susanghan.android.di
 
 import com.susanghan.android.retrofit.SusanghanApi
 import com.susanghan.android.ui.cs.CsViewModel
+import com.susanghan.android.ui.cs.detail.CsDetailViewModel
 import com.susanghan.android.ui.more.MoreViewModel
 import com.susanghan.android.ui.more.account.AccountViewModel
 import com.susanghan.android.ui.more.account.withdraw.WithdrawViewModel
@@ -40,6 +41,9 @@ val viewModelModule = module {
     }
     viewModel {
         CsViewModel()
+    }
+    viewModel {
+        CsDetailViewModel()
     }
     viewModel {
         AccountViewModel()

@@ -1,20 +1,20 @@
-package com.susanghan.android.ui.more.list.detail
+package com.susanghan.android.ui.cs.detail
 
 import android.os.Bundle
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.databinding.FragmentNotiDetailBinding
+import com.susanghan.android.databinding.FragmentCsDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NotiDetailFragment:BaseFragment<FragmentNotiDetailBinding, NotiDetailViewModel, NavArgs>() {
-    override val layoutId: Int = R.layout.fragment_noti_detail
-    override val viewModel: NotiDetailViewModel by viewModel()
+class CsDetailFragment:BaseFragment<FragmentCsDetailBinding, CsDetailViewModel, NavArgs>() {
+    override val layoutId: Int = R.layout.fragment_cs_detail
+    override val viewModel: CsDetailViewModel by viewModel()
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.toolbar.tvTitle.text = "공지사항"
+        binding.toolbar.tvTitle.text = "고객 문의"
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
@@ -27,4 +27,5 @@ class NotiDetailFragment:BaseFragment<FragmentNotiDetailBinding, NotiDetailViewM
     override fun initAfterBinding() {
 
     }
+
 }

@@ -40,5 +40,23 @@
 
     <!--adjustment-->
     <string name="adjustment_bank_warning">지급일은 매월 15일이며, 전월 1일부터 말일까지 발생한 수선 완료건에 한하여 이루어집니다. 정산일 이후 취소 및 환불이 발생하는 경우 익월 정산 금액에서 처리됩니다.</string>
+
+    <!--account-->
+    <string name="account_item_0">로그아웃</string>
+    <string name="account_item_1">운영일시정지</string>
+    <string name="account_item_2">탈퇴신청</string>
+    
+    <string name="account_dialog_stop_title">운영을 정지하시겠습니까?</string>
+    <string name="account_dialog_stop_subtext">더이상 의뢰를 받을 수 없으며\n운영을 정지해도 현재 진행중인 주문을 취소할 수 없습니다.</string>
+    <string name="account_dialog_start_title">운영을 개시하시겠습니까? </string>
+    <string name="account_dialog_start_subtext">이제 다시 의뢰를 받을 수 있습니다.</string>
+    <string name="account_dialog_button_cancel">취소</string>
+    <string name="account_dialog_button_stop">운영정지</string>
+    <string name="account_dialog_button_start">운영개시</string>
+
+    <!--withdraw-->
+    <string name="withdraw_dialog_title">탈퇴신청이 완료되었습니다.</string>
+    <string name="withdraw_dialog_subtext">회원 탈퇴는 시간이 소요됩니다.\n담당자가 신청 내용을 검토 후 연락드릴 예정입니다.</string>
+    <string name="withdraw_dialog_btn">확인</string>
 </resources>
 

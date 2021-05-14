@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
@@ -18,7 +19,13 @@ class CsFragment : BaseFragment<FragmentCsBinding, CsViewModel, NavArgs>() {
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
+        val children = binding.llDummy.children
 
+        children.forEach {
+            it.setOnClickListener {
+                navController?.navigate(CsFragmentDirections.actionCsFragmentToCsDetailFragment())
+            }
+        }
     }
 
     override fun initDataBinding() {

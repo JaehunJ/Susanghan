@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_3949ab">
+
+    <View
+        android:id="@+id/bar_back"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="23dp"
+        android:alpha="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/round_white_10dp"/>
+
+    <View
+        android:id="@+id/bar_front"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/round_white_10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/cursor"
+        app:layout_constraintTop_toTopOf="@id/bar_back"
+        app:layout_constraintTop_toBottomOf="@id/bar_back"/>
+
+    <ImageView
+        android:id="@+id/cursor"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:src="@drawable/oval_dot_white_stroke_424cc1"
+        app:layout_constraintTop_toTopOf="@id/bar_back"
+        app:layout_constraintBottom_toBottomOf="@id/bar_back"
+        app:layout_constraintStart_toStartOf="@id/bar_back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/bar_back"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

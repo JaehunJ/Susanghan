@@ -39,5 +39,27 @@
         <item name="tabSelectedTextColor">#2F389F</item>
         <item name="tabTextColor">@color/white</item>
     </style>
+    
+    <!--common dialog-->
+    <style name="CommonCustomDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/CommonCustomDialog.NeBtn</item>
+        <item name="buttonBarPositiveButtonStyle">@style/CommonCustomDialog.PoBtn</item>
+    </style>
+
+    <style name="CommonCustomDialog.PoBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/dialog_424CC1</item>
+    </style>
+
+    <style name="CommonCustomDialog.NeBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/gray_basic</item>
+    </style>
+
+    <!--withdraw edittext-->
+    <style name="WithdrawEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#e5e5e5</item>
+        <item name="boxStrokeWidth">1dp</item>
+    </style>
+
+<!--    <style name="WithdrawEditText.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox."-->
 
 </resources>

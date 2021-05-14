@@ -34,7 +34,11 @@
         android:id="@+id/csFragment"
         android:name="com.susanghan.android.ui.cs.CsFragment"
         android:label="fragment_cs"
-        tools:layout="@layout/fragment_cs" />
+        tools:layout="@layout/fragment_cs" >
+        <action
+            android:id="@+id/action_csFragment_to_csDetailFragment"
+            app:destination="@id/csDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productFragment"
         android:name="com.susanghan.android.ui.product.ProductFragment"
@@ -151,18 +155,15 @@
             android:label="AdjustmentDetailFragment"
             tools:layout="@layout/fragment_adjustment_detail" />
         <fragment
-            android:id="@+id/userNotificationDetailFragment"
+            android:id="@+id/notiDetailFragment"
             android:name="com.susanghan.android.ui.more.list.detail.NotiDetailFragment"
-            android:label="UserNotificationDetailFragment"
+            android:label="NotiDetailFragment"
             tools:layout="@layout/fragment_noti_detail" />
         <fragment
             android:id="@+id/userNotificationFragment"
             android:name="com.susanghan.android.ui.more.notice.UserNotificationFragment"
             android:label="fragment_user_notification"
             tools:layout="@layout/fragment_user_notification">
-            <action
-                android:id="@+id/action_userNotificationFragment_to_userNotificationDetailFragment"
-                app:destination="@id/userNotificationDetailFragment" />
         </fragment>
         <fragment
             android:id="@+id/profileDetailFragment"
@@ -196,7 +197,11 @@
             android:id="@+id/notiFragment"
             android:name="com.susanghan.android.ui.more.list.NotiFragment"
             android:label="NotiFragment"
-            tools:layout="@layout/fragment_noti" />
+            tools:layout="@layout/fragment_noti" >
+            <action
+                android:id="@+id/action_notiFragment_to_notiDetailFragment"
+                app:destination="@id/notiDetailFragment" />
+        </fragment>
         <fragment
             android:id="@+id/moreFragment"
             android:name="com.susanghan.android.ui.more.MoreFragment"
@@ -222,4 +227,9 @@
                 app:destination="@id/notiFragment" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/csDetailFragment"
+        android:name="com.susanghan.android.ui.cs.detail.CsDetailFragment"
+        android:label="CsDetailFragment"
+        tools:layout="@layout/fragment_cs_detail"/>
 </navigation>

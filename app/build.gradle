@@ -29,6 +29,23 @@ android {
         }
     }
 
+    flavorDimensions "server"
+
+    productFlavors{
+        def SERVICE_SERVER="SERVICE_SERVER"
+        def TRIAL_SERVER = "TRIAL_SERVER"
+
+        trial{
+            buildConfigField "String", SERVICE_SERVER, '""'
+            buildConfigField "String", TRIAL_SERVER, '""'
+        }
+
+        real{
+            buildConfigField "String", SERVICE_SERVER, '""'
+            buildConfigField "String", TRIAL_SERVER, '""'
+        }
+    }
+
     buildFeatures{
         dataBinding = true
         viewBinding = true

@@ -10,9 +10,11 @@
 
     <color name="color_transparent">#00ffffff</color>
     <color name="bottom_sheet_background">#000000</color>
+    <color name="gray_basic">#999999</color>
 
     <color name="color_424cc1">#424cc1</color>
     <color name="color_2f389f">#2f389f</color>
+    <color name="color_3949ab">#3949ab</color>
 
     <!--bottom nav-->
     <color name="bottom_nav_nor">#000000</color>
@@ -24,4 +26,5 @@
     <color name="deep_bright_blue">#6F74DD</color>
 
     <color name="deep_blue_6F74DD">#6F74DD</color>
+    <color name="dialog_424CC1">#424CC1</color>
 </resources>

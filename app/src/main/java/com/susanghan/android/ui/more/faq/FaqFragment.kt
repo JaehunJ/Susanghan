@@ -14,7 +14,10 @@ class FaqFragment:BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        binding.toolbar.tvTitle.text = "FAQ"
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
     }
 
     override fun initDataBinding() {

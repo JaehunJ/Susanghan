@@ -15,6 +15,11 @@ class OrderDetailFragment : BaseFragment<FragmentOrderDetailBinding, OrderViewMo
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
+        binding.toolbar.tvTitle.text = "주문 상세"
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
+
 
     }
 
