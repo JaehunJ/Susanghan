@@ -1,6 +1,7 @@
 package com.susanghan.android.di
 
 import com.susanghan.android.retrofit.SusanghanApi
+import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.ui.cs.CsViewModel
 import com.susanghan.android.ui.cs.detail.CsDetailViewModel
 import com.susanghan.android.ui.more.MoreViewModel
@@ -34,79 +35,76 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
     viewModel {
-        SplashViewModel()
+        SplashViewModel(get())
     }
     viewModel {
-        SignInViewModel()
+        SignInViewModel(get())
     }
     viewModel {
-        CsViewModel()
+        CsViewModel(get())
     }
     viewModel {
-        CsDetailViewModel()
+        CsDetailViewModel(get())
     }
     viewModel {
-        AccountViewModel()
+        AccountViewModel(get())
     }
     viewModel {
-        WithdrawViewModel()
+        WithdrawViewModel(get())
     }
     viewModel {
-        AdjustmentViewModel()
+        AdjustmentViewModel(get())
     }
     viewModel {
-        AdjustmentDetailViewModel()
+        AdjustmentDetailViewModel(get())
     }
     viewModel {
-        FaqViewModel()
+        FaqViewModel(get())
     }
     viewModel {
-        NotiViewModel()
+        NotiViewModel(get())
     }
     viewModel {
-        UserNotificationViewModel()
+        UserNotificationViewModel(get())
     }
     viewModel {
-        NotiDetailViewModel()
+        NotiDetailViewModel(get())
     }
     viewModel {
-        ProfileDetailViewModel()
+        ProfileDetailViewModel(get())
     }
     viewModel {
-        MoreViewModel()
+        MoreViewModel(get())
     }
     viewModel {
-        OrderViewModel()
+        OrderViewModel(get())
     }
     viewModel {
-        OrderDetailViewModel()
+        OrderDetailViewModel(get())
     }
     viewModel {
-        ProductViewModel()
+        ProductViewModel(get())
     }
     viewModel {
-        FindIdViewModel()
+        FindIdViewModel(get())
     }
     viewModel {
-        FindIdResultViewModel()
+        FindIdResultViewModel(get())
     }
     viewModel {
-        FindPwViewModel()
+        FindPwViewModel(get())
     }
     viewModel {
-        SettingPwViewModel()
-    }
-//    viewModel {
-//        SignInViewModel()
-//    }
-    viewModel {
-        SignUpViewModel()
+        SettingPwViewModel(get())
     }
     viewModel {
-        SignUpPwViewModel()
+        SignUpViewModel(get())
     }
     viewModel {
-        SignUpResultViewModel()
+        SignUpPwViewModel(get())
+    }
+    viewModel {
+        SignUpResultViewModel(get())
     }
 
 //    single {
@@ -127,7 +125,13 @@ val appModule = module {
 }
 
 val retrofitModule = module {
-    single<SusanghanApi> { provideRetrofitClient()}
+    single<SusanghanService> { provideRetrofitClient()}
+}
+
+val apiModule = module{
+    single{
+        SusanghanApi(get())
+    }
 }
 
 private fun provideRetrofitClient()= Retrofit.Builder()
@@ -136,4 +140,4 @@ private fun provideRetrofitClient()= Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     .build()
-    .create(SusanghanApi::class.java)
+    .create(SusanghanService::class.java)

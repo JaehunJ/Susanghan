@@ -4,10 +4,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--dialog-->
+    <!--service error-->
     <string name="dialog_service_error_0">서비스 이용 안내</string>
     <string name="dialog_service_error_1">서비스 이용에 불편을 드려 죄송합니다.\n현재 서비스를 이용이 불가합니다.\n</string>
-
     <string name="dialog_service_error_2">재시도를 통해서 문제가 해결되지 않는 경우\n카카오톡 채널"수상한수선집"을 통해 문의해주세요.</string>
+
+    <!--service check-->
+    <string name="dialog_service_check_0">서비스 이용 안내</string>
+    <string name="dialog_service_check_1">서비스 이용에 불편을 드려 죄송합니다.\n현재 서비스를 이용이 불가합니다.\n</string>
+    <string name="dialog_service_check_2">재시도를 통해서도 문제가 해결되지 않는 경우\n카카오톡 채널 "oldee"을 통해 문의해주세요.</string>
+
     <!--splash-->
     <string name="splash_top_0">수선의 모든 것</string>
     <string name="splash_top_1">수상한</string>

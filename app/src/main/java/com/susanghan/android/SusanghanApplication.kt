@@ -2,6 +2,7 @@ package com.susanghan.android
 
 import android.app.Application
 import android.content.Context
+import com.susanghan.android.di.apiModule
 import com.susanghan.android.di.appModule
 import com.susanghan.android.di.retrofitModule
 import com.susanghan.android.di.viewModelModule
@@ -30,7 +31,7 @@ class SusanghanApplication:Application() {
             androidLogger()
             androidContext(this@SusanghanApplication)
             fragmentFactory()
-            modules(appModule, retrofitModule, viewModelModule)
+            modules(appModule, retrofitModule, apiModule, viewModelModule)
         }
     }
 }

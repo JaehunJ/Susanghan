@@ -3,11 +3,12 @@ package com.susanghan.android.base
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.ViewModel
+import com.susanghan.android.retrofit.SusanghanApi
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.koin.core.KoinComponent
 
-abstract class BaseViewModel:ViewModel(), Observable, KoinComponent {
+abstract class BaseViewModel(val api:SusanghanApi):ViewModel(), Observable, KoinComponent {
 
     var compositeDisposable = CompositeDisposable()
     fun addDisposable(disposable: Disposable){
