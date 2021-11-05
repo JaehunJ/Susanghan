@@ -3,5 +3,5 @@ package com.susanghan.android.ui.order.detail
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.retrofit.SusanghanApi
 
-class OrderDetailViewModel(api: SusanghanApi):BaseViewModel(api) {
+class OrderDetailViewModel:BaseViewModel() {
 }

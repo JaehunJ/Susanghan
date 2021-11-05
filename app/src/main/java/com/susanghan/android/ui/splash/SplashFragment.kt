@@ -8,8 +8,10 @@ import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentSplashBinding
 import com.susanghan.android.ui.dialog.ServiceErrorDialog
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.viewmodel.ext.android.*
 
+@AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_splash
     override val viewModel: SplashViewModel by viewModel()

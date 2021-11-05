@@ -3,5 +3,5 @@ package com.susanghan.android.ui.more.list
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.retrofit.SusanghanApi
 
-class NotiViewModel(api: SusanghanApi):BaseViewModel(api) {
+class NotiViewModel:BaseViewModel() {
 }

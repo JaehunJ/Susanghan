@@ -11,6 +11,7 @@ import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.susanghan.android.ui.CommonActivityImpl
+import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 
 abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: Fragment() {

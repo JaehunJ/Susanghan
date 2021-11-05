@@ -33,111 +33,111 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-val viewModelModule = module {
-    viewModel {
-        SplashViewModel(get())
-    }
-    viewModel {
-        SignInViewModel(get())
-    }
-    viewModel {
-        CsViewModel(get())
-    }
-    viewModel {
-        CsDetailViewModel(get())
-    }
-    viewModel {
-        AccountViewModel(get())
-    }
-    viewModel {
-        WithdrawViewModel(get())
-    }
-    viewModel {
-        AdjustmentViewModel(get())
-    }
-    viewModel {
-        AdjustmentDetailViewModel(get())
-    }
-    viewModel {
-        FaqViewModel(get())
-    }
-    viewModel {
-        NotiViewModel(get())
-    }
-    viewModel {
-        UserNotificationViewModel(get())
-    }
-    viewModel {
-        NotiDetailViewModel(get())
-    }
-    viewModel {
-        ProfileDetailViewModel(get())
-    }
-    viewModel {
-        MoreViewModel(get())
-    }
-    viewModel {
-        OrderViewModel(get())
-    }
-    viewModel {
-        OrderDetailViewModel(get())
-    }
-    viewModel {
-        ProductViewModel(get())
-    }
-    viewModel {
-        FindIdViewModel(get())
-    }
-    viewModel {
-        FindIdResultViewModel(get())
-    }
-    viewModel {
-        FindPwViewModel(get())
-    }
-    viewModel {
-        SettingPwViewModel(get())
-    }
-    viewModel {
-        SignUpViewModel(get())
-    }
-    viewModel {
-        SignUpPwViewModel(get())
-    }
-    viewModel {
-        SignUpResultViewModel(get())
-    }
-
-//    single {
-//        PackageRepository(androidContext())
-//
-//        single {
-//            PrintService(get())
-//        }
-//
-//        factory {
-//            InjectCountData()
-//        }
+//val viewModelModule = module {
+//    viewModel {
+//        SplashViewModel(get())
 //    }
-}
-
-val appModule = module {
-
-}
-
-val retrofitModule = module {
-    single<SusanghanService> { provideRetrofitClient()}
-}
-
-val apiModule = module{
-    single{
-        SusanghanApi(get())
-    }
-}
-
-private fun provideRetrofitClient()= Retrofit.Builder()
-    .baseUrl("")
-    .client(OkHttpClient())
-    .addConverterFactory(GsonConverterFactory.create())
-    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-    .build()
-    .create(SusanghanService::class.java)
+//    viewModel {
+//        SignInViewModel(get())
+//    }
+//    viewModel {
+//        CsViewModel(get())
+//    }
+//    viewModel {
+//        CsDetailViewModel(get())
+//    }
+//    viewModel {
+//        AccountViewModel(get())
+//    }
+//    viewModel {
+//        WithdrawViewModel(get())
+//    }
+//    viewModel {
+//        AdjustmentViewModel(get())
+//    }
+//    viewModel {
+//        AdjustmentDetailViewModel(get())
+//    }
+//    viewModel {
+//        FaqViewModel(get())
+//    }
+//    viewModel {
+//        NotiViewModel(get())
+//    }
+//    viewModel {
+//        UserNotificationViewModel(get())
+//    }
+//    viewModel {
+//        NotiDetailViewModel(get())
+//    }
+//    viewModel {
+//        ProfileDetailViewModel(get())
+//    }
+//    viewModel {
+//        MoreViewModel(get())
+//    }
+//    viewModel {
+//        OrderViewModel(get())
+//    }
+//    viewModel {
+//        OrderDetailViewModel(get())
+//    }
+//    viewModel {
+//        ProductViewModel(get())
+//    }
+//    viewModel {
+//        FindIdViewModel(get())
+//    }
+//    viewModel {
+//        FindIdResultViewModel(get())
+//    }
+//    viewModel {
+//        FindPwViewModel(get())
+//    }
+//    viewModel {
+//        SettingPwViewModel(get())
+//    }
+//    viewModel {
+//        SignUpViewModel(get())
+//    }
+//    viewModel {
+//        SignUpPwViewModel(get())
+//    }
+//    viewModel {
+//        SignUpResultViewModel(get())
+//    }
+//
+////    single {
+////        PackageRepository(androidContext())
+////
+////        single {
+////            PrintService(get())
+////        }
+////
+////        factory {
+////            InjectCountData()
+////        }
+////    }
+//}
+//
+//val appModule = module {
+//
+//}
+//
+//val retrofitModule = module {
+//    single<SusanghanService> { provideRetrofitClient()}
+//}
+//
+//val apiModule = module{
+//    single{
+//        SusanghanApi(get())
+//    }
+//}
+//
+//private fun provideRetrofitClient()= Retrofit.Builder()
+//    .baseUrl("")
+//    .client(OkHttpClient())
+//    .addConverterFactory(GsonConverterFactory.create())
+//    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//    .build()
+//    .create(SusanghanService::class.java)
