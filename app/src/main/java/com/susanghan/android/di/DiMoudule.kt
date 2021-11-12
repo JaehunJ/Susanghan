@@ -27,8 +27,6 @@ import com.susanghan.android.ui.signup.SignUpResultViewModel
 import com.susanghan.android.ui.signup.SignUpViewModel
 import com.susanghan.android.ui.splash.SplashViewModel
 import okhttp3.OkHttpClient
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

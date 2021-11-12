@@ -1,3 +1,3 @@
 package com.susanghan.android.retrofit.request
 
-data class SignInRequest(val id:String, val pw:String)
+data class SignInRequest(val userId:String, val userPassword:String)

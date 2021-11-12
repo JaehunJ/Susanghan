@@ -1,12 +1,23 @@
 package com.susanghan.android.ui.signin
 
+import androidx.lifecycle.MutableLiveData
 import com.susanghan.android.base.BaseViewModel
+import com.susanghan.android.repository.SignInRepository
+import com.susanghan.android.retrofit.response.BaseResponse
+import com.susanghan.android.retrofit.response.SignInResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SignInViewModel:BaseViewModel() {
+@HiltViewModel
+class SignInViewModel @Inject constructor(repository:SignInRepository):BaseViewModel(repository) {
+    val signInResponse = MutableLiveData<SignInResponse>()
 
     fun requestSignIn(id:String,pw:String){
-//        addDisposable(api.requestSignIn(id, pw){
-//
-//        })
+        val repo = repository  as SignInRepository
+        addDisposable(repo.requestSignIn(id, pw){
+            if(it.status == 200){
+                signInResponse.postValue(it)
+            }
+        })
     }
 }

@@ -1,7 +1,10 @@
 package com.susanghan.android.ui.more
 
+import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
-import com.susanghan.android.retrofit.SusanghanApi
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MoreViewModel:BaseViewModel() {
+@HiltViewModel
+class MoreViewModel @Inject constructor(repository: BaseRepository):BaseViewModel(repository) {
 }

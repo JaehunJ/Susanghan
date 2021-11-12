@@ -65,4 +65,6 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
 
         return binding.root
     }
+
+
 }

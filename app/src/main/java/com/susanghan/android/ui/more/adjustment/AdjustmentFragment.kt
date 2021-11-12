@@ -3,16 +3,17 @@ package com.susanghan.android.ui.more.adjustment
 import android.os.Bundle
 import android.widget.PopupMenu
 import androidx.core.view.children
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentAdjustmentBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class AdjustmentFragment:BaseFragment<FragmentAdjustmentBinding, AdjustmentViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_adjustment
-    override val viewModel: AdjustmentViewModel by viewModel()
+    override val viewModel: AdjustmentViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
     val sort = listOf("최근 6개월", "최근 12개월", "전체")

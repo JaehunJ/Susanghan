@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.koin.experimental.property.inject
 
 class ExampleViewModel:ViewModel() {
     val TAG = this.javaClass.simpleName

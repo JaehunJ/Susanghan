@@ -10,14 +10,31 @@
     <string name="dialog_service_error_2">재시도를 통해서 문제가 해결되지 않는 경우\n카카오톡 채널"수상한수선집"을 통해 문의해주세요.</string>
 
     <!--service check-->
-    <string name="dialog_service_check_0">서비스 이용 안내</string>
-    <string name="dialog_service_check_1">서비스 이용에 불편을 드려 죄송합니다.\n현재 서비스를 이용이 불가합니다.\n</string>
-    <string name="dialog_service_check_2">재시도를 통해서도 문제가 해결되지 않는 경우\n카카오톡 채널 "oldee"을 통해 문의해주세요.</string>
+    <string name="dialog_service_check_0">서비스 점검 안내</string>
+    <string name="dialog_service_check_1">서비스 안정화를 위한 점검이 진행중입니다.\n점검일시: YYYY년 MM월 DD일 HH:mm ~ HH:mm\n</string>
+    <string name="dialog_service_check_2">빠른 시간 안에 서비를 재개할 수 있도록\n최선을 다하겠습니다.</string>
+
+    <!--permission info-->
+    <string name="dialog_permission_info_top_title">접근권한 안내</string>
+    <string name="dialog_permission_info_top_contents">서비스 사용을 위해 아래의 권한 허용이 필요합니다.</string>
+    <string name="dialog_permission_info_item0_title">카메라</string>
+    <string name="dialog_permission_info_item0_contents">제품 등록, 글 작성 및 프로필 이미지 첨부</string>
+    <string name="dialog_permission_info_item1_title">사진\/미디어\/파일</string>
+    <string name="dialog_permission_info_item1_contents">제품 등록, 글 작성 및 프로필 이미지 첨부</string>
+    <string name="dialog_permission_info_bottom">접근 권한은 더 나은 서비스를 제공하기 위해 사용되며, 허용하지 않아도 서비스 이용이 가능합니다.</string>
+
+    <!--force update-->
+    <string name="dialog_update_force_title">업데이트 안내</string>
+    <string name="dialog_update_force_contents">중요한 업데이트가 있습니다.\n서비스 이용을 위해 지금 바로 업데이트하세요.</string>
+
+    <string name="dialog_update_normal_title">업데이트 안내</string>
+    <string name="dialog_update_normal_contents">중요한 업데이트가 있습니다.\n서비스 이용을 위해 지금 바로 업데이트하세요.</string>
 
     <!--splash-->
     <string name="splash_top_0">수선의 모든 것</string>
     <string name="splash_top_1">수상한</string>
-    <string name="splash_top_2">수선집</string>
+    <string name="splash_top_2">oldee</string>
+    <string name="splash_bottom">수상한팩토리</string>
 
     <!--bottom nav-->
     <string name="bottom_nav_item_0">주문현황</string>

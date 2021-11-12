@@ -1,9 +1,11 @@
 package com.susanghan.android.ui.order
 
-import androidx.databinding.Observable
+import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
-import com.susanghan.android.retrofit.SusanghanApi
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class OrderViewModel:BaseViewModel() {
+@HiltViewModel
+class OrderViewModel @Inject constructor(repository: BaseRepository):BaseViewModel(repository) {
 
 }

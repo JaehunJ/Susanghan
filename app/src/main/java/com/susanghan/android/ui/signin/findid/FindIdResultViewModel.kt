@@ -1,7 +1,11 @@
 package com.susanghan.android.ui.signin.findid
 
+import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
-import com.susanghan.android.retrofit.SusanghanApi
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class FindIdResultViewModel:BaseViewModel() {
+@HiltViewModel
+class FindIdResultViewModel @Inject constructor(repository: BaseRepository) :
+    BaseViewModel(repository) {
 }

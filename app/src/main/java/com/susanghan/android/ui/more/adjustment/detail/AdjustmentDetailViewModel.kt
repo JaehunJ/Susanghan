@@ -1,7 +1,10 @@
 package com.susanghan.android.ui.more.adjustment.detail
 
+import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
-import com.susanghan.android.retrofit.SusanghanApi
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AdjustmentDetailViewModel:BaseViewModel() {
+@HiltViewModel
+class AdjustmentDetailViewModel @Inject constructor(repository: BaseRepository):BaseViewModel(repository) {
 }

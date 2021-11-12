@@ -2,12 +2,10 @@ package com.susanghan.android.retrofit
 
 import com.susanghan.android.retrofit.request.SignInRequest
 import com.susanghan.android.retrofit.response.BaseResponse
+import com.susanghan.android.retrofit.response.SignInResponse
 import io.reactivex.Flowable
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface SusanghanService {
     @GET("")
@@ -22,10 +20,12 @@ interface SusanghanService {
     @POST()
     fun requestSetPw():Flowable<BaseResponse>
 
+//    @Headers("Authorization")
     @POST("login")
     fun requestSignIn(
+        @Header("Authorization") authorization:String = "clo",
         @Body data:SignInRequest
-    ):Flowable<BaseResponse>
+    ):Flowable<SignInResponse>
 
     @POST("")
     fun requestSignUp():Flowable<BaseResponse>

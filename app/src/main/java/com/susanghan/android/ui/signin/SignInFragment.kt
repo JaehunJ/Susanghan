@@ -1,25 +1,26 @@
 package com.susanghan.android.ui.signin
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
-import com.susanghan.android.NavSigninDirections
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.data.TEST_ID
+import com.susanghan.android.data.TEST_PW
 import com.susanghan.android.databinding.FragmentSignInBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_sign_in
-    override val viewModel: SignInViewModel by viewModel()
+    override val viewModel: SignInViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btnLogin.setOnClickListener {
 //            val action = SignInFragmentDirections.()
-            val action = NavSigninDirections.actionGlobalOrderFragment()
-            navController?.navigate(action)
-            activityFunction.showBottomNavi()
+            viewModel.requestSignIn(TEST_ID, TEST_PW)
         }
 
         binding.tvFindId.setOnClickListener {
@@ -39,11 +40,13 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     }
 
     override fun initDataBinding() {
-
+        viewModel.signInResponse.observe(this){
+            val action = SignInFragmentDirections.actionGlobalOrderFragment()
+            navController?.navigate(action)
+        }
     }
 
     override fun initAfterBinding() {
 
     }
-
 }

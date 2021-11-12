@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-abstract class BaseViewModel : ViewModel(), Observable {
+abstract class BaseViewModel(var repository: BaseRepository) : ViewModel(), Observable {
 
     var compositeDisposable = CompositeDisposable()
     fun addDisposable(disposable: Disposable) {

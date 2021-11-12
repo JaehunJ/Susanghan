@@ -7,10 +7,11 @@ import com.susanghan.android.databinding.DialogServiceErrorBinding
 
 class ServiceErrorDialog(
     val onConfirm: (() -> Unit)? = null
-):BaseBottomSheetDialogFragment<DialogServiceErrorBinding>() {
-    override val bindingInflater = {layoutInflater:LayoutInflater, viewGroup:ViewGroup?, b:Boolean ->
-        DialogServiceErrorBinding.inflate(layoutInflater, viewGroup, b)
-    }
+) : BaseBottomSheetDialogFragment<DialogServiceErrorBinding>() {
+    override val bindingInflater =
+        { layoutInflater: LayoutInflater, viewGroup: ViewGroup?, b: Boolean ->
+            DialogServiceErrorBinding.inflate(layoutInflater, viewGroup, b)
+        }
 
     override fun setEvent() {
         binding.llConfirm.setOnClickListener {
