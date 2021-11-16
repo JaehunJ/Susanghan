@@ -55,6 +55,11 @@
     <action
         android:id="@+id/action_global_productFragment"
         app:destination="@id/productFragment" />
+
+    <action
+        android:id="@+id/action_global_designFragment"
+        app:destination="@id/designFragment"/>
+
     <navigation android:id="@+id/nav_signin"
         app:startDestination="@id/signInFragment">
         <fragment
@@ -232,4 +237,18 @@
         android:name="com.susanghan.android.ui.cs.detail.CsDetailFragment"
         android:label="CsDetailFragment"
         tools:layout="@layout/fragment_cs_detail"/>
+    <fragment
+        android:id="@+id/designFragment"
+        android:name="com.susanghan.android.ui.design.DesignFragment"
+        android:label="fragment_design"
+        tools:layout="@layout/fragment_design" >
+        <action
+            android:id="@+id/action_designFragment_to_designDetailFragment"
+            app:destination="@id/designDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/designDetailFragment"
+        android:name="com.susanghan.android.ui.design.detail.DesignDetailFragment"
+        android:label="fragment_design_detail"
+        tools:layout="@layout/fragment_design_detail" />
 </navigation>

@@ -1,7 +1,9 @@
 package com.susanghan.android.retrofit
 
 import com.susanghan.android.retrofit.request.SignInRequest
+import com.susanghan.android.retrofit.request.SignUpRequest
 import com.susanghan.android.retrofit.response.BaseResponse
+import com.susanghan.android.retrofit.response.OrderListResponse
 import com.susanghan.android.retrofit.response.SignInResponse
 import io.reactivex.Flowable
 import retrofit2.Response
@@ -27,8 +29,11 @@ interface SusanghanService {
         @Body data:SignInRequest
     ):Flowable<SignInResponse>
 
-    @POST("")
-    fun requestSignUp():Flowable<BaseResponse>
+    @POST("api/v1/join/repairman")
+    fun requestSignUp(
+        @Header("Authorization") authorization: String,
+        @Body data:SignUpRequest
+    ):Flowable<BaseResponse>
 
     @POST("")
     fun requestMarketOpen():Flowable<BaseResponse>
@@ -36,8 +41,10 @@ interface SusanghanService {
     @GET("")
     fun requestUserInfo():Flowable<BaseResponse>
 
-    @GET("")
-    fun requestOrderList():Flowable<BaseResponse>
+    @GET("api/v1/repairer/orderList")
+    fun requestOrderList(
+        @Header("Authorization") authorization: String
+    ):Flowable<OrderListResponse>
 
     @GET("")
     fun requestOderDetailStatus():Flowable<BaseResponse>

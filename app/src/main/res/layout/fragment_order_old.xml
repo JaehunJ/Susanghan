@@ -91,40 +91,47 @@
             app:layout_constraintTop_toBottomOf="@id/top"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_marginTop="7dp"
-                    android:layout_marginStart="20dp"
-                    android:id="@+id/tv_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:text="2020.12.28"/>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
 
-                <!--차후에 recycler view로 변경-->
+<!--                <TextView-->
+<!--                    android:layout_marginTop="7dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:id="@+id/tv_date"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="2020.12.28"/>-->
 
-                <LinearLayout
-                    android:id="@+id/ll_dummy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                    <include layout="@layout/layout_order_item_old"/>
-                </LinearLayout>
-            </LinearLayout>
+<!--                &lt;!&ndash;차후에 recycler view로 변경&ndash;&gt;-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/ll_dummy"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                    <include layout="@layout/layout_order_item_old"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

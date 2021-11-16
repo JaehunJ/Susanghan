@@ -7,10 +7,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-object PreferencesUtil {
-    @Provides
-    @Singleton
-    fun providesSharedPreference(app: Application):
-}
+//@Module
+//@InstallIn(SingletonComponent::class)
+//object PreferencesUtil {
+//    @Provides
+//    @Singleton
+//    fun providesSharedPreference(app: Application):
+//}

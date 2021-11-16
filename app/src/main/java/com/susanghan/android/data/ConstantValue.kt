@@ -1,6 +1,6 @@
 package com.susanghan.android.data
 
-val TEST_ID = "test3"
+val TEST_ID = "repairer1"
 val TEST_PW = "1234"
 
 val ACCESS_TOKEN = "access_token"

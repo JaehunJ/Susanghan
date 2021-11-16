@@ -15,13 +15,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CommonActivityImpl {
     val TAG = this.javaClass.simpleName
 
-    private val _exampleLiveData : MutableLiveData<ExampleData> = MutableLiveData()
+    private val _exampleLiveData: MutableLiveData<ExampleData> = MutableLiveData()
 
-    val exampleData:LiveData<ExampleData>
-    get() = _exampleLiveData
+    val exampleData: LiveData<ExampleData>
+        get() = _exampleLiveData
 
-//    private lateinit var _binding:ActivityMain
-    private lateinit var _binding:ActivityMainBinding
+    //    private lateinit var _binding:ActivityMain
+    private lateinit var _binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHostFragment!!.findNavController()
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            when(destination.id){
-                R.id.orderFragment, R.id.csFragment, R.id.moreFragment->{
+            when (destination.id) {
+                R.id.orderFragment, R.id.csFragment, R.id.designFragment, R.id.moreFragment -> {
                     showBottomNavi()
                 }
-                else->{
+                else -> {
                     hideBottomNavi()
                 }
             }
@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
 
         _binding.navBottom.setupWithNavController(navController)
         _binding.navBottom.itemIconTintList = null
-
 
 
 //        //statusbar hide

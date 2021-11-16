@@ -1,5 +1,6 @@
 package com.susanghan.android.ui.signin
 
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.SignInRepository
