@@ -57,6 +57,11 @@
     <string name="more_common_item_1">문의하기</string>
     <string name="more_common_item_2">약관 및 정책</string>
 
+    <!--design top tab-->
+    <string name="design_top_tab_0">전체</string>
+    <string name="design_top_tab_1">판매중</string>
+    <string name="design_top_tab_2">판매중지</string>
+
     <!--sigin up-->
     <string name="attention">사전에 이메일로 받으신 코드번호를 입력 후 인증하기 버튼을 눌러 인증해주세요. 수상한수선집은 사전 승인 후 가입할 수 있습니다. 사전 승인을 원하시는 경우, 입점신청 페이지에서 신청해주세요.</string>
     <string name="attention_pw">영문, 숫자, 특수문자 중 2종류 이상을 조합하여 8~16자 길이로 구성</string>

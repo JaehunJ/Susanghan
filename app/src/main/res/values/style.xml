@@ -42,10 +42,22 @@
     </style>
 
     <!--order top tab-->
-    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
+<!--    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">-->
+<!--        <item name="tabBackground">@drawable/selector_order_top_tab</item>-->
+<!--        <item name="tabSelectedTextColor">#2F389F</item>-->
+<!--        <item name="tabTextColor">@color/white</item>-->
+<!--    </style>-->
+
+    <style name="TabOrderList" parent="Base.Widget.Design.TabLayout">
         <item name="tabBackground">@drawable/selector_order_top_tab</item>
         <item name="tabSelectedTextColor">#2F389F</item>
         <item name="tabTextColor">@color/white</item>
+    </style>
+
+    <style name="TabDesignList" parent="Base.Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/selector_design_top_tab</item>
+        <item name="tabSelectedTextColor">#2F389F</item>
+        <item name="tabTextColor">#666666</item>
     </style>
     
     <!--common dialog-->

@@ -1,6 +1,5 @@
 package com.susanghan.android.base
 
-import android.app.Application
 import android.content.SharedPreferences
 import com.susanghan.android.data.ACCESS_TOKEN
 import com.susanghan.android.data.REFRESH_TOKEN

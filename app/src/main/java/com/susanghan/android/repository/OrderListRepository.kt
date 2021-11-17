@@ -6,7 +6,9 @@ import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.response.OrderListResponse
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class OrderListRepository @Inject constructor(
     api: SusanghanService,
     sharedPreferences: SharedPreferences

@@ -16,7 +16,9 @@ import com.susanghan.android.retrofit.response.SignInResponse
 import io.reactivex.disposables.Disposable
 import java.util.logging.Logger
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SignInRepository @Inject constructor(api: SusanghanService, prefs:SharedPreferences) : BaseRepository(api, prefs) {
 
     fun requestSignIn(id: String, pw: String, onResponse:(SignInResponse)->Unit): Disposable {
