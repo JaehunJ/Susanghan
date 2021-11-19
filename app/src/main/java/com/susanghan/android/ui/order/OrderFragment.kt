@@ -19,6 +19,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     override val viewModel: OrderViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
+
     override fun initView(savedInstanceState: Bundle?) {
 
     }
