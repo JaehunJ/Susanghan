@@ -37,6 +37,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         binding.rvList.adapter = adapter
     }
 
+
     override fun initAfterBinding() {
         viewModel.requestDesignList()
     }
