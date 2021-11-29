@@ -13,13 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CommonActivityImpl {
-    val TAG = this.javaClass.simpleName
-
-    private val _exampleLiveData: MutableLiveData<ExampleData> = MutableLiveData()
-
-    val exampleData: LiveData<ExampleData>
-        get() = _exampleLiveData
-
     //    private lateinit var _binding:ActivityMain
     private lateinit var _binding: ActivityMainBinding
 
@@ -28,8 +21,6 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = _binding.root
         setContentView(view)
-
-        val index = R.id.orderFragment
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHostFragment!!.findNavController()
@@ -59,11 +50,11 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
     }
 
     override fun showProgress() {
-        TODO("Not yet implemented")
+        _binding.rlProgress.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        TODO("Not yet implemented")
+        _binding.rlProgress.visibility = View.GONE
     }
 
     override fun showBottomNavi() {

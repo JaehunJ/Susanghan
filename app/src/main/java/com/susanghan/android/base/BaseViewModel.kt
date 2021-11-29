@@ -2,6 +2,7 @@ package com.susanghan.android.base
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.susanghan.android.retrofit.SusanghanApi
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,4 +31,6 @@ abstract class BaseViewModel(var repository: BaseRepository) : ViewModel(), Obse
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
         callbacks.remove(callback)
     }
+
+    fun isLoading() = repository.getIsLoading()
 }

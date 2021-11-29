@@ -60,6 +60,13 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
         activityFunction = activity as CommonActivityImpl
 
         initView(savedInstanceState)
+
+        viewModel.isLoading().observe(viewLifecycleOwner, {
+            if(it)
+                activityFunction.showProgress()
+            else
+                activityFunction.hideProgress()
+        })
         initDataBinding()
         initAfterBinding()
 
