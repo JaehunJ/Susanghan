@@ -11,8 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentSignUpResultBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignUpResultFragment : BaseFragment<FragmentSignUpResultBinding, SignUpResultViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_sign_up_result
     override val viewModel: SignUpResultViewModel by viewModels()

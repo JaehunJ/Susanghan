@@ -12,8 +12,9 @@ import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentFindIdBinding
 import com.susanghan.android.databinding.FragmentFindIdResultBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FindIdResultFragment : BaseFragment<FragmentFindIdResultBinding, FindIdResultViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_find_id_result
     override val viewModel: FindIdResultViewModel by viewModels()

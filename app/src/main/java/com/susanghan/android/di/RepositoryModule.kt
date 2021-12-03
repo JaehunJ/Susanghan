@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.susanghan.android.BuildConfig
+import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.repository.SignInRepository
 import com.susanghan.android.retrofit.SusanghanService
@@ -20,13 +21,21 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideSignInRepository(api:SusanghanService, preferences: SharedPreferences) = SignInRepository(api, preferences)
+    fun provideSignInRepository(api: SusanghanService, preferences: SharedPreferences) =
+        SignInRepository(api, preferences)
 
     @Singleton
     @Provides
-    fun provideOrderListRepository(api: SusanghanService, preferences: SharedPreferences) = OrderListRepository(api, preferences)
+    fun provideOrderListRepository(api: SusanghanService, preferences: SharedPreferences) =
+        OrderListRepository(api, preferences)
 
     @Singleton
     @Provides
-    fun providePreference(@ApplicationContext context: Context): SharedPreferences = context.getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE)
+    fun provideBaseRepository(api: SusanghanService, preferences: SharedPreferences) =
+        BaseRepository(api, preferences)
+
+    @Singleton
+    @Provides
+    fun providePreference(@ApplicationContext context: Context): SharedPreferences =
+        context.getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE)
 }

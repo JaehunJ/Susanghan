@@ -2,13 +2,14 @@ package com.susanghan.android.ui.order
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.susanghan.android.databinding.LayoutOrderItemOldBinding
 import com.susanghan.android.retrofit.response.OrderListResponse
 
-class OrderListAdapter :
+class OrderListAdapter(val navController: NavController) :
     ListAdapter<OrderListResponse.OrderData, OrderListAdapter.OrderListViewHolder>(
         OrderListDiffCallback()
     ) {
@@ -20,7 +21,7 @@ class OrderListAdapter :
 
     override fun onBindViewHolder(holder: OrderListViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, navController)
     }
 
     class OrderListViewHolder(val binding: LayoutOrderItemOldBinding) :
@@ -34,8 +35,18 @@ class OrderListAdapter :
             }
         }
 
-        fun bind(data:OrderListResponse.OrderData){
+        fun bind(data: OrderListResponse.OrderData, navController: NavController) {
+            data.run {
+                binding.tvOrderType.text = this.mainCategory
+                binding.tvContents.text = this.itemCategory
+                binding.tvStatus.text = this.oStatus
+                binding.tvPrice.text = this.oTotalPrice.toString()
+            }
 
+            binding.root.setOnClickListener {
+                val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailFragment()
+                navController.navigate(action)
+            }
         }
     }
 
@@ -53,6 +64,5 @@ class OrderListAdapter :
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 }

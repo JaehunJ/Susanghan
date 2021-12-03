@@ -8,7 +8,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentAccountBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AccountFragment:BaseFragment<FragmentAccountBinding, AccountViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_account
     override val viewModel: AccountViewModel by viewModels()

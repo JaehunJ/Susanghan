@@ -8,8 +8,10 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentCsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class CsFragment : BaseFragment<FragmentCsBinding, CsViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_cs
     override val viewModel: CsViewModel by viewModels()

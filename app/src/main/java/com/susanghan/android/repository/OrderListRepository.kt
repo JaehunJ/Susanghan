@@ -14,10 +14,10 @@ class OrderListRepository @Inject constructor(
     sharedPreferences: SharedPreferences
 ) : BaseRepository(api, sharedPreferences) {
     fun requestOrderList(onResponse: (OrderListResponse) -> Unit): Disposable {
-        return subscribe(api.requestOrderList(getAccessToken()),{
+        return subscribe(api.requestOrderList(getAccessToken()), {
             onResponse(it)
-        }){
+        }, {
 
-        }
+        })
     }
 }

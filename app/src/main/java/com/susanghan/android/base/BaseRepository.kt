@@ -11,27 +11,38 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-open class BaseRepository @Inject constructor(val api:SusanghanService, val prefs:SharedPreferences){
+open class BaseRepository @Inject constructor(
+    val api: SusanghanService,
+    val prefs: SharedPreferences
+) {
     private var isLoading = MutableLiveData<Boolean>()
 
+    /**
+     * request network
+     */
     fun <T> subscribe(
         flowable: Flowable<T>,
         onResponse: (T) -> Unit,
-        onError: (Throwable) -> Unit
+        onError: (Throwable) -> Unit,
+        showLoading: Boolean = true
     ): Disposable {
-        isLoading.postValue(true)
+        if (showLoading)
+            isLoading.postValue(true)
         return flowable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                isLoading.postValue(false)
+                if (showLoading)
+                    isLoading.postValue(false)
                 onResponse(it)
             }) {
-                isLoading.postValue(false)
+                if (showLoading)
+                    isLoading.postValue(false)
                 onError(it)
             }
     }
 
     fun getIsLoading() = isLoading
-    fun getAccessToken() = "Bearer ${prefs.getString(ACCESS_TOKEN, "")}"?:""
-    fun getRefreshToken() = prefs.getString(REFRESH_TOKEN, "")?:""
+    fun getAccessToken() = "Bearer ${prefs.getString(ACCESS_TOKEN, "")}"
+    fun getAccessTokenRaw() = prefs.getString(ACCESS_TOKEN, "")
+    fun getRefreshToken() = prefs.getString(REFRESH_TOKEN, "")
 }

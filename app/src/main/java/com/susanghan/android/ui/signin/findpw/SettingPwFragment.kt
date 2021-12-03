@@ -7,8 +7,9 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentSettingPwBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SettingPwFragment : BaseFragment<FragmentSettingPwBinding, SettingPwViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_setting_pw
     override val viewModel: SettingPwViewModel by viewModels()

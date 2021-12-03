@@ -11,16 +11,14 @@ import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.susanghan.android.ui.CommonActivityImpl
-import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 
-abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: Fragment() {
+abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArgs> : Fragment() {
     var navController: NavController? = null
-    lateinit var binding:T
-    abstract val layoutId:Int
+    lateinit var binding: T
+    abstract val layoutId: Int
 
-    abstract val viewModel:VM
-    abstract val navArgs:NavArgs
+    abstract val viewModel: VM
+    abstract val navArgs: NavArgs
 
     lateinit var activityFunction: CommonActivityImpl
 
@@ -48,9 +46,9 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        try{
+        try {
             navController = findNavController()
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -62,7 +60,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
         initView(savedInstanceState)
 
         viewModel.isLoading().observe(viewLifecycleOwner, {
-            if(it)
+            if (it)
                 activityFunction.showProgress()
             else
                 activityFunction.hideProgress()
@@ -72,6 +70,4 @@ abstract class BaseFragment<T : ViewDataBinding, VM:BaseViewModel, NA:NavArgs>: 
 
         return binding.root
     }
-
-
 }

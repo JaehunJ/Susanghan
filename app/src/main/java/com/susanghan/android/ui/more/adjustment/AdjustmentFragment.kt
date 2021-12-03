@@ -9,8 +9,9 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentAdjustmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AdjustmentFragment:BaseFragment<FragmentAdjustmentBinding, AdjustmentViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_adjustment
     override val viewModel: AdjustmentViewModel by viewModels()

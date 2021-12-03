@@ -8,8 +8,9 @@ import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentOrderDetailBinding
 import com.susanghan.android.ui.order.OrderViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OrderDetailFragment : BaseFragment<FragmentOrderDetailBinding, OrderViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_order_detail
     override val viewModel: OrderViewModel by viewModels()

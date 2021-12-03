@@ -2,13 +2,9 @@ package com.susanghan.android.base
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.susanghan.android.retrofit.SusanghanApi
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import javax.inject.Inject
 
 abstract class BaseViewModel(var repository: BaseRepository) : ViewModel(), Observable {
 

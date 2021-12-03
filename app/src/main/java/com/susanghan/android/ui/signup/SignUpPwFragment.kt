@@ -7,8 +7,9 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentSignUpPwBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignUpPwFragment : BaseFragment<FragmentSignUpPwBinding, SignUpPwViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_sign_up_pw
     override val viewModel: SignUpPwViewModel by viewModels()

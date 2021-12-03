@@ -8,8 +8,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentWithdrawBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class WithdrawFragment:BaseFragment<FragmentWithdrawBinding, WithdrawViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_withdraw
     override val viewModel: WithdrawViewModel by viewModels()

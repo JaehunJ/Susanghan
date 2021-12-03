@@ -7,8 +7,10 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentAdjustmentDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class AdjustmentDetailFragment:BaseFragment<FragmentAdjustmentDetailBinding, AdjustmentDetailViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_adjustment_detail
     override val viewModel: AdjustmentDetailViewModel by viewModels()

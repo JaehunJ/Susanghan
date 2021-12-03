@@ -19,7 +19,6 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btnLogin.setOnClickListener {
-//            val action = SignInFragmentDirections.()
             viewModel.requestSignIn(TEST_ID, TEST_PW)
         }
 

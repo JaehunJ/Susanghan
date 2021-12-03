@@ -7,8 +7,9 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentNotiDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class NotiDetailFragment:BaseFragment<FragmentNotiDetailBinding, NotiDetailViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_noti_detail
     override val viewModel: NotiDetailViewModel by viewModels()

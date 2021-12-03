@@ -7,8 +7,9 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentFaqBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FaqFragment:BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_faq
     override val viewModel: FaqViewModel by viewModels()
