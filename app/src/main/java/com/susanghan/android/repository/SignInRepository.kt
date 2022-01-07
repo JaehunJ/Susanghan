@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.core.content.edit
 import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.data.ACCESS_TOKEN
+import com.susanghan.android.data.HTTP_OK
 import com.susanghan.android.data.REFRESH_TOKEN
 import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.SignInRequest
@@ -19,7 +20,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     fun requestSignIn(id: String, pw: String, onResponse: (SignInResponse) -> Unit): Disposable {
         return subscribe(super.api.requestSignIn("clo", SignInRequest(id, pw)), {
-            if (it.status == 200) {
+            if (it.status == HTTP_OK) {
                 onResponse.invoke(it)
                 setToken(it.data)
 

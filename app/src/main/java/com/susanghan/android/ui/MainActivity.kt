@@ -13,7 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CommonActivityImpl {
-    //    private lateinit var _binding:ActivityMain
     private lateinit var _binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHostFragment!!.findNavController()
+
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.orderFragment, R.id.csFragment, R.id.designFragment, R.id.moreFragment -> {
@@ -38,10 +38,7 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
         _binding.navBottom.setupWithNavController(navController)
         _binding.navBottom.itemIconTintList = null
 
-
-//        //statusbar hide
         this.window?.apply {
-//            this.statusBarColor = Color.TRANSPARENT
             decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }

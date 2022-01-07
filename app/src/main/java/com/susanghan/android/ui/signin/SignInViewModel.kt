@@ -15,9 +15,7 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
     fun requestSignIn(id: String, pw: String) {
         val repo = repository as SignInRepository
         addDisposable(repo.requestSignIn(id, pw) {
-            if (it.status == 200) {
-                signInResponse.postValue(it)
-            }
+            signInResponse.postValue(it)
         })
     }
 }
