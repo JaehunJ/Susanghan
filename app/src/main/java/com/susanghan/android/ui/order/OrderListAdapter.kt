@@ -6,7 +6,10 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.susanghan.android.R
+import com.susanghan.android.data.ClothCategoryCode
 import com.susanghan.android.databinding.LayoutOrderItemOldBinding
+import com.susanghan.android.databinding.LayoutOrderSubItemBinding
 import com.susanghan.android.retrofit.response.OrderListResponse
 
 class OrderListAdapter(val navController: NavController) :
@@ -36,17 +39,69 @@ class OrderListAdapter(val navController: NavController) :
         }
 
         fun bind(data: OrderListResponse.OrderData, navController: NavController) {
-            data.run {
-                binding.tvOrderType.text = this.mainCategory
-                binding.tvContents.text = this.itemCategory
-                binding.tvStatus.text = this.oStatus
-                binding.tvPrice.text = this.oTotalPrice.toString()
+            //other data
+            binding.tvNo.text = data.orderNum
+            binding.tvStatus.text = data.orderStatusNm
+            binding.tvPrice.text = data.orderPrice.toString()
+            binding.tvDate.text = data.paymentDate
+
+            data.let { d ->
+                val list = data.orderList
+
+                if (list.isNotEmpty()) {
+                    val inflater = LayoutInflater.from(binding.root.context)
+                    list.forEach {
+                        val subBinding = LayoutOrderSubItemBinding.inflate(
+                            inflater,
+                            binding.root as ViewGroup,
+                            false
+                        )
+
+                        bindSubOrderView(subBinding, it)
+
+                        binding.llOrders.addView(subBinding.root)
+                    }
+                }
             }
 
             binding.root.setOnClickListener {
                 val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailFragment()
                 navController.navigate(action)
             }
+        }
+
+        fun bindSubOrderView(
+            binding: LayoutOrderSubItemBinding,
+            data: OrderListResponse.OrderSubData
+        ) {
+            binding.tvOrderType.text = data.mainNm
+            binding.tvContents.text = "옵션 : ${data.subNm}"
+
+            val imgRes = when (data.mainCode) {
+                ClothCategoryCode.Sweatshirt.value -> {
+                    R.drawable.icon_clothes_upper
+                }
+                ClothCategoryCode.Shirts.value -> {
+                    R.drawable.icon_clothes_upper
+                }
+                ClothCategoryCode.One.value -> {
+                    R.drawable.icon_clothes_bottom
+                }
+                ClothCategoryCode.Pants.value -> {
+                    R.drawable.icon_clothes_bottom
+                }
+                ClothCategoryCode.Jean.value -> {
+                    R.drawable.icon_clothes_bottom
+                }
+                ClothCategoryCode.Skirts.value -> {
+                    R.drawable.icon_clothes_bottom
+                }
+                else -> {
+                    R.drawable.icon_clothes_bottom
+                }
+            }
+
+            binding.ivOrderType.setImageResource(imgRes)
         }
     }
 
@@ -55,7 +110,7 @@ class OrderListAdapter(val navController: NavController) :
             oldItem: OrderListResponse.OrderData,
             newItem: OrderListResponse.OrderData
         ): Boolean {
-            return oldItem.orderSeq == newItem.orderSeq
+            return oldItem.orderNum == newItem.orderNum
         }
 
         override fun areContentsTheSame(

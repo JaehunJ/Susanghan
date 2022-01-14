@@ -1,10 +1,14 @@
 package com.susanghan.android.ui.signin
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.SignInRepository
 import com.susanghan.android.retrofit.response.SignInResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,8 +18,9 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
 
     fun requestSignIn(id: String, pw: String) {
         val repo = repository as SignInRepository
-        addDisposable(repo.requestSignIn(id, pw) {
-            signInResponse.postValue(it)
-        })
+        CoroutineScope(Dispatchers.IO).launch{
+            val response = repo.requestSignIn(id, pw)
+            signInResponse.postValue(response.body())
+        }
     }
 }

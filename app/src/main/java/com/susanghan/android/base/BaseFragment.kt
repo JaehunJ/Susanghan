@@ -14,7 +14,9 @@ import com.susanghan.android.ui.CommonActivityImpl
 
 abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArgs> : Fragment() {
     var navController: NavController? = null
-    lateinit var binding: T
+    private var _binding: T? = null
+    val binding get() = _binding!!
+
     abstract val layoutId: Int
 
     abstract val viewModel: VM
@@ -52,7 +54,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
             e.printStackTrace()
         }
 
-        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
 
         activityFunction = activity as CommonActivityImpl
@@ -69,5 +71,10 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
         initAfterBinding()
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

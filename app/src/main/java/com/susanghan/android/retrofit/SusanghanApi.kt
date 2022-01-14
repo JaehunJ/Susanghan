@@ -29,7 +29,7 @@ object SusanghanApi{
 
     @Provides
     @Singleton
-    fun provideHttpClient() = Retrofit.Builder()
+    fun provideHttpClient(okHttpClient: OkHttpClient) = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .client(getOkHttpClient())
         .addConverterFactory(GsonConverterFactory.create())
@@ -37,30 +37,11 @@ object SusanghanApi{
         .build()
         .create(SusanghanService::class.java)
 
-    private fun <T> subscribe(
-        flowable: Flowable<T>,
-        onResponse: (T) -> Unit,
-        onError: (Throwable) -> Unit
-    ): Disposable {
-        return flowable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                onResponse(it)
-            }) {
-                onError(it)
-            }
-    }
-
+    @Provides
+    @Singleton
     fun getOkHttpClient() : OkHttpClient{
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
-//
-//    @Provides
-//    fun requestSignIn(id: String, pw: String, onResponse: (BaseResponse) -> Unit): Disposable {
-//        return subscribe<BaseResponse>(api.requestSignIn(SignInRequest(id, pw)), onResponse, {
-//
-//        })
-//    }
 }

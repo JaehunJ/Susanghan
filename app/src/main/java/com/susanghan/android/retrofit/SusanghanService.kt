@@ -5,65 +5,67 @@ import com.susanghan.android.retrofit.request.SignUpRequest
 import com.susanghan.android.retrofit.response.BaseResponse
 import com.susanghan.android.retrofit.response.OrderListResponse
 import com.susanghan.android.retrofit.response.SignInResponse
-import io.reactivex.Flowable
 import retrofit2.Response
 import retrofit2.http.*
 
 interface SusanghanService {
     @GET("")
-    fun requestVersionInfo():Flowable<BaseResponse>
+    suspend fun requestVersionInfo(): Response<BaseResponse>
 
     @GET("")
-    fun requestFindingId():Flowable<BaseResponse>
+    suspend fun requestFindingId():Response<BaseResponse>
 
     @POST("")
-    fun requestFindingPW():Flowable<BaseResponse>
+    suspend fun requestFindingPW():Response<BaseResponse>
 
     @POST()
-    fun requestSetPw():Flowable<BaseResponse>
+    suspend fun requestSetPw():Response<BaseResponse>
 
 //    @Headers("Authorization")
     @POST("login")
-    fun requestSignIn(
+    suspend fun requestSignIn(
         @Header("Authorization") authorization:String = "clo",
         @Body data:SignInRequest
-    ):Flowable<SignInResponse>
+    ):Response<SignInResponse>
 
     @POST("api/v1/join/repairman")
-    fun requestSignUp(
+    suspend fun requestSignUp(
         @Header("Authorization") authorization: String,
         @Body data:SignUpRequest
-    ):Flowable<BaseResponse>
+    ):Response<BaseResponse>
 
     @POST("")
-    fun requestMarketOpen():Flowable<BaseResponse>
+    suspend fun requestMarketOpen():Response<BaseResponse>
 
     @GET("")
-    fun requestUserInfo():Flowable<BaseResponse>
+    suspend fun requestUserInfo():Response<BaseResponse>
 
-    @GET("api/v1/repairer/orderList")
-    fun requestOrderList(
-        @Header("Authorization") authorization: String
-    ):Flowable<OrderListResponse>
+    @GET("api/v1/expert/orders/list")
+    suspend fun requestOrderList(
+//        @Header("Authorization") authorization: String,
+        @Query("page") page:Int,
+        @Query("limit") limit:Int,
+        @Query("period") period:Int
+    ):Response<OrderListResponse>
 
     @GET("")
-    fun requestOderDetailStatus():Flowable<BaseResponse>
+    suspend fun requestOderDetailStatus():Response<BaseResponse>
 
     @POST("")
-    fun requestOderStateChange():Flowable<BaseResponse>
+    suspend fun requestOderStateChange():Response<BaseResponse>
 
     @POST("")
-    fun requestOderDelivery():Flowable<BaseResponse>
+    suspend fun requestOderDelivery():Response<BaseResponse>
 
     @GET("")
-    fun requestOrderDeliveryStatus():Flowable<BaseResponse>
+    suspend fun requestOrderDeliveryStatus():Response<BaseResponse>
 
     @GET("")
-    fun requestQAList():Flowable<BaseResponse>
+    suspend fun requestQAList():Response<BaseResponse>
 
     @GET("")
-    fun requestQADetail():Flowable<BaseResponse>
+    suspend fun requestQADetail():Response<BaseResponse>
 
     @POST("")
-    fun requestAddAnswer():Flowable<BaseResponse>
+    suspend fun requestAddAnswer():Response<BaseResponse>
 }

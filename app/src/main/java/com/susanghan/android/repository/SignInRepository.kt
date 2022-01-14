@@ -18,21 +18,9 @@ import javax.inject.Singleton
 class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
     BaseRepository(api, prefs) {
 
-    fun requestSignIn(id: String, pw: String, onResponse: (SignInResponse) -> Unit): Disposable {
-        return subscribe(super.api.requestSignIn("clo", SignInRequest(id, pw)), {
-            if (it.status == HTTP_OK) {
-                onResponse.invoke(it)
-                setToken(it.data)
-
-                val access = prefs.getString(ACCESS_TOKEN, "")
-                val refresh = prefs.getString(REFRESH_TOKEN, "")
-
-                Log.e("okhttp", "${access ?: "null"}, ${refresh ?: "null"}")
-            }
-        }, {
-
-        })
-    }
+    suspend fun requestSignIn(id: String, pw: String) = api.requestSignIn(
+        "clo", SignInRequest(id, pw)
+    )
 
     fun setToken(data: SignInResponse.SignInData) {
         prefs.edit {

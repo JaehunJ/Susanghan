@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.data.Period
 import com.susanghan.android.databinding.FragmentOrderOldBinding
 import com.susanghan.android.retrofit.response.OrderListResponse
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     }
 
     override fun initAfterBinding() {
-        viewModel.requestOrderList()
+        viewModel.requestOderList(0, 10, Period.MonthTotal.value)
     }
 }
