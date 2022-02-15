@@ -19,7 +19,6 @@ class DesignImageAdapter(val imageCallBack:(ImageView, String)->Unit) :
         holder.bind(item, imageCallBack)
     }
 
-
     class DesignDetailBigImageDiffUtil : DiffUtil.ItemCallback<DesignDetailBigImage>() {
         override fun areItemsTheSame(
             oldItem: DesignDetailBigImage,

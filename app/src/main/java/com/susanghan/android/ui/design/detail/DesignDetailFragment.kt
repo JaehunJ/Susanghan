@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentDesignDetailBinding
@@ -19,6 +20,7 @@ class DesignDetailFragment :
 
     private var reformId = 0
     private lateinit var adapter: DesignImageAdapter
+    private lateinit var smallAdapter:DesignItemImageAdapter
 
     override fun initView(savedInstanceState: Bundle?) {
         reformId = navArgs.id
@@ -29,11 +31,18 @@ class DesignDetailFragment :
         binding.vpImage.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         binding.indicator.setViewPager2(binding.vpImage)
+
+        smallAdapter = DesignItemImageAdapter()
+        binding.rvItemSmall.adapter = smallAdapter
     }
 
     override fun initDataBinding() {
         viewModel.data.observe(viewLifecycleOwner){
+            viewModel.setImage(binding.ivBefore, it.beforeImageName?:"")
+            viewModel.setImage(binding.ivAfter, it.afterImageName?:"")
 
+            binding.detail = viewModel.data.value
+            smallAdapter.submitList(it.items)
         }
 
         viewModel.imageList.observe(viewLifecycleOwner){

@@ -18,6 +18,7 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
 
     fun requestDesignDetail(id: Int) {
         viewModelScope.launch {
+
             val repo = super.repository as DesignRepository
             val result = repo.requestDesignDetail(id)
 
