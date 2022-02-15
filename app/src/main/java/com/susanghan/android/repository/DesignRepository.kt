@@ -6,18 +6,16 @@ import com.susanghan.android.retrofit.SusanghanService
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 @Singleton
-class OrderListRepository @Inject constructor(
+class DesignRepository @Inject constructor(
     api: SusanghanService,
-    sharedPreferences: SharedPreferences
-) : BaseRepository(api, sharedPreferences) {
+    pref: SharedPreferences
+) : BaseRepository(api, pref) {
 
-    suspend fun requestOderList(page: Int, limit: Int, period: Int) =
-        call { api.requestOrderList(page, limit, period) }
+    suspend fun requestDesignList(page:Int, limit:Int, status:Int) = call{api.requestDesignList(page, limit, status)}
 
-    suspend fun requestOrderDetail(){
-
-    }
+    suspend fun requestDesignDetail(reformId:Int) = call { api.requestDesignDetail(reformId) }
 
     suspend fun requestChangeState(){
 

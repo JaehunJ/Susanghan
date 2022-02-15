@@ -2,13 +2,20 @@ package com.susanghan.android.ui.design
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.susanghan.android.base.BaseRepository
+import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.databinding.LayoutDesignItemBinding
+import com.susanghan.android.retrofit.response.DesignListResponse.DesignData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 
-class DesignListAdapter :
-    ListAdapter<DesignListAdapter.TempDesignItem, DesignListAdapter.DesignItemViewHolder>(
+class DesignListAdapter(val navController: NavController, val imageCallback:(ImageView, String)->Unit) :
+    ListAdapter<DesignData, DesignListAdapter.DesignItemViewHolder>(
         DesignItemDiffCallback()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DesignItemViewHolder {
@@ -17,7 +24,7 @@ class DesignListAdapter :
 
     override fun onBindViewHolder(holder: DesignItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, navController, imageCallback)
     }
 
     class DesignItemViewHolder(val binding: LayoutDesignItemBinding) :
@@ -30,23 +37,26 @@ class DesignListAdapter :
             }
         }
 
-        fun bind(data: TempDesignItem) {
-
+        fun bind(data: DesignData, navController: NavController, imageCallback:(ImageView, String)->Unit) {
+            binding.design = data
+            imageCallback(binding.ivProduct, data.imageName)
+            binding.root.setOnClickListener {
+                val action = DesignFragmentDirections.actionDesignFragmentToDesignDetailFragment(data.reformId)
+                navController.navigate(action)
+            }
         }
     }
 
-    class DesignItemDiffCallback : DiffUtil.ItemCallback<TempDesignItem>() {
-        override fun areItemsTheSame(oldItem: TempDesignItem, newItem: TempDesignItem): Boolean {
-            return oldItem.id == newItem.id
-        }
+    class DesignItemDiffCallback : DiffUtil.ItemCallback<DesignData>() {
+        override fun areItemsTheSame(
+            oldItem: DesignData,
+            newItem: DesignData
+        ) = oldItem.reformId == newItem.reformId
 
-        override fun areContentsTheSame(oldItem: TempDesignItem, newItem: TempDesignItem): Boolean {
-            return oldItem == newItem
-        }
 
+        override fun areContentsTheSame(
+            oldItem: DesignData,
+            newItem: DesignData
+        ) = oldItem == newItem
     }
-
-    data class TempDesignItem(val imagePath: String, val title: String, val like: Int, val id: Int)
-
-
 }

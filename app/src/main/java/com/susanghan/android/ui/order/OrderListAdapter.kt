@@ -10,10 +10,11 @@ import com.susanghan.android.R
 import com.susanghan.android.data.ClothCategoryCode
 import com.susanghan.android.databinding.LayoutOrderItemOldBinding
 import com.susanghan.android.databinding.LayoutOrderSubItemBinding
-import com.susanghan.android.retrofit.response.OrderListResponse
+import com.susanghan.android.retrofit.response.OrderListResponse.OrderSubData
+import com.susanghan.android.retrofit.response.OrderListResponse.OrderData
 
 class OrderListAdapter(val navController: NavController) :
-    ListAdapter<OrderListResponse.OrderData, OrderListAdapter.OrderListViewHolder>(
+    ListAdapter<OrderData, OrderListAdapter.OrderListViewHolder>(
         OrderListDiffCallback()
     ) {
 
@@ -38,12 +39,8 @@ class OrderListAdapter(val navController: NavController) :
             }
         }
 
-        fun bind(data: OrderListResponse.OrderData, navController: NavController) {
-            //other data
-            binding.tvNo.text = data.orderNum
-            binding.tvStatus.text = data.orderStatusNm
-            binding.tvPrice.text = data.orderPrice.toString()
-            binding.tvDate.text = data.paymentDate
+        fun bind(data: OrderData, navController: NavController) {
+            binding.order = data
 
             data.let { d ->
                 val list = data.orderList
@@ -72,10 +69,11 @@ class OrderListAdapter(val navController: NavController) :
 
         fun bindSubOrderView(
             binding: LayoutOrderSubItemBinding,
-            data: OrderListResponse.OrderSubData
+            data: OrderSubData
         ) {
-            binding.tvOrderType.text = data.mainNm
-            binding.tvContents.text = "옵션 : ${data.subNm}"
+            binding.sub = data
+//            binding.tvOrderType.text = data.mainNm
+//            binding.tvContents.text = "옵션 : ${data.subNm}"
 
             val imgRes = when (data.mainCode) {
                 ClothCategoryCode.Sweatshirt.value -> {
@@ -105,19 +103,15 @@ class OrderListAdapter(val navController: NavController) :
         }
     }
 
-    class OrderListDiffCallback : DiffUtil.ItemCallback<OrderListResponse.OrderData>() {
+    class OrderListDiffCallback : DiffUtil.ItemCallback<OrderData>() {
         override fun areItemsTheSame(
-            oldItem: OrderListResponse.OrderData,
-            newItem: OrderListResponse.OrderData
-        ): Boolean {
-            return oldItem.orderNum == newItem.orderNum
-        }
+            oldItem: OrderData,
+            newItem: OrderData
+        ) = oldItem.orderNum == newItem.orderNum
 
         override fun areContentsTheSame(
-            oldItem: OrderListResponse.OrderData,
-            newItem: OrderListResponse.OrderData
-        ): Boolean {
-            return oldItem == newItem
-        }
+            oldItem: OrderData,
+            newItem: OrderData
+        ) =  oldItem == newItem
     }
 }

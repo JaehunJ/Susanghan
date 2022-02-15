@@ -1,21 +1,15 @@
 package com.susanghan.android.ui.design
 
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentDesignBinding
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.Single
-import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavArgs>() {
@@ -28,18 +22,35 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
     }
 
     override fun initDataBinding() {
-        val adapter = DesignListAdapter()
+        val adapter = DesignListAdapter(findNavController()) { v, u ->
+            viewModel.setImage(v, u)
+        }
 
         viewModel.designList.observe(viewLifecycleOwner) {
+            it?.let{
+                if(it.isEmpty()){
+                    binding.llBlankItem.visibility = View.VISIBLE
+                    binding.llExistItem.visibility = View.GONE
+                }else{
+                    binding.llBlankItem.visibility = View.GONE
+                    binding.llExistItem.visibility = View.VISIBLE
+                }
+            }
             adapter.submitList(it)
         }
 
         binding.rvList.adapter = adapter
+        binding.btnDesignAdd.setOnClickListener {
+            val action = DesignFragmentDirections.actionDesignFragmentToDesignAddFragment()
+            navController?.navigate(action)
+        }
+        binding.btnDesignAdd1.setOnClickListener {
+            val action = DesignFragmentDirections.actionDesignFragmentToDesignAddFragment()
+            navController?.navigate(action)
+        }
     }
-
 
     override fun initAfterBinding() {
-        viewModel.requestDesignList()
+        viewModel.requestDesignList(0, 10, 0)
     }
-
 }

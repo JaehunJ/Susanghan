@@ -36,57 +36,113 @@
                 android:textSize="12sp"
                 android:textAlignment="center"
                 android:letterSpacing="-0.05"
-                android:text="디자인 상품 등록"/>
+                android:text="@string/design_blank_btn"/>
 
         </LinearLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/top_tab"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/ll_blank_item"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            app:tabMinWidth="0dp"
-            app:tabPaddingTop="6dp"
-            app:tabPaddingBottom="6dp"
-            app:tabTextColor="#666666"
-            app:tabPaddingStart="16dp"
-            app:tabPaddingEnd="16dp"
-            app:tabIndicator="@null"
-            app:tabMode="scrollable"
-            style="@style/TabDesignList"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.tabs.TabItem
+            <LinearLayout
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.35"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/design_top_tab_0"/>
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:text="@string/design_top_tab_1"/>
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/design_top_tab_2"/>
-        </com.google.android.material.tabs.TabLayout>
+                android:orientation="vertical">
 
-        <androidx.core.widget.NestedScrollView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/design_blank_big"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:text="@string/design_blank_small"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/btn_design_add_1"
+                    android:layout_marginEnd="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="36dp"
+                    app:backgroundTint="#424cc1"
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:letterSpacing="-0.05"
+                    android:text="@string/design_blank_btn"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_exist_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/top_tab"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"/>
-        </androidx.core.widget.NestedScrollView>
+                android:layout_height="32dp"
+                app:tabMinWidth="0dp"
+                app:tabPaddingTop="6dp"
+                app:tabPaddingBottom="6dp"
+                app:tabTextColor="#666666"
+                app:tabPaddingStart="16dp"
+                app:tabPaddingEnd="16dp"
+                app:tabIndicator="@null"
+                app:tabMode="scrollable"
+                style="@style/TabDesignList"
+                app:layout_constraintTop_toBottomOf="@id/tv_top_1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/design_top_tab_0"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="@string/design_top_tab_1"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/design_top_tab_2"/>
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"/>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+
     </LinearLayout>
 </layout>

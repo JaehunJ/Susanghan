@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+    <data>
+        <variable
+            name="design"
+            type="com.susanghan.android.retrofit.response.DesignListResponse.DesignData" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -13,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:src="@mipmap/ic_launcher"
+            android:adjustViewBounds="true"
             app:layout_constraintDimensionRatio="1:1"/>
         <TextView
             android:id="@+id/tv_title"
@@ -21,12 +27,12 @@
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:text="Test SONY NIKON CANNON"/>
+            android:text="@{design.reformName}"/>
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1222"
+            android:text="@{String.valueOf(design.heartCnt)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

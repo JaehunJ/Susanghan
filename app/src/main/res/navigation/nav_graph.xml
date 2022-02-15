@@ -245,10 +245,22 @@
         <action
             android:id="@+id/action_designFragment_to_designDetailFragment"
             app:destination="@id/designDetailFragment" />
+        <action
+            android:id="@+id/action_designFragment_to_designAddFragment"
+            app:destination="@id/designAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/designDetailFragment"
         android:name="com.susanghan.android.ui.design.detail.DesignDetailFragment"
         android:label="fragment_design_detail"
-        tools:layout="@layout/fragment_design_detail" />
+        tools:layout="@layout/fragment_design_detail" >
+        <argument app:argType="integer"
+            android:name="id"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/designAddFragment"
+        android:name="com.susanghan.android.ui.design.add.DesignAddFragment"
+        android:label="fragment_design_add"
+        tools:layout="@layout/fragment_design_add" />
 </navigation>

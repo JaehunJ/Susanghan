@@ -1,16 +1,13 @@
 package com.susanghan.android.repository
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.core.content.edit
 import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.data.ACCESS_TOKEN
-import com.susanghan.android.data.HTTP_OK
 import com.susanghan.android.data.REFRESH_TOKEN
 import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.SignInRequest
 import com.susanghan.android.retrofit.response.SignInResponse
-import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,5 +25,21 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
             putString(REFRESH_TOKEN, data.refreshToken)
             commit()
         }
+    }
+
+    suspend fun requestSignUp() {
+
+    }
+
+    suspend fun requestUserProfile() {
+
+    }
+
+    suspend fun requestChangePw() {
+
+    }
+
+    suspend fun requestWithdraw() {
+
     }
 }

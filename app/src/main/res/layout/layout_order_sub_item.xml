@@ -3,6 +3,11 @@
 <!--    android:layout_width="match_parent"-->
 <!--    android:layout_height="match_parent">-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="sub"
+            type="com.susanghan.android.retrofit.response.OrderListResponse.OrderSubData" />
+    </data>
     <LinearLayout
         android:id="@+id/ll_orders"
         android:layout_width="match_parent"
@@ -30,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="상의수선"
+                    android:text="@{sub.mainNm}"
                     android:textStyle="bold"
                     android:textSize="12sp"/>
             </LinearLayout>
@@ -41,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:text="옵션:소매줄이기, 단추달기, 보풀제거"/>
+                android:text='@{"옵션: "+sub.subNm}'/>
         </LinearLayout>
 
 

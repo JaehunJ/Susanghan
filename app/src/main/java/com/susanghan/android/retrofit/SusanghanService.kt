@@ -1,10 +1,10 @@
 package com.susanghan.android.retrofit
 
+import com.susanghan.android.retrofit.request.ImageRequest
 import com.susanghan.android.retrofit.request.SignInRequest
 import com.susanghan.android.retrofit.request.SignUpRequest
-import com.susanghan.android.retrofit.response.BaseResponse
-import com.susanghan.android.retrofit.response.OrderListResponse
-import com.susanghan.android.retrofit.response.SignInResponse
+import com.susanghan.android.retrofit.response.*
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -60,6 +60,18 @@ interface SusanghanService {
     @GET("")
     suspend fun requestOrderDeliveryStatus():Response<BaseResponse>
 
+    @GET("api/v1/expert/reforms/list")
+    suspend fun requestDesignList(
+        @Query("page") page:Int,
+        @Query("limit") limit:Int,
+        @Query("status") status:Int
+    ):Response<DesignListResponse>
+
+    @GET("api/v1/expert/reforms/details/{reformId}")
+    suspend fun requestDesignDetail(
+        @Path("reformId") reformId:Int
+    ):Response<DesignDetailResponse>
+
     @GET("")
     suspend fun requestQAList():Response<BaseResponse>
 
@@ -68,4 +80,10 @@ interface SusanghanService {
 
     @POST("")
     suspend fun requestAddAnswer():Response<BaseResponse>
+
+    @GET("/api/v1/expert/image/view")
+    suspend fun requestImage(
+        @Header("Authorization") authorization: String,
+        @Query("imageName") name:String
+    ):Response<ResponseBody>
 }

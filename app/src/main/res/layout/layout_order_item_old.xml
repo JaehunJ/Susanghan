@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:text="@{order.paymentDate}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -37,7 +38,7 @@
                 android:id="@+id/tv_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No.1111"
+                android:text="@{order.orderNum}"
                 android:textColor="#999999"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="10dp"
@@ -85,7 +86,7 @@
 
                 <TextView
                     android:id="@+id/tv_status"
-                    android:text="주문완료"
+                    android:text="@{order.orderStatusNm}"
                     android:textSize="10sp"
                     android:textColor="#666666"
                     android:layout_marginStart="22dp"
@@ -96,7 +97,7 @@
 
                 <TextView
                     android:id="@+id/tv_price"
-                    android:text="10,000원"
+                    android:text="@{String.valueOf(order.orderPrice)}"
                     android:layout_marginEnd="25dp"
                     android:textSize="14sp"
                     android:layout_marginStart="22dp"

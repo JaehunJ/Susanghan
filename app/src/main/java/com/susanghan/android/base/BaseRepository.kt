@@ -1,19 +1,16 @@
 package com.susanghan.android.base
 
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.susanghan.android.data.ACCESS_TOKEN
 import com.susanghan.android.data.REFRESH_TOKEN
 import com.susanghan.android.retrofit.RemoteData
 import com.susanghan.android.retrofit.SusanghanService
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import java.io.IOException
-import java.lang.Exception
 import javax.inject.Inject
 
 open class BaseRepository @Inject constructor(
@@ -22,25 +19,35 @@ open class BaseRepository @Inject constructor(
 ) {
     private var isLoading = MutableLiveData<Boolean>()
 
-    suspend fun <T> call(apiCall:suspend ()->Response<T>):T?{
+    suspend fun <T> call(apiCall: suspend () -> Response<T>): T? {
         isLoading.postValue(true)
         val response = apiCall.invoke()
         isLoading.postValue(false)
 
-        val result = if(response.isSuccessful){
+        val result = if (response.isSuccessful) {
             RemoteData.Success(response.body()!!)
-        }else{
+        } else {
             RemoteData.Error(IOException(response.message()))
         }
 
-        return when(result){
-            is RemoteData.Success->
+        return when (result) {
+            is RemoteData.Success ->
                 result.output
-            is RemoteData.Error->{
-                Log.e("#debug", result.exception.toString())
+            is RemoteData.Error -> {
+                Log.e("#debug", result.exception.printStackTrace().toString())
                 null
             }
         }
+    }
+
+    suspend fun getImageFromServer(url: String): Bitmap? {
+        val result = call { api.requestImage(getAccessToken(), url) }
+
+        if (result != null) {
+            return BitmapFactory.decodeStream(result.byteStream())
+        }
+
+        return null
     }
 
     fun getIsLoading() = isLoading

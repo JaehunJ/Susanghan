@@ -8,10 +8,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseDialogFragment<VB : ViewBinding> : DialogFragment() {
-    lateinit var _binding: ViewBinding
+    private lateinit var _binding: VB
     abstract val bindingInflater:(LayoutInflater, ViewGroup?, Boolean)->VB
-    protected val binding:VB
-        get() = _binding as VB
+    protected val binding
+        get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
