@@ -31,4 +31,9 @@ enum class ClothCategoryCode(val value:String){
     Etc("06")
 }
 
+enum class ReformStatus(val value:Int){
+    Start(2),
+    Stop(3)
+}
+
 

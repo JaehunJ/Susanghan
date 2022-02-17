@@ -1,29 +1,33 @@
 package com.susanghan.android.ui.design
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.DesignRepository
-import com.susanghan.android.retrofit.response.DesignDetailResponse
 import com.susanghan.android.retrofit.response.DesignListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DesignViewModel @Inject constructor(repository: DesignRepository) :BaseViewModel(repository){
+class DesignViewModel @Inject constructor(repository: DesignRepository) :
+    BaseViewModel(repository) {
 
-    val designList = MutableLiveData<List<DesignListResponse.DesignData>>()
+    val designList = MutableLiveData<List<DesignListResponse.DesignData>?>()
 
-    fun requestDesignList(page:Int, limit:Int, status:Int){
+    fun requestDesignList(page: Int, limit: Int, status: Int) {
         val repo = super.repository as DesignRepository
         viewModelScope.launch {
             val result = repo.requestDesignList(page, limit, status)
 
-            result?.let{
-                designList.postValue(it.data)
+            if (result != null) {
+                if (result.errorMessage == null) {
+                    designList.postValue(result.data)
+                } else {
+                    designList.postValue(null)
+                }
+            } else {
+                designList.postValue(null)
             }
         }
 

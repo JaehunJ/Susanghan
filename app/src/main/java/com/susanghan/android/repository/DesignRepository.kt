@@ -13,15 +13,17 @@ class DesignRepository @Inject constructor(
     pref: SharedPreferences
 ) : BaseRepository(api, pref) {
 
-    suspend fun requestDesignList(page:Int, limit:Int, status:Int) = call{api.requestDesignList(page, limit, status)}
+    suspend fun requestDesignList(page: Int, limit: Int, status: Int) =
+        call { api.requestDesignList(getAccessToken(), page, limit, status) }
 
-    suspend fun requestDesignDetail(reformId:Int) = call { api.requestDesignDetail(reformId) }
+    suspend fun requestDesignDetail(reformId: Int) =
+        call { api.requestDesignDetail(getAccessToken(), reformId) }
 
-    suspend fun requestChangeState(){
+    suspend fun requestChangeState() {
 
     }
 
-    suspend fun requestWriteText(){
+    suspend fun requestWriteText() {
 
     }
 }

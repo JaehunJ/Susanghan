@@ -18,7 +18,8 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        binding.llBlankItem.visibility = View.VISIBLE
+        binding.llExistItem.visibility = View.GONE
     }
 
     override fun initDataBinding() {
@@ -27,11 +28,11 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         }
 
         viewModel.designList.observe(viewLifecycleOwner) {
-            it?.let{
-                if(it.isEmpty()){
+            it?.let {
+                if (it.isNullOrEmpty()) {
                     binding.llBlankItem.visibility = View.VISIBLE
                     binding.llExistItem.visibility = View.GONE
-                }else{
+                } else {
                     binding.llBlankItem.visibility = View.GONE
                     binding.llExistItem.visibility = View.VISIBLE
                 }

@@ -13,7 +13,7 @@ class OrderListRepository @Inject constructor(
 ) : BaseRepository(api, sharedPreferences) {
 
     suspend fun requestOderList(page: Int, limit: Int, period: Int) =
-        call { api.requestOrderList(page, limit, period) }
+        call { api.requestOrderList(getAccessToken(),page, limit, period) }
 
     suspend fun requestOrderDetail(){
 

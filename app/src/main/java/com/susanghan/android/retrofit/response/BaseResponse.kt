@@ -1,3 +1,5 @@
 package com.susanghan.android.retrofit.response
 
-data class BaseResponse(val status:Int, val message:String)
+abstract class BaseResponse(val status:Int?, val message:String?, val errorMessage:String?, val errorCode:String?)
+
+//data class ErrorResponse(val errorMessage:String?, val errorCode:String?)

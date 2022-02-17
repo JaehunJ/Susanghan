@@ -6,5 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class OrderDetailViewModel @Inject constructor(repository: BaseRepository):BaseViewModel(repository) {
+class OrderDetailViewModel @Inject constructor(repository: BaseRepository) :
+    BaseViewModel(repository) {
 }

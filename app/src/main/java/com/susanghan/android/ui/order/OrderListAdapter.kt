@@ -10,8 +10,8 @@ import com.susanghan.android.R
 import com.susanghan.android.data.ClothCategoryCode
 import com.susanghan.android.databinding.LayoutOrderItemOldBinding
 import com.susanghan.android.databinding.LayoutOrderSubItemBinding
-import com.susanghan.android.retrofit.response.OrderListResponse.OrderSubData
 import com.susanghan.android.retrofit.response.OrderListResponse.OrderData
+import com.susanghan.android.retrofit.response.OrderListResponse.OrderSubData
 
 class OrderListAdapter(val navController: NavController) :
     ListAdapter<OrderData, OrderListAdapter.OrderListViewHolder>(
@@ -112,6 +112,6 @@ class OrderListAdapter(val navController: NavController) :
         override fun areContentsTheSame(
             oldItem: OrderData,
             newItem: OrderData
-        ) =  oldItem == newItem
+        ) = oldItem == newItem
     }
 }

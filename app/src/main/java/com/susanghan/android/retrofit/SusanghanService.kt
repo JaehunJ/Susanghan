@@ -1,6 +1,5 @@
 package com.susanghan.android.retrofit
 
-import com.susanghan.android.retrofit.request.ImageRequest
 import com.susanghan.android.retrofit.request.SignInRequest
 import com.susanghan.android.retrofit.request.SignUpRequest
 import com.susanghan.android.retrofit.response.*
@@ -13,77 +12,79 @@ interface SusanghanService {
     suspend fun requestVersionInfo(): Response<BaseResponse>
 
     @GET("")
-    suspend fun requestFindingId():Response<BaseResponse>
+    suspend fun requestFindingId(): Response<BaseResponse>
 
     @POST("")
-    suspend fun requestFindingPW():Response<BaseResponse>
+    suspend fun requestFindingPW(): Response<BaseResponse>
 
     @POST()
-    suspend fun requestSetPw():Response<BaseResponse>
+    suspend fun requestSetPw(): Response<BaseResponse>
 
-//    @Headers("Authorization")
+    //    @Headers("Authorization")
     @POST("login")
     suspend fun requestSignIn(
-        @Header("Authorization") authorization:String = "clo",
-        @Body data:SignInRequest
-    ):Response<SignInResponse>
+        @Header("Authorization") authorization: String = "clo",
+        @Body data: SignInRequest
+    ): Response<SignInResponse>
 
     @POST("api/v1/join/repairman")
     suspend fun requestSignUp(
         @Header("Authorization") authorization: String,
-        @Body data:SignUpRequest
-    ):Response<BaseResponse>
+        @Body data: SignUpRequest
+    ): Response<BaseResponse>
 
     @POST("")
-    suspend fun requestMarketOpen():Response<BaseResponse>
+    suspend fun requestMarketOpen(): Response<BaseResponse>
 
     @GET("")
-    suspend fun requestUserInfo():Response<BaseResponse>
+    suspend fun requestUserInfo(): Response<BaseResponse>
 
     @GET("api/v1/expert/orders/list")
     suspend fun requestOrderList(
-//        @Header("Authorization") authorization: String,
-        @Query("page") page:Int,
-        @Query("limit") limit:Int,
-        @Query("period") period:Int
-    ):Response<OrderListResponse>
+        @Header("Authorization") authorization: String,
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
+        @Query("period") period: Int
+    ): Response<OrderListResponse>
 
     @GET("")
-    suspend fun requestOderDetailStatus():Response<BaseResponse>
+    suspend fun requestOderDetailStatus(): Response<BaseResponse>
 
     @POST("")
-    suspend fun requestOderStateChange():Response<BaseResponse>
+    suspend fun requestOderStateChange(): Response<BaseResponse>
 
     @POST("")
-    suspend fun requestOderDelivery():Response<BaseResponse>
+    suspend fun requestOderDelivery(): Response<BaseResponse>
 
     @GET("")
-    suspend fun requestOrderDeliveryStatus():Response<BaseResponse>
+    suspend fun requestOrderDeliveryStatus(): Response<BaseResponse>
 
     @GET("api/v1/expert/reforms/list")
     suspend fun requestDesignList(
-        @Query("page") page:Int,
-        @Query("limit") limit:Int,
-        @Query("status") status:Int
-    ):Response<DesignListResponse>
+        @Header("Authorization") authorization: String,
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
+        @Query("status") status: Int
+    ): Response<DesignListResponse>
 
     @GET("api/v1/expert/reforms/details/{reformId}")
     suspend fun requestDesignDetail(
-        @Path("reformId") reformId:Int
-    ):Response<DesignDetailResponse>
+        @Header("Authorization") authorization: String,
+        @Path("reformId") reformId: Int
+    ): Response<DesignDetailResponse>
 
     @GET("")
-    suspend fun requestQAList():Response<BaseResponse>
+    suspend fun requestQAList(): Response<BaseResponse>
 
     @GET("")
-    suspend fun requestQADetail():Response<BaseResponse>
+    suspend fun requestQADetail(): Response<BaseResponse>
 
     @POST("")
-    suspend fun requestAddAnswer():Response<BaseResponse>
+    suspend fun requestAddAnswer(): Response<BaseResponse>
 
     @GET("/api/v1/expert/image/view")
     suspend fun requestImage(
         @Header("Authorization") authorization: String,
-        @Query("imageName") name:String
-    ):Response<ResponseBody>
+        @Query("imageName") name: String
+    ): Response<ResponseBody>
 }

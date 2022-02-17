@@ -4,7 +4,8 @@ data class DesignDetailResponse(
     val count:Int,
     val status:Int,
     val message:String,
-    val data:DesignDetailData
+    val data:DesignDetailData,
+    val errorMessage:String?, val errorCode:String?
 ){
     data class DesignDetailData(
         val reformId:Int,

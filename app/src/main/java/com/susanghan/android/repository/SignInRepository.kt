@@ -15,9 +15,8 @@ import javax.inject.Singleton
 class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
     BaseRepository(api, prefs) {
 
-    suspend fun requestSignIn(id: String, pw: String) = api.requestSignIn(
-        "clo", SignInRequest(id, pw)
-    )
+    suspend fun requestSignIn(id: String, pw: String) = call { api.requestSignIn(
+        "clo", SignInRequest(id, pw)) }
 
     fun setToken(data: SignInResponse.SignInData) {
         prefs.edit {

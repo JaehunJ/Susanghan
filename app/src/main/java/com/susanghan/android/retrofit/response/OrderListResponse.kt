@@ -4,7 +4,8 @@ data class OrderListResponse(
     val count:Int,
     val data:List<OrderData>,
     val status:Int,
-    val message:String
+    val message:String,
+    val errorMessage:String?, val errorCode:String?,
 ){
     data class OrderData(
         val paymentDate:String,

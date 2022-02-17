@@ -7,14 +7,13 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.susanghan.android.base.BaseRepository
-import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.databinding.LayoutDesignItemBinding
 import com.susanghan.android.retrofit.response.DesignListResponse.DesignData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
 
-class DesignListAdapter(val navController: NavController, val imageCallback:(ImageView, String)->Unit) :
+class DesignListAdapter(
+    val navController: NavController,
+    val imageCallback: (ImageView, String) -> Unit
+) :
     ListAdapter<DesignData, DesignListAdapter.DesignItemViewHolder>(
         DesignItemDiffCallback()
     ) {
@@ -37,11 +36,16 @@ class DesignListAdapter(val navController: NavController, val imageCallback:(Ima
             }
         }
 
-        fun bind(data: DesignData, navController: NavController, imageCallback:(ImageView, String)->Unit) {
+        fun bind(
+            data: DesignData,
+            navController: NavController,
+            imageCallback: (ImageView, String) -> Unit
+        ) {
             binding.design = data
             imageCallback(binding.ivProduct, data.imageName)
             binding.root.setOnClickListener {
-                val action = DesignFragmentDirections.actionDesignFragmentToDesignDetailFragment(data.reformId)
+                val action =
+                    DesignFragmentDirections.actionDesignFragmentToDesignDetailFragment(data.reformId)
                 navController.navigate(action)
             }
         }

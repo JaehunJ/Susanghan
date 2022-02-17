@@ -25,9 +25,11 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
             if (result != null) {
                 data.postValue(result.data)
                 val images = mutableListOf<DesignImageAdapter.DesignDetailBigImage>()
+
                 result.data.images.forEach {
                     images.add(DesignImageAdapter.DesignDetailBigImage(it))
                 }
+
                 imageList.postValue(images)
             }
         }

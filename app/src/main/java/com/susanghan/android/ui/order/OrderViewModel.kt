@@ -12,7 +12,6 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(repository: OrderListRepository) :
     BaseViewModel(repository) {
-//    val orderList:MutableLiveData
 
     val orderList = MutableLiveData<List<OrderListResponse.OrderData>>()
 
@@ -21,7 +20,8 @@ class OrderViewModel @Inject constructor(repository: OrderListRepository) :
         viewModelScope.launch {
             val result = repo.requestOderList(page, limit, period)
             result?.let {
-                orderList.postValue(it.data)
+                if (result.errorMessage == null)
+                    orderList.postValue(it.data)
             }
         }
     }

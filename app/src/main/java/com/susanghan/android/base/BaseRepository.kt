@@ -5,10 +5,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.susanghan.android.data.ACCESS_TOKEN
 import com.susanghan.android.data.REFRESH_TOKEN
 import com.susanghan.android.retrofit.RemoteData
 import com.susanghan.android.retrofit.SusanghanService
+import com.susanghan.android.retrofit.response.BaseResponse
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
@@ -24,9 +26,9 @@ open class BaseRepository @Inject constructor(
         val response = apiCall.invoke()
         isLoading.postValue(false)
 
-        val result = if (response.isSuccessful) {
+        val result = if(response.isSuccessful){
             RemoteData.Success(response.body()!!)
-        } else {
+        }else{
             RemoteData.Error(IOException(response.message()))
         }
 

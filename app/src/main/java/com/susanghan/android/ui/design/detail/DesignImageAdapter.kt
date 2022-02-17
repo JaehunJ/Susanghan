@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.susanghan.android.databinding.LayoutDesignItemDetailBigBinding
 
-class DesignImageAdapter(val imageCallBack:(ImageView, String)->Unit) :
+class DesignImageAdapter(val imageCallBack: (ImageView, String) -> Unit) :
     ListAdapter<DesignImageAdapter.DesignDetailBigImage, DesignImageAdapter.DesignImageViewHolder>(
         DesignDetailBigImageDiffUtil()
     ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DesignImageViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        DesignImageViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: DesignImageViewHolder, position: Int) {
         val item = getItem(position)
@@ -32,7 +33,6 @@ class DesignImageAdapter(val imageCallBack:(ImageView, String)->Unit) :
 
     }
 
-
     class DesignImageViewHolder(val binding: LayoutDesignItemDetailBigBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
@@ -44,7 +44,7 @@ class DesignImageAdapter(val imageCallBack:(ImageView, String)->Unit) :
             }
         }
 
-        fun bind(data:DesignDetailBigImage, itemCallback:(ImageView, String)->Unit) {
+        fun bind(data: DesignDetailBigImage, itemCallback: (ImageView, String) -> Unit) {
             itemCallback.invoke(binding.ivDesign, data.name)
         }
     }

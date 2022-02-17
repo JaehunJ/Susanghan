@@ -19,10 +19,15 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
     fun requestSignIn(id: String, pw: String) {
         val repo = repository as SignInRepository
         CoroutineScope(Dispatchers.IO).launch{
-            val response = repo.requestSignIn(id, pw)
-            repo.setToken(response.body()!!.data)
+            val result = repo.requestSignIn(id, pw)
 
-            signInResponse.postValue(response.body())
+            result?.let {
+                if(it.errorMessage == null){
+                    repo.setToken(it.data)
+
+                    signInResponse.postValue(it)
+                }
+            }
         }
     }
 }

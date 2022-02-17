@@ -1,17 +1,13 @@
 package com.susanghan.android.ui.order
 
 import android.os.Bundle
-import androidx.core.view.children
-import androidx.databinding.BindingAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.data.Period
 import com.susanghan.android.databinding.FragmentOrderOldBinding
-import com.susanghan.android.retrofit.response.OrderListResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,8 +23,8 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     override fun initDataBinding() {
         val adapter = OrderListAdapter(navController!!)
-        viewModel.orderList.observe(viewLifecycleOwner, {list->
-            list?.let{
+        viewModel.orderList.observe(viewLifecycleOwner, { list ->
+            list?.let {
                 adapter.submitList(it)
             }
         })
