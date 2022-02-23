@@ -57,11 +57,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:layout_marginStart="16dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         android:id="@+id/tv_design_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{detail.reformName}"/>
                     <TextView
+                        android:layout_marginEnd="16dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         android:id="@+id/tv_design_price"
                         android:textAlignment="textEnd"
                         android:layout_width="match_parent"
@@ -209,29 +215,42 @@
                     android:layout_marginTop="50dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
                     <com.google.android.material.button.MaterialButton
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:id="@+id/btn_modify"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="판매수정"
                         app:backgroundTint="@color/deep_blue"/>
                     <com.google.android.material.button.MaterialButton
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:id="@+id/btn_start"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="판매시작"
                         app:backgroundTint="@color/deep_blue"/>
 
                     <com.google.android.material.button.MaterialButton
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:visibility="gone"
                         android:id="@+id/btn_stop"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:backgroundTint="@color/deep_blue"/>
+                        android:text="판매중지"
+                        app:backgroundTint="#c4c4c4"/>
 
                     <LinearLayout
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:visibility="gone"
                         android:id="@+id/btn_blank"
                         android:orientation="horizontal"

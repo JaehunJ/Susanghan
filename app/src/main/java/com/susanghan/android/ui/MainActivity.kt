@@ -2,9 +2,8 @@ package com.susanghan.android.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.susanghan.android.R
@@ -12,7 +11,7 @@ import com.susanghan.android.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), CommonActivityImpl {
+class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
     private lateinit var _binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,5 +59,9 @@ class MainActivity : AppCompatActivity(), CommonActivityImpl {
 
     override fun hideBottomNavi() {
         _binding.llNav.visibility = View.GONE
+    }
+
+    override fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

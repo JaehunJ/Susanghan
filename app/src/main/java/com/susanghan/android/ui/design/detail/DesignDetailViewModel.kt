@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.DesignRepository
+import com.susanghan.android.retrofit.request.DesignStatusUpdateRequest
 import com.susanghan.android.retrofit.response.DesignDetailResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +19,6 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
 
     fun requestDesignDetail(id: Int) {
         viewModelScope.launch {
-
             val repo = super.repository as DesignRepository
             val result = repo.requestDesignDetail(id)
 
@@ -31,6 +31,17 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
                 }
 
                 imageList.postValue(images)
+            }
+        }
+    }
+
+    fun requestDesignDetailStateUpdate(reformId:Int, status:Int){
+        viewModelScope.launch {
+            val repo = repository as DesignRepository
+            val result = repo.requestChangeDesignStatus(reformId, DesignStatusUpdateRequest(status))
+
+            if(result != null){
+                requestDesignDetail(reformId)
             }
         }
     }

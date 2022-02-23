@@ -1,11 +1,15 @@
 package com.susanghan.android.retrofit
 
+import com.susanghan.android.retrofit.request.DesignPostRequest
+import com.susanghan.android.retrofit.request.DesignStatusUpdateRequest
 import com.susanghan.android.retrofit.request.SignInRequest
 import com.susanghan.android.retrofit.request.SignUpRequest
 import com.susanghan.android.retrofit.response.*
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
+import java.io.File
 
 interface SusanghanService {
     @GET("")
@@ -73,6 +77,26 @@ interface SusanghanService {
         @Path("reformId") reformId: Int
     ): Response<DesignDetailResponse>
 
+    @PUT("/api/v1/expert/reforms/{reformId}/status")
+    suspend fun requestChangeDesignStatus(
+        @Header("Authorization") authorization: String,
+        @Path("reformId") reformId: Int,
+        @Body data: DesignStatusUpdateRequest
+    ): Response<BaseResponse>
+
+    @POST("/api/v1/expert/reforms")
+    suspend fun requestAddDesign(
+        @Header("Authorization") authorization: String,
+        @Body data: DesignPostRequest
+    ): Response<BaseResponse>
+
+    @PUT("/api/v1/expert/reforms/{reformId}")
+    suspend fun requestModifyDesign(
+        @Header("Authorization") authorization: String,
+        @Path("reformId") reformId: Int,
+        @Body data: DesignPostRequest
+    ): Response<BaseResponse>
+
     @GET("")
     suspend fun requestQAList(): Response<BaseResponse>
 
@@ -87,4 +111,12 @@ interface SusanghanService {
         @Header("Authorization") authorization: String,
         @Query("imageName") name: String
     ): Response<ResponseBody>
+
+    @Multipart
+    @POST("/api/v1/expert/image")
+    suspend fun requestPostImage(
+        @Header("Authorization") authorization: String,
+        @Part("files") files: List<MultipartBody.Part>,
+        @Part("imageType") imageType: MultipartBody.Part
+    ): Response<ImageResponse>
 }

@@ -23,7 +23,6 @@ class DesignItemImageAdapter() :
         holder.bind(item)
     }
 
-
     class DesignDetailItemSmallViewHolder(val binding: LayoutDesignItemDetailSmallBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {

@@ -30,7 +30,6 @@ class DesignImageAdapter(val imageCallBack: (ImageView, String) -> Unit) :
             oldItem: DesignDetailBigImage,
             newItem: DesignDetailBigImage
         ) = oldItem == newItem
-
     }
 
     class DesignImageViewHolder(val binding: LayoutDesignItemDetailBigBinding) :

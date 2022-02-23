@@ -2,6 +2,7 @@ package com.susanghan.android.ui.order
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.retrofit.response.OrderListResponse

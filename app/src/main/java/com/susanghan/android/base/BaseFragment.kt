@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.susanghan.android.ui.CommonActivityImpl
+import com.susanghan.android.ui.CommonActivityFuncImpl
 
 abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArgs> : Fragment() {
     var navController: NavController? = null
@@ -24,7 +23,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
     abstract val viewModel: VM
     abstract val navArgs: NavArgs
 
-    lateinit var activityFunction: CommonActivityImpl
+    lateinit var activityFuncFunction: CommonActivityFuncImpl
 
     /**
      * layout infalte후 호출
@@ -59,15 +58,15 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
         _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
 
-        activityFunction = activity as CommonActivityImpl
+        activityFuncFunction = activity as CommonActivityFuncImpl
 
         initView(savedInstanceState)
 
         viewModel.isLoading().observe(viewLifecycleOwner, {
             if (it)
-                activityFunction.showProgress()
+                activityFuncFunction.showProgress()
             else
-                activityFunction.hideProgress()
+                activityFuncFunction.hideProgress()
         })
         initDataBinding()
         initAfterBinding()

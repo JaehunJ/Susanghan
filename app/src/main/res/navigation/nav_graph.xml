@@ -257,6 +257,9 @@
         <argument app:argType="integer"
             android:name="id"
             android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_designDetailFragment_to_designAddFragment"
+            app:destination="@id/designAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/designAddFragment"
