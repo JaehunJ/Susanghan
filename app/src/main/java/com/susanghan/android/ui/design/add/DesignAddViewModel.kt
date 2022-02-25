@@ -1,13 +1,16 @@
 package com.susanghan.android.ui.design.add
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.custom.getImageBodyUri
 import com.susanghan.android.repository.DesignRepository
+import com.susanghan.android.retrofit.request.DesignPostRequest
 import com.susanghan.android.retrofit.response.BaseResponse
+import com.susanghan.android.ui.dialog.PrepareItemDialogFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,23 +19,21 @@ import javax.inject.Inject
 class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     BaseViewModel(repository) {
 
-    val isSuccess = MutableLiveData<Boolean>()
-    val orgData = MutableLiveData<BaseResponse>()
+    val bluePrintImagePath = MutableLiveData<MutableList<Uri>>()
+    val beforeImagePath = MutableLiveData<Uri>()
+    val afterImagePath = MutableLiveData<Uri>()
 
-    private val _bluePrintImagePath = MutableLiveData<MutableList<Uri>>()
-    val bluePrintImagePath: LiveData<MutableList<Uri>>
-        get() = _bluePrintImagePath
+    var price:String = ""
+    var reformName:String = ""
+    var contents:String = ""
 
-    private val _beforeImagePath = MutableLiveData<Uri>()
-    val beforeImagePath: LiveData<Uri>
-        get() = _beforeImagePath
+    var minDay:String = ""
+    var maxDay:String = ""
 
-    private val _afterImagePath = MutableLiveData<Uri>()
-    val afterImagePath: LiveData<Uri>
-        get() = _afterImagePath
+    var prepareItemList = MutableLiveData<MutableList<DesignPostRequest.ItemData>>()
 
     init {
-        _bluePrintImagePath.postValue(mutableListOf())
+        bluePrintImagePath.postValue(mutableListOf())
     }
 
     fun requestPostDesign() {
@@ -68,7 +69,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     }
 
     fun addBluePrintImage(list: List<Uri>) {
-        val blueList = _bluePrintImagePath.value ?: mutableListOf()
+        val blueList = bluePrintImagePath.value ?: mutableListOf()
         blueList?.let {
             if (it.size + list.size != 5) {
                 list.forEach { item ->
@@ -76,34 +77,37 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 }
             }
         }
-        _bluePrintImagePath.postValue(blueList)
+        bluePrintImagePath.postValue(blueList)
     }
 
-    fun deleteBluePrintImage() {
+    fun deleteBluePrintImage(index:Int) {
+        if(index >= bluePrintImagePath.value!!.count()){
+            Log.e("#debug", "list is null")
+        }
+        val list = bluePrintImagePath.value
+        list?.let{
+            it.removeAt(index)
+            bluePrintImagePath.postValue(it)
+        }
+    }
+
+    fun addPrepareItem() {
 
     }
 
-    fun addItem() {
+    fun deletePrepareItem() {
 
     }
 
-    fun deleteItem() {
+    fun addPrepareItem(data: DesignPostRequest.ItemData){
 
     }
 
     fun addBeforeImage(file: Uri) {
-        _beforeImagePath.postValue(file)
-    }
-
-    fun deleteBeforeImage() {
-
+        beforeImagePath.postValue(file)
     }
 
     fun addAfterImage(file: Uri) {
-        _afterImagePath.postValue(file)
-    }
-
-    fun deleteAfterImage() {
-
+        afterImagePath.postValue(file)
     }
 }

@@ -8,10 +8,11 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
-import android.widget.ImageView
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.view.children
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
@@ -21,6 +22,7 @@ import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentDesignAddBinding
 import com.susanghan.android.databinding.LayoutDesignAddImageBinding
+import com.susanghan.android.ui.dialog.PrepareItemDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.IOException
@@ -41,6 +43,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     var photoUri: Uri? = null
 
     val bindingImageView = mutableListOf<LayoutDesignAddImageBinding>()
+    private lateinit var prepareItemAdapter:PrepareItemRecyclerViewAdapter
 
     private val pictureActivityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -61,21 +64,70 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        binding.toolbar.tvTitle.text = "디자인 상세"
+
         binding.llAddImage.setOnClickListener {
             showFileSelector(IMAGE_ITEM)
         }
 
-        binding.gridImage.children.forEachIndexed {index, v->
-            if(index < 5)
-                bindingImageView.add(LayoutDesignAddImageBinding.bind(v))
+        binding.gridImage.children.forEachIndexed { index, v ->
+            if (index < 5) {
+                bindingImageView.add(DataBindingUtil.bind(v)!!)
+                bindingImageView[index].index = index
+                bindingImageView[index].root.tag = bindingImageView[index]
+            }
+        }
+
+        bindingImageView.forEach {
+            it.btnDelete.setOnClickListener { v ->
+                viewModel.deleteBluePrintImage(it.index ?: 0)
+            }
+        }
+
+        binding.llAddBefore.setOnClickListener {
+            showFileSelector(IMAGE_BEFORE)
+        }
+
+        binding.llAddAfter.setOnClickListener {
+            showFileSelector(IMAGE_AFTER)
+        }
+
+        prepareItemAdapter = PrepareItemRecyclerViewAdapter {
+            showAddPrepareItem()
         }
     }
 
     override fun initDataBinding() {
-        viewModel.bluePrintImagePath.observe(viewLifecycleOwner){
-            it.forEachIndexed {index, iter->
-                Glide.with(requireActivity()).load(iter)
-                    .into(bindingImageView[index].ivProduct)
+        viewModel.bluePrintImagePath.observe(viewLifecycleOwner) {
+            binding.llAddImage.isEnabled = it.count() != 5
+            binding.btnAdd.isEnabled = it.count() != 5
+
+            for (i in 0 until 5) {
+                if (i < it.count()) {
+                    Glide.with(requireActivity()).load(it[i])
+                        .into(bindingImageView[i].ivProduct)
+                } else {
+                    bindingImageView[i].ivProduct.setImageResource(0)
+                }
+            }
+        }
+
+        viewModel.beforeImagePath.observe(viewLifecycleOwner) {
+            if (it == null) {
+                binding.ivBefore.setImageResource(0)
+                binding.llAddBefore.visibility = View.VISIBLE
+            } else {
+                Glide.with(requireActivity()).load(it).into(binding.ivBefore)
+                binding.llAddBefore.visibility = View.GONE
+            }
+        }
+        viewModel.afterImagePath.observe(viewLifecycleOwner) {
+            if (it == null) {
+                binding.ivAfter.setImageResource(0)
+                binding.llAddAfter.visibility = View.VISIBLE
+            } else {
+                Glide.with(requireActivity()).load(it).into(binding.ivAfter)
+                binding.llAddAfter.visibility = View.GONE
             }
         }
     }
@@ -84,11 +136,11 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
 
     }
 
-    fun addImage() {
-
+    fun showAddPrepareItem(){
+        PrepareItemDialogFragment().show(parentFragmentManager, "add_prepare_item")
     }
 
-    fun showFileSelector(clickType:Int) {
+    fun showFileSelector(clickType: Int) {
         val state = Environment.getExternalStorageState()
         if (!TextUtils.equals(state, Environment.MEDIA_MOUNTED))
             return
@@ -109,20 +161,27 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
             }
         }
 
-//        launcher.launch(cameraIntent)
-
         //create galley intent
         val intent = Intent(Intent.ACTION_PICK).apply {
             type = MediaStore.Images.Media.CONTENT_TYPE
             data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-//            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) //이미지 여러개 선택가능하도록 변경
         }
-//
-//        //create file chooser intent
+
         Intent.createChooser(intent, "사진 업로드 방법 선택").run {
             putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(cameraIntent))
             putExtra("click", clickType)
-            pictureActivityResultLauncher.launch(this)
+            when(clickType){
+                IMAGE_ITEM->{
+                    pictureActivityResultLauncher.launch(this)
+                }
+                IMAGE_BEFORE->{
+                    beforePictureActivityResultLauncher.launch(this)
+                }
+                IMAGE_AFTER->{
+                    afterPictureActivityResultLauncher.launch(this)
+                }
+            }
+
         }
     }
 
@@ -139,42 +198,32 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         }
     }
 
-    fun pushImageData(clickType:Int, resultCode: Int, data: Intent?) {
+    fun pushImageData(clickType: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
-            var imageData = data
-            var list = mutableListOf<Uri>()
+            val list = mutableListOf<Uri>()
             //use camera
-            if(imageData == null){
-                list.add(Uri.fromFile(File(currentPhotoPath?:"")))
-            }else{
-                val clipData = imageData.data
-                clipData?.let{
+            if (data == null) {
+                list.add(Uri.fromFile(File(currentPhotoPath ?: "")))
+            } else {
+                val clipData = data.data
+                clipData?.let {
                     list.add(it)
                 }
-//                list.add(clipData)
-//
-//                clipData?.let{clip->
-//                    val cnt = clip.itemCount
-//
-//                    for(i in 0 until  cnt){
-//                        list.add(clip.getItemAt(i).uri)
-//                    }
-//                }
             }
 
-            if(list.isEmpty()){
+            if (list.isEmpty()) {
                 Log.e("#debug", "image list is null")
                 return
             }
 
-            when(clickType){
-                IMAGE_ITEM->{
+            when (clickType) {
+                IMAGE_ITEM -> {
                     viewModel.addBluePrintImage(list)
                 }
-                IMAGE_BEFORE->{
+                IMAGE_BEFORE -> {
                     viewModel.addBeforeImage(list[0])
                 }
-                IMAGE_AFTER->{
+                IMAGE_AFTER -> {
                     viewModel.addAfterImage(list[0])
                 }
             }

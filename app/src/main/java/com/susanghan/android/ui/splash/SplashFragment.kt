@@ -40,9 +40,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override fun initAfterBinding() {
         activity?.let {
             val dialog = ServiceErrorDialog {
-                showServiceCheckDialog()
-//                val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
-//                navController?.navigate(action)
+//                showServiceCheckDialog()
+                val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
+                navController?.navigate(action)
             }
 
             dialog.isCancelable = false

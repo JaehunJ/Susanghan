@@ -1,16 +1,16 @@
 package com.susanghan.android.retrofit.request
 
 data class DesignPostRequest(
-    val reformName:String,
-    val price:Int,
-    val contents:String,
-    val beforeImageName:String,
-    val afterImageName:String,
-    val minDay:String,
-    val maxDay:Int,
-    val imgs:List<ImageData>,
-    val items:List<ItemData>
+    var reformName:String,
+    var price:Int,
+    var contents:String,
+    var beforeImageName:String,
+    var afterImageName:String,
+    var minDay:String,
+    var maxDay:Int,
+    var imgs:List<ImageData>,
+    var items:List<ItemData>
 ){
-    data class ImageData(val imageName:String, val mainImageYn:Int)
-    data class ItemData(val itemName:String, val itemCode:String)
+    data class ImageData(var imageName:String, var mainImageYn:Int)
+    data class ItemData(var itemName:String, var itemCode:String)
 }
