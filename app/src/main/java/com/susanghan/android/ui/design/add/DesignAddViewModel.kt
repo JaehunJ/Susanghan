@@ -30,10 +30,11 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     var minDay:String = ""
     var maxDay:String = ""
 
-    var prepareItemList = MutableLiveData<MutableList<DesignPostRequest.ItemData>>()
+    var prepareItemList = MutableLiveData<MutableList<PrepareItemRecyclerViewAdapter.PrepareItem>>()
 
     init {
         bluePrintImagePath.postValue(mutableListOf())
+        prepareItemList.postValue(mutableListOf(PrepareItemRecyclerViewAdapter.PrepareItem("99","")))
     }
 
     fun requestPostDesign() {
@@ -91,15 +92,23 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
-    fun addPrepareItem() {
+    fun addPrepareItem(item:PrepareItemRecyclerViewAdapter.PrepareItem) {
+        val end = PrepareItemRecyclerViewAdapter.PrepareItem("99","")
+        val add = item
 
+        val list = prepareItemList.value
+
+        list?.let{
+            val lastItem = it[list.lastIndex]
+            it.remove(lastItem)
+            it.add(item)
+            it.add(end)
+
+            prepareItemList.postValue(it)
+        }
     }
 
     fun deletePrepareItem() {
-
-    }
-
-    fun addPrepareItem(data: DesignPostRequest.ItemData){
 
     }
 

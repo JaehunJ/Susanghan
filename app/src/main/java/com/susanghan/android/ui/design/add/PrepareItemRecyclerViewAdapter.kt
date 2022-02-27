@@ -1,14 +1,17 @@
 package com.susanghan.android.ui.design.add
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.susanghan.android.data.PrepareItemMappingStringList
 import com.susanghan.android.databinding.LayoutDesignAddPrepareItemBinding
 
-class PrepareItemRecyclerViewAdapter(private val dialogCallback: () -> Unit) :
+class PrepareItemRecyclerViewAdapter(private val context: Context, private val dialogCallback: () -> Unit) :
     ListAdapter<PrepareItemRecyclerViewAdapter.PrepareItem, PrepareItemRecyclerViewAdapter.PrepareItemViewHolder>(
         PrepareItemDiffer()
     ) {
@@ -16,7 +19,7 @@ class PrepareItemRecyclerViewAdapter(private val dialogCallback: () -> Unit) :
         PrepareItemViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: PrepareItemViewHolder, position: Int) {
-        holder.bind(getItem(position), getItem(position).code == -1, dialogCallback)
+        holder.bind(context, getItem(position), getItem(position).code == "99", dialogCallback)
     }
 
     class PrepareItemViewHolder(private val binding: LayoutDesignAddPrepareItemBinding) :
@@ -31,7 +34,7 @@ class PrepareItemRecyclerViewAdapter(private val dialogCallback: () -> Unit) :
             }
         }
 
-        fun bind(data: PrepareItem, isLast: Boolean, dialogCallback: () -> Unit) {
+        fun bind(context: Context, data: PrepareItem, isLast: Boolean, dialogCallback: () -> Unit) {
             if (isLast) {
                 binding.ivProduct.visibility = View.INVISIBLE
                 binding.btnAdd.visibility = View.VISIBLE
@@ -41,11 +44,13 @@ class PrepareItemRecyclerViewAdapter(private val dialogCallback: () -> Unit) :
             } else {
                 binding.ivProduct.visibility = View.VISIBLE
                 binding.btnAdd.visibility = View.GONE
+                val type = data.code
+                Glide.with(context).load(PrepareItemMappingStringList[type]).into(binding.ivProduct)
             }
         }
     }
 
-    data class PrepareItem(val code: Int)
+    data class PrepareItem(val code: String, val name:String)
     class PrepareItemDiffer : DiffUtil.ItemCallback<PrepareItem>() {
         override fun areItemsTheSame(
             oldItem: PrepareItem,

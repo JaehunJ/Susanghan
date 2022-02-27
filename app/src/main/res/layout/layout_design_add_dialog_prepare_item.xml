@@ -2,6 +2,12 @@
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="prepareItem"
+            type="com.susanghan.android.data.PrepareItem" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,19 +22,20 @@
             android:layout_height="0dp"
             android:background="@drawable/background_oval_d3d3d3"
             android:adjustViewBounds="true"
+            android:clipToOutline="true"
             app:layout_constraintDimensionRatio="1:1"/>
 
         <ImageView
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/iv_product"
-            android:id="@+id/btn_add"
+            app:layout_constraintVertical_bias="0"
+            android:id="@+id/btn_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@drawable/icon_add" />
+            android:src="@drawable/icon_check_circle"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -92,9 +92,10 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
             showFileSelector(IMAGE_AFTER)
         }
 
-        prepareItemAdapter = PrepareItemRecyclerViewAdapter {
+        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext()){
             showAddPrepareItem()
         }
+        binding.rvPrepareItem.adapter = prepareItemAdapter
     }
 
     override fun initDataBinding() {
@@ -130,6 +131,10 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
                 binding.llAddAfter.visibility = View.GONE
             }
         }
+        viewModel.prepareItemList.observe(viewLifecycleOwner){
+            (binding.rvPrepareItem.adapter as PrepareItemRecyclerViewAdapter).submitList(it?.toMutableList())
+        }
+
     }
 
     override fun initAfterBinding() {
@@ -137,7 +142,9 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     }
 
     fun showAddPrepareItem(){
-        PrepareItemDialogFragment().show(parentFragmentManager, "add_prepare_item")
+        PrepareItemDialogFragment({code, name->
+            viewModel.addPrepareItem(PrepareItemRecyclerViewAdapter.PrepareItem(code.value, name))
+        }).show(parentFragmentManager, "add_prepare_item")
     }
 
     fun showFileSelector(clickType: Int) {

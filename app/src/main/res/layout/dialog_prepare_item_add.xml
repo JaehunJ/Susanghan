@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,6 +18,7 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:textSize="12sp"
             android:textStyle="bold"
             android:text="준비물 추가"/>
@@ -41,26 +45,139 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
+            android:maxLines="1"
             android:text="준비물 아이콘을 선택해주세요."/>
 
-        <LinearLayout
+        <GridLayout
             android:layout_marginTop="6dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-            android:id="@+id/ll_prepare_item"
+            android:id="@+id/gl_prepare_item"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:columnCount="4">
 
-        </LinearLayout>
+<!--            <com.google.android.material.radiobutton.MaterialRadioButton-->
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <include layout="@layout/layout_design_add_dialog_prepare_item"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+        </GridLayout>
 
         <TextView
             android:layout_marginTop="22dp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintTop_toBottomOf="@id/gl_prepare_item"
             android:id="@+id/tv_prepare_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,6 +212,7 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_confirm"
             android:layout_marginBottom="25dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
