@@ -27,7 +27,7 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
     var email:String
     get() = (repository as SignUpRepository).email
     set(value){
-        (repository as SignUpRepository).email = email
+        (repository as SignUpRepository).email = value
     }
 
     var code:String

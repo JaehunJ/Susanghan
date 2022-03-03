@@ -231,8 +231,18 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
             } else {
                 val selectedImage = data.data
 
+
                 selectedImage?.let{
-                    list.add(it)
+                    val path = it.path
+                    path?.let{p->
+                        val extention = p.contains("gif")
+
+                        if(!extention){
+                            list.add(it)
+                        }else{
+                            activityFuncFunction.showToast("gif파일은 선택하실수 없습니다.")
+                        }
+                    }
                 }
 //                val clipData = data.clipData
 //                clipData?.let { clips->

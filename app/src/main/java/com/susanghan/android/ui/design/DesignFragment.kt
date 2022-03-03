@@ -79,6 +79,6 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
     }
 
     override fun initAfterBinding() {
-//        viewModel.requestDesignList(0, 10, ReformStatus.None.value)
+        viewModel.requestDesignList(0, 10, ReformStatus.None.value)
     }
 }

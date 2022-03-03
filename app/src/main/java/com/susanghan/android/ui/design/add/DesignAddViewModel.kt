@@ -209,13 +209,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         val parcelFileDiscripor = context.contentResolver?.openFileDescriptor(contentsUri, "r")
 
         parcelFileDiscripor?.let{
-            val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
             val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-            var tempfilePath = File.createTempFile(
-                "JPEG_${timeStamp}_",
-                ".jpg",
-                storageDir
-            ).absolutePath
             val inputStream = FileInputStream(it.fileDescriptor)
             val file = File(storageDir, context.contentResolver.getFileName(contentsUri))
             val outputStream = FileOutputStream(file)
