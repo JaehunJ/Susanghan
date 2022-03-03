@@ -46,6 +46,8 @@ class PrepareItemRecyclerViewAdapter(private val context: Context, private val d
                 binding.btnAdd.visibility = View.GONE
                 val type = data.code
                 Glide.with(context).load(PrepareItemMappingStringList[type]).into(binding.ivProduct)
+
+                binding.tvName.text = data.name
             }
         }
     }

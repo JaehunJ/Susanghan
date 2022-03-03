@@ -25,6 +25,18 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
             val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment()
             navController?.navigate(action)
         }
+
+        binding.btnConfirm.setOnClickListener {
+            if(viewModel.getValidated()){
+                viewModel.requestConfirm()
+            }else{
+                activityFuncFunction.showToast("누락된 정보가 있습니다.")
+            }
+        }
+
+        binding.btnOpenStore.setOnClickListener {
+
+        }
     }
 
     override fun initDataBinding() {

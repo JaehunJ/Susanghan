@@ -96,6 +96,14 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
             showAddPrepareItem()
         }
         binding.rvPrepareItem.adapter = prepareItemAdapter
+
+        binding.btnPost.setOnClickListener {
+            viewModel.onClickPost(requireContext())
+        }
+
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
     }
 
     override fun initDataBinding() {
@@ -134,7 +142,15 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         viewModel.prepareItemList.observe(viewLifecycleOwner){
             (binding.rvPrepareItem.adapter as PrepareItemRecyclerViewAdapter).submitList(it?.toMutableList())
         }
-
+        viewModel.postResult.observe(viewLifecycleOwner){
+            it?.let{res->
+                if(res.errorMessage == null){
+                    navController?.popBackStack()
+                }else{
+                    activityFuncFunction.showToast("에러")
+                }
+            }
+        }
     }
 
     override fun initAfterBinding() {
@@ -142,9 +158,9 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     }
 
     fun showAddPrepareItem(){
-        PrepareItemDialogFragment({code, name->
+        PrepareItemDialogFragment { code, name ->
             viewModel.addPrepareItem(PrepareItemRecyclerViewAdapter.PrepareItem(code.value, name))
-        }).show(parentFragmentManager, "add_prepare_item")
+        }.show(parentFragmentManager, "add_prepare_item")
     }
 
     fun showFileSelector(clickType: Int) {
@@ -172,6 +188,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         val intent = Intent(Intent.ACTION_PICK).apply {
             type = MediaStore.Images.Media.CONTENT_TYPE
             data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            putExtra(Intent.EXTRA_MIME_TYPES, "image/jpeg")
         }
 
         Intent.createChooser(intent, "사진 업로드 방법 선택").run {
@@ -212,10 +229,19 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
             if (data == null) {
                 list.add(Uri.fromFile(File(currentPhotoPath ?: "")))
             } else {
-                val clipData = data.data
-                clipData?.let {
+                val selectedImage = data.data
+
+                selectedImage?.let{
                     list.add(it)
                 }
+//                val clipData = data.clipData
+//                clipData?.let { clips->
+//                    val cnt = clips.itemCount
+//                    for(i in 0 until cnt){
+//                        list.add(clips.getItemAt(i).uri)
+//                    }
+
+//                }
             }
 
             if (list.isEmpty()) {

@@ -2,9 +2,12 @@ package com.susanghan.android.repository
 
 import android.content.SharedPreferences
 import com.susanghan.android.base.BaseRepository
+import com.susanghan.android.custom.getTextBody
 import com.susanghan.android.retrofit.SusanghanService
+import com.susanghan.android.retrofit.request.DesignPostRequest
 import com.susanghan.android.retrofit.request.DesignStatusUpdateRequest
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -29,11 +32,11 @@ class DesignRepository @Inject constructor(
             api.requestPostImage(
                 getAccessToken(),
                 list,
-                MultipartBody.Part.createFormData("imageType", "reform")
+                getTextBody("reform")
             )
         }
 
-    suspend fun requestWriteText() {
-
+    suspend fun requestPostDesign(request: DesignPostRequest) = call {
+        api.requestAddDesign(getAccessToken(), request)
     }
 }

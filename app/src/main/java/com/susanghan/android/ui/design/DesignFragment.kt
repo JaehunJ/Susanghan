@@ -6,8 +6,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.tabs.TabLayout
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.data.ReformStatus
 import com.susanghan.android.databinding.FragmentDesignBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,9 +51,34 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
             val action = DesignFragmentDirections.actionDesignFragmentToDesignAddFragment()
             navController?.navigate(action)
         }
+
+        binding.topTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val pos = tab?.position
+
+                pos?.let { p ->
+                    val status = ReformStatus.None
+                    when(pos){
+                        0-> ReformStatus.None
+                        1-> ReformStatus.Start
+                        else->ReformStatus.Stop
+                    }
+                    viewModel.requestDesignList(0, 10, status.value)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
     }
 
     override fun initAfterBinding() {
-        viewModel.requestDesignList(0, 10, 0)
+//        viewModel.requestDesignList(0, 10, ReformStatus.None.value)
     }
 }

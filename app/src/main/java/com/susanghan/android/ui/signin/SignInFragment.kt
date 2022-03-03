@@ -39,7 +39,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     }
 
     override fun initDataBinding() {
-        viewModel.signInResponse.observe(this){
+        viewModel.signInResponse.observe(this) {
             val action = SignInFragmentDirections.actionGlobalOrderFragment()
             navController?.navigate(action)
         }

@@ -8,6 +8,10 @@
             type="com.susanghan.android.retrofit.response.DesignListResponse.DesignData" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -17,7 +21,8 @@
             android:id="@+id/iv_product"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:src="@mipmap/ic_launcher"
+            android:background="@drawable/round_white_10dp"
+            android:backgroundTint="#d3d3d3"
             android:adjustViewBounds="true"
             app:layout_constraintDimensionRatio="1:1"/>
         <TextView
@@ -29,12 +34,34 @@
             android:textSize="14sp"
             android:text="@{design.reformName}"/>
 
-        <com.google.android.material.checkbox.MaterialCheckBox
+        <ImageView
+            android:id="@+id/iv_heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(design.heartCnt)}"
+            app:layout_constraintTop_toTopOf="@id/tv_cnt"
+            app:layout_constraintBottom_toBottomOf="@id/tv_cnt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+            android:src="@drawable/icon_heart"/>
+        <TextView
+            android:id="@+id/tv_cnt"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/iv_heart"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:text="@{String.valueOf(design.heartCnt)}"
+            android:textColor="#C4C4C4"/>
+
+<!--        <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/icon_heart"-->
+<!--            android:src="@drawable/icon_heart"-->
+<!--            android:button="@drawable/icon_heart"-->
+<!--            android:text="@{String.valueOf(design.heartCnt)}"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_title"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

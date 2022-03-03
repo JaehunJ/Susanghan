@@ -141,6 +141,11 @@
             android:name="com.susanghan.android.ui.signup.SignUpResultFragment"
             android:label="fragment_sign_up_result"
             tools:layout="@layout/fragment_sign_up_result" />
+        <fragment
+            android:id="@+id/openStoreFirstFragment"
+            android:name="com.susanghan.android.OpenStoreFirstFragment"
+            android:label="fragment_open_store_first"
+            tools:layout="@layout/fragment_open_store_first" />
     </navigation>
     <fragment
         android:id="@+id/orderDetailFragment"

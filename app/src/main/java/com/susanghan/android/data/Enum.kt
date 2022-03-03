@@ -1,6 +1,5 @@
 package com.susanghan.android.data
 
-import android.graphics.drawable.Drawable
 import com.susanghan.android.R
 
 enum class Period(val value: Int) {
@@ -35,6 +34,7 @@ enum class ClothCategoryCode(val value: String) {
 }
 
 enum class ReformStatus(val value: Int) {
+    None(0),
     Start(2),
     Stop(3)
 }
@@ -81,20 +81,6 @@ val PrepareItemMappingStringList = mapOf(
     Pair("09", R.drawable.ic_asset_10),
     Pair("10", R.drawable.ic_asset_11),
     Pair("11", R.drawable.ic_asset_12),
-)
-
-val PrepareItemDrawable = listOf(
-    R.drawable.ic_asset_01,
-    R.drawable.ic_asset_02,
-    R.drawable.ic_asset_03,
-    R.drawable.ic_asset_04,
-    R.drawable.ic_asset_05,
-    R.drawable.ic_asset_06,
-    R.drawable.ic_asset_07,
-    R.drawable.ic_asset_08,
-    R.drawable.ic_asset_09,
-    R.drawable.ic_asset_10,
-    R.drawable.ic_asset_11,
 )
 
 

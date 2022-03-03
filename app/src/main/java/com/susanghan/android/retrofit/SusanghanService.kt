@@ -1,11 +1,9 @@
 package com.susanghan.android.retrofit
 
-import com.susanghan.android.retrofit.request.DesignPostRequest
-import com.susanghan.android.retrofit.request.DesignStatusUpdateRequest
-import com.susanghan.android.retrofit.request.SignInRequest
-import com.susanghan.android.retrofit.request.SignUpRequest
+import com.susanghan.android.retrofit.request.*
 import com.susanghan.android.retrofit.response.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -31,14 +29,17 @@ interface SusanghanService {
         @Body data: SignInRequest
     ): Response<SignInResponse>
 
-    @POST("api/v1/join/repairman")
+    @POST("api/v1/join/expert")
     suspend fun requestSignUp(
         @Header("Authorization") authorization: String,
         @Body data: SignUpRequest
     ): Response<BaseResponse>
 
-    @POST("")
-    suspend fun requestMarketOpen(): Response<BaseResponse>
+    @POST("/api/v1/expert/store/certification")
+    suspend fun requestStoreConfirm(
+        @Body data:StoreConfirmRequest
+    ):Response<BaseResponse>
+
 
     @GET("")
     suspend fun requestUserInfo(): Response<BaseResponse>
@@ -116,7 +117,8 @@ interface SusanghanService {
     @POST("/api/v1/expert/image")
     suspend fun requestPostImage(
         @Header("Authorization") authorization: String,
-        @Part("files") files: List<MultipartBody.Part>,
-        @Part("imageType") imageType: MultipartBody.Part
+//        @PartMap part:Map<String, RequestBody>
+        @Part files: List<MultipartBody.Part>,
+        @Part ("imageType") imageType: RequestBody
     ): Response<ImageResponse>
 }

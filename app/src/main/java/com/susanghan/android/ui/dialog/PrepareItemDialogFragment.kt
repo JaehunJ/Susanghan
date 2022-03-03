@@ -8,9 +8,7 @@ import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
-import com.susanghan.android.R
 import com.susanghan.android.data.PrepareItem
-import com.susanghan.android.data.PrepareItemDrawable
 import com.susanghan.android.data.PrepareItemMappingList
 import com.susanghan.android.data.PrepareItemMappingStringList
 import com.susanghan.android.databinding.DialogPrepareItemAddBinding
@@ -62,7 +60,7 @@ class PrepareItemDialogFragment(val onSuccess:(PrepareItem, String)->Unit) : Dia
         }
 
         binding.btnConfirm.setOnClickListener {
-            name = binding.etName.toString()
+            name = binding.etName.editText?.text.toString()
             onSuccess(code, name)
             dismiss()
         }

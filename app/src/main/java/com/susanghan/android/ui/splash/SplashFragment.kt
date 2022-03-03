@@ -21,7 +21,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     private val permissions =
-        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private val requestPermissionResult =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it.all { per -> per.value == true }) {
@@ -41,8 +41,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
         activity?.let {
             val dialog = ServiceErrorDialog {
 //                showServiceCheckDialog()
-                val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
-                navController?.navigate(action)
+                showPermissionInfoDialog()
+//                val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
+//                navController?.navigate(action)
             }
 
             dialog.isCancelable = false
@@ -77,7 +78,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
                 dialog.show(it.supportFragmentManager, "permission")
             }
         } else {
-            showUpdateDialog()
+//            showUpdateDialog()
+            val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
+            navController?.navigate(action)
         }
     }
 

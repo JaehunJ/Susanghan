@@ -3,12 +3,19 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.susanghan.android.ui.signup.SignUpViewModel" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/btn_open_store"
             android:layout_marginTop="34dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,6 +71,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="이름을 입력해주세요."
+                android:inputType="text"
+                android:text="@={data.name}"
                 android:textSize="14sp"/>
         </LinearLayout>
         <LinearLayout
@@ -82,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="휴대전화"
+
                 android:textStyle="bold"
                 android:textSize="14sp"/>
 
@@ -89,6 +99,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="휴대전화번호를 입력해주세요."
+                android:inputType="numberDecimal"
+                android:text="@={data.phone}"
                 android:textSize="14sp"/>
         </LinearLayout>
         <LinearLayout
@@ -113,7 +125,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:hint="이메일을 입력해주세요."
+                android:text="@={data.email}"
                 android:textSize="14sp"/>
         </LinearLayout>
         <LinearLayout
@@ -138,7 +152,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="코드를 입력해주세요."
+                android:text="@={data.code}"
                 android:textSize="14sp"/>
         </LinearLayout>
 
@@ -162,20 +178,21 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_confirm"
-                android:layout_marginBottom="32dp"
-                android:text="인증하기"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintVertical_bias="1"
-                android:layout_marginStart="26dp"
-                android:layout_marginEnd="26dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/round_white_6dp"
-                app:backgroundTint="@color/deep_blue"/>
+                android:text="인증하기"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/deep_blue"
+                app:layout_constraintVertical_bias="1" />
         </RelativeLayout>
     </LinearLayout>
 </layout>

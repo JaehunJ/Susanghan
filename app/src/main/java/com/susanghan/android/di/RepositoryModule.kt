@@ -7,6 +7,7 @@ import com.susanghan.android.BuildConfig
 import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.repository.SignInRepository
+import com.susanghan.android.repository.SignUpRepository
 import com.susanghan.android.retrofit.SusanghanService
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,11 @@ object RepositoryModule {
     @Provides
     fun provideSignInRepository(api: SusanghanService, preferences: SharedPreferences) =
         SignInRepository(api, preferences)
+
+    @Singleton
+    @Provides
+    fun provideSignUpRepository(api: SusanghanService, preferences: SharedPreferences) =
+        SignUpRepository(api, preferences)
 
     @Singleton
     @Provides

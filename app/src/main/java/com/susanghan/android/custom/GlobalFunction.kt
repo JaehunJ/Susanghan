@@ -1,12 +1,16 @@
 package com.susanghan.android.custom
 
+import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.provider.OpenableColumns
 import androidx.core.app.ActivityCompat
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 /**
@@ -25,6 +29,10 @@ fun getImageBody(key: String, file: File) = MultipartBody.Part.createFormData(
     filename = file.name,
     body = file.asRequestBody("image/*".toMediaType())
 )
+
+fun getTextBody(value:String):RequestBody{
+    return value.toRequestBody("text/plan".toMediaType())
+}
 
 fun getImageBody(key: String, files: List<File>): List<MultipartBody.Part> {
     val list = arrayListOf<MultipartBody.Part>()
@@ -46,4 +54,17 @@ fun getImageBodyUri(key: String, uries: List<Uri>): List<MultipartBody.Part> {
     }
 
     return list
+}
+
+fun ContentResolver.getFileName(fileUri:Uri):String{
+    var name = ""
+    val returnCursor = this.query(fileUri, null, null, null, null)
+    returnCursor?.let{
+        val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+        returnCursor.moveToFirst()
+        name = returnCursor.getString(nameIndex)
+        returnCursor.close()
+    }
+
+    return name
 }

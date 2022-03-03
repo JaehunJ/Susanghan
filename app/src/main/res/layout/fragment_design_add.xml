@@ -220,11 +220,14 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp"
                     android:id="@+id/rv_prepare_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    app:spanCount="3"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -436,6 +439,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/btn_post"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="100dp"
                     android:layout_marginEnd="20dp"
