@@ -98,12 +98,18 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         binding.rvPrepareItem.adapter = prepareItemAdapter
 
         binding.btnPost.setOnClickListener {
-            viewModel.onClickPost(requireContext())
+            if(viewModel.isValueValidated()){
+                viewModel.onClickPost(requireContext())
+            }else{
+                activityFuncFunction.showToast("누락된 정보가 있습니다.")
+            }
         }
 
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
+
+        binding.data = viewModel
     }
 
     override fun initDataBinding() {
@@ -150,6 +156,10 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
                     activityFuncFunction.showToast("에러")
                 }
             }
+        }
+
+        viewModel.minDay.observe(viewLifecycleOwner){
+            Log.e("#debug", it)
         }
     }
 

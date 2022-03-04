@@ -28,21 +28,32 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_image"
+                        android:orientation="horizontal"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         app:layout_constraintDimensionRatio="1:1"/>
+
                     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                         android:id="@+id/indicator"
                         android:layout_marginBottom="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:dotsColor="#c4c4c4"
+                        app:dotsCornerRadius="4dp"
+                        app:dotsSize="8dp"
+                        app:dotsSpacing="4dp"
+                        app:dotsWidthFactor="4"
+                        app:selectedDotColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
+
 <!--                    <ImageView-->
 <!--                        app:layout_constraintTop_toTopOf="parent"-->
 <!--                        app:layout_constraintStart_toStartOf="parent"-->
@@ -51,6 +62,8 @@
 <!--                        android:src="@mipmap/ic_launcher"-->
 <!--                        app:layout_constraintDimensionRatio="1:1"/>-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -29,6 +29,12 @@ interface SusanghanService {
         @Body data: SignInRequest
     ): Response<SignInResponse>
 
+    @POST("/api/v1/token/refresh")
+    suspend fun requestNewToken(
+        @Header("Authorization") authorization: String = "clo",
+        @Body data:NewTokenRequest
+    ):Response<NewTokenResponse>
+
     @POST("api/v1/join/expert")
     suspend fun requestSignUp(
         @Header("Authorization") authorization: String,

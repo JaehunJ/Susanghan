@@ -24,6 +24,7 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
             result?.let {
                 if(it.errorMessage == null){
                     repo.setToken(it.data)
+                    repo.setUserId(id)
 
                     signInResponse.postValue(it)
                 }

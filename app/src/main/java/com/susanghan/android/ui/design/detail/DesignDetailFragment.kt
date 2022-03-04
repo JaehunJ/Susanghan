@@ -32,9 +32,7 @@ class DesignDetailFragment :
             viewModel.setImage(iv, n)
         }
         binding.vpImage.adapter = adapter
-        binding.vpImage.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-        binding.indicator.setViewPager2(binding.vpImage)
+//        binding.indicator.setViewPager(binding.vpImage)
 
         smallAdapter = DesignItemImageAdapter()
         binding.rvItemSmall.adapter = smallAdapter
@@ -84,6 +82,10 @@ class DesignDetailFragment :
 
         viewModel.imageList.observe(viewLifecycleOwner){
             adapter.submitList(it)
+
+            binding.indicator.setViewPager2(binding.vpImage)
+            binding.indicator.refreshDots()
+//            binding.indicator.notifySubtreeAccessibilityStateChanged()
         }
     }
 

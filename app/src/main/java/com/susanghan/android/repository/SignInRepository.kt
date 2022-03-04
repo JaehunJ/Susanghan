@@ -5,6 +5,7 @@ import androidx.core.content.edit
 import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.data.ACCESS_TOKEN
 import com.susanghan.android.data.REFRESH_TOKEN
+import com.susanghan.android.data.USER_ID
 import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.SignInRequest
 import com.susanghan.android.retrofit.response.SignInResponse
@@ -14,7 +15,6 @@ import javax.inject.Singleton
 @Singleton
 class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
     BaseRepository(api, prefs) {
-
     suspend fun requestSignIn(id: String, pw: String) = call { api.requestSignIn(
         "clo", SignInRequest(id, pw)) }
 
@@ -23,6 +23,12 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
             putString(ACCESS_TOKEN, data.accessToken)
             putString(REFRESH_TOKEN, data.refreshToken)
             commit()
+        }
+    }
+
+    fun setUserId(id:String){
+        prefs.edit{
+            putString(USER_ID, id)
         }
     }
 

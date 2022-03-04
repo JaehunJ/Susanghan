@@ -1,18 +1,14 @@
 package com.susanghan.android.ui.design.add
 
 import android.content.Context
-import android.database.Cursor
 import android.net.Uri
 import android.os.Environment
-import android.os.FileUtils
-import android.provider.MediaStore
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.custom.getFileName
 import com.susanghan.android.custom.getImageBody
-import com.susanghan.android.custom.getImageBodyUri
 import com.susanghan.android.repository.DesignRepository
 import com.susanghan.android.retrofit.request.DesignPostRequest
 import com.susanghan.android.retrofit.response.BaseResponse
@@ -21,8 +17,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,12 +32,12 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     val afterImagePath = MutableLiveData<Uri>()
     val afterImagePostPath = mutableListOf<String>()
 
-    var price: String = ""
-    var reformName: String = ""
-    var contents: String = ""
+    var price = MutableLiveData<String>()
+    var reformName = MutableLiveData<String>()
+    var contents = MutableLiveData<String>()
 
-    var minDay: String = ""
-    var maxDay: String = ""
+    var minDay = MutableLiveData<String>()
+    var maxDay = MutableLiveData<String>()
 
     var prepareItemList = MutableLiveData<MutableList<PrepareItemRecyclerViewAdapter.PrepareItem>>()
 
@@ -73,12 +67,12 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
-    private suspend fun requestPostBluePrintImage(context:Context): List<String>? {
+    private suspend fun requestPostBluePrintImage(context: Context): List<String>? {
         val list = arrayListOf<File>()
 
         bluePrintImagePath.value?.forEach {
             val file = copyToScopeStorage(context, it)
-            file?.let{
+            file?.let {
                 list.add(file)
             }
         }
@@ -108,13 +102,13 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
         beforeImagePath.value?.let {
             val file = copyToScopeStorage(context, it)
-            file?.let{
+            file?.let {
                 list.add(file)
             }
         }
         afterImagePath.value?.let {
             val file = copyToScopeStorage(context, it)
-            file?.let{
+            file?.let {
                 list.add(file)
             }
         }
@@ -175,40 +169,66 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
             it.add(end)
 
             prepareItemList.postValue(it)
+            minDay.value.isNullOrEmpty()
         }
     }
+
+    fun isValueValidated() =
+        !bluePrintImagePath.value.isNullOrEmpty() && beforeImagePath.value != null && afterImagePath.value != null
+                && minDay.value?.isNotEmpty() == true && maxDay.value?.isNotEmpty() == true
+                && price.value?.isNotEmpty() == true && reformName.value?.isNotEmpty() == true
+                && contents.value?.isNotEmpty() == true &&
+                !prepareItemList.value.isNullOrEmpty()
+
 
     fun onClickPost(context: Context) {
         viewModelScope.launch {
             //get Image
             val list1 = requestPostBluePrintImage(context)
-//            val list2 = requestPostBeforeAfterImage(context)
+            val list2 = requestPostBeforeAfterImage(context)
 
-//            val bluePrintImageList = mutableListOf<DesignPostRequest.ImageData>()
-//            list1?.let{
-//                list1.forEach { item->
-//                    bluePrintImageList.add(DesignPostRequest.ImageData(item, 0))
-//                }
-//            }
-//
-//            val prepareItems = mutableListOf<DesignPostRequest.ItemData>()
-//            prepareItemList.value?.forEach {
-//                prepareItems.add(DesignPostRequest.ItemData(it.name, it.code))
-//            }
-//
-//            val request = DesignPostRequest(reformName, price.toInt(), contents, list2?.get(0)?:"",
-//            list2?.get(1)?:"", minDay, maxDay.toInt(), bluePrintImageList, prepareItems)
-//
-//            val result = (repository as DesignRepository).requestPostDesign(request)
-//            postResult.postValue(result)
+            val bluePrintImageList = mutableListOf<DesignPostRequest.ImageData>()
+            list1?.let {
+                list1.forEach { item ->
+                    bluePrintImageList.add(DesignPostRequest.ImageData(item, 0))
+                }
+            }
+
+            val prepareItems = mutableListOf<DesignPostRequest.ItemData>()
+            prepareItemList.value?.forEach {
+                if(it.code != "00")
+                    prepareItems.add(DesignPostRequest.ItemData(it.name, it.code))
+            }
+
+            val request = DesignPostRequest(
+                reformName.value ?: "",
+                price.value?.toInt() ?: 0,
+                contents.value ?: "",
+                list2?.get(0) ?: "",
+                list2?.get(1) ?: "",
+                minDay.value ?: "",
+                maxDay.value?.toInt() ?: 0,
+                bluePrintImageList,
+                prepareItems
+            )
+
+            val result = (repository as DesignRepository).requestPostDesign(request)
+
+            if(result == null){
+
+            }else{
+
+            }
+
+            postResult.postValue(result)
         }
     }
 
 
-    fun copyToScopeStorage(context:Context, contentsUri: Uri):File?{
+    fun copyToScopeStorage(context: Context, contentsUri: Uri): File? {
         val parcelFileDiscripor = context.contentResolver?.openFileDescriptor(contentsUri, "r")
 
-        parcelFileDiscripor?.let{
+        parcelFileDiscripor?.let {
             val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
             val inputStream = FileInputStream(it.fileDescriptor)
             val file = File(storageDir, context.contentResolver.getFileName(contentsUri))
