@@ -3,6 +3,12 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="user"
+            type="com.susanghan.android.retrofit.request.StoreConfirmRequest" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -64,7 +70,7 @@
                         android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="홍길동"
+                        android:text="@{user.name}"
                         android:textSize="14sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -88,7 +94,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:enabled="false"
-                        android:text="asdsad@asdasds.com"
+                        android:text="@{user.email}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"/>
@@ -122,7 +128,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="asdsad@asdasds.com"
+                        android:text="@{user.email}"
                         android:enabled="false"
                         android:textSize="14sp"/>
 

@@ -85,7 +85,7 @@
                         android:textAlignment="textEnd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(detail.price)}"/>
+                        android:text="@{String.valueOf(detail.price) + '원'}"/>
                 </LinearLayout>
 
                 <View
@@ -98,12 +98,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_title_info"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="50dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:text="상세정보"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_detail_info"
@@ -127,14 +129,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_title_prepare"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:textSize="14sp"
                         android:text="준비물"/>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:id="@+id/rv_item_small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -154,10 +161,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_title_ba"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:text="이렇게 변했어요(비포&amp;애프터)"/>
 
@@ -178,6 +187,7 @@
                             android:layout_height="0dp"
                             android:src="@mipmap/ic_launcher"
                             android:adjustViewBounds="true"
+                            android:background="#e8e8e8"
                             app:layout_constraintDimensionRatio="1:1"
                             android:layout_marginEnd="10dp"/>
 
@@ -189,6 +199,7 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:src="@mipmap/ic_launcher"
+                            android:background="#e8e8e8"
                             android:adjustViewBounds="true"
                             app:layout_constraintDimensionRatio="1:1"
                             android:layout_marginStart="10dp"/>
@@ -207,6 +218,8 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_title_day"
+                            android:textSize="14sp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="20dp"
                             android:layout_width="match_parent"

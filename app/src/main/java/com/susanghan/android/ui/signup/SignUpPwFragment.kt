@@ -10,10 +10,10 @@ import com.susanghan.android.databinding.FragmentSignUpPwBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignUpPwFragment : BaseFragment<FragmentSignUpPwBinding, SignUpPwViewModel, NavArgs>() {
+class SignUpPwFragment : BaseFragment<FragmentSignUpPwBinding, SignUpPwViewModel, SignUpPwFragmentArgs>() {
     override val layoutId: Int = R.layout.fragment_sign_up_pw
     override val viewModel: SignUpPwViewModel by viewModels()
-    override val navArgs: NavArgs by navArgs()
+    override val navArgs: SignUpPwFragmentArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = ""
@@ -22,7 +22,9 @@ class SignUpPwFragment : BaseFragment<FragmentSignUpPwBinding, SignUpPwViewModel
             val action = SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
             navController?.navigate(action)
         }
+//        navArgs.da
 
+        binding.user = navArgs.data
     }
 
     override fun initDataBinding() {

@@ -1,7 +1,6 @@
 package com.susanghan.android.ui.more.list
 
 import android.os.Bundle
-import androidx.core.view.children
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
@@ -11,10 +10,12 @@ import com.susanghan.android.databinding.FragmentNotiBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotiFragment:BaseFragment<FragmentNotiBinding, NotiViewModel, NavArgs>() {
+class NotiFragment : BaseFragment<FragmentNotiBinding, NotiViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_noti
     override val viewModel: NotiViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
+
+    lateinit var adapter: NotiListAdapter
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "공지사항"
@@ -22,20 +23,28 @@ class NotiFragment:BaseFragment<FragmentNotiBinding, NotiViewModel, NavArgs>() {
             navController?.popBackStack()
         }
 
-        val children = binding.llDummy.children
-
-        children.forEach {
-            it.setOnClickListener {
-                navController?.navigate(NotiFragmentDirections.actionNotiFragmentToNotiDetailFragment())
-            }
+        adapter = NotiListAdapter {
+            navController?.navigate(NotiFragmentDirections.actionNotiFragmentToNotiDetailFragment(it))
         }
+
+        binding.rvList.adapter = adapter
+
+//        val children = binding.llDummy.children
+//
+//        children.forEach {
+//            it.setOnClickListener {
+//                navController?.navigate(NotiFragmentDirections.actionNotiFragmentToNotiDetailFragment())
+//            }
+//        }
     }
 
     override fun initDataBinding() {
-
+        viewModel.notiData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun initAfterBinding() {
-
+        viewModel.requestNotice(0)
     }
 }

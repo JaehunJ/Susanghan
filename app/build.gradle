@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion 31
@@ -36,7 +37,7 @@ android {
         def BASE_URL = "BASE_URL"
 
         trial{
-            buildConfigField "String", BASE_URL, '"http://152.70.245.123/"'
+            buildConfigField "String", BASE_URL, '"http://132.226.235.160/"'
         }
 
         real{
@@ -59,6 +60,8 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+
 }
 
 

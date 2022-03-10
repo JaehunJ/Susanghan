@@ -135,6 +135,10 @@
                 app:popUpToInclusive="true"
                 android:id="@+id/action_signUpPwFragment_to_signUpResultFragment"
                 app:destination="@id/signUpResultFragment" />
+            <argument
+                android:name="data"
+                app:argType="com.susanghan.android.retrofit.request.StoreConfirmRequest"
+                app:nullable="true" />
         </fragment>
         <fragment
             android:id="@+id/signUpResultFragment"
@@ -168,7 +172,11 @@
             android:id="@+id/notiDetailFragment"
             android:name="com.susanghan.android.ui.more.list.detail.NotiDetailFragment"
             android:label="NotiDetailFragment"
-            tools:layout="@layout/fragment_noti_detail" />
+            tools:layout="@layout/fragment_noti_detail">
+            <argument
+                android:name="data"
+                app:argType="com.susanghan.android.retrofit.response.NoticeResponse$NoticeData" />
+        </fragment>
         <fragment
             android:id="@+id/userNotificationFragment"
             android:name="com.susanghan.android.ui.more.notice.UserNotificationFragment"
@@ -270,5 +278,9 @@
         android:id="@+id/designAddFragment"
         android:name="com.susanghan.android.ui.design.add.DesignAddFragment"
         android:label="fragment_design_add"
-        tools:layout="@layout/fragment_design_add" />
+        tools:layout="@layout/fragment_design_add">
+        <argument app:argType="integer"
+            android:name="id"
+            android:defaultValue="0"/>
+    </fragment>
 </navigation>

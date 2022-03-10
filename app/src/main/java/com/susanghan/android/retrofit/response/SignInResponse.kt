@@ -6,7 +6,7 @@ data class SignInResponse(
     val data: SignInData,
     val count: Int,
     val errorMessage: String?,
-    val errorCode: String?,
+    val errorCode: String?
 ) {
 
     data class SignInData(val accessToken: String, val refreshToken: String)

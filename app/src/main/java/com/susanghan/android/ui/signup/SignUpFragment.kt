@@ -21,10 +21,10 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.btnConfirm.setOnClickListener {
-            val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment()
-            navController?.navigate(action)
-        }
+//        binding.btnConfirm.setOnClickListener {
+//            val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment()
+//            navController?.navigate(action)
+//        }
 
         binding.btnConfirm.setOnClickListener {
             if(viewModel.getValidated()){
@@ -35,12 +35,17 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
         }
 
         binding.btnOpenStore.setOnClickListener {
-
+            viewModel.requestConfirm()
         }
     }
 
     override fun initDataBinding() {
+        viewModel.confirm.observe(viewLifecycleOwner){
+            val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment(viewModel.getInfo())
+            navController?.navigate(action)
+        }
 
+        binding.data = viewModel
     }
 
     override fun initAfterBinding() {

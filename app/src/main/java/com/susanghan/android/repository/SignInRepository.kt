@@ -8,6 +8,7 @@ import com.susanghan.android.data.REFRESH_TOKEN
 import com.susanghan.android.data.USER_ID
 import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.SignInRequest
+import com.susanghan.android.retrofit.response.ProfileResponse
 import com.susanghan.android.retrofit.response.SignInResponse
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,8 +16,14 @@ import javax.inject.Singleton
 @Singleton
 class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
     BaseRepository(api, prefs) {
-    suspend fun requestSignIn(id: String, pw: String) = call { api.requestSignIn(
-        "clo", SignInRequest(id, pw)) }
+
+    var userInfoRes: ProfileResponse? = null
+
+    suspend fun requestSignIn(id: String, pw: String) = call {
+        api.requestSignIn(
+            "clo", SignInRequest(id, pw)
+        )
+    }
 
     fun setToken(data: SignInResponse.SignInData) {
         prefs.edit {
@@ -26,8 +33,8 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
         }
     }
 
-    fun setUserId(id:String){
-        prefs.edit{
+    fun setUserId(id: String) {
+        prefs.edit {
             putString(USER_ID, id)
         }
     }
@@ -36,8 +43,12 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     }
 
-    suspend fun requestUserProfile() {
-
+    suspend fun requestUserProfile() = if (userInfoRes == null) {
+        call {
+            api.requestProfile(getAccessToken())
+        }
+    } else {
+        userInfoRes
     }
 
     suspend fun requestChangePw() {

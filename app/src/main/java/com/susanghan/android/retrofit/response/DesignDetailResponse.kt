@@ -25,6 +25,6 @@ data class DesignDetailResponse(
     data class DesignDetailItem(
         val itemId:Int,
         val itemName:String,
-        val itemCode:Int
+        val itemCode:String
     )
 }

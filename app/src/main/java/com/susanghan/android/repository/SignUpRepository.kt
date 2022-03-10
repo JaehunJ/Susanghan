@@ -8,14 +8,15 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences):BaseRepository(api, prefs) {
-    var name:String = ""
-    var phone:String = ""
-    var email:String = ""
-    var code:String = ""
-    var pw:String = ""
-    var pwConfirm:String = ""
-    var marketingYn:Int = 0
+class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
+    BaseRepository(api, prefs) {
+    var name: String = ""
+    var phone: String = ""
+    var email: String = ""
+    var code: String = ""
+    var pw: String = ""
+    var pwConfirm: String = ""
+    var marketingYn: Int = 0
 
-    suspend fun requestConfirm(data:StoreConfirmRequest) = call{api.requestStoreConfirm(data)}
+    suspend fun requestConfirm(data: StoreConfirmRequest) = call { api.requestStoreConfirm(data) }
 }

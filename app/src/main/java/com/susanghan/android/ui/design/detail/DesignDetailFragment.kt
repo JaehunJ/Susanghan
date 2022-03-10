@@ -1,14 +1,18 @@
 package com.susanghan.android.ui.design.detail
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.data.DESIGN_FIRST
 import com.susanghan.android.data.DESIGN_START
 import com.susanghan.android.data.DESIGN_STOP
 import com.susanghan.android.databinding.FragmentDesignDetailBinding
@@ -32,22 +36,26 @@ class DesignDetailFragment :
             viewModel.setImage(iv, n)
         }
         binding.vpImage.adapter = adapter
-//        binding.indicator.setViewPager(binding.vpImage)
 
-        smallAdapter = DesignItemImageAdapter()
+        smallAdapter = DesignItemImageAdapter(requireContext())
         binding.rvItemSmall.adapter = smallAdapter
 
         binding.btnStop.setOnClickListener {
-//            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_STOP)
+            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_STOP)
         }
 
         binding.btnStart.setOnClickListener {
-//            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_START)
+            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_START)
         }
 
         binding.btnModify.setOnClickListener {
-
+            val action = DesignDetailFragmentDirections.actionDesignDetailFragmentToDesignAddFragment(reformId)
         }
+
+        binding.tvTitleInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.tvTitleBa.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.tvTitlePrepare.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.tvTitleDay.paintFlags = Paint.UNDERLINE_TEXT_FLAG
     }
 
     override fun initDataBinding() {

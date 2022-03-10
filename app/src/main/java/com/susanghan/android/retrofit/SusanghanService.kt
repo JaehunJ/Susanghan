@@ -44,11 +44,13 @@ interface SusanghanService {
     @POST("/api/v1/expert/store/certification")
     suspend fun requestStoreConfirm(
         @Body data:StoreConfirmRequest
-    ):Response<BaseResponse>
+    ):Response<StoreConfirmResponse>
 
 
-    @GET("")
-    suspend fun requestUserInfo(): Response<BaseResponse>
+    @GET("/api/v1/expert/profiles")
+    suspend fun requestProfile(
+        @Header("Authorization") authorization: String
+    ): Response<ProfileResponse>
 
     @GET("api/v1/expert/orders/list")
     suspend fun requestOrderList(
@@ -104,14 +106,22 @@ interface SusanghanService {
         @Body data: DesignPostRequest
     ): Response<BaseResponse>
 
-    @GET("")
-    suspend fun requestQAList(): Response<BaseResponse>
-
-    @GET("")
-    suspend fun requestQADetail(): Response<BaseResponse>
+    @GET("/api/v1/expert/etc/faq")
+    suspend fun requestFaq(
+        @Header("Authorization") authorization: String,
+        @Query("page") page: Int,
+        @Query("limit") limit:Int = 10
+    ):Response<FaqResponse>
 
     @POST("")
     suspend fun requestAddAnswer(): Response<BaseResponse>
+
+    @GET("/api/v1/expert/etc/notices")
+    suspend fun requestNotice(
+        @Header("Authorization") authorization: String,
+        @Query("page") page: Int,
+        @Query("limit") limit:Int = 10
+    ):Response<NoticeResponse>
 
     @GET("/api/v1/expert/image/view")
     suspend fun requestImage(

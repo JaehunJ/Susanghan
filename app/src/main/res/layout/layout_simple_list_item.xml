@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#ffffff">
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="data"
+            type="com.susanghan.android.retrofit.response.NoticeResponse.NoticeData" />
+    </data>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="서비스 공지사항입니다."/>
+        android:orientation="vertical"
+        android:background="#ffffff">
 
-    <TextView
-        android:layout_marginTop="6dp"
-        android:layout_marginStart="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:text="05.05"
-        android:textColor="#999999"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.title}"/>
 
-    <View
-        android:layout_marginTop="14dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e5e5e5"/>
+        <TextView
+            android:id="@+id/tv_titme"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@{data.creationDate}"
+            android:textColor="#999999"/>
 
-</LinearLayout>
+        <View
+            android:layout_marginTop="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e5e5e5"/>
+
+    </LinearLayout>
+</layout>

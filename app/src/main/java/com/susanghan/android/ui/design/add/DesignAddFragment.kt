@@ -32,12 +32,14 @@ import java.util.*
 const val IMAGE_ITEM = 1
 const val IMAGE_BEFORE = 2
 const val IMAGE_AFTER = 3
+const val MODE_WRITE = 0
+const val MODE_MODIFY = 1
 
 @AndroidEntryPoint
-class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewModel, NavArgs>() {
+class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewModel, DesignAddFragmentArgs>() {
     override val layoutId: Int = R.layout.fragment_design_add
     override val viewModel: DesignAddViewModel by viewModels()
-    override val navArgs: NavArgs by navArgs()
+    override val navArgs: DesignAddFragmentArgs by navArgs()
 
     var currentPhotoPath: String? = null
     var photoUri: Uri? = null
@@ -64,6 +66,9 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        viewModel.mode = if(navArgs.id == 0) MODE_WRITE else MODE_MODIFY
+        viewModel.reformId = navArgs.id
+
         binding.toolbar.tvTitle.text = "디자인 상세"
 
         binding.llAddImage.setOnClickListener {
@@ -113,7 +118,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     }
 
     override fun initDataBinding() {
-        viewModel.bluePrintImagePath.observe(viewLifecycleOwner) {
+        viewModel.viewingBluePrintImage.observe(viewLifecycleOwner) {
             binding.llAddImage.isEnabled = it.count() != 5
             binding.btnAdd.isEnabled = it.count() != 5
 

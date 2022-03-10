@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.susanghan.android.BuildConfig
 import com.susanghan.android.base.BaseRepository
+import com.susanghan.android.repository.EtcServiceRepository
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.repository.SignInRepository
 import com.susanghan.android.repository.SignUpRepository
@@ -19,6 +20,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
+
+    @Singleton
+    @Provides
+    fun provideEtcServiceRepository(api: SusanghanService, preferences: SharedPreferences) =
+        EtcServiceRepository(api, preferences)
 
     @Singleton
     @Provides

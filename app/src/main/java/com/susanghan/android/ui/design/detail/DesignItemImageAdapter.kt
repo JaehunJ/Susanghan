@@ -1,14 +1,17 @@
 package com.susanghan.android.ui.design.detail
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.susanghan.android.data.PrepareItemMappingStringList
 import com.susanghan.android.databinding.LayoutDesignItemDetailSmallBinding
 import com.susanghan.android.retrofit.response.DesignDetailResponse
 
-class DesignItemImageAdapter() :
+class DesignItemImageAdapter(val context: Context) :
     ListAdapter<DesignDetailResponse.DesignDetailItem, DesignItemImageAdapter.DesignDetailItemSmallViewHolder>(
         DesignItemSmallDiffUtil()
     ) {
@@ -20,7 +23,7 @@ class DesignItemImageAdapter() :
 
     override fun onBindViewHolder(holder: DesignDetailItemSmallViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(context, item)
     }
 
     class DesignDetailItemSmallViewHolder(val binding: LayoutDesignItemDetailSmallBinding) :
@@ -34,8 +37,10 @@ class DesignItemImageAdapter() :
             }
         }
 
-        fun bind(data: DesignDetailResponse.DesignDetailItem) {
+        fun bind(context: Context, data: DesignDetailResponse.DesignDetailItem) {
             binding.tvName.text = data.itemName
+            val type = data.itemCode
+            Glide.with(context).load(PrepareItemMappingStringList[type]).into(binding.ivDesign)
         }
     }
 

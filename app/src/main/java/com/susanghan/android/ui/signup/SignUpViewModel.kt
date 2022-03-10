@@ -1,5 +1,6 @@
 package com.susanghan.android.ui.signup
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.SignUpRepository
@@ -36,14 +37,25 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
         (repository as SignUpRepository).code = value
     }
 
+    val confirm = MutableLiveData<Boolean>()
+
     fun getValidated() = name.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && code.isNotEmpty()
+
+    fun getInfo() = StoreConfirmRequest(
+//        name, phone, email, code
+    "정재훈", "01088335697", "wjdthtjfltm@gamil.com", "TESTCODE"
+    )
 
     fun requestConfirm(){
         viewModelScope.launch {
-            val data = StoreConfirmRequest(
-                name, phone, email, code
-            )
-            (repository as SignUpRepository).requestConfirm(data)
+            val data = getInfo()
+            val result = (repository as SignUpRepository).requestConfirm(data)
+
+            result?.let{
+                if(it.errorMessage.isNullOrEmpty()){
+                    confirm.postValue(it.data == "success")
+                }
+            }
         }
     }
 }

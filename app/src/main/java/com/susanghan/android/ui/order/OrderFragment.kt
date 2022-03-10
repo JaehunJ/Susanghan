@@ -34,5 +34,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     override fun initAfterBinding() {
         viewModel.requestOderList(0, 10, Period.MonthTotal.value)
+        viewModel.requestUserProfile()
     }
 }
