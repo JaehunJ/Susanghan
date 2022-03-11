@@ -155,7 +155,12 @@
         android:id="@+id/orderDetailFragment"
         android:name="com.susanghan.android.ui.order.detail.OrderDetailFragment"
         android:label="fragment_order_detail"
-        tools:layout="@layout/fragment_order_detail" />
+        tools:layout="@layout/fragment_order_detail">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            app:nullable="false"/>
+    </fragment>
     <navigation android:id="@+id/navigation_more"
         app:startDestination="@id/moreFragment">
         <fragment

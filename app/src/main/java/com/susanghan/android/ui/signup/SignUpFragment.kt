@@ -33,10 +33,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
                 activityFuncFunction.showToast("누락된 정보가 있습니다.")
             }
         }
-
-        binding.btnOpenStore.setOnClickListener {
-            viewModel.requestConfirm()
-        }
     }
 
     override fun initDataBinding() {

@@ -22,9 +22,9 @@ class SignUpPwFragment : BaseFragment<FragmentSignUpPwBinding, SignUpPwViewModel
             val action = SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
             navController?.navigate(action)
         }
-//        navArgs.da
 
         binding.user = navArgs.data
+        binding.viewModel = viewModel
     }
 
     override fun initDataBinding() {

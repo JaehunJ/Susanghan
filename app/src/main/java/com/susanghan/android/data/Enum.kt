@@ -2,6 +2,15 @@ package com.susanghan.android.data
 
 import com.susanghan.android.R
 
+enum class OrderStatus(val value:Int){
+    Ready(0),
+    Carry(1),
+    Doing(2),
+    Complete(3),
+    Carried(4),
+    CarriedComplete(5)
+}
+
 enum class Period(val value: Int) {
     MonthTotal(0),
     Month3(3),

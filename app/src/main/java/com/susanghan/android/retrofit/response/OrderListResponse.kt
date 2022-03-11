@@ -8,18 +8,33 @@ data class OrderListResponse(
     val errorMessage:String?, val errorCode:String?,
 ){
     data class OrderData(
-        val paymentDate:String,
+        val orderId:Int,
         val orderNum:String,
-        val orderStatusNm:String,
         val orderPrice:Int,
+        val paymentDate:String,
+        val orderDetailId:Int,
+        val orderStatusCode:Int,
+        val orderStatusNm:String,
+        val categoryCode:String,
+        val classCode:String,
         val orderList:List<OrderSubData>,
     )
 
     data class OrderSubData(
+        val orderId:Int,
+        val orderNum:String,
+        val orderPrice:Int,
+        val orderDetailId: Int,
+        val surveySeq:Int,
+        val orderStatusCode:Int,
+        val orderStatusNm: String,
+        val surveyId:Int,
+        val code:String,
+        val classCode:String,
+        val contents:String,
         val mainNm:String,
         val mainCode:String,
         val imageName:String,
-        val classCode:String,
         val subNm:String
     )
 }

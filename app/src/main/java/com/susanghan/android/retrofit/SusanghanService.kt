@@ -60,6 +60,12 @@ interface SusanghanService {
         @Query("period") period: Int
     ): Response<OrderListResponse>
 
+    @GET("/api/v1/expert/orders/details/{id}")
+    suspend fun requestOrderDetail(
+        @Header("Authorization") authorization: String,
+        @Path("id") id:Int
+    ):Response<OrderDetailResponse>
+
     @GET("")
     suspend fun requestOderDetailStatus(): Response<BaseResponse>
 

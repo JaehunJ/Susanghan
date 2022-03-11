@@ -62,9 +62,11 @@ class OrderListAdapter(val navController: NavController) :
             }
 
             binding.root.setOnClickListener {
-                val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailFragment()
+                val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailFragment(data.orderDetailId)
                 navController.navigate(action)
             }
+
+//            binding.tvStatus.text =
         }
 
         fun bindSubOrderView(
