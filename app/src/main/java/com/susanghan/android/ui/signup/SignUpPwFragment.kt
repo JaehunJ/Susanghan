@@ -19,20 +19,45 @@ class SignUpPwFragment : BaseFragment<FragmentSignUpPwBinding, SignUpPwViewModel
         binding.toolbar.tvTitle.text = ""
 
         binding.btnConfirm.setOnClickListener {
-            val action = SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
-            navController?.navigate(action)
+            if(viewModel.isValidate()){
+                if(viewModel.isChecked()){
+                    viewModel.requestSignUp()
+                }else{
+                    activityFuncFunction.showToast("약관에 동의해주세요.")
+                }
+            }else{
+                activityFuncFunction.showToast("비밀번호가 일치하지 않습니다.")
+            }
         }
 
         binding.user = navArgs.data
         binding.viewModel = viewModel
+        viewModel.prevData = navArgs.data
     }
 
     override fun initDataBinding() {
+        viewModel.isCbAll.observe(viewLifecycleOwner){
+            it?.let{
+                viewModel.isCb0.postValue(it)
+                viewModel.isCb1.postValue(it)
+                viewModel.isCb2.postValue(it)
+            }
+        }
 
+        viewModel.isSuccess.observe(viewLifecycleOwner){
+            it?.let{
+                if(it){
+                    val action = SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
+                    navController?.navigate(action)
+                }else{
+                    activityFuncFunction.showToast("잠시 후 다시 시도해 주세요.")
+                }
+            }
+        }
     }
-
     override fun initAfterBinding() {
 
     }
+
 
 }

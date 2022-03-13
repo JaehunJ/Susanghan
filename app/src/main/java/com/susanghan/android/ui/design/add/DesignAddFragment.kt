@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.view.children
@@ -22,6 +23,7 @@ import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentDesignAddBinding
 import com.susanghan.android.databinding.LayoutDesignAddImageBinding
+import com.susanghan.android.retrofit.response.DesignDetailResponse
 import com.susanghan.android.ui.dialog.PrepareItemDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -34,6 +36,9 @@ const val IMAGE_BEFORE = 2
 const val IMAGE_AFTER = 3
 const val MODE_WRITE = 0
 const val MODE_MODIFY = 1
+
+const val IMAGE_URI = 0
+const val IMAGE_SERVER = 1
 
 @AndroidEntryPoint
 class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewModel, DesignAddFragmentArgs>() {
@@ -124,8 +129,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
 
             for (i in 0 until 5) {
                 if (i < it.count()) {
-                    Glide.with(requireActivity()).load(it[i])
-                        .into(bindingImageView[i].ivProduct)
+                    setImage(bindingImageView[i].ivProduct, it[i])
                 } else {
                     bindingImageView[i].ivProduct.setImageResource(0)
                 }
@@ -137,7 +141,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
                 binding.ivBefore.setImageResource(0)
                 binding.llAddBefore.visibility = View.VISIBLE
             } else {
-                Glide.with(requireActivity()).load(it).into(binding.ivBefore)
+//                Glide.with(requireActivity()).load(it).into(binding.ivBefore)
                 binding.llAddBefore.visibility = View.GONE
             }
         }
@@ -146,7 +150,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
                 binding.ivAfter.setImageResource(0)
                 binding.llAddAfter.visibility = View.VISIBLE
             } else {
-                Glide.with(requireActivity()).load(it).into(binding.ivAfter)
+//                Glide.with(requireActivity()).load(it).into(binding.ivAfter)
                 binding.llAddAfter.visibility = View.GONE
             }
         }
@@ -166,10 +170,55 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         viewModel.minDay.observe(viewLifecycleOwner){
             Log.e("#debug", it)
         }
+
+        viewModel.oldData.observe(viewLifecycleOwner){
+            it?.let{
+                setOldDesign(it)
+            }
+        }
     }
 
     override fun initAfterBinding() {
+        if(viewModel.mode == MODE_MODIFY){
+            viewModel.requestOldDesign(viewModel.reformId)
+        }
+    }
 
+    private fun setOldDesign(data:DesignDetailResponse.DesignDetailData){
+        val beforeImage = data.beforeImageName
+        val afterImage = data.afterImageName
+        val blueImage = data.images
+
+        viewModel.reformName.postValue(data.reformName)
+        viewModel.price.postValue(data.price.toString())
+        viewModel.contents.postValue(data.contents)
+        viewModel.minDay.postValue(data.minDay.toString())
+        viewModel.maxDay.postValue(data.maxDay.toString())
+
+        viewModel.beforeImagePath.postValue(DesignAddViewModel.ImageData(IMAGE_SERVER, beforeImage, null))
+        viewModel.afterImagePath.postValue(DesignAddViewModel.ImageData(IMAGE_SERVER, afterImage, null))
+        viewModel.addBluePrintImageServer(blueImage)
+    }
+
+    fun setBluePrintImage(){
+
+    }
+
+    fun setBeforeImage(){
+
+    }
+
+    fun setAfterImage(){
+
+    }
+
+    fun setImage(view: ImageView, data:DesignAddViewModel.ImageData){
+        if(data.type == IMAGE_URI && data.uri != null){
+            Glide.with(requireActivity()).load(data.uri)
+                .into(view)
+        }else{
+            viewModel.setImage(view, data.path?:"")
+        }
     }
 
     fun showAddPrepareItem(){
@@ -276,7 +325,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
 
             when (clickType) {
                 IMAGE_ITEM -> {
-                    viewModel.addBluePrintImage(list)
+                    viewModel.addBluePrintImageList(list)
                 }
                 IMAGE_BEFORE -> {
                     viewModel.addBeforeImage(list[0])

@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
@@ -41,11 +42,13 @@ class DesignDetailFragment :
         binding.rvItemSmall.adapter = smallAdapter
 
         binding.btnStop.setOnClickListener {
-            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_STOP)
+            showStopDialog()
+//            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_STOP)
         }
 
         binding.btnStart.setOnClickListener {
-            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_START)
+            showStartDialog()
+//            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_START)
         }
 
         binding.btnModify.setOnClickListener {
@@ -73,7 +76,7 @@ class DesignDetailFragment :
                     binding.btnStop.visibility = View.GONE
                     binding.btnBlank.visibility = View.GONE
                 }
-                1->{
+                2->{
                     binding.btnModify.visibility = View.GONE
                     binding.btnStart.visibility = View.GONE
                     binding.btnStop.visibility = View.VISIBLE
@@ -99,5 +102,37 @@ class DesignDetailFragment :
 
     override fun initAfterBinding() {
         viewModel.requestDesignDetail(reformId)
+    }
+
+    fun showStartDialog(){
+        val builder = AlertDialog.Builder(requireContext()).apply {
+            setTitle("판매중으로 변경하시겠습니까?")
+            setMessage("사용자들이 구매를 하거나 문의를 남길 수 있습니다.\n" + "판매를 시작한 디자인은 수정 및 삭제가 불가능합니다.")
+            setPositiveButton("판매시작"){d,t->
+                d.dismiss()
+                viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_START)
+            }
+            setNegativeButton("취소"){d,t->
+                d.dismiss()
+            }
+        }
+
+        builder.create().show()
+    }
+
+    fun showStopDialog(){
+        val builder = AlertDialog.Builder(requireContext()).apply {
+            setTitle("판매증지로 변경하시겠습니까?")
+            setMessage("사용자들에게 이 디자인을 공개하지 않습니다.")
+            setPositiveButton("판매중지"){d,t->
+                d.dismiss()
+                viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_STOP)
+            }
+            setNegativeButton("취소"){d,t->
+                d.dismiss()
+            }
+        }
+
+        builder.create().show()
     }
 }

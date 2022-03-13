@@ -37,7 +37,6 @@ interface SusanghanService {
 
     @POST("api/v1/join/expert")
     suspend fun requestSignUp(
-        @Header("Authorization") authorization: String,
         @Body data: SignUpRequest
     ): Response<BaseResponse>
 

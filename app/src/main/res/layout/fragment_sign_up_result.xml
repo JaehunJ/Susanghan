@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:textSize="22sp"
             android:textColor="@color/color_2f389f"
-            android:text="수상한 수선집"/>
+            android:text="OLDEE"/>
         <TextView
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"

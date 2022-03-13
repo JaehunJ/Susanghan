@@ -21,11 +21,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-//        binding.btnConfirm.setOnClickListener {
-//            val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment()
-//            navController?.navigate(action)
-//        }
-
         binding.btnConfirm.setOnClickListener {
             if(viewModel.getValidated()){
                 viewModel.requestConfirm()

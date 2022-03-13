@@ -57,8 +57,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
                 val pos = tab?.position
 
                 pos?.let { p ->
-                    val status = ReformStatus.None
-                    when(pos){
+                    var status = when(pos){
                         0-> ReformStatus.None
                         1-> ReformStatus.Start
                         else->ReformStatus.Stop

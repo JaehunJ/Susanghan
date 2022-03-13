@@ -21,7 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <include layout="@layout/layout_order_detail_shpiping_graph"/>
+                <include
+                    android:id="@+id/ll_status_bar"
+                    layout="@layout/layout_order_detail_shpiping_graph"/>
 
                 <TextView
                     android:layout_marginEnd="20dp"
@@ -187,55 +189,55 @@
                                 android:text="010-2345-6789"
                                 />
 
-                            <View
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="#e5e5e5"/>
+<!--                            <View-->
+<!--                                android:layout_marginTop="10dp"-->
+<!--                                android:layout_marginBottom="10dp"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="1dp"-->
+<!--                                android:background="#e5e5e5"/>-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:text="수선 요구사항"
-                                />
-                            <TextView
-                                android:id="@+id/tv_order_etc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="배송메모배송메모입니다"
-                                />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:textSize="12sp"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:text="수선 요구사항"-->
+<!--                                />-->
+<!--                            <TextView-->
+<!--                                android:id="@+id/tv_order_etc"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:textSize="12sp"-->
+<!--                                android:text="배송메모배송메모입니다"-->
+<!--                                />-->
 
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <LinearLayout
-                        android:id="@+id/ll_order_cs"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="50dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:text="고객문의"/>
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/ll_order_cs"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_marginBottom="50dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="12sp"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:text="고객문의"/>-->
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1dp"
-                            app:cardCornerRadius="6dp">
-                            <include layout="@layout/layout_cs_item"/>
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
+<!--                        <com.google.android.material.card.MaterialCardView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:strokeColor="#e5e5e5"-->
+<!--                            app:strokeWidth="1dp"-->
+<!--                            app:cardCornerRadius="6dp">-->
+<!--                            <include layout="@layout/layout_cs_item"/>-->
+<!--                        </com.google.android.material.card.MaterialCardView>-->
+<!--                    </LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
 
