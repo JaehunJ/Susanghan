@@ -1,7 +1,10 @@
 package com.susanghan.android.retrofit.response
 
-data class ImageResponse(val count:Int, val data:List<ImageData>, val status: Int,
-                         val message: String,
-                         val errorMessage: String?, val errorCode: String?){
-    data class ImageData(val imageName:String)
+data class ImageResponse(
+    val count: Int, val data: List<ImageData>, val status: Int,
+    val message: String,
+    override var errorMessage: String?,
+    override var errorCode: String?
+) : BaseResponse() {
+    data class ImageData(val imageName: String)
 }

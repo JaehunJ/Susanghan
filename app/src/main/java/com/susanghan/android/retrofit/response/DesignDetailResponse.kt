@@ -5,8 +5,9 @@ data class DesignDetailResponse(
     val status:Int,
     val message:String,
     val data:DesignDetailData,
-    val errorMessage:String?, val errorCode:String?
-){
+    override var errorMessage: String?,
+    override var errorCode: String?
+):BaseResponse(){
     data class DesignDetailData(
         val reformId:Int,
         val reformName:String,

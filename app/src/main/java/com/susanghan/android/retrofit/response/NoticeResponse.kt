@@ -9,8 +9,9 @@ data class NoticeResponse(
     val data: MutableList<NoticeData>,
     val status: Int,
     val message: String,
-    val errorMessage: String?, val errorCode: String?
-) {
+    override var errorMessage: String?,
+    override var errorCode: String?
+):BaseResponse() {
     @Keep
     @Parcelize
     data class NoticeData(

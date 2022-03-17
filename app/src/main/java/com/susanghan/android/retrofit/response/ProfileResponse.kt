@@ -5,9 +5,9 @@ data class ProfileResponse(
     val status: Int,
     val message: String,
     val data: ProfileData,
-    val errorMessage: String?,
-    val errorCode: String?
-) {
+    override var errorMessage: String?,
+    override var errorCode: String?
+) :BaseResponse(){
     data class ProfileData(
         val userId: String,
         val userEmail: String,

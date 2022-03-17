@@ -15,3 +15,4 @@ const val DESIGN_START = 2
 const val DESIGN_STOP = 3
 
 const val HTTP_OK = 200
+const val HTTP_ERROR_TOKEN = 404

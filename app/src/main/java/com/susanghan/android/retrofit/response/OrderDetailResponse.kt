@@ -4,9 +4,10 @@ data class OrderDetailResponse(
     val count:Int,
     val status:Int,
     val message:String,
-    val errorMessage:String?, val errorCode:String?,
+    override var errorMessage: String?,
+    override var errorCode: String?,
     val data:MutableList<OrderDetailSub>
-){
+):BaseResponse(){
     data class OrderDetailSub(
         val classCode: String,
         val code: String,

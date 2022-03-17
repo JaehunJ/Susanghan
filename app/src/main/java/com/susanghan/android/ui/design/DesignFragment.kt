@@ -57,7 +57,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
                 val pos = tab?.position
 
                 pos?.let { p ->
-                    var status = when(pos){
+                    val status = when(pos){
                         0-> ReformStatus.None
                         1-> ReformStatus.Start
                         else->ReformStatus.Stop
@@ -73,7 +73,6 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
-
         })
     }
 

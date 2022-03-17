@@ -7,7 +7,6 @@ import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.DesignPostRequest
 import com.susanghan.android.retrofit.request.DesignStatusUpdateRequest
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -26,7 +25,6 @@ class DesignRepository @Inject constructor(
 
     suspend fun requestChangeDesignStatus(reformId: Int, status: DesignStatusUpdateRequest) =
         call { api.requestChangeDesignStatus(getAccessToken(), reformId, status) }
-
     suspend fun requestPostImage(list: List<MultipartBody.Part>) =
         call {
             api.requestPostImage(

@@ -8,9 +8,9 @@ data class FaqResponse(
     val data: MutableList<FaqData>,
     val status: Int,
     val message: String,
-    val errorMessage: String?,
-    val errorCode: String?
-) {
+    override var errorMessage: String?,
+    override var errorCode: String?
+):BaseResponse() {
 
     @Parcelize
     data class FaqData(

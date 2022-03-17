@@ -5,9 +5,9 @@ data class SignInResponse(
     val message: String,
     val data: SignInData,
     val count: Int,
-    val errorMessage: String?,
-    val errorCode: String?
-) {
+    override var errorMessage: String?,
+    override var errorCode: String?
+): BaseResponse() {
 
     data class SignInData(val accessToken: String, val refreshToken: String)
 }

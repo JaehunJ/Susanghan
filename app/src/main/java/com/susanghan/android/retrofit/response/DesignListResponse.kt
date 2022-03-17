@@ -5,8 +5,9 @@ data class DesignListResponse(
     val data: List<DesignData>,
     val status: Int,
     val message: String,
-    val errorMessage: String?, val errorCode: String?,
-) {
+    override var errorMessage: String?,
+    override var errorCode: String?
+):BaseResponse() {
     data class DesignData(
         val reformId: Int,
         val reformName: String,

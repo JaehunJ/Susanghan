@@ -198,17 +198,12 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         viewModel.beforeImagePath.postValue(DesignAddViewModel.ImageData(IMAGE_SERVER, beforeImage, null))
         viewModel.afterImagePath.postValue(DesignAddViewModel.ImageData(IMAGE_SERVER, afterImage, null))
         viewModel.addBluePrintImageServer(blueImage)
-    }
 
-    fun setBluePrintImage(){
-
-    }
-
-    fun setBeforeImage(){
-
-    }
-
-    fun setAfterImage(){
+        //set prepareItem
+        val prepareItems = data.items
+        prepareItems.forEach {
+            viewModel.addPrepareItem(PrepareItemRecyclerViewAdapter.PrepareItem(it.itemCode, it.itemName))
+        }
 
     }
 
