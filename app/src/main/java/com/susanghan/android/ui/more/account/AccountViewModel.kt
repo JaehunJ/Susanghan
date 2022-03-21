@@ -6,5 +6,5 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AccountViewModel @Inject constructor(repository: BaseRepository):BaseViewModel(repository) {
+class AccountViewModel @Inject constructor(repository: BaseRepository) : BaseViewModel(repository) {
 }

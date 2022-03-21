@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseBottomSheetDialogFragment<VB:ViewBinding>:BottomSheetDialogFragment() {
-    lateinit var _biding:ViewBinding
-    abstract val bindingInflater:(LayoutInflater, ViewGroup?, Boolean)->VB
-    protected val binding:VB
-    get() = _biding as VB
+abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDialogFragment() {
+    lateinit var _biding: ViewBinding
+    abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
+    protected val binding: VB
+        get() = _biding as VB
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -7,4 +7,4 @@ data class StoreConfirmResponse(
     val message: String,
     override var errorMessage: String?,
     override var errorCode: String?
-):BaseResponse()
+) : BaseResponse()

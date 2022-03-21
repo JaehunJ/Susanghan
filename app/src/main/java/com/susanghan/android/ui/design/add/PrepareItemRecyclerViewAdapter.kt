@@ -11,7 +11,10 @@ import com.bumptech.glide.Glide
 import com.susanghan.android.data.PrepareItemMappingStringList
 import com.susanghan.android.databinding.LayoutDesignAddPrepareItemBinding
 
-class PrepareItemRecyclerViewAdapter(private val context: Context, private val dialogCallback: () -> Unit) :
+class PrepareItemRecyclerViewAdapter(
+    private val context: Context,
+    private val dialogCallback: () -> Unit
+) :
     ListAdapter<PrepareItemRecyclerViewAdapter.PrepareItem, PrepareItemRecyclerViewAdapter.PrepareItemViewHolder>(
         PrepareItemDiffer()
     ) {
@@ -52,7 +55,7 @@ class PrepareItemRecyclerViewAdapter(private val context: Context, private val d
         }
     }
 
-    data class PrepareItem(val code: String, val name:String)
+    data class PrepareItem(val code: String, val name: String)
     class PrepareItemDiffer : DiffUtil.ItemCallback<PrepareItem>() {
         override fun areItemsTheSame(
             oldItem: PrepareItem,

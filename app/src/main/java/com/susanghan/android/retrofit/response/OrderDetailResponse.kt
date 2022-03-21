@@ -1,13 +1,13 @@
 package com.susanghan.android.retrofit.response
 
 data class OrderDetailResponse(
-    val count:Int,
-    val status:Int,
-    val message:String,
+    val count: Int,
+    val status: Int,
+    val message: String,
     override var errorMessage: String?,
     override var errorCode: String?,
-    val data:MutableList<OrderDetailSub>
-):BaseResponse(){
+    val data: MutableList<OrderDetailSub>
+) : BaseResponse() {
     data class OrderDetailSub(
         val classCode: String,
         val code: String,

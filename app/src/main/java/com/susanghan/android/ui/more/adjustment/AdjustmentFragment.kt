@@ -12,7 +12,7 @@ import com.susanghan.android.databinding.FragmentAdjustmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AdjustmentFragment:BaseFragment<FragmentAdjustmentBinding, AdjustmentViewModel, NavArgs>() {
+class AdjustmentFragment : BaseFragment<FragmentAdjustmentBinding, AdjustmentViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_adjustment
     override val viewModel: AdjustmentViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()

@@ -30,7 +30,7 @@ fun getImageBody(key: String, file: File) = MultipartBody.Part.createFormData(
     body = file.asRequestBody("image/*".toMediaType())
 )
 
-fun getTextBody(value:String):RequestBody{
+fun getTextBody(value: String): RequestBody {
     return value.toRequestBody("text/plan".toMediaType())
 }
 
@@ -56,10 +56,10 @@ fun getImageBodyUri(key: String, uries: List<Uri>): List<MultipartBody.Part> {
     return list
 }
 
-fun ContentResolver.getFileName(fileUri:Uri):String{
+fun ContentResolver.getFileName(fileUri: Uri): String {
     var name = ""
     val returnCursor = this.query(fileUri, null, null, null, null)
-    returnCursor?.let{
+    returnCursor?.let {
         val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
         returnCursor.moveToFirst()
         name = returnCursor.getString(nameIndex)

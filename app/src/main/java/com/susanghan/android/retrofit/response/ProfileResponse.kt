@@ -7,7 +7,7 @@ data class ProfileResponse(
     val data: ProfileData,
     override var errorMessage: String?,
     override var errorCode: String?
-) :BaseResponse(){
+) : BaseResponse() {
     data class ProfileData(
         val userId: String,
         val userEmail: String,

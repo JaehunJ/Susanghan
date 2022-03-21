@@ -10,7 +10,8 @@ import com.susanghan.android.databinding.FragmentRepairerRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RepairerRegisterFragment : BaseFragment<FragmentRepairerRegisterBinding, RepairerRegisterViewModel, NavArgs>() {
+class RepairerRegisterFragment :
+    BaseFragment<FragmentRepairerRegisterBinding, RepairerRegisterViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_repairer_register
     override val viewModel: RepairerRegisterViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()

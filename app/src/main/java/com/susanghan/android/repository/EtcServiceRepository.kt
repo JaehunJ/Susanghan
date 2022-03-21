@@ -8,7 +8,7 @@ class EtcServiceRepository(
     api: SusanghanService,
     prefs: SharedPreferences
 ) : BaseRepository(api, prefs) {
-    suspend fun requestNotice(page:Int) = call {
+    suspend fun requestNotice(page: Int) = call {
         api.requestNotice(getAccessToken(), page)
     }
 }

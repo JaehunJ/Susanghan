@@ -21,7 +21,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     private val permissions =
-        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
     private val requestPermissionResult =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it.all { per -> per.value == true }) {

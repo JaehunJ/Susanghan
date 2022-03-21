@@ -10,7 +10,8 @@ import com.susanghan.android.databinding.FragmentUserNotificationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UserNotificationFragment : BaseFragment<FragmentUserNotificationBinding, UserNotificationViewModel, NavArgs>() {
+class UserNotificationFragment :
+    BaseFragment<FragmentUserNotificationBinding, UserNotificationViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_user_notification
     override val viewModel: UserNotificationViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()

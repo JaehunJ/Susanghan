@@ -27,6 +27,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
             putString(USER_ID, id)
         }
     }
+
     suspend fun requestUserProfile() = if (userInfoRes == null) {
         call {
             api.requestProfile(getAccessToken())

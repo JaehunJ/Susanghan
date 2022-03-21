@@ -2,7 +2,6 @@ package com.susanghan.android.ui.order.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.retrofit.response.OrderDetailResponse
@@ -20,8 +19,8 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
         viewModelScope.launch {
             val result = (repository as OrderListRepository).requestOrderDetail(id)
 
-            result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (it.errorMessage.isNullOrEmpty()) {
                     data.postValue(it)
                 }
             }

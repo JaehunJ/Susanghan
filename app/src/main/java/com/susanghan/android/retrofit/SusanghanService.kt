@@ -7,7 +7,6 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
-import java.io.File
 
 interface SusanghanService {
     @GET("")
@@ -22,7 +21,6 @@ interface SusanghanService {
     @POST()
     suspend fun requestSetPw(): Response<BaseResponse>
 
-    //    @Headers("Authorization")
     @POST("login")
     suspend fun requestSignIn(
         @Header("Authorization") authorization: String = "clo",
@@ -32,8 +30,8 @@ interface SusanghanService {
     @POST("/api/v1/token/refresh")
     suspend fun requestNewToken(
         @Header("Authorization") authorization: String = "clo",
-        @Body data:NewTokenRequest
-    ):Response<NewTokenResponse>
+        @Body data: NewTokenRequest
+    ): Response<NewTokenResponse>
 
     @POST("api/v1/join/expert")
     suspend fun requestSignUp(
@@ -42,9 +40,8 @@ interface SusanghanService {
 
     @POST("/api/v1/expert/store/certification")
     suspend fun requestStoreConfirm(
-        @Body data:StoreConfirmRequest
-    ):Response<StoreConfirmResponse>
-
+        @Body data: StoreConfirmRequest
+    ): Response<StoreConfirmResponse>
 
     @GET("/api/v1/expert/profiles")
     suspend fun requestProfile(
@@ -62,8 +59,8 @@ interface SusanghanService {
     @GET("/api/v1/expert/orders/details/{id}")
     suspend fun requestOrderDetail(
         @Header("Authorization") authorization: String,
-        @Path("id") id:Int
-    ):Response<OrderDetailResponse>
+        @Path("id") id: Int
+    ): Response<OrderDetailResponse>
 
     @GET("")
     suspend fun requestOderDetailStatus(): Response<BaseResponse>
@@ -115,8 +112,8 @@ interface SusanghanService {
     suspend fun requestFaq(
         @Header("Authorization") authorization: String,
         @Query("page") page: Int,
-        @Query("limit") limit:Int = 10
-    ):Response<FaqResponse>
+        @Query("limit") limit: Int = 10
+    ): Response<FaqResponse>
 
     @POST("")
     suspend fun requestAddAnswer(): Response<BaseResponse>
@@ -125,8 +122,8 @@ interface SusanghanService {
     suspend fun requestNotice(
         @Header("Authorization") authorization: String,
         @Query("page") page: Int,
-        @Query("limit") limit:Int = 10
-    ):Response<NoticeResponse>
+        @Query("limit") limit: Int = 10
+    ): Response<NoticeResponse>
 
     @GET("/api/v1/expert/image/view")
     suspend fun requestImage(
@@ -138,8 +135,7 @@ interface SusanghanService {
     @POST("/api/v1/expert/image")
     suspend fun requestPostImage(
         @Header("Authorization") authorization: String,
-//        @PartMap part:Map<String, RequestBody>
         @Part files: List<MultipartBody.Part>,
-        @Part ("imageType") imageType: RequestBody
+        @Part("imageType") imageType: RequestBody
     ): Response<ImageResponse>
 }

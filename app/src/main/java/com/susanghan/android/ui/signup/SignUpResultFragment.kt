@@ -1,10 +1,6 @@
 package com.susanghan.android.ui.signup
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
@@ -14,7 +10,8 @@ import com.susanghan.android.databinding.FragmentSignUpResultBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignUpResultFragment : BaseFragment<FragmentSignUpResultBinding, SignUpResultViewModel, NavArgs>() {
+class SignUpResultFragment :
+    BaseFragment<FragmentSignUpResultBinding, SignUpResultViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_sign_up_result
     override val viewModel: SignUpResultViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()

@@ -2,7 +2,6 @@ package com.susanghan.android.ui.signup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.SignUpRepository
 import com.susanghan.android.retrofit.request.SignUpRequest
@@ -29,7 +28,8 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
     val isSuccess = MutableLiveData<Boolean>()
 
     fun isValidate() = pw.value != null && pwConfirm.value != null && pw.value == pwConfirm.value
-    fun isChecked() = isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true
+    fun isChecked() =
+        isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true
 
     fun requestSignUp() {
         viewModelScope.launch {
@@ -65,8 +65,8 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
                     )
                 )
 
-                result?.let{r->
-                    if(r.errorMessage.isNullOrEmpty()){
+                result?.let { r ->
+                    if (r.errorMessage.isNullOrEmpty()) {
                         isSuccess.postValue(true)
                     }
                 }

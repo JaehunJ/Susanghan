@@ -11,7 +11,7 @@ import com.susanghan.android.databinding.FragmentAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AccountFragment:BaseFragment<FragmentAccountBinding, AccountViewModel, NavArgs>() {
+class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_account
     override val viewModel: AccountViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -33,10 +33,10 @@ class AccountFragment:BaseFragment<FragmentAccountBinding, AccountViewModel, Nav
             MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
                 .setTitle(resources.getString(R.string.account_dialog_start_title))
                 .setMessage(resources.getString(R.string.account_dialog_start_subtext))
-                .setNegativeButton(resources.getString(R.string.account_dialog_button_cancel)){dialog, which->
+                .setNegativeButton(resources.getString(R.string.account_dialog_button_cancel)) { dialog, which ->
 
                 }
-                .setPositiveButton(resources.getString(R.string.account_dialog_button_start)){dialogInterface, i ->
+                .setPositiveButton(resources.getString(R.string.account_dialog_button_start)) { dialogInterface, i ->
 
                 }
                 .show()

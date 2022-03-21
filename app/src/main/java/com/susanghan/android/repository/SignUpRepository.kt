@@ -21,5 +21,5 @@ class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     suspend fun requestConfirm(data: StoreConfirmRequest) = call { api.requestStoreConfirm(data) }
 
-    suspend fun requestSignUp(data:SignUpRequest) = call{api.requestSignUp(data)}
+    suspend fun requestSignUp(data: SignUpRequest) = call { api.requestSignUp(data) }
 }

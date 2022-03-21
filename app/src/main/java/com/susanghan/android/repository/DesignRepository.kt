@@ -25,6 +25,7 @@ class DesignRepository @Inject constructor(
 
     suspend fun requestChangeDesignStatus(reformId: Int, status: DesignStatusUpdateRequest) =
         call { api.requestChangeDesignStatus(getAccessToken(), reformId, status) }
+
     suspend fun requestPostImage(list: List<MultipartBody.Part>) =
         call {
             api.requestPostImage(

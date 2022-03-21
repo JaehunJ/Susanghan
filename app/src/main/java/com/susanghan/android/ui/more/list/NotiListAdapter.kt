@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.susanghan.android.databinding.LayoutSimpleListItemBinding
 import com.susanghan.android.retrofit.response.NoticeResponse
 
-class NotiListAdapter(val onClick:(NoticeResponse.NoticeData)->Unit) :
+class NotiListAdapter(val onClick: (NoticeResponse.NoticeData) -> Unit) :
     androidx.recyclerview.widget.ListAdapter<NoticeResponse.NoticeData, NotiListAdapter.NotiViewHolder>(
         NotiListDiffUtil()
     ) {

@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseDialogFragment<VB : ViewBinding> : DialogFragment() {
     private lateinit var _binding: VB
-    abstract val bindingInflater:(LayoutInflater, ViewGroup?, Boolean)->VB
+    abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
     protected val binding
         get() = _binding
 

@@ -15,7 +15,6 @@ import androidx.core.content.FileProvider
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.susanghan.android.BuildConfig
@@ -41,7 +40,8 @@ const val IMAGE_URI = 0
 const val IMAGE_SERVER = 1
 
 @AndroidEntryPoint
-class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewModel, DesignAddFragmentArgs>() {
+class DesignAddFragment :
+    BaseFragment<FragmentDesignAddBinding, DesignAddViewModel, DesignAddFragmentArgs>() {
     override val layoutId: Int = R.layout.fragment_design_add
     override val viewModel: DesignAddViewModel by viewModels()
     override val navArgs: DesignAddFragmentArgs by navArgs()
@@ -50,7 +50,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     var photoUri: Uri? = null
 
     val bindingImageView = mutableListOf<LayoutDesignAddImageBinding>()
-    private lateinit var prepareItemAdapter:PrepareItemRecyclerViewAdapter
+    private lateinit var prepareItemAdapter: PrepareItemRecyclerViewAdapter
 
     private val pictureActivityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -71,7 +71,7 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        viewModel.mode = if(navArgs.id == 0) MODE_WRITE else MODE_MODIFY
+        viewModel.mode = if (navArgs.id == 0) MODE_WRITE else MODE_MODIFY
         viewModel.reformId = navArgs.id
 
         binding.toolbar.tvTitle.text = "디자인 상세"
@@ -102,15 +102,15 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
             showFileSelector(IMAGE_AFTER)
         }
 
-        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext()){
+        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext()) {
             showAddPrepareItem()
         }
         binding.rvPrepareItem.adapter = prepareItemAdapter
 
         binding.btnPost.setOnClickListener {
-            if(viewModel.isValueValidated()){
+            if (viewModel.isValueValidated()) {
                 viewModel.onClickPost(requireContext())
-            }else{
+            } else {
                 activityFuncFunction.showToast("누락된 정보가 있습니다.")
             }
         }
@@ -154,37 +154,37 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
                 binding.llAddAfter.visibility = View.GONE
             }
         }
-        viewModel.prepareItemList.observe(viewLifecycleOwner){
+        viewModel.prepareItemList.observe(viewLifecycleOwner) {
             (binding.rvPrepareItem.adapter as PrepareItemRecyclerViewAdapter).submitList(it?.toMutableList())
         }
-        viewModel.postResult.observe(viewLifecycleOwner){
-            it?.let{res->
-                if(res.errorMessage == null){
+        viewModel.postResult.observe(viewLifecycleOwner) {
+            it?.let { res ->
+                if (res.errorMessage == null) {
                     navController?.popBackStack()
-                }else{
+                } else {
                     activityFuncFunction.showToast("에러")
                 }
             }
         }
 
-        viewModel.minDay.observe(viewLifecycleOwner){
+        viewModel.minDay.observe(viewLifecycleOwner) {
             Log.e("#debug", it)
         }
 
-        viewModel.oldData.observe(viewLifecycleOwner){
-            it?.let{
+        viewModel.oldData.observe(viewLifecycleOwner) {
+            it?.let {
                 setOldDesign(it)
             }
         }
     }
 
     override fun initAfterBinding() {
-        if(viewModel.mode == MODE_MODIFY){
+        if (viewModel.mode == MODE_MODIFY) {
             viewModel.requestOldDesign(viewModel.reformId)
         }
     }
 
-    private fun setOldDesign(data:DesignDetailResponse.DesignDetailData){
+    private fun setOldDesign(data: DesignDetailResponse.DesignDetailData) {
         val beforeImage = data.beforeImageName
         val afterImage = data.afterImageName
         val blueImage = data.images
@@ -195,28 +195,45 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         viewModel.minDay.postValue(data.minDay.toString())
         viewModel.maxDay.postValue(data.maxDay.toString())
 
-        viewModel.beforeImagePath.postValue(DesignAddViewModel.ImageData(IMAGE_SERVER, beforeImage, null))
-        viewModel.afterImagePath.postValue(DesignAddViewModel.ImageData(IMAGE_SERVER, afterImage, null))
+        viewModel.beforeImagePath.postValue(
+            DesignAddViewModel.ImageData(
+                IMAGE_SERVER,
+                beforeImage,
+                null
+            )
+        )
+        viewModel.afterImagePath.postValue(
+            DesignAddViewModel.ImageData(
+                IMAGE_SERVER,
+                afterImage,
+                null
+            )
+        )
         viewModel.addBluePrintImageServer(blueImage)
 
         //set prepareItem
         val prepareItems = data.items
         prepareItems.forEach {
-            viewModel.addPrepareItem(PrepareItemRecyclerViewAdapter.PrepareItem(it.itemCode, it.itemName))
+            viewModel.addPrepareItem(
+                PrepareItemRecyclerViewAdapter.PrepareItem(
+                    it.itemCode,
+                    it.itemName
+                )
+            )
         }
 
     }
 
-    fun setImage(view: ImageView, data:DesignAddViewModel.ImageData){
-        if(data.type == IMAGE_URI && data.uri != null){
+    fun setImage(view: ImageView, data: DesignAddViewModel.ImageData) {
+        if (data.type == IMAGE_URI && data.uri != null) {
             Glide.with(requireActivity()).load(data.uri)
                 .into(view)
-        }else{
-            viewModel.setImage(view, data.path?:"")
+        } else {
+            viewModel.setImage(view, data.path ?: "")
         }
     }
 
-    fun showAddPrepareItem(){
+    fun showAddPrepareItem() {
         PrepareItemDialogFragment { code, name ->
             viewModel.addPrepareItem(PrepareItemRecyclerViewAdapter.PrepareItem(code.value, name))
         }.show(parentFragmentManager, "add_prepare_item")
@@ -253,14 +270,14 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
         Intent.createChooser(intent, "사진 업로드 방법 선택").run {
             putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(cameraIntent))
             putExtra("click", clickType)
-            when(clickType){
-                IMAGE_ITEM->{
+            when (clickType) {
+                IMAGE_ITEM -> {
                     pictureActivityResultLauncher.launch(this)
                 }
-                IMAGE_BEFORE->{
+                IMAGE_BEFORE -> {
                     beforePictureActivityResultLauncher.launch(this)
                 }
-                IMAGE_AFTER->{
+                IMAGE_AFTER -> {
                     afterPictureActivityResultLauncher.launch(this)
                 }
             }
@@ -291,14 +308,14 @@ class DesignAddFragment : BaseFragment<FragmentDesignAddBinding, DesignAddViewMo
                 val selectedImage = data.data
 
 
-                selectedImage?.let{
+                selectedImage?.let {
                     val path = it.path
-                    path?.let{p->
+                    path?.let { p ->
                         val extention = p.contains("gif")
 
-                        if(!extention){
+                        if (!extention) {
                             list.add(it)
-                        }else{
+                        } else {
                             activityFuncFunction.showToast("gif파일은 선택하실수 없습니다.")
                         }
                     }

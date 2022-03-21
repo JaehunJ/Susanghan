@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.susanghan.android.R
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
     private lateinit var _binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+//        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = _binding.root

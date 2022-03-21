@@ -15,12 +15,12 @@ import com.susanghan.android.databinding.DialogPrepareItemAddBinding
 import com.susanghan.android.databinding.LayoutDesignAddDialogPrepareItemBinding
 
 
-class PrepareItemDialogFragment(val onSuccess:(PrepareItem, String)->Unit) : DialogFragment() {
+class PrepareItemDialogFragment(val onSuccess: (PrepareItem, String) -> Unit) : DialogFragment() {
     lateinit var binding: DialogPrepareItemAddBinding
     private var prepareItemBinding = mutableListOf<LayoutDesignAddDialogPrepareItemBinding>()
 
-    private var name:String = ""
-    private var code:PrepareItem = PrepareItem.Etc
+    private var name: String = ""
+    private var code: PrepareItem = PrepareItem.Etc
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +34,8 @@ class PrepareItemDialogFragment(val onSuccess:(PrepareItem, String)->Unit) : Dia
     override fun onStart() {
         super.onStart()
 
-        dialog?.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog?.getWindow()
+            ?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,19 +45,20 @@ class PrepareItemDialogFragment(val onSuccess:(PrepareItem, String)->Unit) : Dia
             prepareItemBinding.add(DataBindingUtil.bind(view)!!)
         }
 
-        prepareItemBinding.forEachIndexed { index, view->
+        prepareItemBinding.forEachIndexed { index, view ->
             view.prepareItem = PrepareItemMappingList[index]
             view.btnCheck.visibility = View.GONE
-            view.root.setOnClickListener { v->
-                prepareItemBinding.forEach { target->
+            view.root.setOnClickListener { v ->
+                prepareItemBinding.forEach { target ->
                     target.btnCheck.visibility = View.GONE
                 }
 
                 view.btnCheck.visibility = View.VISIBLE
-                code = view.prepareItem?:PrepareItem.Etc
+                code = view.prepareItem ?: PrepareItem.Etc
             }
             var type = view.prepareItem
-            Glide.with(requireActivity()).load(PrepareItemMappingStringList[type?.value?:"00"]).into(view.ivProduct)
+            Glide.with(requireActivity()).load(PrepareItemMappingStringList[type?.value ?: "00"])
+                .into(view.ivProduct)
         }
 
         binding.btnConfirm.setOnClickListener {

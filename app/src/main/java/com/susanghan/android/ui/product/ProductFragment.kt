@@ -1,10 +1,6 @@
 package com.susanghan.android.ui.product
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
@@ -30,5 +26,4 @@ class ProductFragment : BaseFragment<FragmentProductBinding, ProductViewModel, N
     override fun initAfterBinding() {
 
     }
-
 }

@@ -57,10 +57,10 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
                 val pos = tab?.position
 
                 pos?.let { p ->
-                    val status = when(pos){
-                        0-> ReformStatus.None
-                        1-> ReformStatus.Start
-                        else->ReformStatus.Stop
+                    val status = when (pos) {
+                        0 -> ReformStatus.None
+                        1 -> ReformStatus.Start
+                        else -> ReformStatus.Stop
                     }
                     viewModel.requestDesignList(0, 10, status.value)
                 }

@@ -1,16 +1,11 @@
 package com.susanghan.android.ui.signin.findid
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.databinding.FragmentFindIdBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +21,7 @@ class FindIdFragment : BaseFragment<FragmentFindIdBinding, FindIdViewModel, NavA
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
-        
+
         binding.btnConfirm.setOnClickListener {
             val action = FindIdFragmentDirections.actionFindIdFragmentToFindIdResultFragment()
             navController?.navigate(action)

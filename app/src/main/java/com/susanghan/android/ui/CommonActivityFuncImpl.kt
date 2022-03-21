@@ -5,5 +5,5 @@ interface CommonActivityFuncImpl {
     fun hideProgress()
     fun showBottomNavi()
     fun hideBottomNavi()
-    fun showToast(msg:String)
+    fun showToast(msg: String)
 }

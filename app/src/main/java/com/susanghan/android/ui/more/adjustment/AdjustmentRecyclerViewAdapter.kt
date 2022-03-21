@@ -4,7 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdjustmentRecyclerViewAdapter :RecyclerView.Adapter<AdjustmentRecyclerViewAdapter.AdjustmentItemViewHolder>(){
+class AdjustmentRecyclerViewAdapter :
+    RecyclerView.Adapter<AdjustmentRecyclerViewAdapter.AdjustmentItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdjustmentItemViewHolder {
 //        TODO("Not yet implemented")
@@ -21,7 +22,7 @@ class AdjustmentRecyclerViewAdapter :RecyclerView.Adapter<AdjustmentRecyclerView
         return 0
     }
 
-    class AdjustmentItemViewHolder(view:View):RecyclerView.ViewHolder(view){
+    class AdjustmentItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     }
 }

@@ -2,7 +2,7 @@ package com.susanghan.android.data
 
 import com.susanghan.android.R
 
-enum class OrderStatus(val value:Int){
+enum class OrderStatus(val value: Int) {
     Ready(0),
     Carry(1),
     Doing(2),

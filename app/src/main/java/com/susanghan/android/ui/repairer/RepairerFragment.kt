@@ -1,7 +1,6 @@
 package com.susanghan.android.ui.repairer
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs

@@ -62,7 +62,8 @@ class OrderListAdapter(val navController: NavController) :
             }
 
             binding.root.setOnClickListener {
-                val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailFragment(data.orderId)
+                val action =
+                    OrderFragmentDirections.actionOrderFragmentToOrderDetailFragment(data.orderId)
                 navController.navigate(action)
             }
 

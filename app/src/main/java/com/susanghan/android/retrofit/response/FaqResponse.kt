@@ -10,7 +10,7 @@ data class FaqResponse(
     val message: String,
     override var errorMessage: String?,
     override var errorCode: String?
-):BaseResponse() {
+) : BaseResponse() {
 
     @Parcelize
     data class FaqData(

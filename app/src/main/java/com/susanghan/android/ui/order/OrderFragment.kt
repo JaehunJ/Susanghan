@@ -23,11 +23,11 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     override fun initDataBinding() {
         val adapter = OrderListAdapter(navController!!)
-        viewModel.orderList.observe(viewLifecycleOwner, { list ->
+        viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 adapter.submitList(it)
             }
-        })
+        }
 
         binding.rvList.adapter = adapter
     }

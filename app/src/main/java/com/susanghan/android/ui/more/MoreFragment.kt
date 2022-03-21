@@ -48,7 +48,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
     }
 
     override fun initDataBinding() {
-        viewModel.profile.observe(viewLifecycleOwner){
+        viewModel.profile.observe(viewLifecycleOwner) {
             binding.user = it
         }
     }

@@ -13,13 +13,11 @@ import com.susanghan.android.repository.DesignRepository
 import com.susanghan.android.retrofit.request.DesignPostRequest
 import com.susanghan.android.retrofit.response.BaseResponse
 import com.susanghan.android.retrofit.response.DesignDetailResponse
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import javax.inject.Inject
-
 
 
 class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
@@ -72,12 +70,12 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
-    fun requestOldDesign(id:Int) {
+    fun requestOldDesign(id: Int) {
         viewModelScope.launch {
             val result = (repository as DesignRepository).requestDesignDetail(id)
 
-            result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (it.errorMessage.isNullOrEmpty()) {
                     oldData.postValue(it.data)
                 }
             }
@@ -88,7 +86,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         val list = arrayListOf<File>()
 
         uploadBluePrintImage.forEach {
-            if(it.uri != null){
+            if (it.uri != null) {
                 val file = copyToScopeStorage(context, it.uri)
                 file?.let {
                     list.add(file)
@@ -120,7 +118,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         val list = arrayListOf<File>()
 
         beforeImagePath.value?.let {
-            if(it.uri != null){
+            if (it.uri != null) {
                 val file = copyToScopeStorage(context, it.uri)
                 file?.let {
                     list.add(file)
@@ -128,7 +126,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
             }
         }
         afterImagePath.value?.let {
-            if(it.uri != null){
+            if (it.uri != null) {
                 val file = copyToScopeStorage(context, it.uri)
                 file?.let {
                     list.add(file)
@@ -156,7 +154,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         return null
     }
 
-    fun addBluePrintImageServer(list:List<String>){
+    fun addBluePrintImageServer(list: List<String>) {
         val blueList = viewingBluePrintImage.value ?: mutableListOf()
 
         blueList?.let {

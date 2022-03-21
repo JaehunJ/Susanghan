@@ -2,7 +2,6 @@ package com.susanghan.android.ui.order
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.repository.SignInRepository
@@ -12,7 +11,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OrderViewModel @Inject constructor(repository: OrderListRepository, val signRepo:SignInRepository) :
+class OrderViewModel @Inject constructor(
+    repository: OrderListRepository,
+    val signRepo: SignInRepository
+) :
     BaseViewModel(repository) {
 
     val orderList = MutableLiveData<List<OrderListResponse.OrderData>>()
@@ -28,14 +30,13 @@ class OrderViewModel @Inject constructor(repository: OrderListRepository, val si
         }
     }
 
-    fun requestUserProfile(){
+    fun requestUserProfile() {
         viewModelScope.launch {
             val result = signRepo.requestUserProfile()
 
-            result?.let{
+            result?.let {
                 signRepo.userInfoRes = it
             }
         }
     }
-
 }

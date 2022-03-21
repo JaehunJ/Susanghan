@@ -10,7 +10,7 @@ import com.susanghan.android.databinding.FragmentCsDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CsDetailFragment:BaseFragment<FragmentCsDetailBinding, CsDetailViewModel, NavArgs>() {
+class CsDetailFragment : BaseFragment<FragmentCsDetailBinding, CsDetailViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_cs_detail
     override val viewModel: CsDetailViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()

@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class WithdrawFragment:BaseFragment<FragmentWithdrawBinding, WithdrawViewModel, NavArgs>() {
+class WithdrawFragment : BaseFragment<FragmentWithdrawBinding, WithdrawViewModel, NavArgs>() {
     override val layoutId: Int = R.layout.fragment_withdraw
     override val viewModel: WithdrawViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -27,7 +27,7 @@ class WithdrawFragment:BaseFragment<FragmentWithdrawBinding, WithdrawViewModel, 
             MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
                 .setTitle(resources.getString(R.string.withdraw_dialog_title))
                 .setMessage(resources.getString(R.string.withdraw_dialog_subtext))
-                .setPositiveButton(resources.getString(R.string.withdraw_dialog_btn)){dialogInterface, i ->
+                .setPositiveButton(resources.getString(R.string.withdraw_dialog_btn)) { dialogInterface, i ->
                     navController?.popBackStack()
                 }
                 .show()

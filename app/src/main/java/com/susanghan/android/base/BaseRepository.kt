@@ -56,7 +56,7 @@ open class BaseRepository @Inject constructor(
                         setToken(re.data)
                         call { apiCall() }
                     }
-                }else{
+                } else {
                     onError?.invoke()
                 }
             }
@@ -90,8 +90,8 @@ open class BaseRepository @Inject constructor(
 
     fun getIsLoading() = isLoading
     fun getAccessToken() = "Bearer ${prefs.getString(ACCESS_TOKEN, "")}"
-    fun getAccessTokenRaw() = prefs.getString(ACCESS_TOKEN, "")
-    fun getRefreshToken() = prefs.getString(REFRESH_TOKEN, "")
+    private fun getAccessTokenRaw() = prefs.getString(ACCESS_TOKEN, "")
+    private fun getRefreshToken() = prefs.getString(REFRESH_TOKEN, "")
 
     fun setToken(data: SignInResponse.SignInData) {
         prefs.edit {
