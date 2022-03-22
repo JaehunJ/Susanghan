@@ -92,5 +92,8 @@
     <string name="withdraw_dialog_title">탈퇴신청이 완료되었습니다.</string>
     <string name="withdraw_dialog_subtext">회원 탈퇴는 시간이 소요됩니다.\n담당자가 신청 내용을 검토 후 연락드릴 예정입니다.</string>
     <string name="withdraw_dialog_btn">확인</string>
+
+    <string name="unit_no">No. %s</string>
+    <string name="unit_won">%d원</string>
 </resources>
 

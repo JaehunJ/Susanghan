@@ -4,10 +4,10 @@
         android:id="@id/orderFragment"
         android:icon="@drawable/icon_order_selector"
         android:title="@string/bottom_nav_item_0" />
-    <item
-        android:id="@id/csFragment"
-        android:icon="@drawable/icon_cs_selector"
-        android:title="@string/bottom_nav_item_1" />
+<!--    <item-->
+<!--        android:id="@id/csFragment"-->
+<!--        android:icon="@drawable/icon_cs_selector"-->
+<!--        android:title="@string/bottom_nav_item_1" />-->
         <item
             android:id="@+id/designFragment"
             android:icon="@drawable/icon_product_selector"

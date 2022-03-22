@@ -7,6 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.data.OrderStatus
+import com.susanghan.android.data.OrderType
 import com.susanghan.android.databinding.FragmentOrderDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,13 +20,17 @@ class OrderDetailFragment :
 
     lateinit var subAdapter: OrderDetailSubAdapter
 
+    var mode = OrderType.R
+
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "주문 상세"
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
 
-        subAdapter = OrderDetailSubAdapter()
+        subAdapter = OrderDetailSubAdapter{iv, s->
+            viewModel.setImage(iv, s)
+        }
         binding.rvSub.adapter = subAdapter
     }
 
@@ -37,8 +42,10 @@ class OrderDetailFragment :
                 if (it.data.isNotEmpty()) {
                     val d = it.data[0]
 
-                    setStatusBarPosition(d.orderStatusCode)
-                    setMode(d.classCode)
+                    binding.res = it.data[0]
+
+                    setStatusBarPosition(d.orderStatusCode?:0)
+                    setMode(d.classCode?:"")
                 }
             }
         }
@@ -74,12 +81,12 @@ class OrderDetailFragment :
     }
 
     fun setMode(mode: String) {
-        when (mode) {
-            "R" -> {
-
+        this.mode = when (mode) {
+            OrderType.R.type -> {
+                OrderType.R
             }
             else -> {
-
+                OrderType.A
             }
         }
     }

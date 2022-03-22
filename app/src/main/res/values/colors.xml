@@ -27,4 +27,8 @@
 
     <color name="deep_blue_6F74DD">#6F74DD</color>
     <color name="dialog_424CC1">#424CC1</color>
+
+    <color name="order_status_color_blue">#6F74DD</color>
+    <color name="order_status_color_red">#CD0600</color>
+    <color name="order_status_color_gray">#666666</color>
 </resources>

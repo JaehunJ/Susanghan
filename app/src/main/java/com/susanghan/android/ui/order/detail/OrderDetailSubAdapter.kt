@@ -2,13 +2,14 @@ package com.susanghan.android.ui.order.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.susanghan.android.databinding.LayoutOrderDetailItemBinding
 import com.susanghan.android.retrofit.response.OrderDetailResponse
 
-class OrderDetailSubAdapter :
+class OrderDetailSubAdapter(val imageCallback:(ImageView, String)->Unit) :
     ListAdapter<OrderDetailResponse.OrderDetailSub, OrderDetailSubAdapter.OrderDetailSubViewHolder>(
         OrderDetailDiffUtil()
     ) {
@@ -16,7 +17,7 @@ class OrderDetailSubAdapter :
         OrderDetailSubViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: OrderDetailSubViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), imageCallback)
     }
 
     class OrderDetailSubViewHolder(val binding: LayoutOrderDetailItemBinding) :
@@ -24,14 +25,27 @@ class OrderDetailSubAdapter :
         companion object {
             fun from(parent: ViewGroup): OrderDetailSubViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val _binding = LayoutOrderDetailItemBinding.inflate(layoutInflater, parent, false)
+                val binding = LayoutOrderDetailItemBinding.inflate(layoutInflater, parent, false)
 
-                return OrderDetailSubViewHolder(_binding)
+                return OrderDetailSubViewHolder(binding)
             }
         }
 
-        fun bind(data: OrderDetailResponse.OrderDetailSub) {
+        fun bind(data: OrderDetailResponse.OrderDetailSub,imageCallback:(ImageView, String)->Unit) {
+            binding.res = data
+//            binding.tvTitle.text = data.mainNm
+            imageCallback(binding.ivImage, data.imageName?:"")
+//            binding.tvDetailInfoContents.text = data.contents
+            var prepareItem = ""
+            data.subNmList?.forEachIndexed { index, s ->
+                prepareItem += index
+                if(index != data.subNmList.count()-1){
+                    prepareItem += ", "
+                }
+            }
 
+            binding.tvPrepareItem.text = prepareItem
+//            binding.tvPrice.text = data.price?.toString() ?:"0"
         }
     }
 
@@ -45,6 +59,5 @@ class OrderDetailSubAdapter :
             oldItem: OrderDetailResponse.OrderDetailSub,
             newItem: OrderDetailResponse.OrderDetailSub
         ) = oldItem == newItem
-
     }
 }

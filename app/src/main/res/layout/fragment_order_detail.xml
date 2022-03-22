@@ -2,6 +2,12 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="res"
+            type="com.susanghan.android.retrofit.response.OrderDetailResponse.OrderDetailSub" />
+    </data>
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,13 +19,13 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#f5f5f5"
             android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
                 <include
                     android:id="@+id/ll_status_bar"
@@ -87,9 +93,10 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="1dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="14dp"
                             android:background="#e5e5e5"/>
 
@@ -113,7 +120,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
-                                android:text="27,400원"
+                                wonText="@{res.orderPrice}"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/color_3949ab"/>
 
@@ -140,6 +147,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="15dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -170,7 +178,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="김우석"
+                                android:text="@{res.shippingName}"
                                 />
 
                             <TextView
@@ -178,7 +186,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="서울시 강남구 테헤란로 87길 삼성동 도심공항타워 12층"
+                                android:text="@{res.shippingAddress}"
                                 />
 
                             <TextView
@@ -186,7 +194,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="010-2345-6789"
+                                android:text="@{res.userPhone}"
                                 />
 
 <!--                            <View-->
@@ -240,8 +248,6 @@
 <!--                    </LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
-
-
         </androidx.core.widget.NestedScrollView>
 
 

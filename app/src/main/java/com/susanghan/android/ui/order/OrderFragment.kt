@@ -22,7 +22,9 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     }
 
     override fun initDataBinding() {
-        val adapter = OrderListAdapter(navController!!)
+        val adapter = OrderListAdapter(navController!!){iv,s->
+            viewModel.setImage(iv, s)
+        }
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 adapter.submitList(it)

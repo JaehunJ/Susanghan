@@ -26,4 +26,16 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
             }
         }
     }
+
+    fun requestChangeStatus(status:Int){
+        viewModelScope.launch {
+
+        }
+    }
+
+    fun requestCarriedCompany(){
+        viewModelScope.launch {
+
+        }
+    }
 }

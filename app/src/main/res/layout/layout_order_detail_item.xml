@@ -1,80 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="res"
+            type="com.susanghan.android.retrofit.response.OrderDetailResponse.OrderDetailSub" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="12sp"
-            android:text="대분류"/>
+            android:textSize="13sp"
+            android:text="@{res.mainNm}"/>
 
-        <TableLayout
-            android:layout_marginStart="26dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="*">
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#12121d"
-                    android:text="소분류"/>
-                <TextView
-                    android:textAlignment="textEnd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#12121d"
-                    android:text="금액"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#12121d"
-                    android:text="소분류"/>
-                <TextView
-                    android:textAlignment="textEnd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#12121d"
-                    android:text="금액"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#12121d"
-                    android:text="소분류"/>
-                <TextView
-                    android:textAlignment="textEnd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#12121d"
-                    android:text="금액"/>
-            </TableRow>
-        </TableLayout>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_prepare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="준비물"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/tv_prepare_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="준비물"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tv_prepare"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                wonText="@{res.price}"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/tv_prepare"
+                app:layout_constraintBottom_toBottomOf="@id/tv_prepare_item"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        <TableLayout-->
+<!--            android:layout_marginStart="26dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:stretchColumns="*">-->
+<!--&lt;!&ndash;            <TableRow>&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#12121d"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="소분류"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textAlignment="textEnd"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#12121d"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="금액"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </TableRow>&ndash;&gt;-->
+<!--&lt;!&ndash;            <TableRow>&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#12121d"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="소분류"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textAlignment="textEnd"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#12121d"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="금액"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </TableRow>&ndash;&gt;-->
+<!--&lt;!&ndash;            <TableRow>&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#12121d"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="소분류"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textAlignment="textEnd"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#12121d"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="금액"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </TableRow>&ndash;&gt;-->
+<!--        </TableLayout>-->
 
         <ImageView
+            android:id="@+id/iv_image"
             android:layout_marginTop="10dp"
             android:layout_marginStart="26dp"
             android:layout_marginBottom="10dp"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/tv_detail_info"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:text="상세 요청사항"/>
+
+        <TextView
+            android:id="@+id/tv_detail_info_contents"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@{res.contents}"/>
 
     </LinearLayout>
 </layout>

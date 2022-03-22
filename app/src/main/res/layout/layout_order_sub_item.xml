@@ -27,15 +27,14 @@
                 android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/iv_order_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/icon_clothes_upper"/>
                 <TextView
                     android:id="@+id/tv_order_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@{sub.mainNm}"
                     android:textStyle="bold"
                     android:textSize="12sp"/>
             </LinearLayout>
@@ -45,8 +44,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text='@{"옵션: "+sub.subNm}'/>
+                android:textSize="12sp" />
         </LinearLayout>
 
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
         <data>
             <variable
                 name="order"
                 type="com.susanghan.android.retrofit.response.OrderListResponse.OrderData" />
         </data>
-    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -38,7 +39,7 @@
                 android:id="@+id/tv_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{order.orderNum}"
+                android:text="@{@string/unit_no(order.orderNum)}"
                 android:textColor="#999999"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="10dp"
@@ -97,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/tv_price"
-                    android:text="@{String.valueOf(order.orderPrice)}"
+                    wonText="@{order.orderPrice}"
                     android:layout_marginEnd="25dp"
                     android:textSize="14sp"
                     android:layout_marginStart="22dp"
