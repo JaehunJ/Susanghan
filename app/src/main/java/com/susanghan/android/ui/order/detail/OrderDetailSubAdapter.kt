@@ -33,19 +33,17 @@ class OrderDetailSubAdapter(val imageCallback:(ImageView, String)->Unit) :
 
         fun bind(data: OrderDetailResponse.OrderDetailSub,imageCallback:(ImageView, String)->Unit) {
             binding.res = data
-//            binding.tvTitle.text = data.mainNm
             imageCallback(binding.ivImage, data.imageName?:"")
-//            binding.tvDetailInfoContents.text = data.contents
+
             var prepareItem = ""
             data.subNmList?.forEachIndexed { index, s ->
-                prepareItem += index
+                prepareItem += s
                 if(index != data.subNmList.count()-1){
                     prepareItem += ", "
                 }
             }
 
             binding.tvPrepareItem.text = prepareItem
-//            binding.tvPrice.text = data.price?.toString() ?:"0"
         }
     }
 

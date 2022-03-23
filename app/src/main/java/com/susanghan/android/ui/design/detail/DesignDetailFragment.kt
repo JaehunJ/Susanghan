@@ -101,7 +101,7 @@ class DesignDetailFragment :
         viewModel.requestDesignDetail(reformId)
     }
 
-    fun showStartDialog() {
+    private fun showStartDialog() {
         val builder = AlertDialog.Builder(requireContext()).apply {
             setTitle("판매중으로 변경하시겠습니까?")
             setMessage("사용자들이 구매를 하거나 문의를 남길 수 있습니다.\n" + "판매를 시작한 디자인은 수정 및 삭제가 불가능합니다.")
@@ -117,7 +117,7 @@ class DesignDetailFragment :
         builder.create().show()
     }
 
-    fun showStopDialog() {
+    private fun showStopDialog() {
         val builder = AlertDialog.Builder(requireContext()).apply {
             setTitle("판매증지로 변경하시겠습니까?")
             setMessage("사용자들에게 이 디자인을 공개하지 않습니다.")

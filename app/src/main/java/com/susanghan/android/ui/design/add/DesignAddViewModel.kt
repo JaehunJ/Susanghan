@@ -13,13 +13,14 @@ import com.susanghan.android.repository.DesignRepository
 import com.susanghan.android.retrofit.request.DesignPostRequest
 import com.susanghan.android.retrofit.response.BaseResponse
 import com.susanghan.android.retrofit.response.DesignDetailResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import javax.inject.Inject
 
-
+@HiltViewModel
 class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     BaseViewModel(repository) {
     //    val bluePrintImagePath = MutableLiveData<MutableList<Uri>>()

@@ -68,6 +68,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_marginStart="16dp"
@@ -85,7 +86,7 @@
                         android:textAlignment="textEnd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(detail.price) + '원'}"/>
+                        wonText="@{detail.price}"/>
                 </LinearLayout>
 
                 <View

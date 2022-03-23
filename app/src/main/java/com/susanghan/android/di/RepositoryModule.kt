@@ -5,10 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.susanghan.android.BuildConfig
 import com.susanghan.android.base.BaseRepository
-import com.susanghan.android.repository.EtcServiceRepository
-import com.susanghan.android.repository.OrderListRepository
-import com.susanghan.android.repository.SignInRepository
-import com.susanghan.android.repository.SignUpRepository
+import com.susanghan.android.repository.*
 import com.susanghan.android.retrofit.SusanghanService
 import dagger.Module
 import dagger.Provides
@@ -40,6 +37,11 @@ object RepositoryModule {
     @Provides
     fun provideOrderListRepository(api: SusanghanService, preferences: SharedPreferences) =
         OrderListRepository(api, preferences)
+
+    @Singleton
+    @Provides
+    fun provideDesignRepository(api: SusanghanService, preferences: SharedPreferences) =
+        DesignRepository(api, preferences)
 
     @Singleton
     @Provides

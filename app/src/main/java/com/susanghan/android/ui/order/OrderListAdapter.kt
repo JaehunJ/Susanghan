@@ -22,7 +22,10 @@ const val COLOR_BLUE = "#6F74DD"
 const val COLOR_GRAY = "#666666"
 const val COLOR_RED = "#CD0600"
 
-class OrderListAdapter(val navController: NavController, val imageCallback: (ImageView, String) -> Unit) :
+class OrderListAdapter(
+    val navController: NavController,
+    val imageCallback: (ImageView, String) -> Unit
+) :
     ListAdapter<OrderData, OrderListAdapter.OrderListViewHolder>(
         OrderListDiffCallback()
     ) {
@@ -48,7 +51,11 @@ class OrderListAdapter(val navController: NavController, val imageCallback: (Ima
             }
         }
 
-        fun bind(data: OrderData, navController: NavController, imageCallback:(ImageView, String)->Unit) {
+        fun bind(
+            data: OrderData,
+            navController: NavController,
+            imageCallback: (ImageView, String) -> Unit
+        ) {
             binding.order = data
 
             data.let { d ->
@@ -69,10 +76,10 @@ class OrderListAdapter(val navController: NavController, val imageCallback: (Ima
                     }
                 }
 
-                val textColor = when(data.orderStatusCode){
-                    OrderStatus.Doing.value-> COLOR_BLUE
+                val textColor = when (data.orderStatusCode) {
+                    OrderStatus.Doing.value -> COLOR_BLUE
                     OrderStatus.CarriedComplete.value -> COLOR_RED
-                    else-> COLOR_GRAY
+                    else -> COLOR_GRAY
                 }
 
                 binding.tvStatus.setTextColor(Color.parseColor(textColor))
@@ -90,16 +97,18 @@ class OrderListAdapter(val navController: NavController, val imageCallback: (Ima
         fun bindSubOrderView(
             binding: LayoutOrderSubItemBinding,
             data: OrderSubData,
-            imageCallback:(ImageView, String)->Unit
+            imageCallback: (ImageView, String) -> Unit
         ) {
             binding.sub = data
 
-            if(data.classCode == OrderType.R.type){
+            if (data.classCode == OrderType.R.type) {
                 imageCallback(binding.ivOrderType, data.imageName)
                 binding.tvOrderType.text = data.mainNm
 //                binding.tvContents.text
                 binding.tvContents.visibility = View.GONE
-            }else{
+                binding.ivOrderType.setBackgroundColor(Color.parseColor("#d3d3d3"))
+            } else {
+                binding.ivOrderType.setBackgroundColor(Color.parseColor("#ffffff"))
                 binding.tvContents.visibility = View.VISIBLE
                 val imgRes = when (data.mainCode) {
                     ClothCategoryCode.Sweatshirt.value -> {
@@ -129,7 +138,7 @@ class OrderListAdapter(val navController: NavController, val imageCallback: (Ima
             }
         }
 
-        fun drawReform(data:OrderSubData){
+        fun drawReform(data: OrderSubData) {
 
         }
     }

@@ -28,7 +28,7 @@ class OrderDetailFragment :
             navController?.popBackStack()
         }
 
-        subAdapter = OrderDetailSubAdapter{iv, s->
+        subAdapter = OrderDetailSubAdapter { iv, s ->
             viewModel.setImage(iv, s)
         }
         binding.rvSub.adapter = subAdapter
@@ -44,8 +44,8 @@ class OrderDetailFragment :
 
                     binding.res = it.data[0]
 
-                    setStatusBarPosition(d.orderStatusCode?:0)
-                    setMode(d.classCode?:"")
+                    setStatusBarPosition(d.orderStatusCode ?: 0)
+                    setMode(d.classCode ?: "")
                 }
             }
         }

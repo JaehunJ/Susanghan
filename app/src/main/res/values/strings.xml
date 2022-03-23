@@ -94,6 +94,5 @@
     <string name="withdraw_dialog_btn">확인</string>
 
     <string name="unit_no">No. %s</string>
-    <string name="unit_won">%d원</string>
+<!--    <string name="unit_won">%d원</string>-->
 </resources>
-

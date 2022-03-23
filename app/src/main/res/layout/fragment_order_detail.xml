@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="res"
             type="com.susanghan.android.retrofit.response.OrderDetailResponse.OrderDetailSub" />
     </data>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include android:id="@+id/toolbar"
-            layout="@layout/layout_basic_toolbar"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_basic_toolbar" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -27,29 +28,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <include
                     android:id="@+id/ll_status_bar"
-                    layout="@layout/layout_order_detail_shpiping_graph"/>
+                    layout="@layout/layout_order_detail_shpiping_graph" />
 
                 <TextView
-                    android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No. 2123"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{@string/unit_no(res.orderNum)}"
                     android:textAlignment="textEnd"
-                    android:textSize="12sp"
-                    android:textColor="#999999"/>
-
-
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="6dp"
                     app:strokeColor="#e5e5e5"
-                    app:strokeWidth="1dp"
-                    app:cardCornerRadius="6dp">
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -61,196 +61,195 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-<!--                        <include layout="@layout/layout_order_detail_item"/>-->
-<!--                        <include layout="@layout/layout_order_detail_item"/>-->
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        <!--                        <include layout="@layout/layout_order_detail_item"/>-->
+                        <!--                        <include layout="@layout/layout_order_detail_item"/>-->
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/ll_detail_info"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
                             <TextView
-                                android:layout_marginTop="10dp"
-                                android:layout_marginStart="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:text="상세 요청사항"
                                 android:textSize="12sp"
-                                android:text="상세 요청사항"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tv_detail_info_contents"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginStart="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="5dp"
+                                android:text=""
                                 android:textColor="#12121d"
-                                android:text=""/>
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="14dp"
-                            android:background="#e5e5e5"/>
+                            android:background="#e5e5e5" />
 
                         <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:text="총 금액"
-                                android:textColor="@color/color_3949ab"/>
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
+                                android:text="총 금액"
+                                android:textColor="@color/color_3949ab"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 wonText="@{res.orderPrice}"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/color_3949ab"/>
+                                android:textColor="@color/color_3949ab"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
                     android:background="@drawable/round_white_4dp"
+                    android:backgroundTint="#dadada"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="상품을 받으신 후 수선 시작 버튼을 눌러주세요"
                     android:textAlignment="center"
                     android:textColor="#979797"
-                    android:textSize="14sp"
-                    android:backgroundTint="#dadada"
-                    android:text="상품을 받으신 후 수선 시작 버튼을 눌러주세요"/>
+                    android:textSize="14sp" />
 
                 <LinearLayout
-                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="주문자 정보"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:text="주문자 정보"/>
+                        android:textStyle="bold" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:cardCornerRadius="6dp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="1dp"
-                        app:cardCornerRadius="6dp">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="20dp"
                             android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tv_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
                                 android:text="@{res.shippingName}"
-                                />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_addr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
                                 android:text="@{res.shippingAddress}"
-                                />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_ph"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
                                 android:text="@{res.userPhone}"
-                                />
+                                android:textSize="12sp" />
 
-<!--                            <View-->
-<!--                                android:layout_marginTop="10dp"-->
-<!--                                android:layout_marginBottom="10dp"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="1dp"-->
-<!--                                android:background="#e5e5e5"/>-->
+                            <!--                            <View-->
+                            <!--                                android:layout_marginTop="10dp"-->
+                            <!--                                android:layout_marginBottom="10dp"-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="1dp"-->
+                            <!--                                android:background="#e5e5e5"/>-->
 
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:textSize="12sp"-->
-<!--                                android:textStyle="bold"-->
-<!--                                android:text="수선 요구사항"-->
-<!--                                />-->
-<!--                            <TextView-->
-<!--                                android:id="@+id/tv_order_etc"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:textSize="12sp"-->
-<!--                                android:text="배송메모배송메모입니다"-->
-<!--                                />-->
+                            <!--                            <TextView-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:textSize="12sp"-->
+                            <!--                                android:textStyle="bold"-->
+                            <!--                                android:text="수선 요구사항"-->
+                            <!--                                />-->
+                            <!--                            <TextView-->
+                            <!--                                android:id="@+id/tv_order_etc"-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:textSize="12sp"-->
+                            <!--                                android:text="배송메모배송메모입니다"-->
+                            <!--                                />-->
 
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/ll_order_cs"-->
-<!--                        android:layout_marginTop="20dp"-->
-<!--                        android:layout_marginBottom="50dp"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="vertical">-->
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:textSize="12sp"-->
-<!--                            android:textStyle="bold"-->
-<!--                            android:text="고객문의"/>-->
+                    <!--                    <LinearLayout-->
+                    <!--                        android:id="@+id/ll_order_cs"-->
+                    <!--                        android:layout_marginTop="20dp"-->
+                    <!--                        android:layout_marginBottom="50dp"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:orientation="vertical">-->
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:textSize="12sp"-->
+                    <!--                            android:textStyle="bold"-->
+                    <!--                            android:text="고객문의"/>-->
 
-<!--                        <com.google.android.material.card.MaterialCardView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            app:strokeColor="#e5e5e5"-->
-<!--                            app:strokeWidth="1dp"-->
-<!--                            app:cardCornerRadius="6dp">-->
-<!--                            <include layout="@layout/layout_cs_item"/>-->
-<!--                        </com.google.android.material.card.MaterialCardView>-->
-<!--                    </LinearLayout>-->
+                    <!--                        <com.google.android.material.card.MaterialCardView-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            app:strokeColor="#e5e5e5"-->
+                    <!--                            app:strokeWidth="1dp"-->
+                    <!--                            app:cardCornerRadius="6dp">-->
+                    <!--                            <include layout="@layout/layout_cs_item"/>-->
+                    <!--                        </com.google.android.material.card.MaterialCardView>-->
+                    <!--                    </LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-
 
 
     </LinearLayout>
