@@ -33,10 +33,12 @@ open class BaseRepository @Inject constructor(
         isLoading.postValue(false)
 
         val result = if (response.isSuccessful) {
-            RemoteData.Success(response.body()!!)
-        } else if (response.body() != null && !response.body()!!.errorMessage.isNullOrEmpty()) {
-            RemoteData.ApiError(response.body()!!.errorCode, response.body()!!.errorMessage)
-        } else {
+            if(response.body() != null && !response.body()!!.errorMessage.isNullOrEmpty()){
+                RemoteData.ApiError(response.body()!!.errorCode, response.body()!!.errorMessage)
+            }else{
+                RemoteData.Success(response.body()!!)
+            }
+        }else {
             RemoteData.Error(IOException(response.message()))
         }
 

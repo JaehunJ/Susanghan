@@ -56,7 +56,34 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
+                        <LinearLayout
+                            android:id="@+id/ll_cancel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="6dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="취소/환불 정보"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:textAlignment="center"/>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="14dp"
+                                android:background="#e5e5e5" />
+                        </LinearLayout>
+
+
                         <androidx.recyclerview.widget.RecyclerView
+                            android:overScrollMode="never"
                             android:id="@+id/rv_sub"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -110,6 +137,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_total"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -130,22 +158,56 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <TextView
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/round_white_4dp"
-                    android:backgroundTint="#dadada"
+                    app:backgroundTint="#424CC1"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="상품을 받으신 후 수선 시작 버튼을 눌러주세요"
+                    android:text="수선시작"
                     android:textAlignment="center"
-                    android:textColor="#979797"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/round_white_4dp"
+                    app:backgroundTint="#424CC1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="수선완료"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_carry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/round_white_4dp"
+                    app:backgroundTint="#424CC1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="택배 발송 처리"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
                     android:textSize="14sp" />
 
                 <LinearLayout
+                    android:id="@+id/ll_addr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"

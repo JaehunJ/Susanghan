@@ -79,6 +79,20 @@
         <item name="boxStrokeColor">#e5e5e5</item>
         <item name="boxStrokeWidth">1dp</item>
     </style>
+    
+    <style name="UnderLineEditText" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeColor">#dadada</item>
+        <item name="colorControlNormal">#dadada</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="colorAccent">#dadada</item>
+    </style>
+
+    <style name="UnderLineDropDown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">#dadada</item>
+        <item name="colorControlNormal">#dadada</item>
+        <item name="endIconTint">#000000</item>
+        <item name="boxStrokeWidth">1dp</item>
+    </style>
 
 <!--    <style name="WithdrawEditText.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox."-->
 

@@ -138,4 +138,7 @@ interface SusanghanService {
         @Part files: List<MultipartBody.Part>,
         @Part("imageType") imageType: RequestBody
     ): Response<ImageResponse>
+
+    @GET("/api/v1/expert/etc/couriers")
+    suspend fun requestCarryService():Response<BaseResponse>
 }

@@ -8,7 +8,8 @@ enum class OrderStatus(val value: Int) {
     Doing(2),
     Complete(3),
     Carried(4),
-    CarriedComplete(5)
+    CarriedComplete(5),
+    Cancel(-4)
 }
 
 enum class Period(val value: Int) {

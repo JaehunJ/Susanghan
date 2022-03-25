@@ -221,7 +221,6 @@ class DesignAddFragment :
                 )
             )
         }
-
     }
 
     fun setImage(view: ImageView, data: DesignAddViewModel.ImageData) {
@@ -281,7 +280,6 @@ class DesignAddFragment :
                     afterPictureActivityResultLauncher.launch(this)
                 }
             }
-
         }
     }
 
@@ -311,23 +309,15 @@ class DesignAddFragment :
                 selectedImage?.let {
                     val path = it.path
                     path?.let { p ->
-                        val extention = p.contains("gif")
+                        val extension = p.contains("gif")
 
-                        if (!extention) {
+                        if (!extension) {
                             list.add(it)
                         } else {
                             activityFuncFunction.showToast("gif파일은 선택하실수 없습니다.")
                         }
                     }
                 }
-//                val clipData = data.clipData
-//                clipData?.let { clips->
-//                    val cnt = clips.itemCount
-//                    for(i in 0 until cnt){
-//                        list.add(clips.getItemAt(i).uri)
-//                    }
-
-//                }
             }
 
             if (list.isEmpty()) {

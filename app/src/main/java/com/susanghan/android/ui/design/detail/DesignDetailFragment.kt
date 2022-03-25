@@ -37,12 +37,10 @@ class DesignDetailFragment :
 
         binding.btnStop.setOnClickListener {
             showStopDialog()
-//            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_STOP)
         }
 
         binding.btnStart.setOnClickListener {
             showStartDialog()
-//            viewModel.requestDesignDetailStateUpdate(reformId,DESIGN_START)
         }
 
         binding.btnModify.setOnClickListener {
@@ -50,6 +48,8 @@ class DesignDetailFragment :
                 DesignDetailFragmentDirections.actionDesignDetailFragmentToDesignAddFragment(
                     reformId
                 )
+
+            navController?.navigate(action)
         }
 
         binding.tvTitleInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
