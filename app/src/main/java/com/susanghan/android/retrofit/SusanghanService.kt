@@ -62,17 +62,10 @@ interface SusanghanService {
         @Path("id") id: Int
     ): Response<OrderDetailResponse>
 
-    @GET("")
-    suspend fun requestOderDetailStatus(): Response<BaseResponse>
-
-    @POST("")
-    suspend fun requestOderStateChange(): Response<BaseResponse>
-
-    @POST("")
-    suspend fun requestOderDelivery(): Response<BaseResponse>
-
-    @GET("")
-    suspend fun requestOrderDeliveryStatus(): Response<BaseResponse>
+    @GET("/api/v1/expert/orders/counts")
+    suspend fun requestOrderCount(
+        @Header("Authorization") authorization: String
+    ):Response<OrderCountResponse>
 
     @GET("api/v1/expert/reforms/list")
     suspend fun requestDesignList(

@@ -18,6 +18,9 @@ class OrderListRepository @Inject constructor(
     suspend fun requestOrderDetail(id: Int) =
         call { api.requestOrderDetail(getAccessToken(), id) }
 
+    suspend fun requestOrderCount() =
+        call { api.requestOrderCount(getAccessToken()) }
+
     suspend fun requestChangeState() {
 
     }

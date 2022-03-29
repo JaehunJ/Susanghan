@@ -24,10 +24,14 @@ class ProfileDetailFragment :
     }
 
     override fun initDataBinding() {
-
+        viewModel.data.observe(viewLifecycleOwner){
+            if(it != null){
+                binding.data = it.data
+            }
+        }
     }
 
     override fun initAfterBinding() {
-
+        viewModel.requestUserProfile()
     }
 }

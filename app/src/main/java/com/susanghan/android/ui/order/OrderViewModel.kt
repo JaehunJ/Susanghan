@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.OrderListRepository
 import com.susanghan.android.repository.SignInRepository
+import com.susanghan.android.retrofit.response.OrderCountResponse
 import com.susanghan.android.retrofit.response.OrderListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,11 +14,25 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(
     repository: OrderListRepository,
-    val signRepo: SignInRepository
+    private val signRepo: SignInRepository
 ) :
     BaseViewModel(repository) {
 
     val orderList = MutableLiveData<List<OrderListResponse.OrderData>>()
+    val orderCount = MutableLiveData<OrderCountResponse.OrderCountData>()
+
+    fun requestOrderCount(){
+        val repo = repository as OrderListRepository
+        viewModelScope.launch {
+            val result = repo.requestOrderCount()
+
+            result?.let{
+                if(result.errorMessage.isNullOrEmpty()){
+                    orderCount.postValue(it.data)
+                }
+            }
+        }
+    }
 
     fun requestOderList(page: Int, limit: Int, period: Int) {
         val repo = repository as OrderListRepository

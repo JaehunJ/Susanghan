@@ -65,7 +65,7 @@ class OrderDetailFragment :
         viewModel.requestOrderDetail(navArgs.id)
     }
 
-    fun setMainPanel(status: Int) {
+    private fun setMainPanel(status: Int) {
         when (status) {
             OrderStatus.Cancel.value -> {
                 binding.tvTotal.text = "총 환불 금액"
@@ -80,7 +80,7 @@ class OrderDetailFragment :
         }
     }
 
-    fun setButton(status: Int) {
+    private fun setButton(status: Int) {
         binding.btnCarry.visibility = View.GONE
         binding.btnComplete.visibility = View.GONE
         binding.btnStart.visibility = View.GONE
@@ -100,7 +100,7 @@ class OrderDetailFragment :
         }
     }
 
-    fun setStatusBarPosition(status: Int) {
+    private fun setStatusBarPosition(status: Int) {
         val statusBar = binding.llStatusBar
 
         val target = when (status) {
@@ -130,7 +130,7 @@ class OrderDetailFragment :
         statusBar.cursor.layoutParams = lm
     }
 
-    fun setMode(mode: String) {
+    private fun setMode(mode: String) {
         this.mode = when (mode) {
             OrderType.R.type -> {
                 OrderType.R

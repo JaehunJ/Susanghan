@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.susanghan.android.retrofit.response.ProfileResponse.ProfileData" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +38,7 @@
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="asdwaw@asdsad.com"
+                android:text="@{data.userEmail}"
                 android:textSize="14sp"/>
         </LinearLayout>
 
@@ -59,7 +65,7 @@
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="홍길동"
+                android:text="@{data.userName}"
                 android:textSize="14sp"/>
         </LinearLayout>
 
@@ -86,7 +92,7 @@
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="우리동네클린세탁"
+                android:text="@{data.storeName}"
                 android:textSize="14sp"/>
         </LinearLayout>
 
@@ -113,7 +119,7 @@
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="010-1111-1111"
+                android:text="@{data.userPhone}"
                 android:textSize="14sp"/>
         </LinearLayout>
 
