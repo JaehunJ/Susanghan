@@ -46,6 +46,7 @@
 
 
                 <com.google.android.material.tabs.TabLayout
+                    android:focusable="false"
                     android:id="@+id/top_tab"
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="16dp"
@@ -67,19 +68,23 @@
                     app:layout_constraintEnd_toEndOf="parent">
                     
                     <com.google.android.material.tabs.TabItem
+                        android:clickable="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/order_top_tab_0"/>
                     <com.google.android.material.tabs.TabItem
+                        android:clickable="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
                         android:text="@string/order_top_tab_1"/>
                     <com.google.android.material.tabs.TabItem
+                        android:clickable="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/order_top_tab_2"/>
                     <com.google.android.material.tabs.TabItem
+                        android:clickable="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/order_top_tab_3"/>
@@ -98,11 +103,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_test"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/top_tab_sort"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
-                    android:text="asd"/>
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="8dp">
+
+                    <include
+                        android:id="@+id/btn_3m"
+                        layout="@layout/layout_tab_icon_order_sort" />
+                    <include layout="@layout/layout_tab_icon_order_sort"
+                        android:id="@+id/btn_6m"/>
+                    <include layout="@layout/layout_tab_icon_order_sort"
+                        android:id="@+id/btn_12m"/>
+
+                </LinearLayout>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_test"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="asd"/>-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list"
