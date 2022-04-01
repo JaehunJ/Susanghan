@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#ffffff">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/top"
@@ -26,77 +25,146 @@
                 android:fontFamily="@font/spoqa"
                 android:text="@string/splash_top_2"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_top_2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="40dp"-->
-<!--                android:fontFamily="@font/spoqa"-->
-<!--                android:text="@string/splash_top_2"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintStart_toEndOf="@id/tv_top_1"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_top_2"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="40dp"-->
+            <!--                android:fontFamily="@font/spoqa"-->
+            <!--                android:text="@string/splash_top_2"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textSize="20sp"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/tv_top_1"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#2F389F"
+                android:orientation="horizontal"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_top_1">
 
-                <com.google.android.material.tabs.TabLayout
-                    android:focusable="false"
-                    android:id="@+id/top_tab"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                <TextView
+                    android:id="@+id/tv_top_tab_total"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="24dp"
-                    android:background="#2F389F"
-                    app:tabMinWidth="0dp"
-                    app:tabTextColor="@color/white"
-                    app:tabPaddingStart="16dp"
-                    app:tabPaddingEnd="16dp"
-                    app:tabIndicator="@null"
-                    app:tabMode="scrollable"
-                    style="@style/TabOrderList"
-                    app:layout_constraintTop_toBottomOf="@id/tv_top_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-                    
-                    <com.google.android.material.tabs.TabItem
-                        android:clickable="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/order_top_tab_0"/>
-                    <com.google.android.material.tabs.TabItem
-                        android:clickable="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:text="@string/order_top_tab_1"/>
-                    <com.google.android.material.tabs.TabItem
-                        android:clickable="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/order_top_tab_2"/>
-                    <com.google.android.material.tabs.TabItem
-                        android:clickable="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/order_top_tab_3"/>
-                </com.google.android.material.tabs.TabLayout>
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#2f389f"
+                    android:text="@string/order_top_tab_0"
+                    android:background="@drawable/tab_background_selected"/>
+
+                <TextView
+                    android:id="@+id/tv_top_tab_new"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:text="@string/order_top_tab_1"
+                    android:background="@drawable/tab_background_unselected"/>
+
+                <TextView
+                    android:id="@+id/tv_top_tab_doing"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:text="@string/order_top_tab_2"
+                    android:background="@drawable/tab_background_unselected"/>
+
+                <TextView
+                    android:id="@+id/tv_top_tab_complete"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:text="@string/order_top_tab_3"
+                    android:background="@drawable/tab_background_unselected"/>
+
+            </LinearLayout>
+
+
+            <!--                <com.google.android.material.tabs.TabLayout-->
+            <!--                    android:focusable="false"-->
+            <!--                    android:id="@+id/top_tab"-->
+            <!--                    android:layout_marginTop="24dp"-->
+            <!--                    android:layout_marginStart="16dp"-->
+            <!--                    android:layout_marginEnd="16dp"-->
+            <!--                    android:layout_marginBottom="16dp"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="24dp"-->
+            <!--                    android:background="#2F389F"-->
+            <!--                    app:tabMinWidth="0dp"-->
+            <!--                    app:tabTextColor="@color/white"-->
+            <!--                    app:tabPaddingStart="16dp"-->
+            <!--                    app:tabPaddingEnd="16dp"-->
+            <!--                    app:tabIndicator="@null"-->
+            <!--                    app:tabMode="scrollable"-->
+            <!--                    style="@style/TabOrderList"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@id/tv_top_1"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent">-->
+
+            <!--                    <com.google.android.material.tabs.TabItem-->
+            <!--                        android:clickable="false"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:text="@string/order_top_tab_0"/>-->
+            <!--                    <com.google.android.material.tabs.TabItem-->
+            <!--                        android:clickable="false"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="3dp"-->
+            <!--                        android:text="@string/order_top_tab_1"/>-->
+            <!--                    <com.google.android.material.tabs.TabItem-->
+            <!--                        android:clickable="false"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:text="@string/order_top_tab_2"/>-->
+            <!--                    <com.google.android.material.tabs.TabItem-->
+            <!--                        android:clickable="false"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:text="@string/order_top_tab_3"/>-->
+            <!--                </com.google.android.material.tabs.TabLayout>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
-            app:layout_constraintTop_toBottomOf="@id/top"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,74 +173,77 @@
 
                 <LinearLayout
                     android:id="@+id/top_tab_sort"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
                     android:layout_marginTop="9dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
 
                     <include
                         android:id="@+id/btn_3m"
                         layout="@layout/layout_tab_icon_order_sort" />
-                    <include layout="@layout/layout_tab_icon_order_sort"
-                        android:id="@+id/btn_6m"/>
-                    <include layout="@layout/layout_tab_icon_order_sort"
-                        android:id="@+id/btn_12m"/>
+
+                    <include
+                        android:id="@+id/btn_6m"
+                        layout="@layout/layout_tab_icon_order_sort" />
+
+                    <include
+                        android:id="@+id/btn_12m"
+                        layout="@layout/layout_tab_icon_order_sort" />
 
                 </LinearLayout>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_test"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="asd"/>-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tv_test"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="asd"/>-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </LinearLayout>
 
 
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="vertical">-->
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
+            <!--                <TextView-->
+            <!--                    android:layout_marginTop="7dp"-->
+            <!--                    android:layout_marginStart="20dp"-->
+            <!--                    android:id="@+id/tv_date"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:textSize="12sp"-->
+            <!--                    android:textStyle="bold"-->
+            <!--                    android:text="2020.12.28"/>-->
 
-<!--                <TextView-->
-<!--                    android:layout_marginTop="7dp"-->
-<!--                    android:layout_marginStart="20dp"-->
-<!--                    android:id="@+id/tv_date"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:text="2020.12.28"/>-->
+            <!--                &lt;!&ndash;차후에 recycler view로 변경&ndash;&gt;-->
 
-<!--                &lt;!&ndash;차후에 recycler view로 변경&ndash;&gt;-->
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/ll_dummy"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                    <include layout="@layout/layout_order_item_old"/>-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
+            <!--                <LinearLayout-->
+            <!--                    android:id="@+id/ll_dummy"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:orientation="vertical">-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                    <include layout="@layout/layout_order_item_old"/>-->
+            <!--                </LinearLayout>-->
+            <!--            </LinearLayout>-->
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
