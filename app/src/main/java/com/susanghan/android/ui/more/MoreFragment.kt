@@ -43,7 +43,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
         }
 
         binding.llCommonTerm.setOnClickListener {
-
+            navController?.navigate(MoreFragmentDirections.actionMoreFragmentToTermFragment())
         }
     }
 

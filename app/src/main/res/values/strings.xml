@@ -94,5 +94,10 @@
     <string name="withdraw_dialog_btn">확인</string>
 
     <string name="unit_no">No. %s</string>
-<!--    <string name="unit_won">%d원</string>-->
+
+    <!--term-->
+    <string name="term_tab_0">이용약관</string>
+    <string name="term_tab_1">개인정보처리방침</string>
+    <string name="term_tab_2">오픈소스라이선스</string>
+    <!--    <string name="unit_won">%d원</string>-->
 </resources>
