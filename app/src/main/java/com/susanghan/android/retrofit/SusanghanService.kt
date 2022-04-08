@@ -65,7 +65,13 @@ interface SusanghanService {
     @GET("/api/v1/expert/orders/counts")
     suspend fun requestOrderCount(
         @Header("Authorization") authorization: String
-    ):Response<OrderCountResponse>
+    ): Response<OrderCountResponse>
+
+    @PUT("/api/v1/expert/orders/status")
+    suspend fun requestChangeOrderStatus(
+        @Header("Authorization") authorization: String,
+        @Body data: OrderStatusUpdateRequest
+    ): Response<OrderStatusUpdateResponse>
 
     @GET("api/v1/expert/reforms/list")
     suspend fun requestDesignList(
@@ -133,5 +139,5 @@ interface SusanghanService {
     ): Response<ImageResponse>
 
     @GET("/api/v1/expert/etc/couriers")
-    suspend fun requestCarryService():Response<BaseResponse>
+    suspend fun requestDeliveryList(): Response<DeliveryListResponse>
 }

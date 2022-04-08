@@ -54,4 +54,8 @@ class OrderViewModel @Inject constructor(
             }
         }
     }
+
+    fun requestDeliveryList(){
+        viewModelScope
+    }
 }

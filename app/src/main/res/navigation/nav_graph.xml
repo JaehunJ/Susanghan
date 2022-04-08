@@ -145,11 +145,22 @@
             android:name="com.susanghan.android.ui.signup.SignUpResultFragment"
             android:label="fragment_sign_up_result"
             tools:layout="@layout/fragment_sign_up_result" />
+
         <fragment
             android:id="@+id/openStoreFirstFragment"
             android:name="com.susanghan.android.OpenStoreFirstFragment"
             android:label="fragment_open_store_first"
             tools:layout="@layout/fragment_open_store_first" />
+        <fragment
+            android:id="@+id/repairerFragment"
+            android:name="com.susanghan.android.ui.repairer.RepairerFragment"
+            android:label="fragment_repairer"
+            tools:layout="@layout/fragment_repairer" />
+        <fragment
+            android:id="@+id/repairerRegisterFragment"
+            android:name="com.susanghan.android.ui.repairer.register.RepairerRegisterFragment"
+            android:label="fragment_repairer_register"
+            tools:layout="@layout/fragment_repairer_register" />
     </navigation>
     <fragment
         android:id="@+id/orderDetailFragment"

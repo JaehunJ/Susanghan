@@ -77,8 +77,8 @@ class OrderListAdapter(
                 }
 
                 val textColor = when (data.orderStatusCode) {
-                    OrderStatus.Doing.value -> COLOR_BLUE
-                    OrderStatus.CarriedComplete.value -> COLOR_RED
+                    OrderStatus.Working.value -> COLOR_BLUE
+                    OrderStatus.ShipmentComplete.value -> COLOR_RED
                     else -> COLOR_GRAY
                 }
 

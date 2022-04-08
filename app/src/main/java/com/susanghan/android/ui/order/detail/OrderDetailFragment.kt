@@ -1,5 +1,6 @@
 package com.susanghan.android.ui.order.detail
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -7,11 +8,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.custom.getBoldText
 import com.susanghan.android.data.OrderStatus
 import com.susanghan.android.data.OrderType
 import com.susanghan.android.databinding.FragmentOrderDetailBinding
 import com.susanghan.android.ui.dialog.OrderCarryDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+
+
 
 @AndroidEntryPoint
 class OrderDetailFragment :
@@ -21,6 +25,11 @@ class OrderDetailFragment :
     override val navArgs: OrderDetailFragmentArgs by navArgs()
 
     lateinit var subAdapter: OrderDetailSubAdapter
+
+    companion object{
+        const val COLOR_WHITE = "#ffffff"
+        const val COLOR_GRAY = "#"
+    }
 
     var mode = OrderType.R
 
@@ -36,29 +45,51 @@ class OrderDetailFragment :
         binding.rvSub.adapter = subAdapter
 
         binding.btnCarry.setOnClickListener {
-            OrderCarryDialogFragment {
-
-            }.show(parentFragmentManager, "carry")
+            OrderCarryDialogFragment(
+                { item, num ->
+                    viewModel.courierCode = item?.courerCode?:""
+                    viewModel.invoiceNumber = num
+                    viewModel.requestChangeStatus(OrderStatus.ShipmentComplete.value)
+                },
+                viewModel.deliveryList.value?.data ?: listOf()
+            ).show(parentFragmentManager, "carry")
         }
     }
 
     override fun initDataBinding() {
-        viewModel.data.observe(viewLifecycleOwner) {
-            subAdapter.submitList(it.data)
+        viewModel.data.observe(viewLifecycleOwner) { res ->
+            subAdapter.submitList(res.data)
 
+            res?.let {
+                it.data?.let { d ->
+                    if (d.isNotEmpty()) {
+                        val di = d[0]
+
+                        binding.res = d[0]
+
+                        var status = di.orderStatusCode ?: 0
+
+//                    status = OrderStatus.ShipmentComplete.value
+
+                        setStatusBarPosition(status)
+                        setMode(di.classCode ?: "")
+                        setButton(status)
+                        setMainPanel(status)
+                    }
+                }
+
+            }
+        }
+
+        viewModel.successStatusChange.observe(viewLifecycleOwner) {
             it?.let {
-                if (it.data.isNotEmpty()) {
-                    val d = it.data[0]
-
-                    binding.res = it.data[0]
-
-                    setStatusBarPosition(d.orderStatusCode ?: 0)
-                    setMode(d.classCode ?: "")
-                    setButton(d.orderStatusCode ?: 0)
-                    setMainPanel(d.orderStatusCode ?: 0)
+                if (it) {
+                    viewModel.requestOrderDetail(navArgs.id)
                 }
             }
         }
+
+        viewModel.requestCarriedCompany()
     }
 
     override fun initAfterBinding() {
@@ -85,17 +116,26 @@ class OrderDetailFragment :
         binding.btnComplete.visibility = View.GONE
         binding.btnStart.visibility = View.GONE
         when (status) {
-            OrderStatus.Ready.value, OrderStatus.Carry.value -> {
+            OrderStatus.Ready.value, OrderStatus.OrderComplete.value -> {
                 binding.btnStart.visibility = View.VISIBLE
+                binding.btnStart.setOnClickListener {
+                    viewModel.requestChangeStatus(OrderStatus.Working.value)
+                }
             }
-            OrderStatus.Doing.value -> {
+            OrderStatus.Working.value -> {
                 binding.btnComplete.visibility = View.VISIBLE
+                binding.btnComplete.setOnClickListener {
+                    viewModel.requestChangeStatus(OrderStatus.WorkComplete.value)
+                }
+            }
+            OrderStatus.WorkComplete.value -> {
+                binding.btnCarry.visibility = View.VISIBLE
             }
             OrderStatus.Cancel.value -> {
 
             }
             else -> {
-                binding.btnCarry.visibility = View.VISIBLE
+
             }
         }
     }
@@ -103,14 +143,31 @@ class OrderDetailFragment :
     private fun setStatusBarPosition(status: Int) {
         val statusBar = binding.llStatusBar
 
+//        val typeFace =
+
+//        statusBar.tvOrder0.typeface = Typeface.create(statusBar.tvOrder0.typeface, Typeface.NORMAL)
+        statusBar.tvOrder0.alpha = 0.5f
+//        statusBar.tvOrder2.typeface = Typeface.create(statusBar.tvOrder2.typeface, Typeface.NORMAL)
+        statusBar.tvOrder2.alpha = 0.5f
+//        statusBar.tvOrder3.typeface = Typeface.create(statusBar.tvOrder3.typeface, Typeface.NORMAL)
+        statusBar.tvOrder3.alpha = 0.5f
+//        statusBar.tvOrder4.typeface = Typeface.create(statusBar.tvOrder4.typeface, Typeface.NORMAL)
+        statusBar.tvOrder4.alpha = 0.5f
+
         val target = when (status) {
-            OrderStatus.Doing.value -> {
+            OrderStatus.Working.value -> {
+                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder2.text.toString())
+                statusBar.tvOrder2.alpha = 1.0f
                 statusBar.tvOrder2.id
             }
-            OrderStatus.Complete.value -> {
+            OrderStatus.WorkComplete.value -> {
+                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder3.text.toString())
+                statusBar.tvOrder3.alpha = 1.0f
                 statusBar.tvOrder3.id
             }
-            OrderStatus.CarriedComplete.value -> {
+            OrderStatus.ShipmentComplete.value -> {
+                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder4.text.toString())
+                statusBar.tvOrder4.alpha = 1.0f
                 statusBar.tvOrder4.id
             }
             OrderStatus.Cancel.value -> {
@@ -119,7 +176,10 @@ class OrderDetailFragment :
                 statusBar.tvOrder0.id
             }
             else -> {
+                statusBar.tvOrder0.text = getBoldText(statusBar.tvOrder0.text.toString())
+                statusBar.tvOrder0.alpha = 1.0f
                 statusBar.tvOrder0.id
+
             }
         }
 

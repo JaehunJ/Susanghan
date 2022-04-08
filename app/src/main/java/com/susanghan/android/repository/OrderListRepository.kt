@@ -3,6 +3,7 @@ package com.susanghan.android.repository
 import android.content.SharedPreferences
 import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.retrofit.SusanghanService
+import com.susanghan.android.retrofit.request.OrderStatusUpdateRequest
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,4 +21,10 @@ class OrderListRepository @Inject constructor(
 
     suspend fun requestOrderCount() =
         call { api.requestOrderCount(getAccessToken()) }
+
+    suspend fun requestDeliveryList() =
+        call { api.requestDeliveryList() }
+
+    suspend fun requestChangeOrderStatus(data:OrderStatusUpdateRequest) =
+        call{api.requestChangeOrderStatus(getAccessToken(), data)}
 }

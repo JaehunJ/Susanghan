@@ -3,8 +3,13 @@ package com.susanghan.android.custom
 import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -67,4 +72,14 @@ fun ContentResolver.getFileName(fileUri: Uri): String {
     }
 
     return name
+}
+
+fun getBoldText(
+    inputText: String
+):SpannableString {
+    val sb = SpannableString(inputText)
+    val end = if (inputText.length < 3) 2 else 3
+    sb.setSpan(StyleSpan(Typeface.BOLD), 0, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+
+    return sb
 }

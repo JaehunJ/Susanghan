@@ -4,11 +4,10 @@ import com.susanghan.android.R
 
 enum class OrderStatus(val value: Int) {
     Ready(0),
-    Carry(1),
-    Doing(2),
-    Complete(3),
-    Carried(4),
-    CarriedComplete(5),
+    OrderComplete(1),
+    Working(2),
+    WorkComplete(3),
+    ShipmentComplete(4),
     Cancel(-4)
 }
 
