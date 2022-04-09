@@ -28,14 +28,6 @@ class NotiFragment : BaseFragment<FragmentNotiBinding, NotiViewModel, NavArgs>()
         }
 
         binding.rvList.adapter = adapter
-
-//        val children = binding.llDummy.children
-//
-//        children.forEach {
-//            it.setOnClickListener {
-//                navController?.navigate(NotiFragmentDirections.actionNotiFragmentToNotiDetailFragment())
-//            }
-//        }
     }
 
     override fun initDataBinding() {

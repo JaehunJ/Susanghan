@@ -3,6 +3,7 @@ package com.susanghan.android.ui.design
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
+import com.susanghan.android.data.ReformStatus
 import com.susanghan.android.repository.DesignRepository
 import com.susanghan.android.retrofit.response.DesignListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,9 +16,14 @@ class DesignViewModel @Inject constructor(repository: DesignRepository) :
 
     val designList = MutableLiveData<List<DesignListResponse.DesignData>?>()
 
+    var page = 0
+    var reformStatus = ReformStatus.None.value
+
     fun requestDesignList(page: Int, limit: Int, status: Int) {
         val repo = super.repository as DesignRepository
         viewModelScope.launch {
+            this@DesignViewModel.page = page
+            reformStatus = status
             val result = repo.requestDesignList(page, limit, status)
 
             if (result != null) {

@@ -15,18 +15,28 @@ class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
     override val viewModel: FaqViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
+    lateinit var adapter: FaqListAdapter
+
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "FAQ"
         binding.toolbar.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
+
+        adapter = FaqListAdapter {
+            val action = FaqFragmentDirections.actionFaqFragmentToFaqDetailFragment(it)
+            navController?.navigate(action)
+        }
+        binding.rvList.adapter = adapter
     }
 
     override fun initDataBinding() {
-
+        viewModel.data.observe(viewLifecycleOwner){
+            adapter.submitList(it)
+        }
     }
 
     override fun initAfterBinding() {
-
+        viewModel.requestFaqList(0,10)
     }
 }

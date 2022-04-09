@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.EtcServiceRepository
+import com.susanghan.android.retrofit.response.NoticeData
 import com.susanghan.android.retrofit.response.NoticeResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class NotiViewModel @Inject constructor(repository: EtcServiceRepository) :
     BaseViewModel(repository) {
 
-    val notiData = MutableLiveData<MutableList<NoticeResponse.NoticeData>>()
+    val notiData = MutableLiveData<MutableList<NoticeData>>()
 
     fun requestNotice(page: Int) {
         viewModelScope.launch {

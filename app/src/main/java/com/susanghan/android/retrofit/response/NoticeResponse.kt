@@ -11,13 +11,12 @@ data class NoticeResponse(
     val message: String,
     override var errorMessage: String?,
     override var errorCode: String?
-) : BaseResponse() {
-    @Keep
-    @Parcelize
-    data class NoticeData(
-        val noticeId: Int,
-        val title: String?,
-        val contents: String?,
-        val creationDate: String
-    ) : Parcelable
-}
+) : BaseResponse()
+
+@Parcelize
+data class NoticeData(
+    val noticeId: Int,
+    val title: String?,
+    val contents: String?,
+    val creationDate: String
+) : Parcelable

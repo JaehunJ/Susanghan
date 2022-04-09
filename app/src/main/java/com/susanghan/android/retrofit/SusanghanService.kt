@@ -27,6 +27,12 @@ interface SusanghanService {
         @Body data: SignInRequest
     ): Response<SignInResponse>
 
+    @PUT("/api/v1/expert/userStatus")
+    suspend fun requestUserStatusChange(
+        @Header("Authorization") authorization: String,
+        @Body data: UserStatusChangeRequest
+    ):Response<UserStatusChangeResponse>
+
     @POST("/api/v1/token/refresh")
     suspend fun requestNewToken(
         @Header("Authorization") authorization: String = "clo",

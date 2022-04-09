@@ -10,14 +10,13 @@ data class FaqResponse(
     val message: String,
     override var errorMessage: String?,
     override var errorCode: String?
-) : BaseResponse() {
+) : BaseResponse()
 
-    @Parcelize
-    data class FaqData(
-        val noticeId: Int,
-        val title: String,
-        val contents: String,
-        val creationDate: String,
-        val faqId: Int
-    ) : Parcelable
-}
+@Parcelize
+data class FaqData(
+    val noticeId: Int,
+    val title: String,
+    val contents: String,
+    val creationDate: String,
+    val faqId: Int
+) : Parcelable

@@ -6,6 +6,7 @@ import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.data.USER_ID
 import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.SignInRequest
+import com.susanghan.android.retrofit.request.UserStatusChangeRequest
 import com.susanghan.android.retrofit.response.ProfileResponse
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -34,5 +35,9 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
         }
     } else {
         userInfoRes
+    }
+
+    suspend fun requestUserStatusChange(data: UserStatusChangeRequest) = call {
+        api.requestUserStatusChange(getAccessToken(), data)
     }
 }

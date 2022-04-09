@@ -38,16 +38,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+<!--                <include layout="@layout/layout_simple_list_item"/>
                 <include layout="@layout/layout_simple_list_item"/>
                 <include layout="@layout/layout_simple_list_item"/>
                 <include layout="@layout/layout_simple_list_item"/>
-                <include layout="@layout/layout_simple_list_item"/>
-                <include layout="@layout/layout_simple_list_item"/>
-            </LinearLayout>
+                <include layout="@layout/layout_simple_list_item"/>-->
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.core.widget.NestedScrollView>
 

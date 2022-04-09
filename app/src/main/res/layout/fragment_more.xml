@@ -85,6 +85,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/ll_my_wallet"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
@@ -162,6 +163,7 @@
                     android:src="@drawable/icon_right_light"/>
             </LinearLayout>
             <LinearLayout
+
                 android:id="@+id/ll_common_qna"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
@@ -226,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="14sp"
-                android:text="@string/more_my_item_0"/>
+                android:text="@string/more_common_item_version"/>
 
             <ImageView
                 android:layout_width="wrap_content"

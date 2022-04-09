@@ -28,16 +28,13 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug{
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            splits.abi.enable = false
-//            splits.density.enable = false
-//            ext.enableCrashlytics false
         }
     }
 
@@ -54,6 +51,7 @@ android {
             buildConfigField "String", BASE_URL, '""'
         }
     }
+
     buildFeatures{
         dataBinding = true
         viewBinding = true
@@ -146,4 +144,7 @@ dependencies {
 
     //splash
     implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
+
+    //swipe
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

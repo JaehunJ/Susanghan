@@ -1,23 +1,19 @@
 package com.susanghan.android.ui.order
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.tabs.TabLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.data.Period
 import com.susanghan.android.databinding.FragmentOrderOldBinding
 import com.susanghan.android.databinding.LayoutTabIconOrderSortBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavArgs>() {
+class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavArgs>(),SwipeRefreshLayout.OnRefreshListener {
     override val layoutId: Int = R.layout.fragment_order_old
     override val viewModel: OrderViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -33,7 +29,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         topSort.add(binding.btn6m)
         topSort.add(binding.btn12m)
 
-        topSort.forEachIndexed{idx,item->
+        topSort.forEachIndexed { idx, item ->
             item.root.setOnClickListener {
                 selectItem(idx)
             }
@@ -41,7 +37,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     }
 
     override fun initDataBinding() {
-        val adapter = OrderListAdapter(navController!!){iv,s->
+        val adapter = OrderListAdapter(navController!!) { iv, s ->
             viewModel.setImage(iv, s)
         }
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
@@ -49,12 +45,14 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                 adapter.submitList(it)
             }
         }
-        viewModel.orderCount.observe(viewLifecycleOwner){
-            it?.let{
+        viewModel.orderCount.observe(viewLifecycleOwner) {
+            it?.let {
                 binding.tvTopTabTotal.text = "${getString(R.string.order_top_tab_0)}${it.totalCnt}"
                 binding.tvTopTabNew.text = "${getString(R.string.order_top_tab_1)}${it.newCnt}"
-                binding.tvTopTabDoing.text = "${getString(R.string.order_top_tab_2)}${it.progressCnt}"
-                binding.tvTopTabComplete.text = "${getString(R.string.order_top_tab_3)}${it.completeCnt}"
+                binding.tvTopTabDoing.text =
+                    "${getString(R.string.order_top_tab_2)}${it.progressCnt}"
+                binding.tvTopTabComplete.text =
+                    "${getString(R.string.order_top_tab_3)}${it.completeCnt}"
             }
         }
 
@@ -70,14 +68,18 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         topSort[0].root.performClick()
     }
 
-    private fun selectItem(selectedIdx:Int){
-        topSort.forEachIndexed {idx, item->
-            if(idx == selectedIdx){
+    private fun selectItem(selectedIdx: Int) {
+        topSort.forEachIndexed { idx, item ->
+            if (idx == selectedIdx) {
                 item.ivIcon.visibility = View.VISIBLE
-                viewModel.requestOderList(0, 10, (selectedIdx+1)*3)
-            }else{
+                viewModel.requestOderList(0, 10, (selectedIdx + 1) * 3)
+            } else {
                 item.ivIcon.visibility = View.GONE
             }
         }
+    }
+
+    override fun onRefresh() {
+        binding.swList.isRefreshing = false
     }
 }

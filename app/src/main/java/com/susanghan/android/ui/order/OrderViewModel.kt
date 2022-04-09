@@ -9,6 +9,7 @@ import com.susanghan.android.retrofit.response.OrderCountResponse
 import com.susanghan.android.retrofit.response.OrderListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.Period
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,6 +21,9 @@ class OrderViewModel @Inject constructor(
 
     val orderList = MutableLiveData<List<OrderListResponse.OrderData>>()
     val orderCount = MutableLiveData<OrderCountResponse.OrderCountData>()
+
+    var page = 0
+    var period = 0
 
     fun requestOrderCount(){
         val repo = repository as OrderListRepository
@@ -37,6 +41,8 @@ class OrderViewModel @Inject constructor(
     fun requestOderList(page: Int, limit: Int, period: Int) {
         val repo = repository as OrderListRepository
         viewModelScope.launch {
+            this@OrderViewModel.page =page
+            this@OrderViewModel.period = period
             val result = repo.requestOderList(page, limit, period)
             result?.let {
                 if (result.errorMessage == null)

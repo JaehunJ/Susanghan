@@ -1,11 +1,13 @@
 package com.susanghan.android.ui.design
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.tabs.TabLayout
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
@@ -14,7 +16,7 @@ import com.susanghan.android.databinding.FragmentDesignBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavArgs>() {
+class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavArgs>(), SwipeRefreshLayout.OnRefreshListener {
     override val layoutId: Int = R.layout.fragment_design
     override val viewModel: DesignViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -22,6 +24,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
     override fun initView(savedInstanceState: Bundle?) {
         binding.llBlankItem.visibility = View.VISIBLE
         binding.llExistItem.visibility = View.GONE
+        binding.swList.setOnRefreshListener(this)
     }
 
     override fun initDataBinding() {
@@ -31,15 +34,16 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
 
         viewModel.designList.observe(viewLifecycleOwner) {
             it?.let {
-                if (it.isNullOrEmpty()) {
+                if (it.isNullOrEmpty() && viewModel.page == 0) {
                     binding.llBlankItem.visibility = View.VISIBLE
                     binding.llExistItem.visibility = View.GONE
-                } else {
+                    adapter.submitList(it)
+                }else if(!(it.isNullOrEmpty() && viewModel.page != 0)) {
                     binding.llBlankItem.visibility = View.GONE
                     binding.llExistItem.visibility = View.VISIBLE
+                    adapter.submitList(it)
                 }
             }
-            adapter.submitList(it)
         }
 
         binding.rvList.adapter = adapter
@@ -78,5 +82,11 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
 
     override fun initAfterBinding() {
         viewModel.requestDesignList(0, 10, ReformStatus.None.value)
+    }
+
+    override fun onRefresh() {
+        Log.e("#debug", "refresh")
+        viewModel.requestDesignList(viewModel.page+1, 10, viewModel.reformStatus)
+        binding.swList.isRefreshing = false
     }
 }
