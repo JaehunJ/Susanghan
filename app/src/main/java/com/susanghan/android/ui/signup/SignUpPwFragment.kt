@@ -46,7 +46,7 @@ class SignUpPwFragment :
 
         viewModel.isSuccess.observe(viewLifecycleOwner) {
             it?.let {
-                if (it) {
+                if (it.message == "success") {
                     val action =
                         SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
                     navController?.navigate(action)

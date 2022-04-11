@@ -17,7 +17,9 @@ class SignUpResultFragment :
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        binding.btnConfirm.setOnClickListener {
+            navController?.popBackStack(R.id.signInFragment, true)
+        }
     }
 
     override fun initDataBinding() {

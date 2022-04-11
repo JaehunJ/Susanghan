@@ -255,14 +255,14 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
             val bluePrintImageList = mutableListOf<DesignPostRequest.ImageData>()
             list1?.let {
-                list1.forEach { item ->
-                    bluePrintImageList.add(DesignPostRequest.ImageData(item, 0))
+                list1.forEachIndexed { idx, item ->
+                    bluePrintImageList.add(DesignPostRequest.ImageData(item, if(idx == 0) 1 else 0))
                 }
             }
 
             val prepareItems = mutableListOf<DesignPostRequest.ItemData>()
             prepareItemList.value?.forEach {
-                if (it.code != "00")
+                if (it.code != "99")
                     prepareItems.add(DesignPostRequest.ItemData(it.name, it.code))
             }
 

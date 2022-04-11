@@ -19,7 +19,8 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btnLogin.setOnClickListener {
-            viewModel.requestSignIn(TEST_ID, TEST_PW)
+            viewModel.requestSignIn(binding.etId.text.toString(), binding.etPw.text.toString())
+//            viewModel.requestSignIn(TEST_ID, TEST_PW)
         }
 
         binding.tvFindId.setOnClickListener {

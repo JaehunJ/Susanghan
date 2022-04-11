@@ -43,8 +43,8 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
         name.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && code.isNotEmpty()
 
     fun getInfo() = StoreConfirmRequest(
-//        name, phone, email, code
-        "정재훈", "01088335697", "wjdthtjfltm@gamil.com", "TESTCODE"
+        name, phone, email, code
+//        "정재훈", "01088335697", "wjdthtjfltm@gamil.com", "TESTCODE"
     )
 
     fun requestConfirm() {

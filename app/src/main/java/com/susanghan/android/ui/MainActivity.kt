@@ -2,9 +2,9 @@ package com.susanghan.android.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.susanghan.android.R
@@ -39,10 +39,28 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
         _binding.navBottom.setupWithNavController(navController)
         _binding.navBottom.itemIconTintList = null
 
-        this.window?.apply {
-            decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
+
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+//            window.insetsController?.setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS)
+//        }else{
+//            this.window?.apply {
+//                decorView.systemUiVisibility =
+//                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//            }
+//        }
+
+//        val lp = window.attributes
+//        lp.flags &=  ~WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+//        AndroidBug5497Workaround.assistActivity(this)
+
+//        window
+//        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        val lp = window.attributes as WindowManager.LayoutParams
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT
+        window.attributes = lp
 
         hideBottomNavi()
     }

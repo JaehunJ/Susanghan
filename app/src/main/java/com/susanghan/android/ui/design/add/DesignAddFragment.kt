@@ -141,7 +141,7 @@ class DesignAddFragment :
                 binding.ivBefore.setImageResource(0)
                 binding.llAddBefore.visibility = View.VISIBLE
             } else {
-//                Glide.with(requireActivity()).load(it).into(binding.ivBefore)
+                Glide.with(requireActivity()).load(it.uri).into(binding.ivBefore)
                 binding.llAddBefore.visibility = View.GONE
             }
         }
@@ -150,7 +150,7 @@ class DesignAddFragment :
                 binding.ivAfter.setImageResource(0)
                 binding.llAddAfter.visibility = View.VISIBLE
             } else {
-//                Glide.with(requireActivity()).load(it).into(binding.ivAfter)
+                Glide.with(requireActivity()).load(it).into(binding.ivAfter)
                 binding.llAddAfter.visibility = View.GONE
             }
         }

@@ -4,8 +4,9 @@
         <!-- Primary brand color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-<!--        <item name="android:windowFullscreen">true</item>-->
-<!--        <item name="android:windowLightStatusBar">true</item>-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowIsFloating">true</item>
         <item name="android:statusBarColor">@color/color_transparent</item>
 
         <item name="colorPrimary">#dadada</item>
@@ -22,7 +23,7 @@
 
         <item name="bottomSheetDialogTheme">@style/Widget.AppTheme.BottomSheet</item>
         <!-- Customize your theme here. -->
-        
+
         <item name="android:fontFamily">@font/spoqa</item>
         <item name="android:textColor">@color/black</item>
 
@@ -39,7 +40,7 @@
 <!--        <item name="postSplashScreenTheme">@style/Theme.Susanghan</item>-->
 <!--&lt;!&ndash;        #스플래시가 닫히고 보여줄 app theme 앱의 기본 Theme을 적어주면댐.&ndash;&gt;-->
 <!--    </style>-->
-    
+
 <!--    <style name="Theme.App.Splash" parent="Theme.S"-->
 
 

@@ -42,7 +42,7 @@ interface SusanghanService {
     @POST("api/v1/join/expert")
     suspend fun requestSignUp(
         @Body data: SignUpRequest
-    ): Response<BaseResponse>
+    ): Response<SignUpResponse>
 
     @POST("/api/v1/expert/store/certification")
     suspend fun requestStoreConfirm(
@@ -98,20 +98,20 @@ interface SusanghanService {
         @Header("Authorization") authorization: String,
         @Path("reformId") reformId: Int,
         @Body data: DesignStatusUpdateRequest
-    ): Response<BaseResponse>
+    ): Response<BaseResponseImpl>
 
     @POST("/api/v1/expert/reforms")
     suspend fun requestAddDesign(
         @Header("Authorization") authorization: String,
         @Body data: DesignPostRequest
-    ): Response<BaseResponse>
+    ): Response<BaseResponseImpl>
 
     @PUT("/api/v1/expert/reforms/{reformId}")
     suspend fun requestModifyDesign(
         @Header("Authorization") authorization: String,
         @Path("reformId") reformId: Int,
         @Body data: DesignPostRequest
-    ): Response<BaseResponse>
+    ): Response<BaseResponseImpl>
 
     @GET("/api/v1/expert/etc/faq")
     suspend fun requestFaq(
