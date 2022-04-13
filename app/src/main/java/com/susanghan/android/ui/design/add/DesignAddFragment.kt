@@ -74,7 +74,10 @@ class DesignAddFragment :
         viewModel.mode = if (navArgs.id == 0) MODE_WRITE else MODE_MODIFY
         viewModel.reformId = navArgs.id
 
-        binding.toolbar.tvTitle.text = "디자인 상세"
+        binding.toolbar.tvTitle.text = "디자인 상품 등록"
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
 
         binding.llAddImage.setOnClickListener {
             showFileSelector(IMAGE_ITEM)
@@ -140,18 +143,30 @@ class DesignAddFragment :
             if (it == null) {
                 binding.ivBefore.setImageResource(0)
                 binding.llAddBefore.visibility = View.VISIBLE
+                binding.llDeleteBefore.visibility = View.GONE
             } else {
-                Glide.with(requireActivity()).load(it.uri).into(binding.ivBefore)
+                setImage(binding.ivBefore, it)
+//                Glide.with(requireActivity()).load(it.uri).into(binding.ivBefore)
                 binding.llAddBefore.visibility = View.GONE
+                binding.llDeleteBefore.visibility = View.VISIBLE
+                binding.llDeleteBefore.setOnClickListener {
+                    viewModel.deleteBeforeImage()
+                }
             }
         }
         viewModel.afterImagePath.observe(viewLifecycleOwner) {
             if (it == null) {
                 binding.ivAfter.setImageResource(0)
                 binding.llAddAfter.visibility = View.VISIBLE
+                binding.llDeleteAfter.visibility = View.GONE
             } else {
-                Glide.with(requireActivity()).load(it).into(binding.ivAfter)
+                setImage(binding.ivAfter, it)
+//                Glide.with(requireActivity()).load(it.uri).into(binding.ivAfter)
                 binding.llAddAfter.visibility = View.GONE
+                binding.llDeleteAfter.visibility = View.VISIBLE
+                binding.llDeleteAfter.setOnClickListener {
+                    viewModel.deleteAfterImage()
+                }
             }
         }
         viewModel.prepareItemList.observe(viewLifecycleOwner) {

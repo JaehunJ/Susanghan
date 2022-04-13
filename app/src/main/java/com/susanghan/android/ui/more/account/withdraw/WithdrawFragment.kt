@@ -7,6 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.data.UserStatus
 import com.susanghan.android.databinding.FragmentWithdrawBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,18 +25,26 @@ class WithdrawFragment : BaseFragment<FragmentWithdrawBinding, WithdrawViewModel
         }
 
         binding.btnConfirm.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
-                .setTitle(resources.getString(R.string.withdraw_dialog_title))
-                .setMessage(resources.getString(R.string.withdraw_dialog_subtext))
-                .setPositiveButton(resources.getString(R.string.withdraw_dialog_btn)) { dialogInterface, i ->
-                    navController?.popBackStack()
-                }
-                .show()
+            if(binding.cbCheck.isChecked){
+                viewModel.requestUserStatusChange(UserStatus.Withdraw.value, binding.etText.text.toString())
+            }else{
+                activityFuncFunction.showToast("체크 확인.")
+            }
         }
     }
 
     override fun initDataBinding() {
-
+        viewModel.res.observe(viewLifecycleOwner){
+            it?.let{
+                MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
+                    .setTitle(resources.getString(R.string.withdraw_dialog_title))
+                    .setMessage(resources.getString(R.string.withdraw_dialog_subtext))
+                    .setPositiveButton(resources.getString(R.string.withdraw_dialog_btn)) { dialogInterface, i ->
+                        navController?.popBackStack()
+                    }
+                    .show()
+            }
+        }
     }
 
     override fun initAfterBinding() {

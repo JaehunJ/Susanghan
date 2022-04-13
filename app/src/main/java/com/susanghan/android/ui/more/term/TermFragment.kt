@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
+import com.susanghan.android.BuildConfig
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentTermBinding
@@ -20,7 +21,7 @@ class TermFragment : BaseFragment<FragmentTermBinding, TermViewModel, NavArgs>()
     override val viewModel: TermViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
-    private val urls = arrayListOf("https://www.oldee.kr/terms", "https://www.oldee.kr/policy/oldeener", "")
+    private val urls = arrayListOf(BuildConfig.BASE_URL + "api/v1/policy/service", BuildConfig.BASE_URL + "/api/v1/policy/privacy", "")
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "이용정책"

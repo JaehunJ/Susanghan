@@ -1,8 +1,11 @@
 package com.susanghan.android.ui.signup
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.susanghan.android.BuildConfig
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentSignUpPwBinding
@@ -26,13 +29,26 @@ class SignUpPwFragment :
                     activityFuncFunction.showToast("약관에 동의해주세요.")
                 }
             } else {
-                activityFuncFunction.showToast("비밀번호가 일치하지 않습니다.")
+                activityFuncFunction.showToast("비밀번호를 확인해주세요.")
             }
         }
 
         binding.user = navArgs.data
         binding.viewModel = viewModel
         viewModel.prevData = navArgs.data
+
+        binding.cb0.setOnClickListener {
+            if(!binding.cb0.isChecked){
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.BASE_URL + "api/v1/policy/service"))
+                startActivity(intent)
+            }
+        }
+        binding.cb1.setOnClickListener {
+            if(!binding.cb1.isChecked){
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.BASE_URL + "/api/v1/policy/privacy"))
+                startActivity(intent)
+            }
+        }
     }
 
     override fun initDataBinding() {

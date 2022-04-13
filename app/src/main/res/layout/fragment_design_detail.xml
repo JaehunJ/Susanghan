@@ -229,11 +229,11 @@
                             android:text="소요시간"/>
 
                         <TextView
+                            android:id="@+id/tv_date"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(detail.minDay)}"/>
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
                 </LinearLayout>

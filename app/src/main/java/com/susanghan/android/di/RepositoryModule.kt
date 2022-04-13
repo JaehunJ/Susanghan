@@ -20,6 +20,11 @@ object RepositoryModule {
 
     @Singleton
     @Provides
+    fun provideServerRepository(api: SusanghanService, preferences: SharedPreferences) =
+        ServerRepository(api, preferences)
+
+    @Singleton
+    @Provides
     fun provideEtcServiceRepository(api: SusanghanService, preferences: SharedPreferences) =
         EtcServiceRepository(api, preferences)
 

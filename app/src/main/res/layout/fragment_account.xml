@@ -55,6 +55,29 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_start"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:text="@string/account_item_3"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_right_light"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ll_withdraw"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
@@ -77,5 +100,13 @@
                 android:src="@drawable/icon_right_light"/>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_withdraw_sub"
+            android:layout_marginStart="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#999999"
+            android:textSize="12sp"
+            android:text="탈퇴 요청이 처리중입니다.\n탈퇴 요청 중에는 페이지에 연결할 수 없습니다." />
     </LinearLayout>
 </layout>

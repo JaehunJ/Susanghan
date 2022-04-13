@@ -1,11 +1,16 @@
 package com.susanghan.android.ui.signup
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.susanghan.android.BuildConfig
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
+import com.susanghan.android.data.DESIGN_START
 import com.susanghan.android.databinding.FragmentSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,13 +29,32 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
                 activityFuncFunction.showToast("누락된 정보가 있습니다.")
             }
         }
+
+        binding.btnOpenStore.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_URL))
+            startActivity(intent)
+        }
     }
 
     override fun initDataBinding() {
         viewModel.confirm.observe(viewLifecycleOwner) {
-            val action =
-                SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment(viewModel.getInfo())
-            navController?.navigate(action)
+            it?.let{
+                if(it){
+                    val action =
+                        SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment(viewModel.getInfo())
+                    navController?.navigate(action)
+                }else{
+                    val builder = AlertDialog.Builder(requireContext()).apply {
+                        setTitle("오류")
+                        setMessage("이미 가입된 정보입니다.")
+                        setPositiveButton("확인") { d, t ->
+                            d.dismiss()
+                        }
+                    }
+
+                    builder.create().show()
+                }
+            }
         }
 
         binding.data = viewModel

@@ -30,6 +30,7 @@
                 style="@style/WithdrawEditText">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="220dp"
@@ -38,6 +39,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="아래 안내를 확인해주세요."/>

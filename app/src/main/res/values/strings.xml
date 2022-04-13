@@ -80,6 +80,7 @@
     <!--account-->
     <string name="account_item_0">로그아웃</string>
     <string name="account_item_1">운영일시정지</string>
+    <string name="account_item_3">운영개시</string>
     <string name="account_item_2">탈퇴신청</string>
 
     <string name="account_dialog_stop_title">운영을 정지하시겠습니까?</string>

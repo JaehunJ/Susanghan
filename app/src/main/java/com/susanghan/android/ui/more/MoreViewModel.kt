@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MoreViewModel @Inject constructor(repository: SignInRepository) : BaseViewModel(repository) {
-    val profile = MutableLiveData<ProfileResponse.ProfileData>()
+    val profile = MutableLiveData<ProfileResponse.ProfileData?>()
 
     fun requestProfile() {
         viewModelScope.launch {

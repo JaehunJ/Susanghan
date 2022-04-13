@@ -9,8 +9,10 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface SusanghanService {
-    @GET("")
-    suspend fun requestVersionInfo(): Response<BaseResponse>
+    @GET("/api/v1/expert/versions")
+    suspend fun requestVersionInfo(
+        @Query("osType") osType:String = "android"
+    ): Response<VersionInfoResponse>
 
     @GET("")
     suspend fun requestFindingId(): Response<BaseResponse>

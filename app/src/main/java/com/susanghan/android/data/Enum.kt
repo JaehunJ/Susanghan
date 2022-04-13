@@ -2,6 +2,20 @@ package com.susanghan.android.data
 
 import com.susanghan.android.R
 
+enum class AppStatus(val value:Int){
+    None(0),
+    Update(1),
+    ForceUpdate(2),
+    Check(9)
+}
+
+enum class UserStatus(val value:Int){
+    Normal(0),
+    Start(1),
+    Stop(2),
+    Withdraw(8)
+}
+
 enum class OrderStatus(val value: Int) {
     Ready(0),
     OrderComplete(1),

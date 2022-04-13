@@ -6,6 +6,7 @@ import com.susanghan.android.base.BaseRepository
 import com.susanghan.android.base.BaseViewModel
 import com.susanghan.android.repository.SignInRepository
 import com.susanghan.android.retrofit.request.UserStatusChangeRequest
+import com.susanghan.android.retrofit.response.ProfileResponse
 import com.susanghan.android.retrofit.response.UserStatusChangeResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,17 +16,28 @@ import javax.inject.Inject
 class AccountViewModel @Inject constructor(repository: SignInRepository) : BaseViewModel(repository) {
 
     val status:Int = 0
-    val res = MutableLiveData<UserStatusChangeResponse>()
+    val res = MutableLiveData<ProfileResponse.ProfileData>()
 
-    fun requestUserStatusChange(status:Int, msg:String){
-        val repo = repository as SignInRepository
+    fun requestUserProfile(){
         viewModelScope.launch {
-            val data = UserStatusChangeRequest(status, msg)
-            val result = repo.requestUserStatusChange(data)
+            val result = (repository as SignInRepository).requestUserProfile()
 
             result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
-                    res.postValue(it)
+                if(result.errorMessage.isNullOrEmpty()){
+                    res.postValue(it.data)
+                }
+            }
+        }
+    }
+
+    fun requestChangeUserStatus(status:Int, msg:String){
+        viewModelScope.launch {
+            val data = UserStatusChangeRequest(status, msg)
+            val result = (repository as SignInRepository).requestUserStatusChange(data)
+
+            result?.let{
+                if(result.errorMessage.isNullOrEmpty()){
+                    requestUserProfile()
                 }
             }
         }

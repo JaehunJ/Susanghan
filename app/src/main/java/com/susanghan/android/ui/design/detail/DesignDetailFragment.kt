@@ -86,6 +86,10 @@ class DesignDetailFragment :
                     binding.btnBlank.visibility = View.VISIBLE
                 }
             }
+
+            //text
+
+            binding.tvDate.text = "택배 수령 후 ${it.minDay}-${it.maxDay}일정도의 제작기간이 소요됩니다.\n제작 완료 시 택배사 사정에 따라 배송시간이 달라질 수 있습니다"
         }
 
         viewModel.imageList.observe(viewLifecycleOwner) {
@@ -95,6 +99,7 @@ class DesignDetailFragment :
             binding.indicator.refreshDots()
 //            binding.indicator.notifySubtreeAccessibilityStateChanged()
         }
+
     }
 
     override fun initAfterBinding() {

@@ -18,7 +18,7 @@ class SignUpResultFragment :
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btnConfirm.setOnClickListener {
-            navController?.popBackStack(R.id.signInFragment, true)
+            navController?.popBackStack(R.id.signInFragment, false)
         }
     }
 

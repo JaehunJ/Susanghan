@@ -20,56 +20,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
-                <include layout="@layout/layout_user_notification_item"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e5e5e5"/>
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
+<!--                <include layout="@layout/layout_user_notification_item"/>-->
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#e5e5e5"/>-->
 
             </LinearLayout>
 

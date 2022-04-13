@@ -17,7 +17,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     var userInfoRes: ProfileResponse? = null
 
-    suspend fun requestSignIn(id: String, pw: String) = call {
+    suspend fun requestSignIn(id: String, pw: String, onError:()->Unit) = call(onError) {
         api.requestSignIn(
             "clo", SignInRequest(id, pw)
         )
@@ -29,7 +29,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
         }
     }
 
-    suspend fun requestUserProfile() = if (userInfoRes == null) {
+    suspend fun requestUserProfile() = if (userInfoRes == null || userInfoRes?.data == null) {
         call {
             api.requestProfile(getAccessToken())
         }

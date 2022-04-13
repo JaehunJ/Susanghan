@@ -47,12 +47,12 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         }
         viewModel.orderCount.observe(viewLifecycleOwner) {
             it?.let {
-                binding.tvTopTabTotal.text = "${getString(R.string.order_top_tab_0)}${it.totalCnt}"
-                binding.tvTopTabNew.text = "${getString(R.string.order_top_tab_1)}${it.newCnt}"
+                binding.tvTopTabTotal.text = "${getString(R.string.order_top_tab_0)} ${it.totalCnt}"
+                binding.tvTopTabNew.text = "${getString(R.string.order_top_tab_1)} ${it.newCnt}"
                 binding.tvTopTabDoing.text =
-                    "${getString(R.string.order_top_tab_2)}${it.progressCnt}"
+                    "${getString(R.string.order_top_tab_2)} ${it.progressCnt}"
                 binding.tvTopTabComplete.text =
-                    "${getString(R.string.order_top_tab_3)}${it.completeCnt}"
+                    "${getString(R.string.order_top_tab_3)} ${it.completeCnt}"
             }
         }
 

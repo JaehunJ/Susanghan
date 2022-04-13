@@ -1,13 +1,14 @@
 package com.susanghan.android.ui.signin
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.susanghan.android.BuildConfig
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
-import com.susanghan.android.data.TEST_ID
-import com.susanghan.android.data.TEST_PW
 import com.susanghan.android.databinding.FragmentSignInBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,9 +19,16 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
+        binding.viewModel = viewModel
+
         binding.btnLogin.setOnClickListener {
-            viewModel.requestSignIn(binding.etId.text.toString(), binding.etPw.text.toString())
-//            viewModel.requestSignIn(TEST_ID, TEST_PW)
+            val id = viewModel.id.value
+            val pw = viewModel.pw.value
+            if (!id.isNullOrEmpty() && !pw.isNullOrEmpty()) {
+                viewModel.requestSignIn(viewModel.id.value?:"", viewModel.pw.value?:"")
+            } else {
+                activityFuncFunction.showToast("아이디와 비밀번호를 입력해주세요.")
+            }
         }
 
         binding.tvFindId.setOnClickListener {
@@ -37,16 +45,40 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
             val action = SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
             navController?.navigate(action)
         }
+
+        binding.tvSignin.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_URL))
+            startActivity(intent)
+        }
     }
 
     override fun initDataBinding() {
         viewModel.signInResponse.observe(this) {
-            val action = SignInFragmentDirections.actionGlobalOrderFragment()
-            navController?.navigate(action)
+            if (it == null) {
+                activityFuncFunction.showToast("로그인 오류, 아이디와 비밀번호를 확인 해주세요")
+                return@observe
+            }
+            if (it.message == "success") {
+//                if (binding.cbAuto.isChecked) {
+//                    viewModel.saveAutoLogin(
+//                        binding.etId.text.toString(),
+//                        binding.etPw.text.toString()
+//                    )
+//                }
+
+                val action = SignInFragmentDirections.actionGlobalOrderFragment()
+                navController?.navigate(action)
+            }
         }
     }
 
     override fun initAfterBinding() {
+//        binding.cbAuto.isChecked = viewModel.loadAutoLoginCheck()
+//
+//        if (binding.cbAuto.isChecked) {
+//            val id = viewModel.
+//        }
 
+        viewModel.checkAutoLogin()
     }
 }

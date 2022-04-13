@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
     private lateinit var _binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = _binding.root
@@ -38,24 +37,6 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
 
         _binding.navBottom.setupWithNavController(navController)
         _binding.navBottom.itemIconTintList = null
-
-
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-//            window.insetsController?.setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS)
-//        }else{
-//            this.window?.apply {
-//                decorView.systemUiVisibility =
-//                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//            }
-//        }
-
-//        val lp = window.attributes
-//        lp.flags &=  ~WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-//        AndroidBug5497Workaround.assistActivity(this)
-
-//        window
-//        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         val lp = window.attributes as WindowManager.LayoutParams
         lp.width = WindowManager.LayoutParams.MATCH_PARENT

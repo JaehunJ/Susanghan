@@ -8,6 +8,8 @@ import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
 import com.susanghan.android.data.ACCESS_TOKEN
 import com.susanghan.android.data.REFRESH_TOKEN
+import com.susanghan.android.data.USER_ID
+import com.susanghan.android.data.USER_PW
 import com.susanghan.android.retrofit.RemoteData
 import com.susanghan.android.retrofit.SusanghanService
 import com.susanghan.android.retrofit.request.NewTokenRequest
@@ -48,22 +50,29 @@ open class BaseRepository @Inject constructor(
             is RemoteData.ApiError -> {
                 //token 에러일 경우
                 if (result.errorCode == "404") {
-                    val re = getNewToken()
+                    if(result.errorMessage!!.contains("token")){
+                        val re = getNewToken()
 
-                    return if (re == null) {
-                        Log.e("#debug", "token refresh exception")
-                        null
-                    } else {
-                        //토큰 다시 설정하고 다시 콜
-                        setToken(re.data)
-                        call { apiCall() }
+                        return if (re == null) {
+                            Log.e("#debug", "token refresh exception")
+                            null
+                        } else {
+                            //토큰 다시 설정하고 다시 콜
+                            setToken(re.data)
+                            call { apiCall() }
+                        }
+                    }else {
+                        onError?.invoke()
+                        return null
                     }
                 } else {
                     onError?.invoke()
+                    return null
                 }
             }
             is RemoteData.Error -> {
                 Log.e("#debug", result.exception.printStackTrace().toString())
+                onError?.invoke()
                 return null
             }
         }
@@ -109,5 +118,29 @@ open class BaseRepository @Inject constructor(
             putString(REFRESH_TOKEN, data.newRefreshToken)
             commit()
         }
+    }
+//
+//    fun loadPrevSignData():String?{
+//        val str = prefs.getString(USER_ID, "")
+//        return str
+//    }
+
+    fun saveLoginData(id:String, pw:String){
+        prefs.edit {
+            putString(USER_ID, id)
+            putString(USER_PW, pw)
+            commit()
+        }
+    }
+
+    fun loadLoginData():List<String>{
+        val list = mutableListOf<String>()
+        val id = prefs.getString(USER_ID, "")?:""
+        val pw = prefs.getString(USER_PW, "")?:""
+
+        list.add(id)
+        list.add(pw)
+
+        return list
     }
 }

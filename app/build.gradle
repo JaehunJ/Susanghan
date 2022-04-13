@@ -42,13 +42,16 @@ android {
 
     productFlavors{
         def BASE_URL = "BASE_URL"
+        def STORE_URL = "STORE_URL"
 
         trial{
             buildConfigField "String", BASE_URL, '"http://132.226.235.160/"'
+            buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
         }
 
         real{
             buildConfigField "String", BASE_URL, '""'
+            buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
         }
     }
 
@@ -143,7 +146,7 @@ dependencies {
     implementation 'com.tbuonomo:dotsindicator:4.2'
 
     //splash
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
+//    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
 
     //swipe
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"

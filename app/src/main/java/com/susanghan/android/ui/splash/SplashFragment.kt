@@ -9,8 +9,12 @@ import androidx.navigation.fragment.navArgs
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.custom.checkPermission
+import com.susanghan.android.data.AppStatus
 import com.susanghan.android.databinding.FragmentSplashBinding
-import com.susanghan.android.ui.dialog.*
+import com.susanghan.android.ui.dialog.ForceUpdateDialog
+import com.susanghan.android.ui.dialog.PermissionDialog
+import com.susanghan.android.ui.dialog.ServiceCheckDialog
+import com.susanghan.android.ui.dialog.UpdateDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -29,7 +33,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     private val requestPermissionResult =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it.all { per -> per.value == true }) {
-                showUpdateDialog()
+                loadNext()
             }
         }
 
@@ -39,10 +43,36 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     }
 
     override fun initDataBinding() {
+        viewModel.data.observe(viewLifecycleOwner) { res ->
+            res?.let {
+                when (it.appStatus) {
+                    AppStatus.Update.value -> {
+                        showUpdateDialog()
+                    }
+                    AppStatus.ForceUpdate.value -> {
+                        showForceUpdateDialog()
+                    }
+                    AppStatus.Check.value -> {
+                        showServiceCheckDialog{
+                            activity?.finish()
+                        }
+                    }
+                    else -> {
+                        showPermissionInfoDialog()
+                    }
+                }
+            }
+
+            if(res == null){
+                showPermissionInfoDialog()
+            }
+        }
     }
 
     override fun initAfterBinding() {
-        activity?.let {
+        viewModel.requestVersionInfo()
+
+//        activity?.let {
 //            val dialog = ServiceErrorDialog {
 ////                showServiceCheckDialog()
 //                showPermissionInfoDialog()
@@ -53,16 +83,17 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
 //            dialog.isCancelable = false
 //            dialog.show(it.supportFragmentManager, "error")
 
-            showPermissionInfoDialog()
-        }
+//            showPermissionInfoDialog()
+//        }
 //        activityFunction?.showBottomNavi()
 //        val action = SplashFragmentDirections.actionGlobalCsFragment()
 //        navController?.navigate(action)
     }
 
-    fun showServiceCheckDialog() {
+    fun showServiceCheckDialog(onNext: () -> Unit) {
         val dialog = ServiceCheckDialog {
-            showPermissionInfoDialog()
+            onNext.invoke()
+//            showPermissionInfoDialog()
         }
 
         dialog.isCancelable = false
@@ -84,16 +115,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
                 dialog.show(it.supportFragmentManager, "permission")
             }
         } else {
-//            showUpdateDialog()
-            val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
-            navController?.navigate(action)
+            loadNext()
         }
     }
 
     fun showForceUpdateDialog() {
         val dialog = ForceUpdateDialog {
-            val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
-            navController?.navigate(action)
+            //TODO: call store
+//            onNext()
+//            val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
+//            navController?.navigate(action)
         }
         dialog.isCancelable = false
 
@@ -104,14 +135,20 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
 
     fun showUpdateDialog() {
         val dialog = UpdateDialog({
-            showForceUpdateDialog()
+            showPermissionInfoDialog()
         }) {
-            showForceUpdateDialog()
+            //TODO: call store
+//            showForceUpdateDialog()
         }
         dialog.isCancelable = false
 
         activity?.let {
             dialog.show(it.supportFragmentManager, "update")
         }
+    }
+
+    fun loadNext() {
+        val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
+        navController?.navigate(action)
     }
 }

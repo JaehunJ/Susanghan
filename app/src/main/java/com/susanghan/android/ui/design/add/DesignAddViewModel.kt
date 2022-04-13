@@ -29,10 +29,10 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     val viewingBluePrintImage = MutableLiveData<MutableList<ImageData>>()
     val uploadBluePrintImage = mutableListOf<ImageData>()
 
-    val beforeImagePath = MutableLiveData<ImageData>()
+    val beforeImagePath = MutableLiveData<ImageData?>()
     val beforeImagePostPath = mutableListOf<String>()
 
-    val afterImagePath = MutableLiveData<ImageData>()
+    val afterImagePath = MutableLiveData<ImageData?>()
     val afterImagePostPath = mutableListOf<String>()
 
     val oldImage = MutableLiveData<Uri>()
@@ -84,10 +84,46 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     }
 
     private suspend fun requestPostBluePrintImage(context: Context): List<String>? {
-        val list = arrayListOf<File>()
+        val offlinelist = arrayListOf<File>()
 
-        uploadBluePrintImage.forEach {
-            if (it.uri != null) {
+        val resultList = arrayListOf<String>()
+
+        uploadBluePrintImage.forEachIndexed {idx,item->
+            if (item.type == IMAGE_URI && item.uri != null) {
+                val file = copyToScopeStorage(context, item.uri)
+                file?.let {
+                    offlinelist.add(file)
+                }
+            }else{
+                resultList.add(item.path?:"")
+            }
+        }
+
+        //오프라인 파일이 존재하면 서버에 업로드
+        if(offlinelist.isNotEmpty()){
+            val multiBody = getImageBody("files", offlinelist)
+            val repo = repository as DesignRepository
+            val res = repo.requestPostImage(multiBody)
+
+            res?.let {
+                val imageList = it.data
+
+                if (imageList.isNotEmpty()) {
+                    imageList.forEach { d ->
+                        resultList.add(d.imageName)
+                    }
+                }
+            }
+        }
+
+        return resultList
+    }
+
+    private suspend fun requestPostServerOneImage(context: Context, data: MutableLiveData<ImageData?>):String{
+        var str = ""
+        val list = arrayListOf<File>()
+        data.value?.let{
+            if(it.type == IMAGE_URI && it.uri != null){
                 val file = copyToScopeStorage(context, it.uri)
                 file?.let {
                     list.add(file)
@@ -95,64 +131,68 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
             }
         }
 
-//        val multiBody = getImageBodyUri("files", list)
-        val multiBody = getImageBody("files", list)
-        val repo = repository as DesignRepository
-        val res = repo.requestPostImage(multiBody)
+        if(list.isNotEmpty()){
+            val multiBody = getImageBody("files", list)
+            val repo = repository as DesignRepository
+            val res = repo.requestPostImage(multiBody)
 
-        res?.let {
-            val imageList = it.data
+            res?.let {
+                val imageList = it.data
 
-            if (imageList.isNotEmpty()) {
-                val reList = mutableListOf<String>()
-                imageList.forEach { d ->
-                    reList.add(d.imageName)
+                if (imageList.isNotEmpty()) {
+                    str = imageList[0].imageName
                 }
-                return reList
             }
         }
 
-        return null
+        return str
     }
 
     private suspend fun requestPostBeforeAfterImage(context: Context): List<String>? {
-        val list = arrayListOf<File>()
+        val before = requestPostServerOneImage(context, beforeImagePath)
+        val after = requestPostServerOneImage(context, afterImagePath)
 
-        beforeImagePath.value?.let {
-            if (it.uri != null) {
-                val file = copyToScopeStorage(context, it.uri)
-                file?.let {
-                    list.add(file)
-                }
-            }
-        }
-        afterImagePath.value?.let {
-            if (it.uri != null) {
-                val file = copyToScopeStorage(context, it.uri)
-                file?.let {
-                    list.add(file)
-                }
-            }
-        }
+        return listOf(before, after)
 
-        val multiBody = getImageBody("files", list)
-        val repo = repository as DesignRepository
-        val res = repo.requestPostImage(multiBody)
+//        val list = arrayListOf<File>()
 
-        res?.let {
-            val imageList = it.data
 
-            if (imageList.isNotEmpty()) {
-                val reList = mutableListOf<String>()
-                imageList.forEach { d ->
-                    reList.add(d.imageName)
-                }
 
-                return reList
-            }
-        }
+//        beforeImagePath.value?.let {
+//            if (it.uri != null) {
+//                val file = copyToScopeStorage(context, it.uri)
+//                file?.let {
+//                    list.add(file)
+//                }
+//            }
+//        }
+//        afterImagePath.value?.let {
+//            if (it.uri != null) {
+//                val file = copyToScopeStorage(context, it.uri)
+//                file?.let {
+//                    list.add(file)
+//                }
+//            }
+//        }
 
-        return null
+//        val multiBody = getImageBody("files", list)
+//        val repo = repository as DesignRepository
+//        val res = repo.requestPostImage(multiBody)
+//
+//        res?.let {
+//            val imageList = it.data
+//
+//            if (imageList.isNotEmpty()) {
+//                val reList = mutableListOf<String>()
+//                imageList.forEach { d ->
+//                    reList.add(d.imageName)
+//                }
+//
+//                return reList
+//            }
+//        }
+//
+//        return null
     }
 
     fun addBluePrintImageServer(list: List<String>) {
@@ -195,6 +235,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     fun deleteBluePrintImage(index: Int) {
         if (index >= viewingBluePrintImage.value!!.count()) {
             Log.e("#debug", "list is null")
+            return
         }
         val list = viewingBluePrintImage.value
         list?.let {
@@ -312,8 +353,16 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         beforeImagePath.postValue(ImageData(IMAGE_URI, "", file))
     }
 
+    fun deleteBeforeImage(){
+        beforeImagePath.postValue(null)
+    }
+
     fun addAfterImage(file: Uri) {
         afterImagePath.postValue(ImageData(IMAGE_URI, "", file))
+    }
+
+    fun deleteAfterImage(){
+        afterImagePath.postValue(null)
     }
 
     data class ImageData(val type: Int, val path: String?, val uri: Uri?)

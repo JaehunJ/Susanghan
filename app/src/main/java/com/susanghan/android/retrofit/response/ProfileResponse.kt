@@ -4,7 +4,7 @@ data class ProfileResponse(
     val count: Int,
     val status: Int,
     val message: String,
-    val data: ProfileData,
+    val data: ProfileData?,
     override var errorMessage: String?,
     override var errorCode: String?
 ) : BaseResponse() {

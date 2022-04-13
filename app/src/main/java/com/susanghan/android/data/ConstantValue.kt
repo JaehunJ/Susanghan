@@ -6,6 +6,7 @@ const val TEST_PW = "1234"
 const val ACCESS_TOKEN = "access_token"
 const val REFRESH_TOKEN = "refresh_token"
 const val USER_ID = "user_id"
+const val USER_PW = "user_pw"
 
 const val PREFERENCES_NAME = "susanghan_app"
 
