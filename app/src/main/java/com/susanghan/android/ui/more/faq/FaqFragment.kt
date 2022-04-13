@@ -1,9 +1,12 @@
 package com.susanghan.android.ui.more.faq
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.susanghan.android.BuildConfig
 import com.susanghan.android.R
 import com.susanghan.android.base.BaseFragment
 import com.susanghan.android.databinding.FragmentFaqBinding
@@ -28,6 +31,11 @@ class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
             navController?.navigate(action)
         }
         binding.rvList.adapter = adapter
+
+        binding.btnFaq.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_QuRxmb"))
+            startActivity(intent)
+        }
     }
 
     override fun initDataBinding() {

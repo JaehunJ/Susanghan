@@ -16,6 +16,7 @@
             app:layout_constraintTop_toTopOf="@id/toolbar"
             app:layout_constraintBottom_toBottomOf="@id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/btn_faq"
             android:layout_marginEnd="16dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
