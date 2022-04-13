@@ -222,7 +222,29 @@
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:text="asd"/>-->
 
+                <LinearLayout
+                    android:id="@+id/ll_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/icon_empty"
+                        app:tint="#e5e5e5"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="주문이 없습니다."
+                        android:textColor="#a5a5a5"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
                     android:id="@+id/rv_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

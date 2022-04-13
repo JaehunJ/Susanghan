@@ -56,7 +56,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:contentDescription="profile"
-                android:src="@drawable/dummy_circle"/>
+                android:background="@drawable/dummy_circle"/>
 
             <TextView
                 android:layout_marginStart="11dp"

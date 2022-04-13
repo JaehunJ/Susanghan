@@ -42,6 +42,12 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         }
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {
+                if(it.isEmpty()){
+                    binding.llEmpty.visibility = View.VISIBLE
+                }else{
+                    binding.llEmpty.visibility = View.GONE
+                    binding.rvList.visibility = View.VISIBLE
+                }
                 adapter.submitList(it)
             }
         }
