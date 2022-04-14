@@ -146,7 +146,5 @@
                     app:spanCount="2"/>
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </LinearLayout>
-
-
     </LinearLayout>
 </layout>

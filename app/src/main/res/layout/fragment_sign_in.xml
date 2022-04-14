@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.susanghan.android.ui.signin.SignInViewModel" />
+            type="com.oldee.expert.ui.signin.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="detail"
-            type="com.susanghan.android.retrofit.response.DesignDetailResponse.DesignDetailData" />
+            type="com.oldee.expert.retrofit.response.DesignDetailResponse.DesignDetailData" />
     </data>
 
     <LinearLayout

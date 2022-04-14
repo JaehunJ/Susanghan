@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.susanghan.android.ui.design.add.DesignAddViewModel" />
+            type="com.oldee.expert.ui.design.add.DesignAddViewModel" />
     </data>
 
     <LinearLayout

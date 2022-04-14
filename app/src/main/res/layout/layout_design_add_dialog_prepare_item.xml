@@ -6,7 +6,7 @@
     <data>
         <variable
             name="prepareItem"
-            type="com.susanghan.android.data.PrepareItem" />
+            type="com.oldee.expert.data.PrepareItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

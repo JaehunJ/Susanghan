@@ -10,7 +10,7 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "com.susanghan.android"
+        applicationId "com.oldee.expert"
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 1
@@ -32,30 +32,40 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
-        debug{
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                def name = parent.project.getName()
+                def buildType = variant.buildType.name
+                def productName = variant.productFlavors.name
+                def versionName = variant.versionName
+                outputFileName = "oldeer_${productName}_${buildType}_${versionName}.apk"
+            }
         }
     }
 
     flavorDimensions "server"
 
-    productFlavors{
+    productFlavors {
         def BASE_URL = "BASE_URL"
         def STORE_URL = "STORE_URL"
 
-        trial{
+        trial {
             buildConfigField "String", BASE_URL, '"http://132.226.235.160/"'
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
         }
 
-        real{
+        real {
             buildConfigField "String", BASE_URL, '""'
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
     }
@@ -74,7 +84,6 @@ android {
 
 
 }
-
 
 
 dependencies {

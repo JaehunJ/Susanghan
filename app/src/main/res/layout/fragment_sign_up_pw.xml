@@ -6,11 +6,11 @@
     <data>
         <variable
             name="user"
-            type="com.susanghan.android.retrofit.request.StoreConfirmRequest" />
+            type="com.oldee.expert.retrofit.request.StoreConfirmRequest" />
 
         <variable
             name="viewModel"
-            type="com.susanghan.android.ui.signup.SignUpPwViewModel" />
+            type="com.oldee.expert.ui.signup.SignUpPwViewModel" />
     </data>
 
     <LinearLayout

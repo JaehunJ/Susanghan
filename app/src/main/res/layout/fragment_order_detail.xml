@@ -6,7 +6,7 @@
 
         <variable
             name="res"
-            type="com.susanghan.android.retrofit.response.OrderDetailResponse.OrderDetailSub" />
+            type="com.oldee.expert.retrofit.response.OrderDetailResponse.OrderDetailSub" />
     </data>
 
     <LinearLayout

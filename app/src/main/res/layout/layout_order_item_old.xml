@@ -6,7 +6,7 @@
         <data>
             <variable
                 name="order"
-                type="com.susanghan.android.retrofit.response.OrderListResponse.OrderData" />
+                type="com.oldee.expert.retrofit.response.OrderListResponse.OrderData" />
         </data>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

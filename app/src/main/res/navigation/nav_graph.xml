@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.susanghan.android.ui.splash.SplashFragment"
+        android:name="com.oldee.expert.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
-        android:name="com.susanghan.android.ui.order.OrderFragment"
+        android:name="com.oldee.expert.ui.order.OrderFragment"
         android:label="OrderFragment"
         tools:layout="@layout/fragment_order_old">
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/csFragment"
-        android:name="com.susanghan.android.ui.cs.CsFragment"
+        android:name="com.oldee.expert.ui.cs.CsFragment"
         android:label="fragment_cs"
         tools:layout="@layout/fragment_cs" >
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/productFragment"
-        android:name="com.susanghan.android.ui.product.ProductFragment"
+        android:name="com.oldee.expert.ui.product.ProductFragment"
         android:label="fragment_product"
         tools:layout="@layout/fragment_product" />
 
@@ -64,7 +64,7 @@
         app:startDestination="@id/signInFragment">
         <fragment
             android:id="@+id/signInFragment"
-            android:name="com.susanghan.android.ui.signin.SignInFragment"
+            android:name="com.oldee.expert.ui.signin.SignInFragment"
             android:label="fragment_sign_in"
             tools:layout="@layout/fragment_sign_in" >
             <action
@@ -76,10 +76,15 @@
             <action
                 android:id="@+id/action_signInFragment_to_signUpFragment"
                 app:destination="@id/signUpFragment" />
+            <action
+                android:id="@+id/action_signInFragment_to_orderFragment"
+                app:destination="@id/orderFragment"
+                app:popUpTo="@id/signInFragment"
+                app:popUpToInclusive="true"/>
         </fragment>
         <fragment
             android:id="@+id/findIdFragment"
-            android:name="com.susanghan.android.ui.signin.findid.FindIdFragment"
+            android:name="com.oldee.expert.ui.signin.findid.FindIdFragment"
             android:label="fragment_find_id"
             tools:layout="@layout/fragment_find_id" >
             <action
@@ -90,7 +95,7 @@
         </fragment>
         <fragment
             android:id="@+id/findPwFragment"
-            android:name="com.susanghan.android.ui.signin.findpw.FindPwFragment"
+            android:name="com.oldee.expert.ui.signin.findpw.FindPwFragment"
             android:label="fragment_find_pw"
             tools:layout="@layout/fragment_find_pw" >
             <action
@@ -101,7 +106,7 @@
         </fragment>
         <fragment
             android:id="@+id/signUpFragment"
-            android:name="com.susanghan.android.ui.signup.SignUpFragment"
+            android:name="com.oldee.expert.ui.signup.SignUpFragment"
             android:label="fragment_sign_up"
             tools:layout="@layout/fragment_sign_up" >
             <action
@@ -117,17 +122,17 @@
             app:destination="@id/orderFragment" />
         <fragment
             android:id="@+id/findIdResultFragment"
-            android:name="com.susanghan.android.ui.signin.findid.FindIdResultFragment"
+            android:name="com.oldee.expert.ui.signin.findid.FindIdResultFragment"
             android:label="fragment_find_id_result"
             tools:layout="@layout/fragment_find_id_result" />
         <fragment
             android:id="@+id/settingPwFragment"
-            android:name="com.susanghan.android.ui.signin.findpw.SettingPwFragment"
+            android:name="com.oldee.expert.ui.signin.findpw.SettingPwFragment"
             android:label="fragment_setting_pw"
             tools:layout="@layout/fragment_setting_pw" />
         <fragment
             android:id="@+id/signUpPwFragment"
-            android:name="com.susanghan.android.ui.signup.SignUpPwFragment"
+            android:name="com.oldee.expert.ui.signup.SignUpPwFragment"
             android:label="fragment_sign_up_pw"
             tools:layout="@layout/fragment_sign_up_pw" >
             <action
@@ -137,34 +142,34 @@
                 app:destination="@id/signUpResultFragment" />
             <argument
                 android:name="data"
-                app:argType="com.susanghan.android.retrofit.request.StoreConfirmRequest"
+                app:argType="com.oldee.expert.retrofit.request.StoreConfirmRequest"
                 app:nullable="true" />
         </fragment>
         <fragment
             android:id="@+id/signUpResultFragment"
-            android:name="com.susanghan.android.ui.signup.SignUpResultFragment"
+            android:name="com.oldee.expert.ui.signup.SignUpResultFragment"
             android:label="fragment_sign_up_result"
             tools:layout="@layout/fragment_sign_up_result" />
 
         <fragment
             android:id="@+id/openStoreFirstFragment"
-            android:name="com.susanghan.android.OpenStoreFirstFragment"
+            android:name="com.oldee.expert.OpenStoreFirstFragment"
             android:label="fragment_open_store_first"
             tools:layout="@layout/fragment_open_store_first" />
         <fragment
             android:id="@+id/repairerFragment"
-            android:name="com.susanghan.android.ui.repairer.RepairerFragment"
+            android:name="com.oldee.expert.ui.repairer.RepairerFragment"
             android:label="fragment_repairer"
             tools:layout="@layout/fragment_repairer" />
         <fragment
             android:id="@+id/repairerRegisterFragment"
-            android:name="com.susanghan.android.ui.repairer.register.RepairerRegisterFragment"
+            android:name="com.oldee.expert.ui.repairer.register.RepairerRegisterFragment"
             android:label="fragment_repairer_register"
             tools:layout="@layout/fragment_repairer_register" />
     </navigation>
     <fragment
         android:id="@+id/orderDetailFragment"
-        android:name="com.susanghan.android.ui.order.detail.OrderDetailFragment"
+        android:name="com.oldee.expert.ui.order.detail.OrderDetailFragment"
         android:label="fragment_order_detail"
         tools:layout="@layout/fragment_order_detail">
         <argument
@@ -176,44 +181,44 @@
         app:startDestination="@id/moreFragment">
         <fragment
             android:id="@+id/termFragment"
-            android:name="com.susanghan.android.ui.more.term.TermFragment"
+            android:name="com.oldee.expert.ui.more.term.TermFragment"
             android:label="fragment_term"
             tools:layout="@layout/fragment_term" />
 
         <fragment
             android:id="@+id/withdrawFragment"
-            android:name="com.susanghan.android.ui.more.account.withdraw.WithdrawFragment"
+            android:name="com.oldee.expert.ui.more.account.withdraw.WithdrawFragment"
             android:label="WithdrawFragment"
             tools:layout="@layout/fragment_withdraw" />
         <fragment
             android:id="@+id/adjustmentDetailFragment"
-            android:name="com.susanghan.android.ui.more.adjustment.detail.AdjustmentDetailFragment"
+            android:name="com.oldee.expert.ui.more.adjustment.detail.AdjustmentDetailFragment"
             android:label="AdjustmentDetailFragment"
             tools:layout="@layout/fragment_adjustment_detail" />
         <fragment
             android:id="@+id/notiDetailFragment"
-            android:name="com.susanghan.android.ui.more.list.detail.NotiDetailFragment"
+            android:name="com.oldee.expert.ui.more.list.detail.NotiDetailFragment"
             android:label="NotiDetailFragment"
             tools:layout="@layout/fragment_noti_detail">
 
             <argument
                 android:name="data"
-                app:argType="com.susanghan.android.retrofit.response.NoticeData" />
+                app:argType="com.oldee.expert.retrofit.response.NoticeData" />
         </fragment>
         <fragment
             android:id="@+id/userNotificationFragment"
-            android:name="com.susanghan.android.ui.more.notice.UserNotificationFragment"
+            android:name="com.oldee.expert.ui.more.notice.UserNotificationFragment"
             android:label="fragment_user_notification"
             tools:layout="@layout/fragment_user_notification">
         </fragment>
         <fragment
             android:id="@+id/profileDetailFragment"
-            android:name="com.susanghan.android.ui.more.profile.ProfileDetailFragment"
+            android:name="com.oldee.expert.ui.more.profile.ProfileDetailFragment"
             android:label="ProfileDetailFragment"
             tools:layout="@layout/fragment_profile_detail" />
         <fragment
             android:id="@+id/adjustmentFragment"
-            android:name="com.susanghan.android.ui.more.adjustment.AdjustmentFragment"
+            android:name="com.oldee.expert.ui.more.adjustment.AdjustmentFragment"
             android:label="AdjustmentFragment"
             tools:layout="@layout/fragment_adjustment">
             <action
@@ -222,7 +227,7 @@
         </fragment>
         <fragment
             android:id="@+id/accountFragment"
-            android:name="com.susanghan.android.ui.more.account.AccountFragment"
+            android:name="com.oldee.expert.ui.more.account.AccountFragment"
             android:label="AccountFragment"
             tools:layout="@layout/fragment_account">
             <action
@@ -231,7 +236,7 @@
         </fragment>
         <fragment
             android:id="@+id/faqFragment"
-            android:name="com.susanghan.android.ui.more.faq.FaqFragment"
+            android:name="com.oldee.expert.ui.more.faq.FaqFragment"
             android:label="FaqFragment"
             tools:layout="@layout/fragment_faq" >
             <action
@@ -240,17 +245,17 @@
         </fragment>
         <fragment
             android:id="@+id/FaqDetailFragment"
-            android:name="com.susanghan.android.ui.more.faq.detail.FaqDetailFragment"
+            android:name="com.oldee.expert.ui.more.faq.detail.FaqDetailFragment"
             android:label="FaqDetailFragment"
             tools:layout="@layout/fragment_faq_detail">
 
             <argument
                 android:name="data"
-                app:argType="com.susanghan.android.retrofit.response.FaqData" />
+                app:argType="com.oldee.expert.retrofit.response.FaqData" />
         </fragment>
         <fragment
             android:id="@+id/notiFragment"
-            android:name="com.susanghan.android.ui.more.list.NotiFragment"
+            android:name="com.oldee.expert.ui.more.list.NotiFragment"
             android:label="NotiFragment"
             tools:layout="@layout/fragment_noti" >
             <action
@@ -259,7 +264,7 @@
         </fragment>
         <fragment
             android:id="@+id/moreFragment"
-            android:name="com.susanghan.android.ui.more.MoreFragment"
+            android:name="com.oldee.expert.ui.more.MoreFragment"
             android:label="fragment_more"
             tools:layout="@layout/fragment_more">
             <action
@@ -288,12 +293,12 @@
     </navigation>
     <fragment
         android:id="@+id/csDetailFragment"
-        android:name="com.susanghan.android.ui.cs.detail.CsDetailFragment"
+        android:name="com.oldee.expert.ui.cs.detail.CsDetailFragment"
         android:label="CsDetailFragment"
         tools:layout="@layout/fragment_cs_detail"/>
     <fragment
         android:id="@+id/designFragment"
-        android:name="com.susanghan.android.ui.design.DesignFragment"
+        android:name="com.oldee.expert.ui.design.DesignFragment"
         android:label="fragment_design"
         tools:layout="@layout/fragment_design" >
         <action
@@ -305,7 +310,7 @@
     </fragment>
     <fragment
         android:id="@+id/designDetailFragment"
-        android:name="com.susanghan.android.ui.design.detail.DesignDetailFragment"
+        android:name="com.oldee.expert.ui.design.detail.DesignDetailFragment"
         android:label="fragment_design_detail"
         tools:layout="@layout/fragment_design_detail" >
         <argument app:argType="integer"
@@ -317,7 +322,7 @@
     </fragment>
     <fragment
         android:id="@+id/designAddFragment"
-        android:name="com.susanghan.android.ui.design.add.DesignAddFragment"
+        android:name="com.oldee.expert.ui.design.add.DesignAddFragment"
         android:label="fragment_design_add"
         tools:layout="@layout/fragment_design_add">
         <argument app:argType="integer"
