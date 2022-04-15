@@ -23,6 +23,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
 
     val isCbAll = MutableLiveData<Boolean>()
 
+    val isCbChild = MutableLiveData<Boolean>()
     val isCb0 = MutableLiveData<Boolean>()
     val isCb1 = MutableLiveData<Boolean>()
     val isCb2 = MutableLiveData<Boolean>()
@@ -43,7 +44,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
     }
 
     fun isChecked() =
-        isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true
+        isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true && isCbChild.value != null && isCbChild.value == true
 
     fun requestSignUp() {
         viewModelScope.launch {
@@ -76,7 +77,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
                         cb1,
                         it.telNo,
                         it.recommendCode,
-                        cb2,
+                        0,
                         cb0
                     )
                 )

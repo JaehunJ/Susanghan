@@ -27,7 +27,7 @@ open class BaseRepository @Inject constructor(
     private var isLoading = MutableLiveData<Boolean>()
 
     suspend fun <T : BaseResponse> call(
-        onError: (() -> Unit)? = null,
+        onError: ((RemoteData.ApiError) -> Unit)? = null,
         apiCall: suspend () -> Response<T>
     ): T? {
         isLoading.postValue(true)
@@ -41,7 +41,7 @@ open class BaseRepository @Inject constructor(
                 RemoteData.Success(response.body()!!)
             }
         }else {
-            RemoteData.Error(IOException(response.message()))
+            RemoteData.ApiError("999", "server Error")
         }
 
         when (result) {
@@ -59,20 +59,20 @@ open class BaseRepository @Inject constructor(
                         } else {
                             //토큰 다시 설정하고 다시 콜
                             setToken(re.data)
-                            call { apiCall() }
+                            call(onError){ apiCall() }
                         }
                     }else {
-                        onError?.invoke()
+                        onError?.invoke(result)
                         return null
                     }
                 } else {
-                    onError?.invoke()
+                    onError?.invoke(result)
                     return null
                 }
             }
             is RemoteData.Error -> {
                 Log.e("#debug", result.exception.printStackTrace().toString())
-                onError?.invoke()
+//                onError?.invoke()
                 return null
             }
         }
@@ -145,5 +145,15 @@ open class BaseRepository @Inject constructor(
             list.add(pw)
 
         return list
+    }
+
+    fun removeLoginData(){
+        prefs.edit {
+            remove(USER_ID)
+            remove(USER_PW)
+            remove(ACCESS_TOKEN)
+            remove(REFRESH_TOKEN)
+            commit()
+        }
     }
 }

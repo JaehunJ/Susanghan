@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.oldee.expert.base.BaseRepository
 import com.oldee.expert.data.USER_ID
+import com.oldee.expert.retrofit.RemoteData
 import com.oldee.expert.retrofit.SusanghanService
 import com.oldee.expert.retrofit.request.SignInRequest
 import com.oldee.expert.retrofit.request.UserStatusChangeRequest
@@ -17,7 +18,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     var userInfoRes: ProfileResponse? = null
 
-    suspend fun requestSignIn(id: String, pw: String, onError:()->Unit) = call(onError) {
+    suspend fun requestSignIn(id: String, pw: String, onError:(RemoteData.ApiError)->Unit) = call(onError) {
         api.requestSignIn(
             "clo", SignInRequest(id, pw)
         )
@@ -39,5 +40,10 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     suspend fun requestUserStatusChange(data: UserStatusChangeRequest) = call {
         api.requestUserStatusChange(getAccessToken(), data)
+    }
+
+    fun logout(){
+        userInfoRes = null
+        removeLoginData()
     }
 }

@@ -22,8 +22,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btnConfirm.setOnClickListener {
+//            moveNext()
             if (viewModel.getValidated()) {
-                viewModel.requestConfirm()
+                viewModel.requestConfirm{
+                    if(it.errorMessage == "unauthorized"){
+                        activityFuncFunction.showToast("정보가 일치하지 않습니다.")
+                    }
+                }
             } else {
                 activityFuncFunction.showToast("누락된 정보가 있습니다.")
             }
@@ -38,20 +43,12 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
     override fun initDataBinding() {
         viewModel.confirm.observe(viewLifecycleOwner) {
             it?.let{
-                if(it){
-                    val action =
-                        SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment(viewModel.getInfo())
-                    navController?.navigate(action)
+                if(it.data == "success"){
+                    moveNext()
                 }else{
-                    val builder = AlertDialog.Builder(requireContext()).apply {
-                        setTitle("오류")
-                        setMessage("이미 가입된 정보입니다.")
-                        setPositiveButton("확인") { d, t ->
-                            d.dismiss()
-                        }
+                    if(it.data.contains("Dupli")){
+                        activityFuncFunction.showToast("이미 가입된 정보입니다.")
                     }
-
-                    builder.create().show()
                 }
             }
         }
@@ -61,5 +58,11 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
 
     override fun initAfterBinding() {
 
+    }
+
+    fun moveNext(){
+        val action =
+            SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment(viewModel.getInfo())
+        navController?.navigate(action)
     }
 }

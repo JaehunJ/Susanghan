@@ -28,10 +28,11 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
 
         binding.llLogout.setOnClickListener {
             activity?.let{
+                viewModel.logout()
                 it.finishAffinity()
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
-                System.exit(0)
+//                System.exit(0)
             }
         }
 

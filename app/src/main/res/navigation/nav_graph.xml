@@ -149,7 +149,13 @@
             android:id="@+id/signUpResultFragment"
             android:name="com.oldee.expert.ui.signup.SignUpResultFragment"
             android:label="fragment_sign_up_result"
-            tools:layout="@layout/fragment_sign_up_result" />
+            tools:layout="@layout/fragment_sign_up_result" >
+            <action
+                app:popUpTo="@id/signUpResultFragment"
+                app:popUpToInclusive="true"
+                android:id="@+id/action_signUpResultFragment_to_signInFragment"
+                app:destination="@id/signInFragment" />
+        </fragment>
 
         <fragment
             android:id="@+id/openStoreFirstFragment"

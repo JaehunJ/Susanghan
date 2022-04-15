@@ -14,7 +14,11 @@ import javax.inject.Inject
 class AccountViewModel @Inject constructor(repository: SignInRepository) : BaseViewModel(repository) {
 
     val status:Int = 0
-    val res = MutableLiveData<ProfileResponse.ProfileData>()
+    val res = MutableLiveData<ProfileResponse.ProfileData?>()
+
+    fun logout(){
+        (repository as SignInRepository).logout()
+    }
 
     fun requestUserProfile(){
         viewModelScope.launch {

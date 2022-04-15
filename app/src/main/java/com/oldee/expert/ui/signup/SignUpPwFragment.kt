@@ -22,6 +22,7 @@ class SignUpPwFragment :
         binding.toolbar.tvTitle.text = ""
 
         binding.btnConfirm.setOnClickListener {
+//            moveNext()
             if (viewModel.isValidate()) {
                 if (viewModel.isChecked()) {
                     viewModel.requestSignUp()
@@ -69,9 +70,10 @@ class SignUpPwFragment :
         viewModel.isSuccess.observe(viewLifecycleOwner) {
             it?.let {
                 if (it.message == "success") {
-                    val action =
-                        SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
-                    navController?.navigate(action)
+                    moveNext()
+//                    val action =
+//                        SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
+//                    navController?.navigate(action)
                 } else {
                     activityFuncFunction.showToast("잠시 후 다시 시도해 주세요.")
                 }
@@ -83,5 +85,9 @@ class SignUpPwFragment :
 
     }
 
-
+    fun moveNext(){
+        val action =
+            SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
+        navController?.navigate(action)
+    }
 }

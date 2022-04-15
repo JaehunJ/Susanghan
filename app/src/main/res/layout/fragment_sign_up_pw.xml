@@ -263,6 +263,16 @@
                             android:layout_marginEnd="9dp"/>
 
                         <com.google.android.material.checkbox.MaterialCheckBox
+                            android:visibility="gone"
+                            android:layout_marginStart="10dp"
+                            android:id="@+id/cb_child"
+                            android:button="@drawable/selector_check"
+                            android:checked="@={viewModel.isCbChild()}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(필수) 만 14세이상"/>
+
+                        <com.google.android.material.checkbox.MaterialCheckBox
                             android:layout_marginStart="10dp"
                             android:id="@+id/cb_0"
                             android:button="@drawable/selector_check"
@@ -279,6 +289,7 @@
                             android:layout_height="wrap_content"
                             android:text="(필수) 개인정보처리방침 동의"/>
                         <com.google.android.material.checkbox.MaterialCheckBox
+                            android:visibility="gone"
                             android:layout_marginStart="10dp"
                             android:checked="@={viewModel.isCb2()}"
                             android:button="@drawable/selector_check"

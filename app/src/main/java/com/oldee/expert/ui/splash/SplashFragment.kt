@@ -6,6 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.custom.checkPermission
@@ -45,21 +46,25 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override fun initDataBinding() {
         viewModel.data.observe(viewLifecycleOwner) { res ->
             res?.let {
-                when (it.appStatus) {
-                    AppStatus.Update.value -> {
-                        showUpdateDialog()
-                    }
-                    AppStatus.ForceUpdate.value -> {
-                        showForceUpdateDialog()
-                    }
-                    AppStatus.Check.value -> {
-                        showServiceCheckDialog{
-                            activity?.finish()
+                if(it.versionCode != BuildConfig.VERSION_NAME){
+                    when (it.appStatus) {
+                        AppStatus.Update.value -> {
+                            showUpdateDialog()
+                        }
+                        AppStatus.ForceUpdate.value -> {
+                            showForceUpdateDialog()
+                        }
+                        AppStatus.Check.value -> {
+                            showServiceCheckDialog{
+                                activity?.finish()
+                            }
+                        }
+                        else -> {
+                            showPermissionInfoDialog()
                         }
                     }
-                    else -> {
-                        showPermissionInfoDialog()
-                    }
+                }else{
+                    showPermissionInfoDialog()
                 }
             }
 

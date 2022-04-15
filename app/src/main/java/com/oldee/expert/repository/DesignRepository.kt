@@ -38,4 +38,8 @@ class DesignRepository @Inject constructor(
     suspend fun requestPostDesign(request: DesignPostRequest) = call {
         api.requestAddDesign(getAccessToken(), request)
     }
+
+    suspend fun requestModifyDesign(id:Int, request:DesignPostRequest) = call{
+        api.requestModifyDesign(getAccessToken(), id, request)
+    }
 }

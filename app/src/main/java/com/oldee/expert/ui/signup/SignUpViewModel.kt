@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.repository.SignUpRepository
+import com.oldee.expert.retrofit.RemoteData
 import com.oldee.expert.retrofit.request.StoreConfirmRequest
+import com.oldee.expert.retrofit.response.StoreConfirmResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,7 +39,7 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
             (repository as SignUpRepository).code = value
         }
 
-    val confirm = MutableLiveData<Boolean>()
+    val confirm = MutableLiveData<StoreConfirmResponse>()
 
     fun getValidated() =
         name.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && code.isNotEmpty()
@@ -47,14 +49,16 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
 //        "정재훈", "01088335697", "wjdthtjfltm@gamil.com", "TESTCODE"
     )
 
-    fun requestConfirm() {
+    fun requestConfirm(onError:(RemoteData.ApiError)->Unit) {
         viewModelScope.launch {
             val data = getInfo()
-            val result = (repository as SignUpRepository).requestConfirm(data)
+            val result = (repository as SignUpRepository).requestConfirm(data){
+                onError.invoke(it)
+            }
 
             result?.let {
                 if (it.errorMessage.isNullOrEmpty()) {
-                    confirm.postValue(it.data == "success")
+                    confirm.postValue(it)
                 }
             }
         }

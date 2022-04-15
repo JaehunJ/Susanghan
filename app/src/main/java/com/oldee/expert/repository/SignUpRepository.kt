@@ -2,6 +2,7 @@ package com.oldee.expert.repository
 
 import android.content.SharedPreferences
 import com.oldee.expert.base.BaseRepository
+import com.oldee.expert.retrofit.RemoteData
 import com.oldee.expert.retrofit.SusanghanService
 import com.oldee.expert.retrofit.request.SignUpRequest
 import com.oldee.expert.retrofit.request.StoreConfirmRequest
@@ -19,7 +20,7 @@ class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedP
     var pwConfirm: String = ""
     var marketingYn: Int = 0
 
-    suspend fun requestConfirm(data: StoreConfirmRequest) = call { api.requestStoreConfirm(data) }
+    suspend fun requestConfirm(data: StoreConfirmRequest, onError:(RemoteData.ApiError)->Unit) = call(onError){ api.requestStoreConfirm(data) }
 
     suspend fun requestSignUp(data: SignUpRequest) = call { api.requestSignUp(data) }
 }
