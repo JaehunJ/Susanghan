@@ -12,6 +12,7 @@ import com.oldee.expert.data.DESIGN_START
 import com.oldee.expert.data.DESIGN_STOP
 import com.oldee.expert.databinding.FragmentDesignDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class DesignDetailFragment :
@@ -27,10 +28,6 @@ class DesignDetailFragment :
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "디자인 상세"
         reformId = navArgs.id
-        adapter = DesignImageAdapter { iv, n ->
-            viewModel.setImage(iv, n)
-        }
-        binding.vpImage.adapter = adapter
 
         smallAdapter = DesignItemImageAdapter(requireContext())
         binding.rvItemSmall.adapter = smallAdapter
@@ -94,11 +91,15 @@ class DesignDetailFragment :
         }
 
         viewModel.imageList.observe(viewLifecycleOwner) {
+            adapter = DesignImageAdapter { iv, n ->
+                viewModel.setImage(iv, n)
+            }
+            binding.vpImage.adapter = adapter
+
             adapter.submitList(it)
 
             binding.indicator.setViewPager2(binding.vpImage)
             binding.indicator.refreshDots()
-//            binding.indicator.notifySubtreeAccessibilityStateChanged()
         }
 
     }
@@ -129,7 +130,9 @@ class DesignDetailFragment :
             setMessage("사용자들에게 이 디자인을 공개하지 않습니다.")
             setPositiveButton("판매중지") { d, t ->
                 d.dismiss()
-                viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_STOP)
+                viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_STOP){
+                    activityFuncFunction.showToast("주문중인 상품이 있습니다.")
+                }
             }
             setNegativeButton("취소") { d, t ->
                 d.dismiss()

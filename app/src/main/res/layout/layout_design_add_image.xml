@@ -23,15 +23,23 @@
             android:adjustViewBounds="true"
             app:layout_constraintDimensionRatio="1:1"/>
 
-        <ImageView
-            android:id="@+id/btn_delete"
+        <RelativeLayout
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:id="@+id/btn_delete"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:src="@drawable/icon_cancel"/>
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/icon_cancel"/>
+        </RelativeLayout>
+
 
 
 

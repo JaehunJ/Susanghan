@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import android.util.Log
+import androidx.core.net.toFile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
@@ -90,15 +91,15 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
         val blueList = viewingBluePrintImage.value
 
-        blueList?.let{
-            it.forEach { item->
-                if(item.type == IMAGE_URI && item.uri != null){
+        blueList?.let {
+            it.forEach { item ->
+                if (item.type == IMAGE_URI && item.uri != null) {
                     val file = copyToScopeStorage(context, item.uri)
-                    file?.let{
+                    file?.let {
                         offlinelist.add(file)
                     }
-                }else{
-                    resultList.add(item.path?:"")
+                } else {
+                    resultList.add(item.path ?: "")
                 }
             }
         }
@@ -146,7 +147,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 file?.let {
                     list.add(file)
                 }
-            }else{
+            } else {
                 str = it.path.toString()
             }
         }
@@ -335,7 +336,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 prepareItems
             )
 
-            if(mode == MODE_WRITE){
+            if (mode == MODE_WRITE) {
                 val result = (repository as DesignRepository).requestPostDesign(request)
                 if (result == null) {
 
@@ -344,7 +345,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 }
 
                 postResult.postValue(result)
-            }else{
+            } else {
                 val result = (repository as DesignRepository).requestModifyDesign(reformId, request)
                 if (result == null) {
 
@@ -359,6 +360,10 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
 
     fun copyToScopeStorage(context: Context, contentsUri: Uri): File? {
+        if(contentsUri.scheme!! == "file"){
+            return contentsUri.toFile()
+        }
+
         val parcelFileDiscripor = context.contentResolver?.openFileDescriptor(contentsUri, "r")
 
         parcelFileDiscripor?.let {

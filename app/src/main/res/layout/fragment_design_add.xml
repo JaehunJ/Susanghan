@@ -142,11 +142,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="상품명을 입력해주세요."
+                    app:hintEnabled="false"
                     app:boxStrokeColor="#d3d3d3"
                     app:hintTextColor="#d3d3d3">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:hint="상품명을 입력해주세요."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={data.reformName}" />
@@ -168,12 +169,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="가격을 숫자로 입력해주세요."
-                    app:boxStrokeColor="#d3d3d3"
                     app:hintEnabled="false"
+                    app:boxStrokeColor="#d3d3d3"
                     app:hintTextColor="#d3d3d3">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:hint="가격을 숫자로 입력해주세요."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -197,14 +198,14 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="디자인에 대한 설명을 입력해주세요."
+                    app:hintEnabled="false"
                     app:boxStrokeColor="#d3d3d3"
-
                     app:hintTextColor="#d3d3d3">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="디자인에 대한 설명을 입력해주세요."
                         android:gravity="top"
                         android:lines="5"
                         android:text="@={data.contents}" />
@@ -431,14 +432,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="숫자입력"
+                        app:hintEnabled="false"
+
                         android:textSize="14sp"
                         app:boxStrokeColor="#d3d3d3"
                         app:hintTextColor="#d3d3d3">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:padding="5dp"
+                            android:inputType="numberDecimal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:hint="숫자입력"
                             android:text="@={data.minDay}"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -472,11 +477,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="14sp"
-                        android:hint="숫자입력">
+                        app:hintEnabled="false"
+                        >
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:padding="5dp"
+                            android:inputType="numberDecimal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:hint="숫자입력"
                             android:text="@={data.maxDay}"/>
                     </com.google.android.material.textfield.TextInputLayout>
 

@@ -38,6 +38,7 @@ const val MODE_MODIFY = 1
 
 const val IMAGE_URI = 0
 const val IMAGE_SERVER = 1
+const val IMAGE_SCOPE_STORAGE = 3
 
 @AndroidEntryPoint
 class DesignAddFragment :
@@ -319,7 +320,6 @@ class DesignAddFragment :
                 list.add(Uri.fromFile(File(currentPhotoPath ?: "")))
             } else {
                 val selectedImage = data.data
-
 
                 selectedImage?.let {
                     val path = it.path
