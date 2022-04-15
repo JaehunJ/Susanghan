@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val lp = window.attributes as WindowManager.LayoutParams
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.attributes = lp
+//        val lp = window.attributes as WindowManager.LayoutParams
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+//        lp.height = WindowManager.LayoutParams.MATCH_PARENT
+//        window.attributes = lp
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = _binding.root

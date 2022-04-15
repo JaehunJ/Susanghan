@@ -13,6 +13,7 @@ import com.oldee.expert.data.PrepareItemMappingList
 import com.oldee.expert.data.PrepareItemMappingStringList
 import com.oldee.expert.databinding.DialogPrepareItemAddBinding
 import com.oldee.expert.databinding.LayoutDesignAddDialogPrepareItemBinding
+import com.oldee.expert.ui.MainActivity
 
 
 class PrepareItemDialogFragment(val onSuccess: (PrepareItem, String) -> Unit) : DialogFragment() {
@@ -20,7 +21,7 @@ class PrepareItemDialogFragment(val onSuccess: (PrepareItem, String) -> Unit) : 
     private var prepareItemBinding = mutableListOf<LayoutDesignAddDialogPrepareItemBinding>()
 
     private var name: String = ""
-    private var code: PrepareItem = PrepareItem.Etc
+    private var code: PrepareItem? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +55,7 @@ class PrepareItemDialogFragment(val onSuccess: (PrepareItem, String) -> Unit) : 
                 }
 
                 view.btnCheck.visibility = View.VISIBLE
-                code = view.prepareItem ?: PrepareItem.Etc
+                code = view.prepareItem
             }
             var type = view.prepareItem
             Glide.with(requireActivity()).load(PrepareItemMappingStringList[type?.value ?: "00"])
@@ -63,8 +64,12 @@ class PrepareItemDialogFragment(val onSuccess: (PrepareItem, String) -> Unit) : 
 
         binding.btnConfirm.setOnClickListener {
             name = binding.etName.editText?.text.toString()
-            onSuccess(code, name)
-            dismiss()
+            if (code == null || name.isEmpty()) {
+                (requireActivity() as MainActivity).showToast("누락된 정보가 있습니다.")
+            } else {
+                onSuccess(code!!, name)
+                dismiss()
+            }
         }
 
         binding.ivClose.setOnClickListener {

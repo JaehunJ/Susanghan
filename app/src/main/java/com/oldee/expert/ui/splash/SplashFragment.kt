@@ -35,6 +35,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it.all { per -> per.value == true }) {
                 loadNext()
+            }else{
+                requireActivity().finish()
             }
         }
 
