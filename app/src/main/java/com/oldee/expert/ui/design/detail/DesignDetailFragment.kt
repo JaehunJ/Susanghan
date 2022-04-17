@@ -27,6 +27,9 @@ class DesignDetailFragment :
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "디자인 상세"
+        binding.toolbar.ivBack.setOnClickListener {
+            navController?.popBackStack()
+        }
         reformId = navArgs.id
 
         smallAdapter = DesignItemImageAdapter(requireContext())

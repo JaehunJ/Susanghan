@@ -93,7 +93,6 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
     }
 
     override fun onRefresh() {
-        Log.e("#debug", "refresh")
         viewModel.requestDesignList(viewModel.page, 10, viewModel.reformStatus)
         binding.swList.isRefreshing = false
     }

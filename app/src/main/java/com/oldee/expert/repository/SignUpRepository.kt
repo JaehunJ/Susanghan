@@ -20,7 +20,7 @@ class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedP
     var pwConfirm: String = ""
     var marketingYn: Int = 0
 
-    suspend fun requestConfirm(data: StoreConfirmRequest, onError:(RemoteData.ApiError)->Unit) = call(onError){ api.requestStoreConfirm(data) }
+    suspend fun requestConfirm(data: StoreConfirmRequest, onError:(RemoteData.ApiError)->Unit) = call(onError){ api.requestStoreConfirm("clo",data) }
 
     suspend fun requestSignUp(data: SignUpRequest) = call { api.requestSignUp(data) }
 }

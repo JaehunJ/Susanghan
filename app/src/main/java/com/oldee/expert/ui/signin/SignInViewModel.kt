@@ -19,12 +19,15 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
+    init{
+        isCbAuto.postValue(true)
+    }
+
     fun checkAutoLogin():Boolean{
         val list = loadAutoLogin()
 
         return list.isNotEmpty()
     }
-
 
     fun requestSignIn(id: String, pw: String) {
         val repo = repository as SignInRepository
@@ -49,16 +52,6 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
             }
         }
     }
-//
-//    fun saveAutoLoginCheck(v:Boolean){
-//        repository.prefs.edit {
-//            putBoolean("enable_auto_login", v)
-//        }
-//    }
-//
-//    fun loadAutoLoginCheck():Boolean{
-//        return repository.prefs.getBoolean("enable_auto_login", false)
-//    }
 
     fun saveAutoLogin(id:String, pw:String){
         repository.saveLoginData(id,pw)

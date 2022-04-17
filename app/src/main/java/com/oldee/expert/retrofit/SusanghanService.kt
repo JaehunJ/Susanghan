@@ -11,6 +11,7 @@ import retrofit2.http.*
 interface SusanghanService {
     @GET("/api/v1/expert/versions")
     suspend fun requestVersionInfo(
+        @Header("Authorization") authorization: String = "clo",
         @Query("osType") osType:String = "android"
     ): Response<VersionInfoResponse>
 
@@ -48,6 +49,7 @@ interface SusanghanService {
 
     @POST("/api/v1/expert/store/certification")
     suspend fun requestStoreConfirm(
+        @Header("Authorization") authorization: String = "clo",
         @Body data: StoreConfirmRequest
     ): Response<StoreConfirmResponse>
 
@@ -147,5 +149,7 @@ interface SusanghanService {
     ): Response<ImageResponse>
 
     @GET("/api/v1/expert/etc/couriers")
-    suspend fun requestDeliveryList(): Response<DeliveryListResponse>
+    suspend fun requestDeliveryList(
+        @Header("Authorization") authorization: String = "clo"
+    ): Response<DeliveryListResponse>
 }

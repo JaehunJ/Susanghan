@@ -12,8 +12,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import androidx.core.view.children
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -21,7 +19,6 @@ import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.databinding.FragmentDesignAddBinding
-import com.oldee.expert.databinding.LayoutDesignAddImageBinding
 import com.oldee.expert.retrofit.response.DesignDetailResponse
 import com.oldee.expert.ui.dialog.PrepareItemDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,8 +47,10 @@ class DesignAddFragment :
     var currentPhotoPath: String? = null
     var photoUri: Uri? = null
 
-    val bindingImageView = mutableListOf<LayoutDesignAddImageBinding>()
+    //old
+//    val bindingImageView = mutableListOf<LayoutDesignAddImageBinding>()
     private lateinit var prepareItemAdapter: PrepareItemRecyclerViewAdapter
+    private lateinit var bluePrintAdapter: DesignBluePrintImageAdapter
 
     private val pictureActivityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -80,23 +79,39 @@ class DesignAddFragment :
             navController?.popBackStack()
         }
 
-        binding.llAddImage.setOnClickListener {
-            showFileSelector(IMAGE_ITEM)
-        }
-
-        binding.gridImage.children.forEachIndexed { index, v ->
-            if (index < 5) {
-                bindingImageView.add(DataBindingUtil.bind(v)!!)
-                bindingImageView[index].index = index
-                bindingImageView[index].root.tag = bindingImageView[index]
+        bluePrintAdapter = DesignBluePrintImageAdapter({
+            if (viewModel.getBluePrintImageCount() < viewModel.BLUE_IMAGE_MAX) {
+                showFileSelector(IMAGE_ITEM)
+            } else {
+                activityFuncFunction.showToast("이미지는 5개까지 첨부 가능합니다.")
             }
-        }
+        }, {
+            viewModel.deleteBluePrintImage(it)
+        }, { v, d -> setImage(v, d) })
+        binding.rvBlue.adapter = bluePrintAdapter
 
-        bindingImageView.forEach {
-            it.btnDelete.setOnClickListener { v ->
-                viewModel.deleteBluePrintImage(it.index ?: 0)
-            }
-        }
+        //old
+//        binding.llAddImage.setOnClickListener {
+//            if(viewModel.getBluePrintImageCount() < viewModel.BLUE_IMAGE_MAX){
+//                showFileSelector(IMAGE_ITEM)
+//            }else{
+//                activityFuncFunction.showToast("이미지는 5개까지 첨부 가능합니다.")
+//            }
+//        }
+//
+//        binding.gridImage.children.forEachIndexed { index, v ->
+//            if (index < 5) {
+//                bindingImageView.add(DataBindingUtil.bind(v)!!)
+//                bindingImageView[index].index = index
+//                bindingImageView[index].root.tag = bindingImageView[index]
+//            }
+//        }
+//
+//        bindingImageView.forEach {
+//            it.btnDelete.setOnClickListener { v ->
+//                viewModel.deleteBluePrintImage(it.index ?: 0)
+//            }
+//        }
 
         binding.llAddBefore.setOnClickListener {
             showFileSelector(IMAGE_BEFORE)
@@ -113,7 +128,9 @@ class DesignAddFragment :
 
         binding.btnPost.setOnClickListener {
             if (viewModel.isValueValidated()) {
-                viewModel.onClickPost(requireContext())
+                viewModel.onClickPost(requireContext()) {
+                    activityFuncFunction.showToast("이미지 업로드에 실패했습니다. 이미지 용량을 확인해 주세요.")
+                }
             } else {
                 activityFuncFunction.showToast("누락된 정보가 있습니다.")
             }
@@ -128,16 +145,30 @@ class DesignAddFragment :
 
     override fun initDataBinding() {
         viewModel.viewingBluePrintImage.observe(viewLifecycleOwner) {
-            binding.llAddImage.isEnabled = it.count() != 5
-            binding.btnAdd.isEnabled = it.count() != 5
-
-            for (i in 0 until 5) {
-                if (i < it.count()) {
-                    setImage(bindingImageView[i].ivProduct, it[i])
-                } else {
-                    bindingImageView[i].ivProduct.setImageResource(0)
+            val viewList = mutableListOf<DesignBluePrintImageAdapter.AdapterImageData>()
+            it?.let { list ->
+                list.forEach { item ->
+                    val str = when (item.type) {
+                        IMAGE_SERVER -> item.path
+                        else -> item.uri.toString()
+                    }
+                    val d = DesignBluePrintImageAdapter.AdapterImageData(str ?: "")
+                    viewList.add(d)
                 }
             }
+
+            viewList.add(DesignBluePrintImageAdapter.AdapterImageData("-1"))
+            bluePrintAdapter.submitList(viewList)
+//            binding.llAddImage.isEnabled = it.count() != 5
+//            binding.btnAdd.isEnabled = it.count() != 5
+//
+//            for (i in 0 until 5) {
+//                if (i < it.count()) {
+//                    setImage(bindingImageView[i].ivProduct, it[i])
+//                } else {
+//                    bindingImageView[i].ivProduct.setImageResource(0)
+//                }
+//            }
         }
 
         viewModel.beforeImagePath.observe(viewLifecycleOwner) {

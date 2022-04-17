@@ -24,11 +24,15 @@ import javax.inject.Inject
 @HiltViewModel
 class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     BaseViewModel(repository) {
-    //    val bluePrintImagePath = MutableLiveData<MutableList<Uri>>()
+
+    val BLUE_IMAGE_MAX = 5
+
     val bluePrintImagePostPath = mutableListOf<String>()
 
     val viewingBluePrintImage = MutableLiveData<MutableList<ImageData>>()
-    val uploadBluePrintImage = mutableListOf<ImageData>()
+    fun getBluePrintImageCount() = viewingBluePrintImage.value?.count() ?: 0
+
+//    val uploadBluePrintImage = mutableListOf<ImageData>()
 
     val beforeImagePath = MutableLiveData<ImageData?>()
     val beforeImagePostPath = mutableListOf<String>()
@@ -84,7 +88,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
-    private suspend fun requestPostBluePrintImage(context: Context): List<String>? {
+    private suspend fun requestPostBluePrintImage(onError:()->Unit, context: Context): List<String>? {
         val offlinelist = arrayListOf<File>()
 
         val resultList = arrayListOf<String>()
@@ -104,22 +108,16 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
             }
         }
 
-//        uploadBluePrintImage.forEachIndexed { idx, item ->
-//            if (item.type == IMAGE_URI && item.uri != null) {
-//                val file = copyToScopeStorage(context, item.uri)
-//                file?.let {
-//                    offlinelist.add(file)
-//                }
-//            } else {
-//                resultList.add(item.path ?: "")
-//            }
-//        }
-
         //오프라인 파일이 존재하면 서버에 업로드
         if (offlinelist.isNotEmpty()) {
             val multiBody = getImageBody("files", offlinelist)
             val repo = repository as DesignRepository
-            val res = repo.requestPostImage(multiBody)
+            val res = repo.requestPostImage(
+                {
+                    onError()
+                },
+                multiBody
+            )
 
             res?.let {
                 val imageList = it.data
@@ -155,7 +153,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         if (list.isNotEmpty()) {
             val multiBody = getImageBody("files", list)
             val repo = repository as DesignRepository
-            val res = repo.requestPostImage(multiBody)
+            val res = repo.requestPostImage(null, multiBody)
 
             res?.let {
                 val imageList = it.data
@@ -174,52 +172,13 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         val after = requestPostServerOneImage(context, afterImagePath)
 
         return listOf(before, after)
-
-//        val list = arrayListOf<File>()
-
-
-//        beforeImagePath.value?.let {
-//            if (it.uri != null) {
-//                val file = copyToScopeStorage(context, it.uri)
-//                file?.let {
-//                    list.add(file)
-//                }
-//            }
-//        }
-//        afterImagePath.value?.let {
-//            if (it.uri != null) {
-//                val file = copyToScopeStorage(context, it.uri)
-//                file?.let {
-//                    list.add(file)
-//                }
-//            }
-//        }
-
-//        val multiBody = getImageBody("files", list)
-//        val repo = repository as DesignRepository
-//        val res = repo.requestPostImage(multiBody)
-//
-//        res?.let {
-//            val imageList = it.data
-//
-//            if (imageList.isNotEmpty()) {
-//                val reList = mutableListOf<String>()
-//                imageList.forEach { d ->
-//                    reList.add(d.imageName)
-//                }
-//
-//                return reList
-//            }
-//        }
-//
-//        return null
     }
 
     fun addBluePrintImageServer(list: List<String>) {
         val blueList = viewingBluePrintImage.value ?: mutableListOf()
 
         blueList?.let {
-            if (it.size + list.size != 5) {
+            if (it.size < BLUE_IMAGE_MAX) {
                 list.forEach { item ->
                     val data = ImageData(IMAGE_SERVER, item, null)
                     it.add(data)
@@ -232,11 +191,11 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     fun addBluePrintImageList(list: List<Uri>) {
         val blueList = viewingBluePrintImage.value ?: mutableListOf()
         blueList?.let {
-            if (it.size + list.size != 5) {
+            if (it.size < BLUE_IMAGE_MAX) {
                 list.forEach { item ->
                     val data = ImageData(IMAGE_URI, null, item)
                     it.add(data)
-                    uploadBluePrintImage.add(data)
+//                    uploadBluePrintImage.add(data)
                 }
             }
         }
@@ -261,15 +220,15 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         list?.let {
             val item = it[index]
             it.remove(item)
-            if (item.type == IMAGE_URI) {
-                val temp = uploadBluePrintImage.find { t ->
-                    item.uri == t.uri
-                }
-
-                temp?.let { t ->
-                    uploadBluePrintImage.remove(t)
-                }
-            }
+//            if (item.type == IMAGE_URI) {
+//                val temp = uploadBluePrintImage.find { t ->
+//                    item.uri == t.uri
+//                }
+//
+//                temp?.let { t ->
+//                    uploadBluePrintImage.remove(t)
+//                }
+//            }
 
             viewingBluePrintImage.postValue(it)
         }
@@ -300,10 +259,10 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 prepareItemList.value?.count()!! > 1
 
 
-    fun onClickPost(context: Context) {
+    fun onClickPost(context: Context, onError: () -> Unit) {
         viewModelScope.launch {
             //get Image
-            val list1 = requestPostBluePrintImage(context)
+            val list1 = requestPostBluePrintImage(onError, context)
             val list2 = requestPostBeforeAfterImage(context)
 
             val bluePrintImageList = mutableListOf<DesignPostRequest.ImageData>()
@@ -360,7 +319,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
 
     fun copyToScopeStorage(context: Context, contentsUri: Uri): File? {
-        if(contentsUri.scheme!! == "file"){
+        if (contentsUri.scheme!! == "file") {
             return contentsUri.toFile()
         }
 

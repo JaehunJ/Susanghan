@@ -7,41 +7,75 @@
             name="index"
             type="Integer" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--old : no root margin-->
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#e4e4e4">
-
-        <ImageView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/iv_product"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/cl_exist"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="#d3d3d3"
-            android:adjustViewBounds="true"
-            app:layout_constraintDimensionRatio="1:1"/>
-
-        <RelativeLayout
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:id="@+id/btn_delete"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:paddingBottom="10dp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:background="#e4e4e4">
             <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:src="@drawable/icon_cancel"/>
-        </RelativeLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/iv_product"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#d3d3d3"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="1:1"/>
 
+            <RelativeLayout
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:id="@+id/btn_delete"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:paddingBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/icon_cancel"/>
+            </RelativeLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1">
+                <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:src="@drawable/icon_add" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

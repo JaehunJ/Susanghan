@@ -3,6 +3,7 @@ package com.oldee.expert.repository
 import android.content.SharedPreferences
 import com.oldee.expert.base.BaseRepository
 import com.oldee.expert.custom.getTextBody
+import com.oldee.expert.retrofit.RemoteData
 import com.oldee.expert.retrofit.SusanghanService
 import com.oldee.expert.retrofit.request.DesignPostRequest
 import com.oldee.expert.retrofit.request.DesignStatusUpdateRequest
@@ -26,8 +27,8 @@ class DesignRepository @Inject constructor(
     suspend fun requestChangeDesignStatus(reformId: Int, status: DesignStatusUpdateRequest) =
         call { api.requestChangeDesignStatus(getAccessToken(), reformId, status) }
 
-    suspend fun requestPostImage(list: List<MultipartBody.Part>) =
-        call {
+    suspend fun requestPostImage(onError:((RemoteData.ApiError) -> Unit)?, list: List<MultipartBody.Part>) =
+        call(onError) {
             api.requestPostImage(
                 getAccessToken(),
                 list,

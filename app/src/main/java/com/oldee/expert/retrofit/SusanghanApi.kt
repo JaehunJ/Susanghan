@@ -1,5 +1,6 @@
 package com.oldee.expert.retrofit
 
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +34,11 @@ object SusanghanApi {
     @Provides
     @Singleton
     fun getOkHttpClient(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor()
+        val interceptor = HttpLoggingInterceptor(object: HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                Log.e("#http", message +"")
+            }
+        })
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }

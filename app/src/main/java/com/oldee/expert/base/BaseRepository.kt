@@ -41,7 +41,7 @@ open class BaseRepository @Inject constructor(
                 RemoteData.Success(response.body()!!)
             }
         }else {
-            RemoteData.ApiError("999", "server Error")
+            RemoteData.ApiError(response.code().toString(), response.message())
         }
 
         when (result) {
@@ -50,20 +50,31 @@ open class BaseRepository @Inject constructor(
             is RemoteData.ApiError -> {
                 //token 에러일 경우
                 if (result.errorCode == "404") {
-                    if(result.errorMessage!!.contains("token")){
-                        val re = getNewToken()
+                    val msgLower = result.errorMessage
 
-                        return if (re == null) {
-                            Log.e("#debug", "token refresh exception")
-                            null
-                        } else {
-                            //토큰 다시 설정하고 다시 콜
-                            setToken(re.data)
-                            call(onError){ apiCall() }
-                        }
-                    }else {
+                    if(msgLower == null){
                         onError?.invoke(result)
                         return null
+                    }
+
+                    msgLower.let{msg->
+                        val lower = msg.lowercase()
+
+                        if(lower.contains("token")){
+                            val re = getNewToken()
+
+                            return if (re == null) {
+                                Log.e("#debug", "token refresh exception")
+                                null
+                            } else {
+                                //토큰 다시 설정하고 다시 콜
+                                setToken(re.data)
+                                return call(onError){ apiCall() }
+                            }
+                        }else{
+                            onError?.invoke(result)
+                            return null
+                        }
                     }
                 } else {
                     onError?.invoke(result)
