@@ -19,7 +19,7 @@ class DesignViewModel @Inject constructor(repository: DesignRepository) :
     var page = 0
     var reformStatus = ReformStatus.None.value
 
-    fun requestDesignList(page: Int, limit: Int, status: Int) {
+    fun requestDesignList(page: Int, limit: Int, status: Int, isAdded:Boolean=false) {
         val repo = super.repository as DesignRepository
         viewModelScope.launch {
             this@DesignViewModel.page = page
@@ -28,7 +28,25 @@ class DesignViewModel @Inject constructor(repository: DesignRepository) :
 
             if (result != null) {
                 if (result.errorMessage == null) {
-                    designList.postValue(result.data)
+                    if(isAdded){
+                        val newList = mutableListOf<DesignListResponse.DesignData>()
+                        val oldList = designList.value
+
+                        oldList?.let { l->
+                            l.forEach { item->
+                                newList.add(item)
+                            }
+                        }
+
+                        result.data.forEach {
+                            newList.add(it)
+                        }
+
+                        designList.postValue(newList.toList())
+
+                    }else{
+                        designList.postValue(result.data)
+                    }
                 } else {
                     designList.postValue(null)
                 }

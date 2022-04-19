@@ -44,9 +44,9 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     }
 
     override fun initDataBinding() {
-        val adapter = OrderListAdapter(navController!!, { iv, s ->
+        val adapter = OrderListAdapter(navController!!) { iv, s ->
             viewModel.setImage(iv, s)
-        })
+        }
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 if (it.isEmpty() && viewModel.page == 0) { // 비엇음
@@ -97,11 +97,12 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     }
 
     override fun onRefresh() {
+        viewModel.requestOrderCount()
         viewModel.requestOderList(viewModel.page, 10, viewModel.period)
         binding.swList.isRefreshing = false
     }
 
     fun addItem() {
-        viewModel.requestOderList(viewModel.page + 1, 10, viewModel.period)
+        viewModel.requestOderList(viewModel.page + 1, 10, viewModel.period, true)
     }
 }

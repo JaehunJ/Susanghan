@@ -1,7 +1,6 @@
 package com.oldee.expert.ui.design
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
@@ -11,7 +10,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.tabs.TabLayout
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
-import com.oldee.expert.custom.OnBottomReachedListener
 import com.oldee.expert.custom.OnScrollEndListener
 import com.oldee.expert.data.ReformStatus
 import com.oldee.expert.databinding.FragmentDesignBinding
@@ -19,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavArgs>(),
-    SwipeRefreshLayout.OnRefreshListener{
+    SwipeRefreshLayout.OnRefreshListener {
     override val layoutId: Int = R.layout.fragment_design
     override val viewModel: DesignViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -28,15 +26,15 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         binding.llBlankItem.visibility = View.VISIBLE
         binding.llExistItem.visibility = View.GONE
         binding.swList.setOnRefreshListener(this)
-        binding.rvList.addOnScrollListener(OnScrollEndListener{
+        binding.rvList.addOnScrollListener(OnScrollEndListener {
             addItem()
         })
     }
 
     override fun initDataBinding() {
-        val adapter = DesignListAdapter(findNavController(), { v, u ->
+        val adapter = DesignListAdapter(findNavController()) { v, u ->
             viewModel.setImage(v, u)
-        })
+        }
 
         viewModel.designList.observe(viewLifecycleOwner) {
             it?.let {
@@ -97,7 +95,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         binding.swList.isRefreshing = false
     }
 
-    fun addItem(){
-        viewModel.requestDesignList(viewModel.page+1, 10, viewModel.reformStatus)
+    fun addItem() {
+        viewModel.requestDesignList(viewModel.page + 1, 10, viewModel.reformStatus, true)
     }
 }

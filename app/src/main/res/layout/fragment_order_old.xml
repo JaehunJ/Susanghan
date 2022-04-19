@@ -248,6 +248,7 @@
                     android:fillViewport="true">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:layoutAnimation="@anim/layout_animation_fall_down"
                         android:id="@+id/rv_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

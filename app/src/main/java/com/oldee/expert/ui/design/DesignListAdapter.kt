@@ -7,7 +7,6 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.oldee.expert.custom.OnBottomReachedListener
 import com.oldee.expert.databinding.LayoutDesignItemBinding
 import com.oldee.expert.retrofit.response.DesignListResponse.DesignData
 

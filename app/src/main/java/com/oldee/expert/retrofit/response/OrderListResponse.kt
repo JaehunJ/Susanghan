@@ -2,7 +2,7 @@ package com.oldee.expert.retrofit.response
 
 data class OrderListResponse(
     val count: Int,
-    val data: List<OrderData>,
+    val data: MutableList<OrderData>,
     val status: Int,
     val message: String,
     override var errorMessage: String?,

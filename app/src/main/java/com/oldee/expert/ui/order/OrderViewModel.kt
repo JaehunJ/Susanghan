@@ -18,34 +18,41 @@ class OrderViewModel @Inject constructor(
 ) :
     BaseViewModel(repository) {
 
-    val orderList = MutableLiveData<List<OrderListResponse.OrderData>>()
+    val orderList = MutableLiveData<MutableList<OrderListResponse.OrderData>>()
     val orderCount = MutableLiveData<OrderCountResponse.OrderCountData>()
 
     var page = 0
     var period = 0
 
-    fun requestOrderCount(){
+    fun requestOrderCount() {
         val repo = repository as OrderListRepository
         viewModelScope.launch {
             val result = repo.requestOrderCount()
 
-            result?.let{
-                if(result.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (result.errorMessage.isNullOrEmpty()) {
                     orderCount.postValue(it.data)
                 }
             }
         }
     }
 
-    fun requestOderList(page: Int, limit: Int, period: Int) {
+    fun requestOderList(page: Int, limit: Int, period: Int, isAdded: Boolean = false) {
         val repo = repository as OrderListRepository
         viewModelScope.launch {
-            this@OrderViewModel.page =page
+            this@OrderViewModel.page = page
             this@OrderViewModel.period = period
             val result = repo.requestOderList(page, limit, period)
-            result?.let {
-                if (result.errorMessage == null)
-                    orderList.postValue(it.data)
+            result?.let {newData->
+                if (result.errorMessage == null) {
+                    if (isAdded) {
+                        val newList = orderList.value?.toMutableList()
+                        newList?.addAll(newData.data)
+                        orderList.postValue(newList?: mutableListOf())
+                    } else {
+                        orderList.postValue(newData.data)
+                    }
+                }
             }
         }
     }
@@ -58,9 +65,5 @@ class OrderViewModel @Inject constructor(
                 signRepo.userInfoRes = it
             }
         }
-    }
-
-    fun requestDeliveryList(){
-        viewModelScope
     }
 }

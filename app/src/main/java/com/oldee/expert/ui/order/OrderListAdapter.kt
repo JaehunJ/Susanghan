@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.oldee.expert.R
-import com.oldee.expert.custom.OnBottomReachedListener
 import com.oldee.expert.data.ClothCategoryCode
 import com.oldee.expert.data.OrderStatus
 import com.oldee.expert.data.OrderType
@@ -72,7 +71,7 @@ class OrderListAdapter(
                         )
 
                         bindSubOrderView(subBinding, it, imageCallback)
-
+                        binding.llOrders.removeAllViews()
                         binding.llOrders.addView(subBinding.root)
                     }
                 }
@@ -92,7 +91,6 @@ class OrderListAdapter(
                 navController.navigate(action)
             }
 
-//            binding.tvStatus.text =
         }
 
         fun bindSubOrderView(
@@ -138,17 +136,13 @@ class OrderListAdapter(
                 binding.ivOrderType.setImageResource(imgRes)
             }
         }
-
-        fun drawReform(data: OrderSubData) {
-
-        }
     }
 
     class OrderListDiffCallback : DiffUtil.ItemCallback<OrderData>() {
         override fun areItemsTheSame(
             oldItem: OrderData,
             newItem: OrderData
-        ) = oldItem.orderNum == newItem.orderNum
+        ) = oldItem.orderDetailId == newItem.orderDetailId
 
         override fun areContentsTheSame(
             oldItem: OrderData,

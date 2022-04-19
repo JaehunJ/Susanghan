@@ -34,11 +34,7 @@ object SusanghanApi {
     @Provides
     @Singleton
     fun getOkHttpClient(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor(object: HttpLoggingInterceptor.Logger {
-            override fun log(message: String) {
-                Log.e("#http", message +"")
-            }
-        })
+        val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
