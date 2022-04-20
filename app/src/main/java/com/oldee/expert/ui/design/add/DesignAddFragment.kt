@@ -48,7 +48,6 @@ class DesignAddFragment :
     var photoUri: Uri? = null
 
     //old
-//    val bindingImageView = mutableListOf<LayoutDesignAddImageBinding>()
     private lateinit var prepareItemAdapter: PrepareItemRecyclerViewAdapter
     private lateinit var bluePrintAdapter: DesignBluePrintImageAdapter
 

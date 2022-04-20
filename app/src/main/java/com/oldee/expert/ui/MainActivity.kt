@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
     private var useableTwiceBack = false
 
     var toast:Toast? = null
+    var prev:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
         val navController = navHostFragment!!.findNavController()
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            prev = destination.id
             when (destination.id) {
                 R.id.signInFragment -> {
                     useableTwiceBack = true
@@ -101,12 +103,43 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
             if (System.currentTimeMillis() - backTime > 1000) {
                 //show toast
                 backTime = System.currentTimeMillis()
-                showSnackBar("한번 더 누르시면 앱을 종료합니다.")
+                showToast("한번 더 누르시면 앱을 종료합니다.")
             } else {
                 this.finish()
             }
         } else {
             super.onBackPressed()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        when (prev) {
+            R.id.signInFragment -> {
+                useableTwiceBack = true
+                hideBottomNavi()
+            }
+            R.id.orderFragment -> {
+                useableTwiceBack = true
+                showBottomNavi()
+            }
+            R.id.csFragment -> {
+                useableTwiceBack = false
+                showBottomNavi()
+            }
+            R.id.designFragment -> {
+                useableTwiceBack = false
+                showBottomNavi()
+            }
+            R.id.moreFragment -> {
+                useableTwiceBack = false
+                showBottomNavi()
+            }
+            else -> {
+                useableTwiceBack = false
+                hideBottomNavi()
+            }
         }
     }
 }

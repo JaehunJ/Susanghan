@@ -52,13 +52,13 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                 if (it.isEmpty() && viewModel.page == 0) { // 비엇음
                     binding.llEmpty.visibility = View.VISIBLE
                     binding.llExist.visibility = View.GONE
-                    adapter.submitList(it)
+                    adapter.submitList(it.toMutableList())
                 } else if (it.isEmpty() && viewModel.page != 0) {
 
                 } else {
                     binding.llEmpty.visibility = View.GONE
                     binding.llExist.visibility = View.VISIBLE
-                    adapter.submitList(it)
+                    adapter.submitList(it.toMutableList())
                 }
             }
         }
@@ -73,7 +73,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
             }
         }
 
-//        binding.
         binding.rvList.adapter = adapter
     }
 

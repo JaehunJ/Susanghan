@@ -3,6 +3,7 @@ package com.oldee.expert.ui.order
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
+import com.oldee.expert.custom.ListLiveData
 import com.oldee.expert.repository.OrderListRepository
 import com.oldee.expert.repository.SignInRepository
 import com.oldee.expert.retrofit.response.OrderCountResponse
@@ -18,7 +19,7 @@ class OrderViewModel @Inject constructor(
 ) :
     BaseViewModel(repository) {
 
-    val orderList = MutableLiveData<MutableList<OrderListResponse.OrderData>>()
+    val orderList = ListLiveData<OrderListResponse.OrderData>()
     val orderCount = MutableLiveData<OrderCountResponse.OrderCountData>()
 
     var page = 0
@@ -46,11 +47,9 @@ class OrderViewModel @Inject constructor(
             result?.let {newData->
                 if (result.errorMessage == null) {
                     if (isAdded) {
-                        val newList = orderList.value?.toMutableList()
-                        newList?.addAll(newData.data)
-                        orderList.postValue(newList?: mutableListOf())
+                        orderList.add(newData.data)
                     } else {
-                        orderList.postValue(newData.data)
+                        orderList.add(newData.data)
                     }
                 }
             }
