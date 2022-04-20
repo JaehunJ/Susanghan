@@ -1,6 +1,7 @@
 package com.oldee.expert.ui.order
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.custom.ListLiveData
@@ -14,16 +15,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(
+    val state: SavedStateHandle,
     repository: OrderListRepository,
     private val signRepo: SignInRepository
 ) :
     BaseViewModel(repository) {
 
     val orderList = ListLiveData<OrderListResponse.OrderData>()
+
     val orderCount = MutableLiveData<OrderCountResponse.OrderCountData>()
 
     var page = 0
     var period = 0
+
 
     fun requestOrderCount() {
         val repo = repository as OrderListRepository
@@ -44,12 +48,13 @@ class OrderViewModel @Inject constructor(
             this@OrderViewModel.page = page
             this@OrderViewModel.period = period
             val result = repo.requestOderList(page, limit, period)
-            result?.let {newData->
+            result?.let { newData ->
                 if (result.errorMessage == null) {
                     if (isAdded) {
-                        orderList.add(newData.data)
+                        if (newData.data.isNotEmpty())
+                            orderList.add(newData.data)
                     } else {
-                        orderList.add(newData.data)
+                        orderList.replace(newData.data.toMutableList())
                     }
                 }
             }

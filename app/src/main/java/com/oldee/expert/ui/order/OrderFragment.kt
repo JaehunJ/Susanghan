@@ -81,7 +81,8 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         viewModel.requestUserProfile()
 
         //첫 탭 선택
-        topSort[0].root.performClick()
+        if(viewModel.orderList.getItemCount() == 0)
+            topSort[0].root.performClick()
     }
 
     private fun selectItem(selectedIdx: Int) {
@@ -97,7 +98,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     override fun onRefresh() {
         viewModel.requestOrderCount()
-        viewModel.requestOderList(viewModel.page, 10, viewModel.period)
+        viewModel.requestOderList(0, 10, viewModel.period)
         binding.swList.isRefreshing = false
     }
 

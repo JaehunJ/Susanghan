@@ -92,6 +92,14 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
         Snackbar.make(_binding.root.rootView, msg, Snackbar.LENGTH_SHORT).show()
     }
 
+    override fun showSnackBarWithButton(msg: String, btnText:String, onClick:()->Unit){
+        Snackbar.make(_binding.root.rootView, msg, Snackbar.LENGTH_SHORT).apply {
+            setAction(btnText){
+                onClick()
+            }
+        }.show()
+    }
+
     override fun showToast(msg: String) {
         toast?.cancel()
         toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT)

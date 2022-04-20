@@ -40,6 +40,14 @@ class OrderListAdapter(
 
     }
 
+    override fun submitList(list: MutableList<OrderData>?) {
+        super.submitList(list?.let{ArrayList(it)})
+    }
+
+    override fun submitList(list: MutableList<OrderData>?, commitCallback: Runnable?) {
+        super.submitList(list?.let{ArrayList(it)}, commitCallback)
+    }
+
     class OrderListViewHolder(val binding: LayoutOrderItemOldBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {

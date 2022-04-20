@@ -1,11 +1,20 @@
 package com.oldee.expert.custom
 
+import android.os.Parcelable
 import androidx.lifecycle.MutableLiveData
+import kotlinx.parcelize.Parcelize
 
 class ListLiveData<T> : MutableLiveData<MutableList<T>>() {
-    val temp = mutableListOf<T>()
+    var temp = mutableListOf<T>()
 
     init {
+        value = temp
+    }
+
+    fun getItemCount() = value?.count() ?: 0
+
+    fun replace(items: MutableList<T>) {
+        temp = items
         value = temp
     }
 
