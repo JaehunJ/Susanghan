@@ -29,5 +29,4 @@ class SignUpResultFragment :
     override fun initAfterBinding() {
 
     }
-
 }

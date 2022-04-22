@@ -35,16 +35,16 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
-    fun requestDesignDetailStateUpdate(reformId: Int, status: Int, onError:(()->Unit)? = null) {
+    fun requestDesignDetailStateUpdate(reformId: Int, status: Int, onError: (() -> Unit)? = null) {
         viewModelScope.launch {
             val repo = repository as DesignRepository
             val result = repo.requestChangeDesignStatus(reformId, DesignStatusUpdateRequest(status))
 
             if (result != null) {
                 var data = result.data as String
-                if(data.isNotEmpty() && data == "No Delete"){
+                if (data.isNotEmpty() && data == "No Delete") {
                     onError?.invoke()
-                }else{
+                } else {
                     requestDesignDetail(reformId)
                 }
             }

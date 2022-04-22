@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.databinding.FragmentCsDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.oldee.expert.R
 
 @AndroidEntryPoint
 class CsDetailFragment : BaseFragment<FragmentCsDetailBinding, CsDetailViewModel, NavArgs>() {

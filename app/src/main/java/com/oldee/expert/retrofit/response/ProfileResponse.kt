@@ -16,7 +16,7 @@ data class ProfileResponse(
         val userPhone: String,
         val userUuid: Int,
         val userStatus: Int,
-        val profileImg:String?,
+        val profileImg: String?,
         val reason: String?
     )
 }

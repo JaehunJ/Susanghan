@@ -25,6 +25,6 @@ class OrderListRepository @Inject constructor(
     suspend fun requestDeliveryList() =
         call { api.requestDeliveryList() }
 
-    suspend fun requestChangeOrderStatus(data:OrderStatusUpdateRequest) =
-        call{api.requestChangeOrderStatus(getAccessToken(), data)}
+    suspend fun requestChangeOrderStatus(data: OrderStatusUpdateRequest) =
+        call { api.requestChangeOrderStatus(getAccessToken(), data) }
 }

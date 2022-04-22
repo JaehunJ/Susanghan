@@ -27,7 +27,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
         }
 
         binding.llLogout.setOnClickListener {
-            activity?.let{
+            activity?.let {
                 viewModel.logout()
                 it.finishAffinity()
                 val intent = Intent(requireContext(), MainActivity::class.java)
@@ -78,17 +78,17 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
     override fun initDataBinding() {
         viewModel.res.observe(viewLifecycleOwner) {
             it?.let { d ->
-                when(d.userStatus){
-                    UserStatus.Stop.value->{
+                when (d.userStatus) {
+                    UserStatus.Stop.value -> {
                         binding.llStart.visibility = View.VISIBLE
                         binding.llStop.visibility = View.GONE
                     }
-                    UserStatus.Withdraw.value->{
+                    UserStatus.Withdraw.value -> {
                         binding.tvWithdrawSub.visibility = View.VISIBLE
                         binding.llStart.isClickable = false
                         binding.llStop.isClickable = false
                     }
-                    else->{
+                    else -> {
                         binding.llStop.visibility = View.VISIBLE
                     }
                 }

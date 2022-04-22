@@ -20,8 +20,8 @@ class FaqViewModel @Inject constructor(repository: EtcServiceRepository) :
         viewModelScope.launch {
             val result = repo.requestFaq(page, limit)
 
-            result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (it.errorMessage.isNullOrEmpty()) {
                     data.postValue(it.data)
                 }
             }

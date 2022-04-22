@@ -85,7 +85,7 @@ class SignUpPwFragment :
 
     }
 
-    fun moveNext(){
+    fun moveNext() {
         val action =
             SignUpPwFragmentDirections.actionSignUpPwFragmentToSignUpResultFragment()
         navController?.navigate(action)

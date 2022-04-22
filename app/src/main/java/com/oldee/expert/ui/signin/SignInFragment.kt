@@ -25,7 +25,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
             val id = viewModel.id.value
             val pw = viewModel.pw.value
             if (!id.isNullOrEmpty() && !pw.isNullOrEmpty()) {
-                viewModel.requestSignIn(viewModel.id.value?:"", viewModel.pw.value?:"")
+                viewModel.requestSignIn(viewModel.id.value ?: "", viewModel.pw.value ?: "")
             } else {
                 activityFuncFunction.showToast("아이디와 비밀번호를 입력해주세요.")
             }
@@ -66,7 +66,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     }
 
     override fun initAfterBinding() {
-        if(viewModel.checkAutoLogin()){
+        if (viewModel.checkAutoLogin()) {
             val list = viewModel.loadAutoLogin()
 
             viewModel.requestSignIn(list[0], list[1])

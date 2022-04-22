@@ -31,7 +31,7 @@ class MoreViewModel @Inject constructor(repository: SignInRepository) : BaseView
         }
     }
 
-    fun getVersionInfo(context: Context){
+    fun getVersionInfo(context: Context) {
         val info = context.packageManager.getPackageInfo(context.packageName, 0)
         versionName.postValue(info.versionName)
     }

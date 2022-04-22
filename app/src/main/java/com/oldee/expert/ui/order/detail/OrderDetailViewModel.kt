@@ -17,8 +17,8 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
 
     val data = MutableLiveData<OrderDetailResponse>()
     val deliveryList = MutableLiveData<DeliveryListResponse>()
-    var courierCode:String = ""
-    var invoiceNumber:String = ""
+    var courierCode: String = ""
+    var invoiceNumber: String = ""
     val successStatusChange = MutableLiveData<Boolean>()
 
     fun requestOrderDetail(id: Int) {
@@ -33,12 +33,12 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
         }
     }
 
-    fun requestChangeStatus(status:Int){
+    fun requestChangeStatus(status: Int) {
         viewModelScope.launch {
             val arr = mutableListOf<Int>()
-            data.value?.let{
-                it.data.forEach { d->
-                    arr.add(d.orderDetailId?:0)
+            data.value?.let {
+                it.data.forEach { d ->
+                    arr.add(d.orderDetailId ?: 0)
                 }
             }
 
@@ -46,7 +46,7 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
                 OrderStatusUpdateRequest(arr, status, courierCode, invoiceNumber)
             )
 
-            result?.let{
+            result?.let {
                 successStatusChange.postValue(it.errorMessage.isNullOrEmpty())
 //                if(it.errorMessage.isNullOrEmpty()){
 //
@@ -55,12 +55,12 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
         }
     }
 
-    fun requestCarriedCompany(){
+    fun requestCarriedCompany() {
         viewModelScope.launch {
             val result = (repository as OrderListRepository).requestDeliveryList()
 
-            result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (it.errorMessage.isNullOrEmpty()) {
                     deliveryList.postValue(it)
                 }
             }

@@ -18,11 +18,12 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
 
     var userInfoRes: ProfileResponse? = null
 
-    suspend fun requestSignIn(id: String, pw: String, onError:(RemoteData.ApiError)->Unit) = call(onError) {
-        api.requestSignIn(
-            "clo", SignInRequest(id, pw)
-        )
-    }
+    suspend fun requestSignIn(id: String, pw: String, onError: (RemoteData.ApiError) -> Unit) =
+        call(onError) {
+            api.requestSignIn(
+                "clo", SignInRequest(id, pw)
+            )
+        }
 
     fun setUserId(id: String) {
         prefs.edit {
@@ -42,7 +43,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
         api.requestUserStatusChange(getAccessToken(), data)
     }
 
-    fun logout(){
+    fun logout() {
         userInfoRes = null
         removeLoginData()
     }

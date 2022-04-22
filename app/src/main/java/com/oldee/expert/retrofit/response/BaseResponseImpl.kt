@@ -5,4 +5,5 @@ data class BaseResponseImpl(
     val status: Int,
     val message: String,
     val data: Any?,
-    override var errorMessage: String?, override var errorCode: String?):BaseResponse()
+    override var errorMessage: String?, override var errorCode: String?
+) : BaseResponse()

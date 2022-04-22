@@ -9,9 +9,9 @@ class ListLiveData<T> : MutableLiveData<MutableList<T>>() {
         value = temp
     }
 
-    fun getItemCount() = value?.count()?:0
+    fun getItemCount() = value?.count() ?: 0
 
-    fun replace(items:List<T>){
+    fun replace(items: List<T>) {
         temp = items.toMutableList()
         value = temp
     }

@@ -19,11 +19,11 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
-    init{
+    init {
         isCbAuto.postValue(true)
     }
 
-    fun checkAutoLogin():Boolean{
+    fun checkAutoLogin(): Boolean {
         val list = loadAutoLogin()
 
         return list.isNotEmpty()
@@ -32,7 +32,7 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
     fun requestSignIn(id: String, pw: String) {
         val repo = repository as SignInRepository
         CoroutineScope(Dispatchers.IO).launch {
-            val result = repo.requestSignIn(id, pw){
+            val result = repo.requestSignIn(id, pw) {
                 signInResponse.postValue(null)
             }
 
@@ -42,9 +42,9 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
 //                    repo.setUserId(id)
 
                     signInResponse.postValue(it)
-                    if(it.message == "success"){
+                    if (it.message == "success") {
 //                        saveAutoLoginCheck(isCbAuto.value?:false)
-                        if(isCbAuto.value == true){
+                        if (isCbAuto.value == true) {
                             saveAutoLogin(id, pw)
                         }
                     }
@@ -53,11 +53,11 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
         }
     }
 
-    fun saveAutoLogin(id:String, pw:String){
-        repository.saveLoginData(id,pw)
+    fun saveAutoLogin(id: String, pw: String) {
+        repository.saveLoginData(id, pw)
     }
 
-    fun loadAutoLogin():List<String>{
+    fun loadAutoLogin(): List<String> {
         val list = repository.loadLoginData()
 
         return list

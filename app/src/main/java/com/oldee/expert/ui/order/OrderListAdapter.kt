@@ -41,11 +41,11 @@ class OrderListAdapter(
     }
 
     override fun submitList(list: MutableList<OrderData>?) {
-        super.submitList(list?.let{ArrayList(it)})
+        super.submitList(list?.let { ArrayList(it) })
     }
 
     override fun submitList(list: MutableList<OrderData>?, commitCallback: Runnable?) {
-        super.submitList(list?.let{ArrayList(it)}, commitCallback)
+        super.submitList(list?.let { ArrayList(it) }, commitCallback)
     }
 
     class OrderListViewHolder(val binding: LayoutOrderItemOldBinding) :

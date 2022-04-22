@@ -14,17 +14,17 @@ import javax.inject.Inject
 class WithdrawViewModel @Inject constructor(repository: SignInRepository) :
     BaseViewModel(repository) {
 
-    val status:Int = 0
+    val status: Int = 0
     val res = MutableLiveData<UserStatusChangeResponse>()
 
-    fun requestUserStatusChange(status:Int, msg:String){
+    fun requestUserStatusChange(status: Int, msg: String) {
         val repo = repository as SignInRepository
         viewModelScope.launch {
             val data = UserStatusChangeRequest(status, msg)
             val result = repo.requestUserStatusChange(data)
 
-            result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (it.errorMessage.isNullOrEmpty()) {
                     res.postValue(it)
                 }
             }

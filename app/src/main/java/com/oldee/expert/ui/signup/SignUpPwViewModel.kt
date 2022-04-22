@@ -30,15 +30,16 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
 
     val isSuccess = MutableLiveData<SignUpResponse>()
 
-    fun isValidate() = pw.value != null && pwConfirm.value != null && pw.value == pwConfirm.value && isSamePw() && isPasswordValid()
+    fun isValidate() =
+        pw.value != null && pwConfirm.value != null && pw.value == pwConfirm.value && isSamePw() && isPasswordValid()
 
     fun isSamePw() = pw.value == pwConfirm.value
 
-    fun isPasswordValid():Boolean{
+    fun isPasswordValid(): Boolean {
         val regex = Regex("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{8,16}")
-        val result = regex.matches(pw.value?:"")
+        val result = regex.matches(pw.value ?: "")
 
-        val result2 = regex.matches(pwConfirm.value?:"")
+        val result2 = regex.matches(pwConfirm.value ?: "")
 
         return result && result2
     }

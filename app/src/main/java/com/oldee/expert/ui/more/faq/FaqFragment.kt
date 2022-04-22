@@ -6,10 +6,10 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
-import com.oldee.expert.base.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
 import com.oldee.expert.R
+import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.databinding.FragmentFaqBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
@@ -38,12 +38,12 @@ class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
     }
 
     override fun initDataBinding() {
-        viewModel.data.observe(viewLifecycleOwner){
+        viewModel.data.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }
 
     override fun initAfterBinding() {
-        viewModel.requestFaqList(0,10)
+        viewModel.requestFaqList(0, 10)
     }
 }

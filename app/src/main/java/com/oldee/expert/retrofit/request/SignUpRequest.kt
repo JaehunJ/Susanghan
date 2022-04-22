@@ -7,8 +7,8 @@ data class SignUpRequest(
     val userEmail: String,
     val userAlertYn: Int,
     val userPhone: String,
-    val recommendCode:String,
+    val recommendCode: String,
     val userMarketingYn: Int = 0,
     val userPolicyYn: Int = 0,
-    val userOsType: String="android"
+    val userOsType: String = "android"
 )

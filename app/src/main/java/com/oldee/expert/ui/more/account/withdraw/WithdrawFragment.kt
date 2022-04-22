@@ -25,17 +25,20 @@ class WithdrawFragment : BaseFragment<FragmentWithdrawBinding, WithdrawViewModel
         }
 
         binding.btnConfirm.setOnClickListener {
-            if(binding.cbCheck.isChecked){
-                viewModel.requestUserStatusChange(UserStatus.Withdraw.value, binding.etText.text.toString())
-            }else{
+            if (binding.cbCheck.isChecked) {
+                viewModel.requestUserStatusChange(
+                    UserStatus.Withdraw.value,
+                    binding.etText.text.toString()
+                )
+            } else {
                 activityFuncFunction.showToast("체크 확인.")
             }
         }
     }
 
     override fun initDataBinding() {
-        viewModel.res.observe(viewLifecycleOwner){
-            it?.let{
+        viewModel.res.observe(viewLifecycleOwner) {
+            it?.let {
                 MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
                     .setTitle(resources.getString(R.string.withdraw_dialog_title))
                     .setMessage(resources.getString(R.string.withdraw_dialog_subtext))

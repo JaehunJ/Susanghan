@@ -12,7 +12,7 @@ class EtcServiceRepository(
         api.requestNotice(getAccessToken(), page)
     }
 
-    suspend fun requestFaq(page:Int, limit:Int) = call{
+    suspend fun requestFaq(page: Int, limit: Int) = call {
         api.requestFaq(getAccessToken(), page, limit)
     }
 }

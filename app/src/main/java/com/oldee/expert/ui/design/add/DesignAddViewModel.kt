@@ -161,7 +161,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         val before = requestPostServerOneImage(context, beforeImagePath)
         val after = requestPostServerOneImage(context, afterImagePath)
 
-        if(before.isNotEmpty() || after.isNotEmpty())
+        if (before.isNotEmpty() || after.isNotEmpty())
             return listOf(before, after)
 
         return null
@@ -266,7 +266,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
             //수선 전,후 이미지 리스트
             val list2 = requestPostBeforeAfterImage(context)
 
-            if(list1 == null || list2 == null)
+            if (list1 == null || list2 == null)
                 onError()
 
             //미리보기 이미지 처리

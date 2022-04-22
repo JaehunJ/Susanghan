@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,43 +14,43 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_sign_up_reuslt_big"/>
+                    android:src="@drawable/icon_sign_up_reuslt_big" />
 
                 <TextView
-                    android:layout_marginTop="40dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
                     android:text="@string/app_title"
                     android:textColor="@color/color_2f389f"
-                    android:textSize="22sp"/>
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_welcom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/signup_result"
-                    android:textStyle="bold"
                     android:textColor="@color/color_2f389f"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
-
             <LinearLayout
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_confirm"
@@ -71,36 +71,33 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <!--        <TextView-->
+        <!--            android:layout_marginTop="135dp"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textSize="22sp"-->
+        <!--            android:textColor="@color/color_2f389f"-->
+        <!--            android:text="OLDEE"/>-->
+        <!--        <TextView-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textSize="22sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:textColor="@color/color_2f389f"-->
+        <!--            android:text="가입을 환영합니다."/>-->
 
-
-<!--        <TextView-->
-<!--            android:layout_marginTop="135dp"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="22sp"-->
-<!--            android:textColor="@color/color_2f389f"-->
-<!--            android:text="OLDEE"/>-->
-<!--        <TextView-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="22sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="@color/color_2f389f"-->
-<!--            android:text="가입을 환영합니다."/>-->
-
-<!--        <TextView-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_marginTop="45dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="12sp"-->
-<!--            android:text="@string/signup_result"/>-->
-
+        <!--        <TextView-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:layout_marginTop="45dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textSize="12sp"-->
+        <!--            android:text="@string/signup_result"/>-->
 
 
     </LinearLayout>

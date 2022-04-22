@@ -81,7 +81,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         viewModel.requestUserProfile()
 
         //첫 탭 선택
-        if(viewModel.orderList.getItemCount() == 0)
+        if (viewModel.orderList.getItemCount() == 0)
             topSort[0].root.performClick()
     }
 

@@ -27,7 +27,10 @@ class DesignRepository @Inject constructor(
     suspend fun requestChangeDesignStatus(reformId: Int, status: DesignStatusUpdateRequest) =
         call { api.requestChangeDesignStatus(getAccessToken(), reformId, status) }
 
-    suspend fun requestPostImage(onError:((RemoteData.ApiError) -> Unit)?, list: List<MultipartBody.Part>) =
+    suspend fun requestPostImage(
+        onError: ((RemoteData.ApiError) -> Unit)?,
+        list: List<MultipartBody.Part>
+    ) =
         call(onError) {
             api.requestPostImage(
                 getAccessToken(),
@@ -40,7 +43,7 @@ class DesignRepository @Inject constructor(
         api.requestAddDesign(getAccessToken(), request)
     }
 
-    suspend fun requestModifyDesign(id:Int, request:DesignPostRequest) = call{
+    suspend fun requestModifyDesign(id: Int, request: DesignPostRequest) = call {
         api.requestModifyDesign(getAccessToken(), id, request)
     }
 }

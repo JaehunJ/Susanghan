@@ -21,7 +21,11 @@ class TermFragment : BaseFragment<FragmentTermBinding, TermViewModel, NavArgs>()
     override val viewModel: TermViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
-    private val urls = arrayListOf(BuildConfig.BASE_URL + "api/v1/policy/service", BuildConfig.BASE_URL + "/api/v1/policy/privacy", "")
+    private val urls = arrayListOf(
+        BuildConfig.BASE_URL + "api/v1/policy/service",
+        BuildConfig.BASE_URL + "/api/v1/policy/privacy",
+        ""
+    )
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "이용정책"

@@ -15,7 +15,6 @@ import com.oldee.expert.ui.dialog.OrderCarryDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
-
 @AndroidEntryPoint
 class OrderDetailFragment :
     BaseFragment<FragmentOrderDetailBinding, OrderDetailViewModel, OrderDetailFragmentArgs>() {
@@ -25,7 +24,7 @@ class OrderDetailFragment :
 
     lateinit var subAdapter: OrderDetailSubAdapter
 
-    companion object{
+    companion object {
         const val COLOR_WHITE = "#ffffff"
         const val COLOR_GRAY = "#"
     }
@@ -46,7 +45,7 @@ class OrderDetailFragment :
         binding.btnCarry.setOnClickListener {
             OrderCarryDialogFragment(
                 { item, num ->
-                    viewModel.courierCode = item?.courerCode?:""
+                    viewModel.courierCode = item?.courerCode ?: ""
                     viewModel.invoiceNumber = num
                     viewModel.requestChangeStatus(OrderStatus.ShipmentComplete.value)
                 },

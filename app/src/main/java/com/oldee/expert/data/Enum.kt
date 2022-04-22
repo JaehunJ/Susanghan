@@ -3,14 +3,14 @@ package com.oldee.expert.data
 import com.oldee.expert.R
 
 
-enum class AppStatus(val value:Int){
+enum class AppStatus(val value: Int) {
     None(0),
     Update(1),
     ForceUpdate(2),
     Check(9)
 }
 
-enum class UserStatus(val value:Int){
+enum class UserStatus(val value: Int) {
     Normal(0),
     Start(1),
     Stop(2),

@@ -23,11 +23,11 @@ class OnScrollEndListener(val callBack: () -> Unit) :
         super.onScrollStateChanged(recyclerView, newState)
 
         //top 스크롤 리프래시 방지
-        if(!recyclerView.canScrollVertically(-1) && !recyclerView.canScrollVertically(1))
+        if (!recyclerView.canScrollVertically(-1) && !recyclerView.canScrollVertically(1))
             return
 
         //bottom 스크롤 리프래시
-        if(!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE){
+        if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
             Log.e("#debug", "refresh")
             callBack.invoke()
         }

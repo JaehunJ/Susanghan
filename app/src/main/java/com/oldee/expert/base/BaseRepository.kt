@@ -17,7 +17,6 @@ import com.oldee.expert.retrofit.response.BaseResponse
 import com.oldee.expert.retrofit.response.NewTokenResponse
 import com.oldee.expert.retrofit.response.SignInResponse
 import retrofit2.Response
-import java.io.IOException
 import javax.inject.Inject
 
 open class BaseRepository @Inject constructor(
@@ -35,12 +34,12 @@ open class BaseRepository @Inject constructor(
         isLoading.postValue(false)
 
         val result = if (response.isSuccessful) {
-            if(response.body() != null && !response.body()!!.errorMessage.isNullOrEmpty()){
+            if (response.body() != null && !response.body()!!.errorMessage.isNullOrEmpty()) {
                 RemoteData.ApiError(response.body()!!.errorCode, response.body()!!.errorMessage)
-            }else{
+            } else {
                 RemoteData.Success(response.body()!!)
             }
-        }else {
+        } else {
             RemoteData.ApiError(response.code().toString(), response.message())
         }
 
@@ -52,15 +51,15 @@ open class BaseRepository @Inject constructor(
                 if (result.errorCode == "404") {
                     val msgLower = result.errorMessage
 
-                    if(msgLower == null){
+                    if (msgLower == null) {
                         onError?.invoke(result)
                         return null
                     }
 
-                    msgLower.let{msg->
+                    msgLower.let { msg ->
                         val lower = msg.lowercase()
 
-                        if(lower.contains("token")){
+                        if (lower.contains("token")) {
                             val re = getNewToken()
 
                             return if (re == null) {
@@ -69,9 +68,9 @@ open class BaseRepository @Inject constructor(
                             } else {
                                 //토큰 다시 설정하고 다시 콜
                                 setToken(re.data)
-                                return call(onError){ apiCall() }
+                                return call(onError) { apiCall() }
                             }
-                        }else{
+                        } else {
                             onError?.invoke(result)
                             return null
                         }
@@ -136,7 +135,7 @@ open class BaseRepository @Inject constructor(
 //        return str
 //    }
 
-    fun saveLoginData(id:String, pw:String){
+    fun saveLoginData(id: String, pw: String) {
         prefs.edit {
             putString(USER_ID, id)
             putString(USER_PW, pw)
@@ -144,21 +143,21 @@ open class BaseRepository @Inject constructor(
         }
     }
 
-    fun loadLoginData():List<String>{
+    fun loadLoginData(): List<String> {
         val list = mutableListOf<String>()
-        val id = prefs.getString(USER_ID, "")?:""
-        val pw = prefs.getString(USER_PW, "")?:""
+        val id = prefs.getString(USER_ID, "") ?: ""
+        val pw = prefs.getString(USER_PW, "") ?: ""
 
-        if(id.isNotEmpty())
+        if (id.isNotEmpty())
             list.add(id)
 
-        if(pw.isNotEmpty())
+        if (pw.isNotEmpty())
             list.add(pw)
 
         return list
     }
 
-    fun removeLoginData(){
+    fun removeLoginData() {
         prefs.edit {
             remove(USER_ID)
             remove(USER_PW)

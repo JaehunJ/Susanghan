@@ -24,8 +24,8 @@ class ProfileDetailFragment :
     }
 
     override fun initDataBinding() {
-        viewModel.data.observe(viewLifecycleOwner){
-            if(it != null){
+        viewModel.data.observe(viewLifecycleOwner) {
+            if (it != null) {
                 binding.data = it.data
             }
         }

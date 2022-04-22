@@ -12,7 +12,6 @@ import com.oldee.expert.data.DESIGN_START
 import com.oldee.expert.data.DESIGN_STOP
 import com.oldee.expert.databinding.FragmentDesignDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class DesignDetailFragment :
@@ -89,7 +88,8 @@ class DesignDetailFragment :
 
             //text
 
-            binding.tvDate.text = String.format(getString(R.string.design_detail_date), it.minDay, it.maxDay)
+            binding.tvDate.text =
+                String.format(getString(R.string.design_detail_date), it.minDay, it.maxDay)
 //                "택배 수령 후 ${it.minDay}-${it.maxDay}일정도의 제작기간이 소요됩니다.\n제작 완료 시 택배사 사정에 따라 배송시간이 달라질 수 있습니다"
         }
 
@@ -133,7 +133,7 @@ class DesignDetailFragment :
             setMessage(R.string.dialog_design_detail_stop_contents)
             setPositiveButton("판매중지") { d, t ->
                 d.dismiss()
-                viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_STOP){
+                viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_STOP) {
                     activityFuncFunction.showToast("주문중인 상품이 있습니다.")
                 }
             }

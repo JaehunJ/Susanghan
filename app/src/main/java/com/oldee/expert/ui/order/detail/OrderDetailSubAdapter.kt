@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oldee.expert.databinding.LayoutOrderDetailItemBinding
 import com.oldee.expert.retrofit.response.OrderDetailResponse
 
-class OrderDetailSubAdapter(val imageCallback:(ImageView, String)->Unit) :
+class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
     ListAdapter<OrderDetailResponse.OrderDetailSub, OrderDetailSubAdapter.OrderDetailSubViewHolder>(
         OrderDetailDiffUtil()
     ) {
@@ -31,14 +31,17 @@ class OrderDetailSubAdapter(val imageCallback:(ImageView, String)->Unit) :
             }
         }
 
-        fun bind(data: OrderDetailResponse.OrderDetailSub,imageCallback:(ImageView, String)->Unit) {
+        fun bind(
+            data: OrderDetailResponse.OrderDetailSub,
+            imageCallback: (ImageView, String) -> Unit
+        ) {
             binding.res = data
-            imageCallback(binding.ivImage, data.imageName?:"")
+            imageCallback(binding.ivImage, data.imageName ?: "")
 
             var prepareItem = ""
             data.subNmList?.forEachIndexed { index, s ->
                 prepareItem += s
-                if(index != data.subNmList.count()-1){
+                if (index != data.subNmList.count() - 1) {
                     prepareItem += ", "
                 }
             }

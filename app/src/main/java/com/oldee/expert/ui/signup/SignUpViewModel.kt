@@ -49,10 +49,10 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
 //        "정재훈", "01088335697", "wjdthtjfltm@gamil.com", "TESTCODE"
     )
 
-    fun requestConfirm(onError:(RemoteData.ApiError)->Unit) {
+    fun requestConfirm(onError: (RemoteData.ApiError) -> Unit) {
         viewModelScope.launch {
             val data = getInfo()
-            val result = (repository as SignUpRepository).requestConfirm(data){
+            val result = (repository as SignUpRepository).requestConfirm(data) {
                 onError.invoke(it)
             }
 

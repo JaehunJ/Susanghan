@@ -12,7 +12,7 @@ interface SusanghanService {
     @GET("/api/v1/expert/versions")
     suspend fun requestVersionInfo(
         @Header("Authorization") authorization: String = "clo",
-        @Query("osType") osType:String = "android"
+        @Query("osType") osType: String = "android"
     ): Response<VersionInfoResponse>
 
     @GET("")
@@ -34,7 +34,7 @@ interface SusanghanService {
     suspend fun requestUserStatusChange(
         @Header("Authorization") authorization: String,
         @Body data: UserStatusChangeRequest
-    ):Response<UserStatusChangeResponse>
+    ): Response<UserStatusChangeResponse>
 
     @POST("/api/v1/token/refresh")
     suspend fun requestNewToken(

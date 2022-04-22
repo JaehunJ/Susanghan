@@ -52,8 +52,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
     override fun initDataBinding() {
         viewModel.profile.observe(viewLifecycleOwner) {
             binding.user = it
-            it?.let{d->
-                if(!d.profileImg.isNullOrEmpty()){
+            it?.let { d ->
+                if (!d.profileImg.isNullOrEmpty()) {
                     viewModel.setImageCircle(binding.ivProfile, d.profileImg)
                 }
             }

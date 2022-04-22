@@ -11,34 +11,35 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AccountViewModel @Inject constructor(repository: SignInRepository) : BaseViewModel(repository) {
+class AccountViewModel @Inject constructor(repository: SignInRepository) :
+    BaseViewModel(repository) {
 
-    val status:Int = 0
+    val status: Int = 0
     val res = MutableLiveData<ProfileResponse.ProfileData?>()
 
-    fun logout(){
+    fun logout() {
         (repository as SignInRepository).logout()
     }
 
-    fun requestUserProfile(){
+    fun requestUserProfile() {
         viewModelScope.launch {
             val result = (repository as SignInRepository).requestUserProfile()
 
-            result?.let{
-                if(result.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (result.errorMessage.isNullOrEmpty()) {
                     res.postValue(it.data)
                 }
             }
         }
     }
 
-    fun requestChangeUserStatus(status:Int, msg:String){
+    fun requestChangeUserStatus(status: Int, msg: String) {
         viewModelScope.launch {
             val data = UserStatusChangeRequest(status, msg)
             val result = (repository as SignInRepository).requestUserStatusChange(data)
 
-            result?.let{
-                if(result.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (result.errorMessage.isNullOrEmpty()) {
                     requestUserProfile()
                 }
             }
