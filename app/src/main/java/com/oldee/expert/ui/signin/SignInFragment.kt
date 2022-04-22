@@ -53,7 +53,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     }
 
     override fun initDataBinding() {
-        viewModel.signInResponse.observe(this) {
+        viewModel.signInResponse.observe(viewLifecycleOwner) {
             if (it == null) {
                 activityFuncFunction.showToast("로그인 오류, 아이디와 비밀번호를 확인 해주세요")
                 return@observe

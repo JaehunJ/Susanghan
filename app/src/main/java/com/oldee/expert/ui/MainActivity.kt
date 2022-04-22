@@ -2,7 +2,6 @@ package com.oldee.expert.ui
 
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
@@ -19,8 +18,8 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
     private var backTime = 0L
     private var useableTwiceBack = false
 
-    var toast:Toast? = null
-    var prev:Int = 0
+    var toast: Toast? = null
+    var prev: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

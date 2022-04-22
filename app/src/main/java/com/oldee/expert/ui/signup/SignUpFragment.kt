@@ -3,7 +3,6 @@ package com.oldee.expert.ui.signup
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
@@ -24,8 +23,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
         binding.btnConfirm.setOnClickListener {
 //            moveNext()
             if (viewModel.getValidated()) {
-                viewModel.requestConfirm{
-                    if(it.errorMessage == "unauthorized"){
+                viewModel.requestConfirm {
+                    if (it.errorMessage == "unauthorized") {
                         activityFuncFunction.showToast("정보가 일치하지 않습니다.")
                     }
                 }
@@ -42,11 +41,11 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
 
     override fun initDataBinding() {
         viewModel.confirm.observe(viewLifecycleOwner) {
-            it?.let{
-                if(it.data == "success"){
+            it?.let {
+                if (it.data == "success") {
                     moveNext()
-                }else{
-                    if(it.data.contains("Dupli")){
+                } else {
+                    if (it.data.contains("Dupli")) {
                         activityFuncFunction.showToast("이미 가입된 정보입니다.")
                     }
                 }
@@ -60,7 +59,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
 
     }
 
-    fun moveNext(){
+    fun moveNext() {
         val action =
             SignUpFragmentDirections.actionSignUpFragmentToSignUpPwFragment(viewModel.getInfo())
         navController?.navigate(action)

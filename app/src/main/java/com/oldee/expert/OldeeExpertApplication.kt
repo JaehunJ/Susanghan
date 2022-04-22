@@ -6,7 +6,7 @@ import dagger.hilt.android.HiltAndroidApp
 
 
 @HiltAndroidApp
-class OldeeExpertApplication:Application() {
+class OldeeExpertApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

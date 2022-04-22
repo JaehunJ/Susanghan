@@ -89,8 +89,8 @@ class DesignDetailFragment :
 
             //text
 
-            binding.tvDate.text =
-                "택배 수령 후 ${it.minDay}-${it.maxDay}일정도의 제작기간이 소요됩니다.\n제작 완료 시 택배사 사정에 따라 배송시간이 달라질 수 있습니다"
+            binding.tvDate.text = String.format(getString(R.string.design_detail_date), it.minDay, it.maxDay)
+//                "택배 수령 후 ${it.minDay}-${it.maxDay}일정도의 제작기간이 소요됩니다.\n제작 완료 시 택배사 사정에 따라 배송시간이 달라질 수 있습니다"
         }
 
         viewModel.imageList.observe(viewLifecycleOwner) {
@@ -113,8 +113,8 @@ class DesignDetailFragment :
 
     private fun showStartDialog() {
         val builder = AlertDialog.Builder(requireContext()).apply {
-            setTitle("판매중으로 변경하시겠습니까?")
-            setMessage("사용자들이 구매를 하거나 문의를 남길 수 있습니다.\n" + "판매를 시작한 디자인은 수정 및 삭제가 불가능합니다.")
+            setTitle(R.string.dialog_design_detail_start_title)
+            setMessage(R.string.dialog_design_detail_start_contents)
             setPositiveButton("판매시작") { d, t ->
                 d.dismiss()
                 viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_START)
@@ -129,8 +129,8 @@ class DesignDetailFragment :
 
     private fun showStopDialog() {
         val builder = AlertDialog.Builder(requireContext()).apply {
-            setTitle("판매증지로 변경하시겠습니까?")
-            setMessage("사용자들에게 이 디자인을 공개하지 않습니다.")
+            setTitle(R.string.dialog_design_detail_stop_title)
+            setMessage(R.string.dialog_design_detail_stop_contents)
             setPositiveButton("판매중지") { d, t ->
                 d.dismiss()
                 viewModel.requestDesignDetailStateUpdate(reformId, DESIGN_STOP){

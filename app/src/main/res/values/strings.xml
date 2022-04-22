@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">OldeeExpert</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="app_title">Oldee</string>
 
     <!--dialog-->
     <!--service error-->
@@ -69,10 +70,19 @@
     <string name="design_blank_small">직접 디자인한 상품을 소개해보세요.\nOLDEE의 회원들이 새로운 디자인을 기다리고 있습니다.</string>
     <string name="design_blank_btn">디자인 상품 등록</string>
 
+    <!--design detail-->
+    <string name="dialog_design_detail_start_title">판매중으로 변경하시겠습니까?</string>
+    <string name="dialog_design_detail_start_contents">사용자들이 구매를 하거나 문의를 남길 수 있습니다.\n" + "판매를 시작한 디자인은 수정 및 삭제가 불가능합니다.</string>
+
+    <string name="dialog_design_detail_stop_title">판매증지로 변경하시겠습니까?</string>
+    <string name="dialog_design_detail_stop_contents">사용자들에게 이 디자인을 공개하지 않습니다.</string>
+
+    <string name="design_detail_date">택배 수령 후 %d-%d일정도의 제작기간이 소요됩니다.\n제작 완료 시 택배사 사정에 따라 배송시간이 달라질 수 있습니다</string>
+
     <!--sigin up-->
     <string name="attention">사전에 이메일로 받으신 코드번호를 입력 후 인증하기 버튼을 눌러 인증해주세요. 수상한수선집은 사전 승인 후 가입할 수 있습니다. 사전 승인을 원하시는 경우, 입점신청 페이지에서 신청해주세요.</string>
     <string name="attention_pw">영문, 숫자, 특수문자 중 2종류 이상을 조합하여 8~16자 길이로 구성</string>
-    <string name="signup_result">상점 정보를 등록하시면 고객님들이 볼 수 있으니까 입력하세요.\n상점정보랑 품목 가능한 상품 설정, 마켓 설정을 해야 고객들에게 노출됩니다.\n지금 바로 설정하세요\n\n수상한 수선집에서 돈 많이 버세요</string>
+    <string name="signup_result">가입을 환영합니다.</string>
 
     <!--adjustment-->
     <string name="adjustment_bank_warning">지급일은 매월 15일이며, 전월 1일부터 말일까지 발생한 수선 완료건에 한하여 이루어집니다. 정산일 이후 취소 및 환불이 발생하는 경우 익월 정산 금액에서 처리됩니다.</string>
@@ -97,6 +107,8 @@
     <string name="withdraw_dialog_btn">확인</string>
 
     <string name="unit_no">No. %s</string>
+
+
 
     <!--term-->
     <string name="term_tab_0">이용약관</string>

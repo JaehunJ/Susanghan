@@ -49,7 +49,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         }
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {
-                if (it.isEmpty() && viewModel.page == 0) { // 비엇음
+                if (it.isEmpty() && viewModel.page == 0) { // 비엇음, refresh
                     binding.llEmpty.visibility = View.VISIBLE
                     binding.llExist.visibility = View.GONE
                     adapter.submitList(it.toMutableList())
@@ -58,7 +58,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                 } else {
                     binding.llEmpty.visibility = View.GONE
                     binding.llExist.visibility = View.VISIBLE
-                    adapter.submitList(it.toMutableList())
+                    adapter.submitList(it)
                 }
             }
         }

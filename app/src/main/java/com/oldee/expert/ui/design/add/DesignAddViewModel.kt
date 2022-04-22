@@ -27,20 +27,12 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
     val BLUE_IMAGE_MAX = 5
 
-    val bluePrintImagePostPath = mutableListOf<String>()
-
     val viewingBluePrintImage = MutableLiveData<MutableList<ImageData>>()
     fun getBluePrintImageCount() = viewingBluePrintImage.value?.count() ?: 0
 
-//    val uploadBluePrintImage = mutableListOf<ImageData>()
-
     val beforeImagePath = MutableLiveData<ImageData?>()
-    val beforeImagePostPath = mutableListOf<String>()
 
     val afterImagePath = MutableLiveData<ImageData?>()
-    val afterImagePostPath = mutableListOf<String>()
-
-    val oldImage = MutableLiveData<Uri>()
 
     var price = MutableLiveData<String>()
     var reformName = MutableLiveData<String>()
@@ -70,12 +62,6 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         )
     }
 
-    fun requestPostDesign() {
-        viewModelScope.launch {
-
-        }
-    }
-
     fun requestOldDesign(id: Int) {
         viewModelScope.launch {
             val result = (repository as DesignRepository).requestDesignDetail(id)
@@ -88,7 +74,15 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
-    private suspend fun requestPostBluePrintImage(onError:()->Unit, context: Context): List<String>? {
+    /**
+     * 미리보기 이미지 처리, local image가 있다면 서버에 업로드후 path를 받아와서 사용
+     *
+     * @param context
+     * @return
+     */
+    private suspend fun requestPostBluePrintImage(
+        context: Context
+    ): List<String>? {
         val offlinelist = arrayListOf<File>()
 
         val resultList = arrayListOf<String>()
@@ -97,6 +91,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
         blueList?.let {
             it.forEach { item ->
+                //현재 등록된 이미지중에 로컬 이미지가 있다면
                 if (item.type == IMAGE_URI && item.uri != null) {
                     val file = copyToScopeStorage(context, item.uri)
                     file?.let {
@@ -112,14 +107,9 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         if (offlinelist.isNotEmpty()) {
             val multiBody = getImageBody("files", offlinelist)
             val repo = repository as DesignRepository
-            val res = repo.requestPostImage(
-                {
-                    onError()
-                },
-                multiBody
-            )
+            val res = repo.requestPostImage(null, multiBody) ?: return null
 
-            res?.let {
+            res.let {
                 val imageList = it.data
 
                 if (imageList.isNotEmpty()) {
@@ -171,7 +161,10 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         val before = requestPostServerOneImage(context, beforeImagePath)
         val after = requestPostServerOneImage(context, afterImagePath)
 
-        return listOf(before, after)
+        if(before.isNotEmpty() || after.isNotEmpty())
+            return listOf(before, after)
+
+        return null
     }
 
     fun addBluePrintImageServer(list: List<String>) {
@@ -230,7 +223,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 //                }
 //            }
 
-            viewingBluePrintImage.postValue(it)
+            viewingBluePrintImage.postValue(it.toMutableList())
         }
     }
 
@@ -259,12 +252,24 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 prepareItemList.value?.count()!! > 1
 
 
+    /**
+     * 서버에 전송
+     *
+     * @param context
+     * @param onError
+     */
     fun onClickPost(context: Context, onError: () -> Unit) {
         viewModelScope.launch {
             //get Image
-            val list1 = requestPostBluePrintImage(onError, context)
+            //미리보기 이미지 리스트
+            val list1 = requestPostBluePrintImage(context)
+            //수선 전,후 이미지 리스트
             val list2 = requestPostBeforeAfterImage(context)
 
+            if(list1 == null || list2 == null)
+                onError()
+
+            //미리보기 이미지 처리
             val bluePrintImageList = mutableListOf<DesignPostRequest.ImageData>()
             list1?.let {
                 list1.forEachIndexed { idx, item ->
@@ -277,12 +282,14 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 }
             }
 
+            //준비물 처리
             val prepareItems = mutableListOf<DesignPostRequest.ItemData>()
             prepareItemList.value?.forEach {
                 if (it.code != "99")
                     prepareItems.add(DesignPostRequest.ItemData(it.name, it.code))
             }
 
+            //post data
             val request = DesignPostRequest(
                 reformName.value ?: "",
                 price.value?.toInt() ?: 0,
@@ -295,6 +302,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 prepareItems
             )
 
+            //신규 등록이면 post
             if (mode == MODE_WRITE) {
                 val result = (repository as DesignRepository).requestPostDesign(request)
                 if (result == null) {
@@ -304,7 +312,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 }
 
                 postResult.postValue(result)
-            } else {
+            } else { //수정이라면 put
                 val result = (repository as DesignRepository).requestModifyDesign(reformId, request)
                 if (result == null) {
 
@@ -318,6 +326,13 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     }
 
 
+    /**
+     * 파일을 앱 저장소로 복사
+     *
+     * @param context
+     * @param contentsUri
+     * @return
+     */
     fun copyToScopeStorage(context: Context, contentsUri: Uri): File? {
         if (contentsUri.scheme!! == "file") {
             return contentsUri.toFile()
@@ -338,22 +353,46 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         return null
     }
 
-
+    /**
+     * 이전 이미지 추가
+     *
+     * @param file
+     */
     fun addBeforeImage(file: Uri) {
         beforeImagePath.postValue(ImageData(IMAGE_URI, "", file))
     }
 
+    /**
+     * 이전 이미지 삭제
+     *
+     */
     fun deleteBeforeImage() {
         beforeImagePath.postValue(null)
     }
 
+    /**
+     * 수선전 이미지 추가
+     *
+     * @param file
+     */
     fun addAfterImage(file: Uri) {
         afterImagePath.postValue(ImageData(IMAGE_URI, "", file))
     }
 
+    /**
+     * 수선후 이미지 삭제
+     *
+     */
     fun deleteAfterImage() {
         afterImagePath.postValue(null)
     }
 
+    /**
+     * viewModel에서 쓸 imageData, remote이미지와 local이미지 통합 관리를 위해 생성
+     *
+     * @property type
+     * @property path
+     * @property uri
+     */
     data class ImageData(val type: Int, val path: String?, val uri: Uri?)
 }

@@ -35,7 +35,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it.all { per -> per.value == true }) {
                 loadNext()
-            }else{
+            } else {
                 requireActivity().finish()
             }
         }
@@ -48,7 +48,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override fun initDataBinding() {
         viewModel.data.observe(viewLifecycleOwner) { res ->
             res?.let {
-                if(it.versionCode != BuildConfig.VERSION_NAME){
+                if (it.versionCode != BuildConfig.VERSION_NAME) {
                     when (it.appStatus) {
                         AppStatus.Update.value -> {
                             showUpdateDialog()
@@ -57,7 +57,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
                             showForceUpdateDialog()
                         }
                         AppStatus.Check.value -> {
-                            showServiceCheckDialog{
+                            showServiceCheckDialog {
                                 activity?.finish()
                             }
                         }
@@ -65,12 +65,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
                             showPermissionInfoDialog()
                         }
                     }
-                }else{
+                } else {
                     showPermissionInfoDialog()
                 }
             }
 
-            if(res == null){
+            if (res == null) {
                 showPermissionInfoDialog()
             }
         }

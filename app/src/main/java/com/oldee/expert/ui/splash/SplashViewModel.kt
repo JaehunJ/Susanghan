@@ -19,8 +19,8 @@ class SplashViewModel @Inject constructor(repository: ServerRepository) :
         viewModelScope.launch {
             val result = (repository as ServerRepository).requestVersionInfo()
 
-            result?.let{
-                if(it.errorMessage.isNullOrEmpty()){
+            result?.let {
+                if (it.errorMessage.isNullOrEmpty()) {
                     data.postValue(it.data)
                 }
             }
