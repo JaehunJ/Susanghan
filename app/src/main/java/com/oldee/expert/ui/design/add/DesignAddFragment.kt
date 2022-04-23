@@ -12,6 +12,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.view.children
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -19,6 +21,7 @@ import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.databinding.FragmentDesignAddBinding
+import com.oldee.expert.databinding.LayoutDesignAddImageBinding
 import com.oldee.expert.retrofit.response.DesignDetailResponse
 import com.oldee.expert.ui.dialog.PrepareItemDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +49,8 @@ class DesignAddFragment :
 
     var currentPhotoPath: String? = null
     var photoUri: Uri? = null
+
+    val bindingImageView = mutableListOf<LayoutDesignAddImageBinding>()
 
     //old
     private lateinit var prepareItemAdapter: PrepareItemRecyclerViewAdapter
@@ -78,39 +83,34 @@ class DesignAddFragment :
             navController?.popBackStack()
         }
 
-        bluePrintAdapter = DesignBluePrintImageAdapter({
-            if (viewModel.getBluePrintImageCount() < viewModel.BLUE_IMAGE_MAX) {
-                showFileSelector(IMAGE_ITEM)
-            } else {
-                activityFuncFunction.showToast("이미지는 5개까지 첨부 가능합니다.")
-            }
-        }, {
-            viewModel.deleteBluePrintImage(it)
-        }, { v, d -> setImage(v, d) })
-        binding.rvBlue.adapter = bluePrintAdapter
-
-        //old
-//        binding.llAddImage.setOnClickListener {
-//            if(viewModel.getBluePrintImageCount() < viewModel.BLUE_IMAGE_MAX){
+//        bluePrintAdapter = DesignBluePrintImageAdapter({
+//            if (viewModel.getBluePrintImageCount() < viewModel.BLUE_IMAGE_MAX) {
 //                showFileSelector(IMAGE_ITEM)
-//            }else{
+//            } else {
 //                activityFuncFunction.showToast("이미지는 5개까지 첨부 가능합니다.")
 //            }
-//        }
-//
-//        binding.gridImage.children.forEachIndexed { index, v ->
-//            if (index < 5) {
-//                bindingImageView.add(DataBindingUtil.bind(v)!!)
-//                bindingImageView[index].index = index
-//                bindingImageView[index].root.tag = bindingImageView[index]
-//            }
-//        }
-//
-//        bindingImageView.forEach {
-//            it.btnDelete.setOnClickListener { v ->
-//                viewModel.deleteBluePrintImage(it.index ?: 0)
-//            }
-//        }
+//        }, {
+//            viewModel.deleteBluePrintImage(it)
+//        }, { v, d -> setImage(v, d) })
+//        binding.rvBlue.adapter = bluePrintAdapter
+
+        binding.llAddImage.setOnClickListener {
+            showFileSelector(IMAGE_ITEM)
+        }
+
+        binding.glBlue.children.forEachIndexed { index, v ->
+            if (index < 5) {
+                bindingImageView.add(DataBindingUtil.bind(v)!!)
+                bindingImageView[index].index = index
+                bindingImageView[index].root.tag = bindingImageView[index]
+            }
+        }
+
+        bindingImageView.forEach {
+            it.btnDelete.setOnClickListener { v ->
+                viewModel.deleteBluePrintImage(it.index ?: 0)
+            }
+        }
 
         binding.llAddBefore.setOnClickListener {
             showFileSelector(IMAGE_BEFORE)
@@ -144,30 +144,31 @@ class DesignAddFragment :
 
     override fun initDataBinding() {
         viewModel.viewingBluePrintImage.observe(viewLifecycleOwner) {
-            val viewList = mutableListOf<DesignBluePrintImageAdapter.AdapterImageData>()
-            it?.let { list ->
-                list.forEach { item ->
-                    val str = when (item.type) {
-                        IMAGE_SERVER -> item.path
-                        else -> item.uri.toString()
-                    }
-                    val d = DesignBluePrintImageAdapter.AdapterImageData(str ?: "")
-                    viewList.add(d)
+            binding.llAddImage.isEnabled = it.count() != 5
+            binding.btnAdd.isEnabled = it.count() != 5
+
+            for (i in 0 until 5) {
+                if (i < it.count()) {
+                    setImage(bindingImageView[i].ivProduct, it[i])
+                } else {
+                    bindingImageView[i].ivProduct.setImageResource(0)
                 }
             }
-
-            viewList.add(DesignBluePrintImageAdapter.AdapterImageData("-1"))
-            bluePrintAdapter.submitList(viewList)
-//            binding.llAddImage.isEnabled = it.count() != 5
-//            binding.btnAdd.isEnabled = it.count() != 5
-//
-//            for (i in 0 until 5) {
-//                if (i < it.count()) {
-//                    setImage(bindingImageView[i].ivProduct, it[i])
-//                } else {
-//                    bindingImageView[i].ivProduct.setImageResource(0)
+//            val viewList = mutableListOf<DesignBluePrintImageAdapter.AdapterImageData>()
+//            it?.let { list ->
+//                list.forEach { item ->
+//                    val str = when (item.type) {
+//                        IMAGE_SERVER -> item.path
+//                        else -> item.uri.toString()
+//                    }
+//                    val d = DesignBluePrintImageAdapter.AdapterImageData(str ?: "")
+//                    viewList.add(d)
 //                }
 //            }
+//
+////            viewList.add(DesignBluePrintImageAdapter.AdapterImageData("-1"))
+////            bluePrintAdapter.submitList(viewList)
+//            Log.e("#debug", "current list size: ${bluePrintAdapter.currentList.size}")
         }
 
         viewModel.beforeImagePath.observe(viewLifecycleOwner) {
@@ -372,7 +373,9 @@ class DesignAddFragment :
 
             when (clickType) {
                 IMAGE_ITEM -> {
-                    viewModel.addBluePrintImageList(list)
+                    viewModel.addBluePrintImageList(list[0]){
+                        activityFuncFunction.showToast("동일한 이미지가 있습니다.")
+                    }
                 }
                 IMAGE_BEFORE -> {
                     viewModel.addBeforeImage(list[0])

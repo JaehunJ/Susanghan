@@ -28,9 +28,21 @@ class DesignBluePrintImageAdapter(
             position == (this.itemCount - 1),
             getItem(position),
             { addCallback() },
-            { deleteCallback(position) },
+            {
+                deleteCallback(position)
+                removeItem(position)
+            },
             imageDrawCallback
         )
+    }
+
+    fun removeItem(position: Int) {
+        if (position >= itemCount) return
+        val item = currentList[position]
+        val removeList = mutableListOf<AdapterImageData>()
+        removeList.add(item)
+        val actualList = currentList - removeList
+        submitList(actualList)
     }
 
     class BluePrintViewHolder(val binding: LayoutDesignAddImageBinding) :

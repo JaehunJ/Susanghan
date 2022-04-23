@@ -181,14 +181,17 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         viewingBluePrintImage.postValue(blueList)
     }
 
-    fun addBluePrintImageList(list: List<Uri>) {
+    fun addBluePrintImageList(uri: Uri, onError: () -> Unit) {
         val blueList = viewingBluePrintImage.value ?: mutableListOf()
         blueList?.let {
             if (it.size < BLUE_IMAGE_MAX) {
-                list.forEach { item ->
-                    val data = ImageData(IMAGE_URI, null, item)
+                val match = it.find { old->old.uri == uri }
+
+                if(match == null){
+                    val data = ImageData(IMAGE_URI, null, uri)
                     it.add(data)
-//                    uploadBluePrintImage.add(data)
+                }else{
+                    onError()
                 }
             }
         }
@@ -213,15 +216,6 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         list?.let {
             val item = it[index]
             it.remove(item)
-//            if (item.type == IMAGE_URI) {
-//                val temp = uploadBluePrintImage.find { t ->
-//                    item.uri == t.uri
-//                }
-//
-//                temp?.let { t ->
-//                    uploadBluePrintImage.remove(t)
-//                }
-//            }
 
             viewingBluePrintImage.postValue(it.toMutableList())
         }

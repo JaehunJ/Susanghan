@@ -45,87 +45,87 @@
                     android:text="사진은 최대 5개까지 등록 가능하며, 대표 사진을 1장 선택할 수 있습니다."
                     android:textSize="12sp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:id="@+id/rv_blue"
-                    app:spanCount="3"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_marginStart="12dp"-->
+<!--                    android:layout_marginEnd="12dp"-->
+<!--                    android:id="@+id/rv_blue"-->
+<!--                    app:spanCount="3"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"/>-->
 
                 <!--old grid-->
-<!--                <GridLayout-->
-<!--                    android:id="@+id/grid_image"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:columnCount="3">-->
+                <GridLayout
+                    android:id="@+id/gl_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:columnCount="3">
 
-<!--                    <include-->
-<!--                        layout="@layout/layout_design_add_image"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:layout_marginStart="16dp"-->
-<!--                        android:layout_marginEnd="4dp" />-->
+                    <include
+                        layout="@layout/layout_design_add_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="4dp" />
 
-<!--                    <include-->
-<!--                        layout="@layout/layout_design_add_image"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:layout_marginStart="4dp"-->
-<!--                        android:layout_marginEnd="4dp" />-->
+                    <include
+                        layout="@layout/layout_design_add_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp" />
 
-<!--                    <include-->
-<!--                        layout="@layout/layout_design_add_image"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:layout_marginStart="4dp"-->
-<!--                        android:layout_marginEnd="16dp" />-->
+                    <include
+                        layout="@layout/layout_design_add_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="16dp" />
 
-<!--                    <include-->
-<!--                        layout="@layout/layout_design_add_image"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:layout_marginStart="16dp"-->
-<!--                        android:layout_marginTop="16dp"-->
-<!--                        android:layout_marginEnd="4dp" />-->
+                    <include
+                        layout="@layout/layout_design_add_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="4dp" />
 
-<!--                    <include-->
-<!--                        layout="@layout/layout_design_add_image"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:layout_marginStart="4dp"-->
-<!--                        android:layout_marginTop="16dp"-->
-<!--                        android:layout_marginEnd="4dp" />-->
+                    <include
+                        layout="@layout/layout_design_add_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="4dp" />
 
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/ll_add_image"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:layout_marginStart="4dp"-->
-<!--                        android:layout_marginTop="16dp"-->
-<!--                        android:layout_marginEnd="16dp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:paddingTop="20dp"-->
-<!--                        android:paddingBottom="20dp">-->
+                    <LinearLayout
+                        android:id="@+id/ll_add_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp">
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/btn_add"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:adjustViewBounds="true"-->
-<!--                            android:src="@drawable/icon_add" />-->
-<!--                    </LinearLayout>-->
-<!--                </GridLayout>-->
+                        <ImageView
+                            android:id="@+id/btn_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_add" />
+                    </LinearLayout>
+                </GridLayout>
 
                 <!--old grid-->
 

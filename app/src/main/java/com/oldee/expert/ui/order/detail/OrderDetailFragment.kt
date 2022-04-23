@@ -164,8 +164,10 @@ class OrderDetailFragment :
                 statusBar.tvOrder3.id
             }
             OrderStatus.ShipmentComplete.value -> {
-                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder4.text.toString())
-                statusBar.tvOrder4.alpha = 1.0f
+                statusBar.tvProgress.visibility = View.INVISIBLE
+                statusBar.tvComplete.visibility = View.VISIBLE
+//                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder4.text.toString())
+//                statusBar.tvOrder4.alpha = 1.0f
                 statusBar.tvOrder4.id
             }
             OrderStatus.Cancel.value -> {

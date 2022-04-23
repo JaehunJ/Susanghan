@@ -2,11 +2,14 @@ package com.oldee.expert.ui.order.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.oldee.expert.databinding.LayoutOrderDetailItemBinding
+import com.oldee.expert.databinding.LayoutOrderDetailItemImageBinding
+import com.oldee.expert.databinding.LayoutOrderSubItemBinding
 import com.oldee.expert.retrofit.response.OrderDetailResponse
 
 class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
@@ -36,7 +39,14 @@ class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
             imageCallback: (ImageView, String) -> Unit
         ) {
             binding.res = data
-            imageCallback(binding.ivImage, data.imageName ?: "")
+            binding.glImage.adapter = null
+
+            val imageList = data.images
+            if (imageList.isNotEmpty()) {
+                val adapter = OrderDetailImageAdapter(binding.root.context, imageCallback)
+                binding.glImage.adapter = adapter
+                adapter.replaceItem(imageList)
+            }
 
             var prepareItem = ""
             data.subNmList?.forEachIndexed { index, s ->

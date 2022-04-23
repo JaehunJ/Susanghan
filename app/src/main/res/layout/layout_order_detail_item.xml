@@ -115,15 +115,37 @@
         <!--&lt;!&ndash;            </TableRow>&ndash;&gt;-->
         <!--        </TableLayout>-->
 
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="#d3d3d3"
-            android:src="@mipmap/ic_launcher" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gl_image"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+<!--            <include layout="@layout/layout_order_detail_item_image"/>-->
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_image"-->
+<!--            android:layout_width="52dp"-->
+<!--            android:layout_height="52dp"-->
+<!--            android:layout_marginStart="26dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="#d3d3d3"-->
+<!--            android:src="@mipmap/ic_launcher" />-->
 
         <TextView
             android:id="@+id/tv_detail_info"
