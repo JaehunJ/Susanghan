@@ -22,7 +22,8 @@ class OrderDetailImageAdapter(
     fun replaceItem(l:List<String>){
         list.clear()
         list = l.toMutableList()
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
+        notifyItemRangeChanged(0, list.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DetailImageViewHolder.from(parent)
