@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavArgs>(),
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener, TabLayout.OnTabSelectedListener {
     override val layoutId: Int = R.layout.fragment_design
     override val viewModel: DesignViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -29,6 +29,8 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         binding.rvList.addOnScrollListener(OnScrollEndListener {
             addItem()
         })
+
+        binding.topTab.addOnTabSelectedListener(this)
     }
 
     override fun initDataBinding() {
@@ -62,28 +64,6 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
             navController?.navigate(action)
         }
 
-        binding.topTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                val pos = tab?.position
-
-                pos?.let { p ->
-                    val status = when (pos) {
-                        0 -> ReformStatus.None
-                        1 -> ReformStatus.Start
-                        else -> ReformStatus.Stop
-                    }
-                    viewModel.requestDesignList(0, 10, status.value)
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
     }
 
     override fun initAfterBinding() {
@@ -97,5 +77,26 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
 
     fun addItem() {
         viewModel.requestDesignList(viewModel.page + 1, 10, viewModel.reformStatus, true)
+    }
+
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        val pos = tab?.position
+
+        pos?.let { p ->
+            val status = when (pos) {
+                0 -> ReformStatus.None
+                1 -> ReformStatus.Start
+                else -> ReformStatus.Stop
+            }
+            viewModel.requestDesignList(0, 10, status.value)
+        }
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+    }
+
+    override fun onTabReselected(tab: TabLayout.Tab?) {
+
     }
 }

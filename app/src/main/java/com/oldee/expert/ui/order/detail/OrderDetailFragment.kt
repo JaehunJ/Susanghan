@@ -67,8 +67,6 @@ class OrderDetailFragment :
 
                         var status = di.orderStatusCode ?: 0
 
-//                    status = OrderStatus.ShipmentComplete.value
-
                         setStatusBarPosition(status)
                         setMode(di.classCode ?: "")
                         setButton(status)
@@ -141,15 +139,9 @@ class OrderDetailFragment :
     private fun setStatusBarPosition(status: Int) {
         val statusBar = binding.llStatusBar
 
-//        val typeFace =
-
-//        statusBar.tvOrder0.typeface = Typeface.create(statusBar.tvOrder0.typeface, Typeface.NORMAL)
         statusBar.tvOrder0.alpha = 0.5f
-//        statusBar.tvOrder2.typeface = Typeface.create(statusBar.tvOrder2.typeface, Typeface.NORMAL)
         statusBar.tvOrder2.alpha = 0.5f
-//        statusBar.tvOrder3.typeface = Typeface.create(statusBar.tvOrder3.typeface, Typeface.NORMAL)
         statusBar.tvOrder3.alpha = 0.5f
-//        statusBar.tvOrder4.typeface = Typeface.create(statusBar.tvOrder4.typeface, Typeface.NORMAL)
         statusBar.tvOrder4.alpha = 0.5f
 
         val target = when (status) {
@@ -166,8 +158,6 @@ class OrderDetailFragment :
             OrderStatus.ShipmentComplete.value -> {
                 statusBar.tvProgress.visibility = View.INVISIBLE
                 statusBar.tvComplete.visibility = View.VISIBLE
-//                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder4.text.toString())
-//                statusBar.tvOrder4.alpha = 1.0f
                 statusBar.tvOrder4.id
             }
             OrderStatus.Cancel.value -> {

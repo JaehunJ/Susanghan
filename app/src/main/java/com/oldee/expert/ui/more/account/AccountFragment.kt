@@ -32,7 +32,6 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
                 it.finishAffinity()
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
-//                System.exit(0)
             }
         }
 
@@ -82,6 +81,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
                     UserStatus.Stop.value -> {
                         binding.llStart.visibility = View.VISIBLE
                         binding.llStop.visibility = View.GONE
+                        binding.llStart.isClickable = true
                     }
                     UserStatus.Withdraw.value -> {
                         binding.tvWithdrawSub.visibility = View.VISIBLE
@@ -90,6 +90,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
                     }
                     else -> {
                         binding.llStop.visibility = View.VISIBLE
+                        binding.llStop.isClickable = true
                     }
                 }
             }
