@@ -36,31 +36,11 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
         }
 
         binding.llStart.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
-                .setTitle(resources.getString(R.string.account_dialog_start_title))
-                .setMessage(resources.getString(R.string.account_dialog_start_subtext))
-                .setNegativeButton(resources.getString(R.string.account_dialog_button_cancel)) { dialog, which ->
-                    dialog.dismiss()
-                }
-                .setPositiveButton(resources.getString(R.string.account_dialog_button_start)) { dialogInterface, i ->
-                    dialogInterface.dismiss()
-                    viewModel.requestChangeUserStatus(UserStatus.Start.value, "")
-                }
-                .show()
+            getStartDialog().show()
         }
 
         binding.llStop.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
-                .setTitle(resources.getString(R.string.account_dialog_stop_title))
-                .setMessage(resources.getString(R.string.account_dialog_stop_subtext))
-                .setNegativeButton(resources.getString(R.string.account_dialog_button_cancel)) { dialog, which ->
-                    dialog.dismiss()
-                }
-                .setPositiveButton(resources.getString(R.string.account_dialog_button_stop)) { dialogInterface, i ->
-                    dialogInterface.dismiss()
-                    viewModel.requestChangeUserStatus(UserStatus.Stop.value, "")
-                }
-                .show()
+            getStopDialog().show()
         }
 
         binding.llWithdraw.setOnClickListener {
@@ -100,4 +80,26 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
     override fun initAfterBinding() {
         viewModel.requestUserProfile()
     }
+
+    fun getStartDialog() = MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
+        .setTitle(resources.getString(R.string.account_dialog_start_title))
+        .setMessage(resources.getString(R.string.account_dialog_start_subtext))
+        .setNegativeButton(resources.getString(R.string.account_dialog_button_cancel)) { dialog, which ->
+            dialog.dismiss()
+        }
+        .setPositiveButton(resources.getString(R.string.account_dialog_button_start)) { dialogInterface, i ->
+            dialogInterface.dismiss()
+            viewModel.requestChangeUserStatus(UserStatus.Start.value, "")
+        }
+
+    fun getStopDialog() = MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog)
+        .setTitle(resources.getString(R.string.account_dialog_stop_title))
+        .setMessage(resources.getString(R.string.account_dialog_stop_subtext))
+        .setNegativeButton(resources.getString(R.string.account_dialog_button_cancel)) { dialog, which ->
+            dialog.dismiss()
+        }
+        .setPositiveButton(resources.getString(R.string.account_dialog_button_stop)) { dialogInterface, i ->
+            dialogInterface.dismiss()
+            viewModel.requestChangeUserStatus(UserStatus.Stop.value, "")
+        }
 }

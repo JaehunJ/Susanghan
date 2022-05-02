@@ -85,7 +85,6 @@ android {
 
 }
 
-
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -162,4 +161,8 @@ dependencies {
 
     //swipe
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //crypto
+    implementation("androidx.security:security-crypto:1.0.0")
 }
+

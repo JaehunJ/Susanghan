@@ -13,10 +13,9 @@ abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
     fun setImage(imageView: ImageView, url: String) {
         viewModelScope.launch {
             val bitmap = repository.getImageFromServer(url)
-            if (bitmap != null){
+            if (bitmap != null) {
                 Glide.with(imageView.context).load(bitmap).into(imageView)
             }
-//                imageView.setImageBitmap(bitmap)
         }
     }
 
@@ -27,7 +26,6 @@ abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
                 Glide.with(imageView.context).load(bitmap).apply(RequestOptions().circleCrop())
                     .into(imageView)
             }
-//                imageView.setImageBitmap(bitmap)
         }
     }
 }
