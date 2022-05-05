@@ -71,6 +71,8 @@ class OrderDetailFragment :
                         setMode(di.classCode ?: "")
                         setButton(status)
                         setMainPanel(status)
+
+                        binding.tvAddr.text = "${di.shippingAddress} ${di.shippingAddressDetail}"
                     }
                 }
 

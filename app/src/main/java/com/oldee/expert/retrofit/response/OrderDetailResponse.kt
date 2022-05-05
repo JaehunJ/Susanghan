@@ -31,6 +31,7 @@ data class OrderDetailResponse(
      * @property mainCode
      * @property price
      * @property shippingAddress 배송지
+     * @property shippingAddressDetail 상세주죠
      * @property userPhone 휴대폰
      * @property shippingName 주문자
      * @property inquiryId
@@ -58,6 +59,7 @@ data class OrderDetailResponse(
         @SerializedName("mainCode") var mainCode: String? = null,
         @SerializedName("price") var price: Int? = null,
         @SerializedName("shippingAddress") var shippingAddress: String? = null,
+        @SerializedName("shippingAddressDetail") var shippingAddressDetail: String? = null,
         @SerializedName("userPhone") var userPhone: String? = null,
         @SerializedName("shippingName") var shippingName: String? = null,
         @SerializedName("inquiryId") var inquiryId: Int? = null,
