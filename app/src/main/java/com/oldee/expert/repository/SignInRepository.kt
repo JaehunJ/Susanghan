@@ -31,7 +31,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
         }
     }
 
-    suspend fun requestUserProfile() = if (userInfoRes == null || userInfoRes?.data == null) {
+    suspend fun requestUserProfile(refresh:Boolean = false) = if (userInfoRes == null || userInfoRes?.data == null || refresh) {
         call {
             api.requestProfile(getAccessToken())
         }

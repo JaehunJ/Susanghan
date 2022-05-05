@@ -57,6 +57,12 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel, N
     override fun initDataBinding() {
         viewModel.res.observe(viewLifecycleOwner) {
             it?.let { d ->
+                binding.llStart.visibility = View.GONE
+                binding.llStop.visibility = View.GONE
+                binding.tvWithdrawSub.visibility = View.GONE
+                binding.llStart.isClickable = false
+                binding.llStop.isClickable = false
+
                 when (d.userStatus) {
                     UserStatus.Stop.value -> {
                         binding.llStart.visibility = View.VISIBLE

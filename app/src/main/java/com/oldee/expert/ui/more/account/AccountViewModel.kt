@@ -1,5 +1,6 @@
 package com.oldee.expert.ui.more.account
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
@@ -14,16 +15,18 @@ import javax.inject.Inject
 class AccountViewModel @Inject constructor(repository: SignInRepository) :
     BaseViewModel(repository) {
 
-    val status: Int = 0
+    val status = MutableLiveData<Int>()
     val res = MutableLiveData<ProfileResponse.ProfileData?>()
+    val updateSuccess = MutableLiveData<Boolean>()
 
     fun logout() {
         (repository as SignInRepository).logout()
     }
 
-    fun requestUserProfile() {
+    fun requestUserProfile(reflash:Boolean = false) {
+        Log.e("#debug", "request user profile")
         viewModelScope.launch {
-            val result = (repository as SignInRepository).requestUserProfile()
+            val result = (repository as SignInRepository).requestUserProfile(reflash)
 
             result?.let {
                 if (result.errorMessage.isNullOrEmpty()) {
@@ -39,9 +42,7 @@ class AccountViewModel @Inject constructor(repository: SignInRepository) :
             val result = (repository as SignInRepository).requestUserStatusChange(data)
 
             result?.let {
-                if (result.errorMessage.isNullOrEmpty()) {
-                    requestUserProfile()
-                }
+                requestUserProfile(true)
             }
         }
     }
