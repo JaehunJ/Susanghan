@@ -22,7 +22,7 @@ class TermFragment : BaseFragment<FragmentTermBinding, TermViewModel, NavArgs>()
     override val navArgs: NavArgs by navArgs()
 
     private val urls = arrayListOf(
-        BuildConfig.BASE_URL + "api/v1/policy/service",
+        BuildConfig.BASE_URL + "/api/v1/policy/service",
         BuildConfig.BASE_URL + "/api/v1/policy/privacy",
         ""
     )
