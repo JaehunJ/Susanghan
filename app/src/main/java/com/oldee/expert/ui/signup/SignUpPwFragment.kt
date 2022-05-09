@@ -42,7 +42,7 @@ class SignUpPwFragment :
             if (!binding.cb0.isChecked) {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(BuildConfig.BASE_URL + "api/v1/policy/service")
+                    Uri.parse(BuildConfig.TERM_SERVICE)
                 )
                 startActivity(intent)
             }
@@ -51,7 +51,7 @@ class SignUpPwFragment :
             if (!binding.cb1.isChecked) {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(BuildConfig.BASE_URL + "api/v1/policy/privacy")
+                    Uri.parse(BuildConfig.TERM_PRIVACY)
                 )
                 startActivity(intent)
             }

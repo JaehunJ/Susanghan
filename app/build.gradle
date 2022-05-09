@@ -53,15 +53,22 @@ android {
     productFlavors {
         def BASE_URL = "BASE_URL"
         def STORE_URL = "STORE_URL"
+        def TERM_PRIVACY = "TERM_PRIVACY"
+        def TERM_SERVICE = "TERM_SERVICE"
+
 
         trial {
             buildConfigField "String", BASE_URL, '"https://oldeedev.tk/"'
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
+            buildConfigField "String", TERM_PRIVACY, '"https://www.oldee.kr/policy/member"'
+            buildConfigField "String", TERM_SERVICE, '"https://www.oldee.kr/terms"'
         }
 
         real {
             buildConfigField "String", BASE_URL, '"https://oldee.tk/"'
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
+            buildConfigField "String", TERM_PRIVACY, '"https://www.oldee.kr/policy/member"'
+            buildConfigField "String", TERM_SERVICE, '"https://www.oldee.kr/terms"'
         }
     }
 
@@ -69,10 +76,6 @@ android {
         dataBinding = true
         viewBinding = true
     }
-
-//    dataBinding{
-//        enabled = true
-//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
