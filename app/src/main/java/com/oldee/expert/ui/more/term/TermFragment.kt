@@ -1,5 +1,6 @@
 package com.oldee.expert.ui.more.term
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.webkit.WebView
@@ -7,6 +8,8 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.oss.licenses.OssLicensesActivity
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.tabs.TabLayout
 import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
@@ -22,6 +25,8 @@ class TermFragment : BaseFragment<FragmentTermBinding, TermViewModel, NavArgs>()
     override val navArgs: NavArgs by navArgs()
 
     private val urls = arrayListOf(
+//        BuildConfig.BASE_URL + "api/v1/policy/service",
+//        BuildConfig.BASE_URL + "/api/v1/policy/privacy",
         BuildConfig.TERM_PRIVACY,
         BuildConfig.TERM_SERVICE,
         ""
@@ -62,6 +67,11 @@ class TermFragment : BaseFragment<FragmentTermBinding, TermViewModel, NavArgs>()
         tab?.let {
             val url = it.position
             binding.wbPage.loadUrl(urls[url])
+
+            if(it.position == 2){
+                startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
+//                OssLicensesActivity.title
+            }
         }
     }
 
