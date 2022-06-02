@@ -45,7 +45,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
     }
 
     fun isChecked() =
-        isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true && isCbChild.value != null && isCbChild.value == true
+        isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true
 
     fun requestSignUp() {
         viewModelScope.launch {

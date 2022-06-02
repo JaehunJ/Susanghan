@@ -44,6 +44,7 @@ interface SusanghanService {
 
     @POST("api/v1/join/expert")
     suspend fun requestSignUp(
+        @Header("Authorization") authorization: String = "clo",
         @Body data: SignUpRequest
     ): Response<SignUpResponse>
 
