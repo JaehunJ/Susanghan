@@ -14,8 +14,8 @@ android {
         applicationId "com.oldee.expert"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 4
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -56,12 +56,14 @@ android {
         def STORE_URL = "STORE_URL"
         def TERM_PRIVACY = "TERM_PRIVACY"
         def TERM_SERVICE = "TERM_SERVICE"
+        def STORE_SCHEME = "STORE_SCHEME"
 
         trial {
             buildConfigField "String", BASE_URL, '"https://oldeedev.tk/"'
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
             buildConfigField "String", TERM_PRIVACY, '"https://www.oldee.kr/policy/member"'
             buildConfigField "String", TERM_SERVICE, '"https://www.oldee.kr/terms"'
+            buildConfigField "String", STORE_SCHEME, '"market://details?id=com.oldee.expert"'
         }
 
         real {
@@ -70,6 +72,7 @@ android {
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
             buildConfigField "String", TERM_PRIVACY, '"https://www.oldee.kr/policy/member"'
             buildConfigField "String", TERM_SERVICE, '"https://www.oldee.kr/terms"'
+            buildConfigField "String", STORE_SCHEME, '"market://details?id=com.oldee.expert"'
         }
     }
 

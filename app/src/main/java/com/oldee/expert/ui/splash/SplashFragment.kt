@@ -1,6 +1,8 @@
 package com.oldee.expert.ui.splash
 
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
@@ -48,7 +50,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     override fun initDataBinding() {
         viewModel.data.observe(viewLifecycleOwner) { res ->
             res?.let {
-                if (it.versionCode != BuildConfig.VERSION_NAME) {
+                if (it.versionId > BuildConfig.VERSION_CODE) {
                     when (it.appStatus) {
                         AppStatus.Update.value -> {
                             showUpdateDialog()
@@ -129,6 +131,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
     fun showForceUpdateDialog() {
         val dialog = ForceUpdateDialog {
             //TODO: call store
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setData(Uri.parse(BuildConfig.STORE_SCHEME))
+            startActivity(intent)
 //            onNext()
 //            val action = SplashFragmentDirections.actionSplashFragmentToSignInFragment()
 //            navController?.navigate(action)
@@ -145,6 +150,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel, NavA
             showPermissionInfoDialog()
         }) {
             //TODO: call store
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setData(Uri.parse(BuildConfig.STORE_SCHEME))
+            startActivity(intent)
 //            showForceUpdateDialog()
         }
         dialog.isCancelable = false

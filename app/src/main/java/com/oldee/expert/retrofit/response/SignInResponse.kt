@@ -1,6 +1,6 @@
 package com.oldee.expert.retrofit.response
 
-data class SignInResponse(
+data class  SignInResponse(
     val status: Int,
     val message: String,
     val data: SignInData,
