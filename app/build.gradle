@@ -59,7 +59,7 @@ android {
         def STORE_SCHEME = "STORE_SCHEME"
 
         trial {
-            buildConfigField "String", BASE_URL, '"https://oldeedev.tk/"'
+            buildConfigField "String", BASE_URL, '"https://dev.oldee.co.kr"'
             buildConfigField "String", STORE_URL, '"https://www.oldee.kr/oldeener"'
             buildConfigField "String", TERM_PRIVACY, '"https://www.oldee.kr/policy/member"'
             buildConfigField "String", TERM_SERVICE, '"https://www.oldee.kr/terms"'
