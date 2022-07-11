@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
 
         _binding.navBottom.setupWithNavController(navController)
         _binding.navBottom.itemIconTintList = null
-
+//
         hideBottomNavi()
     }
 
