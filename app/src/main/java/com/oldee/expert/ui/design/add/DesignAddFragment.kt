@@ -322,6 +322,7 @@ class DesignAddFragment :
         //create galley intent
         val intent = Intent(Intent.ACTION_PICK).apply {
             type = MediaStore.Images.Media.CONTENT_TYPE
+//            type = "image/jpeg"
             data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             putExtra(Intent.EXTRA_MIME_TYPES, "image/jpeg")
         }
@@ -367,15 +368,26 @@ class DesignAddFragment :
 
                 selectedImage?.let {
                     val path = it.path
-                    path?.let { p ->
-                        val extension = p.contains("gif")
-
-                        if (!extension) {
-                            list.add(it)
-                        } else {
-                            activityFuncFunction.showToast("gif파일은 선택하실수 없습니다.")
-                        }
+                    val mimeType = it.let {
+                        returnUri-> context?.contentResolver?.getType(it)
                     }
+
+                    if(mimeType == "image/jpeg"){
+                        list.add(it)
+                    }else{
+                        activityFuncFunction.showToast("JPG 이미지만 등록할 수 있어요.")
+                    }
+
+//                    path?.let { p ->
+//                        val lower = p.lowercase()
+//                        val extension = lower.contains(".jpeg") || lower.contains(".jpeg")
+//
+//                        if (extension) {
+//                            list.add(it)
+//                        } else {
+//                            activityFuncFunction.showToast("jpeg파일만 선택하실 수 있습니다.")
+//                        }
+//                    }
                 }
             }
 
