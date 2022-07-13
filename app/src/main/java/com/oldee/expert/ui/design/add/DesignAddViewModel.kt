@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.custom.getFileName
 import com.oldee.expert.custom.getImageBody
+import com.oldee.expert.data.MAX_PRICE
 import com.oldee.expert.repository.DesignRepository
 import com.oldee.expert.retrofit.request.DesignPostRequest
 import com.oldee.expert.retrofit.response.BaseResponse
@@ -35,6 +36,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     val afterImagePath = MutableLiveData<ImageData?>()
 
     var price = MutableLiveData<String>()
+
     var reformName = MutableLiveData<String>()
     var contents = MutableLiveData<String>()
 

@@ -17,6 +17,10 @@ class WithdrawViewModel @Inject constructor(repository: SignInRepository) :
     val status: Int = 0
     val res = MutableLiveData<UserStatusChangeResponse>()
 
+    fun logout(){
+        (repository as SignInRepository).logout()
+    }
+
     fun requestUserStatusChange(status: Int, msg: String) {
         val repo = repository as SignInRepository
         viewModelScope.launch {

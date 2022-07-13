@@ -17,3 +17,6 @@ const val DESIGN_STOP = 3
 
 const val HTTP_OK = 200
 const val HTTP_ERROR_TOKEN = 404
+
+const val MAX_PRICE = 10000000
+const val MIN_PRICE = 1000

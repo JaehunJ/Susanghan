@@ -20,6 +20,8 @@ import com.bumptech.glide.Glide
 import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
+import com.oldee.expert.data.MAX_PRICE
+import com.oldee.expert.data.MIN_PRICE
 import com.oldee.expert.databinding.FragmentDesignAddBinding
 import com.oldee.expert.databinding.LayoutDesignAddImageBinding
 import com.oldee.expert.retrofit.response.DesignDetailResponse
@@ -127,8 +129,19 @@ class DesignAddFragment :
 
         binding.btnPost.setOnClickListener {
             if (viewModel.isValueValidated()) {
-                viewModel.onClickPost(requireContext()) {
-                    activityFuncFunction.showToast("이미지 업로드에 실패했습니다. 이미지 용량을 확인해 주세요.")
+                val s = viewModel.price.value
+                s?.let{ priceStr->
+                    val intPrice = priceStr.toInt()
+
+                    if(intPrice > MAX_PRICE){
+                        activityFuncFunction.showToast("판매 금액이 천만 원을 넘는다면 관리자에게 문의해 주세요")
+                    }else if(intPrice < MIN_PRICE){
+                        activityFuncFunction.showToast("판매 금액은 천 원을 이상이어야 합니다.")
+                    }else{
+                        viewModel.onClickPost(requireContext()) {
+                            activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요")
+                        }
+                    }
                 }
             } else {
                 activityFuncFunction.showToast("누락된 정보가 있습니다.")

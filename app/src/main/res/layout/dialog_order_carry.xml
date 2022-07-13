@@ -36,13 +36,14 @@
             android:layout_width="match_parent"
             android:textSize="12sp"
             app:hintEnabled="false"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
             <AutoCompleteTextView
+                android:includeFontPadding="false"
+                android:paddingTop="10dp"
                 android:id="@+id/ac_carry"
                 android:backgroundTint="#ffffff"
                 android:textSize="12sp"
                 android:cursorVisible="false"
-
                 android:inputType="none"
                 android:focusable="true"
                 android:clickable="true"

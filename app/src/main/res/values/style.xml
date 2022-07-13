@@ -60,14 +60,51 @@
     <style name="CommonCustomDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
         <item name="buttonBarNegativeButtonStyle">@style/CommonCustomDialog.NeBtn</item>
         <item name="buttonBarPositiveButtonStyle">@style/CommonCustomDialog.PoBtn</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MyTitle_MaterialAlertDialog</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextAppearance.MaterialComponents.Body2</item>
     </style>
+
+    <style name="MyTitle_MaterialAlertDialog" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textAppearance">@style/MyTitle_TextAppearance.MaterialComponents.Subtitle1</item>
+    </style>
+
+    <style name="MyTitle_TextAppearance.MaterialComponents.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+<!--        <item name="android:textStyle">.....</item>-->
+    </style>
+
+    <style name="BodyTextAppearance.MaterialComponents.Body2" parent="@style/MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">@font/spoqa</item>
+        <item name="android:fontFamily">@font/spoqa</item>
+    </style>
+
+<!--    <style name="CommonCustomDialog.Message" parent="MaterialAlertDialog.Material3.Body.Text">-->
+<!--        <item name="android:textAppearance">@style/CommonCustomDialog.Message.Text</item>-->
+<!--    </style>-->
+
+<!--    <style name="CommonCustomDialog.Message.Text">-->
+<!--        <item name="android:textSize">12dp</item>-->
+<!--        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>-->
+<!--    </style>-->
+
+<!--    <style name="CommonCustomDialog.Title" parent="@style/RtlOverlay.DialogWindowTitle.AppCompat">-->
+<!--        <item name="android:textSize">20dp</item>-->
+<!--        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>-->
+<!--    </style>-->
 
     <style name="CommonCustomDialog.PoBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/dialog_424CC1</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
     <style name="CommonCustomDialog.NeBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/gray_basic</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
     <!--withdraw edittext-->

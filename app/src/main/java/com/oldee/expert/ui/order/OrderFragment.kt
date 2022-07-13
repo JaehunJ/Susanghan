@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.oldee.expert.R
@@ -41,6 +42,11 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         binding.swList.setOnRefreshListener(this)
 
         binding.rvList.addOnScrollListener(OnScrollEndListener { addItem() })
+
+        binding.tvTop1.setOnClickListener {
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.orderFragment)
+        }
     }
 
     override fun initDataBinding() {
@@ -53,6 +59,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                     binding.llEmpty.visibility = View.VISIBLE
                     binding.llExist.visibility = View.GONE
                     adapter.submitList(it.toMutableList())
+                    binding.rvList.scrollToPosition(0)
                 } else if (it.isEmpty() && viewModel.page != 0) {
 
                 } else {

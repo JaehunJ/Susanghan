@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.data.DESIGN_START
@@ -112,7 +113,7 @@ class DesignDetailFragment :
     }
 
     private fun showStartDialog() {
-        val builder = AlertDialog.Builder(requireContext()).apply {
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog).apply {
             setTitle(R.string.dialog_design_detail_start_title)
             setMessage(R.string.dialog_design_detail_start_contents)
             setPositiveButton("판매시작") { d, t ->
@@ -128,7 +129,7 @@ class DesignDetailFragment :
     }
 
     private fun showStopDialog() {
-        val builder = AlertDialog.Builder(requireContext()).apply {
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.CommonCustomDialog).apply {
             setTitle(R.string.dialog_design_detail_stop_title)
             setMessage(R.string.dialog_design_detail_stop_contents)
             setPositiveButton("판매중지") { d, t ->
