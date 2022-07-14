@@ -13,7 +13,7 @@ abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
 
     fun setImage(imageView: ImageView, url: String) {
         viewModelScope.launch {
-            val bitmap = repository.getImageFromServer("")
+            val bitmap = if(url.isNotEmpty()) repository.getImageFromServer(url) else null
             if (bitmap != null) {
                 Glide.with(imageView.context).load(bitmap).placeholder(R.drawable.icon_empty_image)
                     .error(R.drawable.icon_empty_image).into(imageView)
@@ -25,13 +25,13 @@ abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
 
     fun setImageCircle(imageView: ImageView, url: String) {
         viewModelScope.launch {
-            val bitmap = repository.getImageFromServer(url)
+            val bitmap = if(url.isNotEmpty()) repository.getImageFromServer(url) else null
             if (bitmap != null) {
                 Glide.with(imageView.context).load(bitmap).apply(RequestOptions().circleCrop())
-                    .placeholder(R.drawable.icon_empty_image).error(R.drawable.icon_empty_image)
+                    .placeholder(R.drawable.icon_empty_image).error(R.mipmap.ic_launcher_round)
                     .into(imageView)
             } else {
-                Glide.with(imageView.context).load(R.drawable.icon_empty_image).apply(RequestOptions().circleCrop())
+                Glide.with(imageView.context).load(R.mipmap.ic_launcher_round).apply(RequestOptions().circleCrop())
                     .into(imageView)
             }
         }
