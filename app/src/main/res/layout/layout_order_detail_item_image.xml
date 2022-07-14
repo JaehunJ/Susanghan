@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:src="@drawable/icon_empty_image"
         android:adjustViewBounds="true"
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
