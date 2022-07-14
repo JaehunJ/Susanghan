@@ -21,6 +21,10 @@ plugins {
     id 'com.google.android.gms.oss-licenses-plugin'
 }
 
+def getDate() {
+    return new Date().format('yy-MM-dd')
+}
+
 android {
     compileSdkVersion 31
 
@@ -28,8 +32,8 @@ android {
         applicationId "com.oldee.expert"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 4
-        versionName "1.0.1"
+        versionCode 5
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -52,10 +56,13 @@ android {
                 def buildType = variant.buildType.name
                 def productName = variant.productFlavors.name
                 def versionName = variant.versionName
-                outputFileName = "oldeer_${productName}_${buildType}_${versionName}.apk"
+                def versionCode = project.android.defaultConfig.versionCode
+                outputFileName = "oldeer_${productName}_${buildType}_v${versionName}_r${versionCode}_d${getDate()}.apk"
             }
         }
     }
+
+
 
     flavorDimensions "server"
 

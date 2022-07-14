@@ -42,6 +42,9 @@ const val IMAGE_URI = 0
 const val IMAGE_SERVER = 1
 const val IMAGE_SCOPE_STORAGE = 3
 
+//10298118
+const val IMAGE_MAX_SIZE = 20000000
+
 @AndroidEntryPoint
 class DesignAddFragment :
     BaseFragment<FragmentDesignAddBinding, DesignAddViewModel, DesignAddFragmentArgs>() {
@@ -134,12 +137,12 @@ class DesignAddFragment :
                     val intPrice = priceStr.toInt()
 
                     if(intPrice > MAX_PRICE){
-                        activityFuncFunction.showToast("판매 금액이 천만 원을 넘는다면 관리자에게 문의해 주세요")
+                        activityFuncFunction.showToast("판매 금액이 천만 원을 넘는다면 관리자에게 문의해 주세요.")
                     }else if(intPrice < MIN_PRICE){
                         activityFuncFunction.showToast("판매 금액은 천 원을 이상이어야 합니다.")
                     }else{
                         viewModel.onClickPost(requireContext()) {
-                            activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요")
+                            activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
                         }
                     }
                 }
@@ -377,17 +380,6 @@ class DesignAddFragment :
                     }else{
                         activityFuncFunction.showToast("JPG 이미지만 등록할 수 있어요.")
                     }
-
-//                    path?.let { p ->
-//                        val lower = p.lowercase()
-//                        val extension = lower.contains(".jpeg") || lower.contains(".jpeg")
-//
-//                        if (extension) {
-//                            list.add(it)
-//                        } else {
-//                            activityFuncFunction.showToast("jpeg파일만 선택하실 수 있습니다.")
-//                        }
-//                    }
                 }
             }
 
@@ -398,15 +390,40 @@ class DesignAddFragment :
 
             when (clickType) {
                 IMAGE_ITEM -> {
-                    viewModel.addBluePrintImageList(list[0]){
-                        activityFuncFunction.showToast("동일한 이미지가 있습니다.")
+                    val oldList = viewModel.getOfflineImageUriList(requireContext())
+
+                    var oldSize = 0L
+                    oldList.forEach {
+                        oldSize += viewModel.getFileSize(requireContext(), it)
+                    }
+
+                    val currentSize = viewModel.getFileSize(requireContext(), list[0])
+
+                    Log.e("#debug", "size:${oldSize+currentSize}")
+
+                    if(currentSize+oldSize > IMAGE_MAX_SIZE){
+                        activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
+                    }else{
+                        viewModel.addBluePrintImageList(list[0]){
+                            activityFuncFunction.showToast("동일한 이미지가 있습니다.")
+                        }
                     }
                 }
                 IMAGE_BEFORE -> {
-                    viewModel.addBeforeImage(list[0])
+                    val currentSize = viewModel.getFileSize(requireContext(), list[0])
+                    if(currentSize > IMAGE_MAX_SIZE){
+                        activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
+                    }else{
+                        viewModel.addBeforeImage(list[0])
+                    }
                 }
                 IMAGE_AFTER -> {
-                    viewModel.addAfterImage(list[0])
+                    val currentSize = viewModel.getFileSize(requireContext(), list[0])
+                    if(currentSize > IMAGE_MAX_SIZE){
+                        activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
+                    }else{
+                        viewModel.addAfterImage(list[0])
+                    }
                 }
             }
         }

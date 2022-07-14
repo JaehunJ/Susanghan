@@ -3,6 +3,7 @@ package com.oldee.expert.ui.design.add
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
+import android.provider.OpenableColumns
 import android.util.Log
 import androidx.core.net.toFile
 import androidx.lifecycle.MutableLiveData
@@ -62,6 +63,23 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
                 )
             )
         )
+    }
+
+    fun getOfflineImageUriList(context: Context) : List<Uri>{
+        val offlinelist = mutableListOf<Uri>()
+
+        val blueList = viewingBluePrintImage.value
+
+        blueList?.let {
+            it.forEach { item ->
+                //현재 등록된 이미지중에 로컬 이미지가 있다면
+                if (item.type == IMAGE_URI && item.uri != null) {
+                    offlinelist.add(item.uri)
+                }
+            }
+        }
+
+        return offlinelist
     }
 
     fun requestOldDesign(id: Int) {
@@ -347,6 +365,18 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
 
         return null
+    }
+
+    fun getFileSize(context: Context, uri:Uri):Long{
+        val cursor = context.contentResolver.query(uri, null, null, null,null)
+
+        cursor?.let{
+            val sizeIndex = it.getColumnIndex(OpenableColumns.SIZE)
+            it.moveToFirst()
+            return it.getLong(sizeIndex)
+        }
+
+        return 0
     }
 
     /**
