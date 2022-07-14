@@ -6,10 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.oldee.expert.R
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
     fun isLoading() = repository.getIsLoading()
+
+    fun postDelay(action: () -> Unit, milisec: Long) {
+        viewModelScope.launch {
+            delay(milisec)
+            action()
+        }
+    }
 
     fun setImage(imageView: ImageView, url: String) {
         viewModelScope.launch {

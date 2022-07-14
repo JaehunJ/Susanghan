@@ -2,6 +2,7 @@ package com.oldee.expert.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
@@ -148,5 +149,17 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
                 hideBottomNavi()
             }
         }
+    }
+
+    override fun hideSoftKeyboard() {
+//        fun hideSoftKeyboard(){
+        val inputManger =
+            getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (inputManger.isAcceptingText) {
+            if (currentFocus != null) {
+                inputManger.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            }
+        }
+//        }
     }
 }

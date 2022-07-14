@@ -181,7 +181,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
-                        android:text="@={data.price}" />
+                        android:text="@={data.price}"
+                        android:maxLength="8"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView

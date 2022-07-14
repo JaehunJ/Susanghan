@@ -1,11 +1,13 @@
 package com.oldee.expert.ui.design
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.tabs.TabLayout
 import com.oldee.expert.R
@@ -22,6 +24,8 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
     override val viewModel: DesignViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
+    var enablePostScroll = false
+
     override fun initView(savedInstanceState: Bundle?) {
         binding.llBlankItem.visibility = View.VISIBLE
         binding.llExistItem.visibility = View.GONE
@@ -30,6 +34,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
             addItem()
         })
 
+
         binding.topTab.addOnTabSelectedListener(this)
     }
 
@@ -37,6 +42,25 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         val adapter = DesignListAdapter(findNavController()) { v, u ->
             viewModel.setImage(v, u)
         }
+//        adapter.registerAdapterDataObserver(object :RecyclerView.AdapterDataObserver(){
+//            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+//                super.onItemRangeInserted(positionStart, itemCount)
+//            }
+//        })
+
+        navController?.currentBackStackEntry?.savedStateHandle?.getLiveData<String>("post_design")
+            ?.observe(
+                viewLifecycleOwner
+            ) {
+                it?.let{
+                    if(it.isNotEmpty()){
+                        enablePostScroll = true
+                        Log.e("#debug", "get post_design msg")
+
+//                        binding.swList.scrollTo(0, 0)
+                    }
+                }
+            }
 
         viewModel.designList.observe(viewLifecycleOwner) {
             it?.let {
@@ -49,8 +73,24 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
                 } else {
                     binding.llBlankItem.visibility = View.GONE
                     binding.llExistItem.visibility = View.VISIBLE
-                    adapter.submitList(it)
+                    adapter.submitList(it){
+                        Log.e("#debug", "call back")
+                        if(viewModel.page == 0){
+                            binding.rvList.post {
+                                Log.e("#debug", " post call back")
+                                binding.rvList.smoothScrollToPosition(0)
+                            }
+                        }
+                    }
                 }
+//
+//                if(enablePostScroll){
+//                    enablePostScroll = false
+//                    Log.e("#debug", "scroll top")
+//                    viewModel.postDelay({
+//
+//                    },100)
+//                }
             }
         }
 

@@ -151,10 +151,6 @@ class DesignAddFragment :
             }
         }
 
-        binding.toolbar.ivBack.setOnClickListener {
-            navController?.popBackStack()
-        }
-
         binding.data = viewModel
     }
 
@@ -223,6 +219,8 @@ class DesignAddFragment :
         viewModel.postResult.observe(viewLifecycleOwner) {
             it?.let { res ->
                 if (res.errorMessage == null) {
+                    Log.e("#debug", "post success")
+                    navController?.previousBackStackEntry?.savedStateHandle?.set("post_design", "success")
                     navController?.popBackStack()
                 } else {
                     activityFuncFunction.showToast("에러")
@@ -297,6 +295,7 @@ class DesignAddFragment :
 
     fun showAddPrepareItem() {
         PrepareItemDialogFragment { code, name ->
+            activityFuncFunction.hideSoftKeyboard()
             viewModel.addPrepareItem(PrepareItemRecyclerViewAdapter.PrepareItem(code.value, name))
         }.show(parentFragmentManager, "add_prepare_item")
     }
