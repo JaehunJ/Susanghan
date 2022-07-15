@@ -12,6 +12,8 @@ import kotlinx.coroutines.launch
 abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
     fun isLoading() = repository.getIsLoading()
 
+    fun hasNetworkError() = repository.getHasError()
+
     fun postDelay(action: () -> Unit, milisec: Long) {
         viewModelScope.launch {
             delay(milisec)

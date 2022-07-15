@@ -21,9 +21,10 @@ import javax.inject.Inject
 
 open class BaseRepository @Inject constructor(
     val api: SusanghanService,
-    val prefs: SharedPreferences
+    val prefs: SharedPreferences,
 ) {
     private var isLoading = MutableLiveData<Boolean>()
+    private var hasError = MutableLiveData<Boolean>()
 
     suspend fun <T : BaseResponse> call(
         onError: ((RemoteData.ApiError) -> Unit)? = null,
@@ -40,7 +41,7 @@ open class BaseRepository @Inject constructor(
                 RemoteData.Success(response.body()!!)
             }
         } else {
-            RemoteData.ApiError(response.code().toString(), response.message())
+            RemoteData.Error2(response.code().toString(), response.message())
         }
 
         when (result) {
@@ -71,11 +72,13 @@ open class BaseRepository @Inject constructor(
                                 return call(onError) { apiCall() }
                             }
                         } else {
+                            hasError.postValue(true)
                             onError?.invoke(result)
                             return null
                         }
                     }
                 } else {
+                    hasError.postValue(true)
                     onError?.invoke(result)
                     return null
                 }
@@ -110,6 +113,7 @@ open class BaseRepository @Inject constructor(
     }
 
     fun getIsLoading() = isLoading
+    fun getHasError() = hasError
     fun getAccessToken() = "Bearer ${prefs.getString(ACCESS_TOKEN, "")}"
     private fun getAccessTokenRaw() = prefs.getString(ACCESS_TOKEN, "")
     private fun getRefreshToken() = prefs.getString(REFRESH_TOKEN, "")
