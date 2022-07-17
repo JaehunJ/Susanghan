@@ -258,6 +258,16 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         }
     }
 
+    fun deletePrepareItem(position:Int){
+        val list = prepareItemList.value
+
+        list?.let{
+            it.removeAt(position)
+
+            prepareItemList.postValue(it.toMutableList())
+        }
+    }
+
     fun isValueValidated() =
         !viewingBluePrintImage.value.isNullOrEmpty() && beforeImagePath.value != null && afterImagePath.value != null
                 && minDay.value?.isNotEmpty() == true && maxDay.value?.isNotEmpty() == true

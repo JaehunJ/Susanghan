@@ -13,7 +13,8 @@ import com.oldee.expert.databinding.LayoutDesignAddPrepareItemBinding
 
 class PrepareItemRecyclerViewAdapter(
     private val context: Context,
-    private val dialogCallback: () -> Unit
+    private val dialogCallback: () -> Unit,
+    private val deleteCallback:(Int)->Unit,
 ) :
     ListAdapter<PrepareItemRecyclerViewAdapter.PrepareItem, PrepareItemRecyclerViewAdapter.PrepareItemViewHolder>(
         PrepareItemDiffer()
@@ -22,7 +23,11 @@ class PrepareItemRecyclerViewAdapter(
         PrepareItemViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: PrepareItemViewHolder, position: Int) {
-        holder.bind(context, getItem(position), getItem(position).code == "99", dialogCallback)
+        holder.bind(context, getItem(position), getItem(position).code == "99", dialogCallback) {
+            deleteCallback.invoke(
+                position
+            )
+        }
     }
 
     class PrepareItemViewHolder(private val binding: LayoutDesignAddPrepareItemBinding) :
@@ -37,18 +42,24 @@ class PrepareItemRecyclerViewAdapter(
             }
         }
 
-        fun bind(context: Context, data: PrepareItem, isLast: Boolean, dialogCallback: () -> Unit) {
+        fun bind(context: Context, data: PrepareItem, isLast: Boolean, dialogCallback: () -> Unit, deleteCallback: () -> Unit) {
             if (isLast) {
                 binding.ivProduct.visibility = View.INVISIBLE
+                binding.ivDelete.visibility = View.GONE
                 binding.btnAdd.visibility = View.VISIBLE
                 binding.root.setOnClickListener {
                     dialogCallback()
                 }
             } else {
                 binding.ivProduct.visibility = View.VISIBLE
+                binding.ivDelete.visibility = View.VISIBLE
                 binding.btnAdd.visibility = View.GONE
                 val type = data.code
                 Glide.with(context).load(PrepareItemMappingStringList[type]).into(binding.ivProduct)
+
+                binding.ivDelete.setOnClickListener {
+                    deleteCallback()
+                }
 
                 binding.tvName.text = data.name
             }

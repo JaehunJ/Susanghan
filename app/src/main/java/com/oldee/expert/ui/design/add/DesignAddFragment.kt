@@ -125,8 +125,10 @@ class DesignAddFragment :
             showFileSelector(IMAGE_AFTER)
         }
 
-        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext()) {
+        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext(), {
             showAddPrepareItem()
+        }){
+            viewModel.deletePrepareItem(it)
         }
         binding.rvPrepareItem.adapter = prepareItemAdapter
 

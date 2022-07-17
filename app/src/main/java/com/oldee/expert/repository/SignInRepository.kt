@@ -13,8 +13,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
-    BaseRepository(api, prefs) {
+class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences, errorFragmentCallback:()->Unit) :
+    BaseRepository(api, prefs, errorFragmentCallback) {
 
     var userInfoRes: ProfileResponse? = null
 

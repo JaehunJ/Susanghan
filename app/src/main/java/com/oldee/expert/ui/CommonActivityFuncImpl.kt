@@ -8,5 +8,6 @@ interface CommonActivityFuncImpl {
     fun showToast(msg: String)
     fun showSnackBar(msg: String)
     fun showSnackBarWithButton(msg: String, btnText: String, onClick: () -> Unit)
+    fun moveErrorPage()
     fun hideSoftKeyboard()
 }

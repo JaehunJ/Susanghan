@@ -335,5 +335,13 @@
             android:name="id"
             android:defaultValue="0"/>
     </fragment>
+    <fragment
+        android:id="@+id/networkErrorFragment"
+        android:name="com.oldee.expert.ui.error.NetworkErrorFragment"
+        android:label="NetworkErrorFragment" />
+    <action
+        android:id="@+id/action_global_networkErrorFragment"
+        app:destination="@id/networkErrorFragment" />
+
 
 </navigation>

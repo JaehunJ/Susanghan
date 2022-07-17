@@ -5,15 +5,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.oldee.expert.R
 import com.oldee.expert.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
+class MainActivity @Inject constructor(): AppCompatActivity(), CommonActivityFuncImpl {
     private lateinit var _binding: ActivityMainBinding
 
     private var backTime = 0L
@@ -58,6 +60,10 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
                 R.id.moreFragment -> {
                     useableTwiceBack = false
                     showBottomNavi()
+                }
+                R.id.networkErrorFragment->{
+                    useableTwiceBack = false
+                    hideBottomNavi()
                 }
                 else -> {
                     useableTwiceBack = false
@@ -149,6 +155,10 @@ class MainActivity : AppCompatActivity(), CommonActivityFuncImpl {
                 hideBottomNavi()
             }
         }
+    }
+
+    override fun moveErrorPage() {
+        findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_orderFragment)
     }
 
     override fun hideSoftKeyboard() {

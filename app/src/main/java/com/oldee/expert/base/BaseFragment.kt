@@ -69,13 +69,13 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
             else
                 activityFuncFunction.hideProgress()
         }
-        viewModel.hasNetworkError().observe(viewLifecycleOwner){
-            if(it){
-
-            }else{
-
-            }
-        }
+//        viewModel.hasNetworkError().observe(viewLifecycleOwner){
+//            if(it){
+//
+//            }else{
+//
+//            }
+//        }
 
         initView(savedInstanceState)
         initDataBinding()

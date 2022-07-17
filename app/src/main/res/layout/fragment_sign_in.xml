@@ -116,6 +116,7 @@
                         android:textSize="14sp" />
 
                     <com.google.android.material.checkbox.MaterialCheckBox
+                        style="@style/CustomCheckBox"
                         android:id="@+id/cb_auto"
                         android:checked="@={viewModel.isCbAuto()}"
                         android:layout_width="wrap_content"

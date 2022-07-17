@@ -7,8 +7,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ServerRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
-    BaseRepository(api, prefs) {
+class ServerRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences, errorFragmentCallback:()->Unit) :
+    BaseRepository(api, prefs, errorFragmentCallback) {
 
     suspend fun requestVersionInfo() = call { api.requestVersionInfo() }
 }

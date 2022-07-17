@@ -126,6 +126,12 @@
         <item name="endIconTint">#000000</item>
         <item name="boxStrokeWidth">1dp</item>
     </style>
+    
+    <style name="CustomCheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/checkbox_color</item>
+<!--        <item name="colorAccent">#6F74DD</item>-->
+<!--        <item name="android:textColorSecondary">@color/order_status_color_gray</item>-->
+    </style>
 
 <!--    <style name="WithdrawEditText.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox."-->
 

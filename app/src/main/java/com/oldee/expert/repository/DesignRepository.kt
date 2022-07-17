@@ -15,8 +15,9 @@ import javax.inject.Singleton
 @Singleton
 class DesignRepository @Inject constructor(
     api: SusanghanService,
-    pref: SharedPreferences
-) : BaseRepository(api, pref) {
+    pref: SharedPreferences,
+    errorFragmentCallback:()->Unit
+) : BaseRepository(api, pref, errorFragmentCallback) {
 
     suspend fun requestDesignList(page: Int, limit: Int, status: Int) =
         call { api.requestDesignList(getAccessToken(), page, limit, status) }

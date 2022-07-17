@@ -114,4 +114,7 @@
     <string name="term_tab_1">개인정보처리방침</string>
     <string name="term_tab_2">오픈소스라이선스</string>
     <!--    <string name="unit_won">%d원</string>-->
+
+    <!--error-->
+    <string name="network_error">일시적인 문제가 발생했습니다.\n\n이 오류는 잘못된 접근을 했거나 인터넷 연결이\n원활하지 않을 경우 만날 수 있습니다.\n인터넷 연결을 확인 후 다시 시도해 주세요.\n\n이 오류가 반복된다면 ‘문의하기’를 통해\n문제를 해결할 수 있습니다.</string>
 </resources>
