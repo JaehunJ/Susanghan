@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -15,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity @Inject constructor(): AppCompatActivity(), CommonActivityFuncImpl {
+class MainActivity: AppCompatActivity(), CommonActivityFuncImpl {
     private lateinit var _binding: ActivityMainBinding
 
     private var backTime = 0L
@@ -23,6 +24,8 @@ class MainActivity @Inject constructor(): AppCompatActivity(), CommonActivityFun
 
     var toast: Toast? = null
     var prev: Int = 0
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,7 @@ class MainActivity @Inject constructor(): AppCompatActivity(), CommonActivityFun
         setContentView(view)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-        val navController = navHostFragment!!.findNavController()
+        navController = navHostFragment!!.findNavController()
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             prev = destination.id
@@ -155,10 +158,6 @@ class MainActivity @Inject constructor(): AppCompatActivity(), CommonActivityFun
                 hideBottomNavi()
             }
         }
-    }
-
-    override fun moveErrorPage() {
-        findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_orderFragment)
     }
 
     override fun hideSoftKeyboard() {

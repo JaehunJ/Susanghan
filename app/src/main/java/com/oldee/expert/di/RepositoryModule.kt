@@ -9,9 +9,11 @@ import com.oldee.expert.repository.*
 import com.oldee.expert.retrofit.SusanghanService
 import com.oldee.expert.ui.CommonActivityFuncImpl
 import com.oldee.expert.ui.MainActivity
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -21,73 +23,59 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Singleton
     @Provides
-    fun provideErrorFragmentCallback(activity: MainActivity): CommonActivityFuncImpl {
-        check(activity is CommonActivityFuncImpl)
-        return activity as CommonActivityFuncImpl
-    }
-
-    @Singleton
-    @Provides
     fun provideServerRepository(
         api: SusanghanService,
         preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
     ) =
-        ServerRepository(api, preferences) { function.moveErrorPage() }
+        ServerRepository(api, preferences)
 
     @Singleton
     @Provides
     fun provideEtcServiceRepository(
         api: SusanghanService,
         preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
     ) =
-        EtcServiceRepository(api, preferences) { function.moveErrorPage() }
+        EtcServiceRepository(api, preferences)
 
     @Singleton
     @Provides
     fun provideSignInRepository(
         api: SusanghanService,
-        preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
+        preferences: SharedPreferences
     ) =
-        SignInRepository(api, preferences) { function.moveErrorPage() }
+        SignInRepository(api, preferences)
 
     @Singleton
     @Provides
     fun provideSignUpRepository(
         api: SusanghanService,
-        preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
+        preferences: SharedPreferences
     ) =
-        SignUpRepository(api, preferences) { function.moveErrorPage() }
+        SignUpRepository(api, preferences)
 
     @Singleton
     @Provides
     fun provideOrderListRepository(
         api: SusanghanService,
-        preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
+        preferences: SharedPreferences
     ) =
-        OrderListRepository(api, preferences) { function.moveErrorPage() }
+        OrderListRepository(api, preferences)
 
     @Singleton
     @Provides
     fun provideDesignRepository(
         api: SusanghanService,
-        preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
+        preferences: SharedPreferences
     ) =
-        DesignRepository(api, preferences) { function.moveErrorPage() }
+        DesignRepository(api, preferences)
 
     @Singleton
     @Provides
     fun provideBaseRepository(
         api: SusanghanService,
-        preferences: SharedPreferences,
-        function: CommonActivityFuncImpl
+        preferences: SharedPreferences
     ) =
-        BaseRepository(api, preferences) { function.moveErrorPage() }
+        BaseRepository(api, preferences)
 
     @Singleton
     @Provides

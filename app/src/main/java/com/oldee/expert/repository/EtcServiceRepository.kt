@@ -7,8 +7,7 @@ import com.oldee.expert.retrofit.SusanghanService
 class EtcServiceRepository(
     api: SusanghanService,
     prefs: SharedPreferences,
-    errorFragmentCallback:()->Unit
-) : BaseRepository(api, prefs, errorFragmentCallback) {
+) : BaseRepository(api, prefs) {
     suspend fun requestNotice(page: Int) = call {
         api.requestNotice(getAccessToken(), page)
     }

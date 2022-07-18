@@ -1,18 +1,19 @@
 package com.oldee.expert.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.oldee.expert.R
 import com.oldee.expert.ui.CommonActivityFuncImpl
 
 abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArgs> : Fragment() {
@@ -64,24 +65,34 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
 
         activityFuncFunction = activity as CommonActivityFuncImpl
         viewModel.isLoading().observe(viewLifecycleOwner) {
+            Log.e("#debug", "isLoading")
             if (it)
                 activityFuncFunction.showProgress()
             else
                 activityFuncFunction.hideProgress()
         }
-//        viewModel.hasNetworkError().observe(viewLifecycleOwner){
-//            if(it){
-//
-//            }else{
-//
-//            }
-//        }
 
         initView(savedInstanceState)
         initDataBinding()
         initAfterBinding()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        onViewCreated()
+    }
+
+    open fun onViewCreated() {
+        viewModel.hasError().observe(viewLifecycleOwner) {
+            if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                it?.let {
+                    if(it) findNavController().navigate(R.id.action_global_networkErrorFragment)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

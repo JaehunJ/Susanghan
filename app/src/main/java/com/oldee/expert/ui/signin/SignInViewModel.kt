@@ -1,6 +1,7 @@
 package com.oldee.expert.ui.signin
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.repository.SignInRepository
 import com.oldee.expert.retrofit.response.SignInResponse
@@ -61,5 +62,12 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
         val list = repository.loadLoginData()
 
         return list
+    }
+
+    fun callErrorFragment(){
+        viewModelScope.launch {
+            repository.testFragment(true)
+            repository.testFragment(false)
+        }
     }
 }

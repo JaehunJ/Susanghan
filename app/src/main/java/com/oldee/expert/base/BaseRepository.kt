@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.core.content.edit
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.oldee.expert.data.ACCESS_TOKEN
 import com.oldee.expert.data.REFRESH_TOKEN
@@ -21,16 +22,17 @@ import javax.inject.Inject
 
 open class BaseRepository @Inject constructor(
     val api: SusanghanService,
-    val prefs: SharedPreferences,
-    val errorFragment:()->Unit,
+    val prefs: SharedPreferences
 ) {
     private var isLoading = MutableLiveData<Boolean>()
-//    private var hasError = MutableLiveData<Boolean>()
+    private var hasError = MutableLiveData<Boolean>()
 
     suspend fun <T : BaseResponse> call(
         onError: ((RemoteData.ApiError) -> Unit)? = null,
+        forceError: Boolean = false,
         apiCall: suspend () -> Response<T>
     ): T? {
+        hasError.postValue(false)
         isLoading.postValue(true)
         val response = apiCall.invoke()
         isLoading.postValue(false)
@@ -38,12 +40,17 @@ open class BaseRepository @Inject constructor(
         val result = if (response.isSuccessful) {
             if (response.body() != null && !response.body()!!.errorMessage.isNullOrEmpty()) {
                 RemoteData.ApiError(response.body()!!.errorCode, response.body()!!.errorMessage)
-            } else {
+            } else if(forceError){
+                RemoteData.Error2("test", "test")
+            }else{
                 RemoteData.Success(response.body()!!)
             }
         } else {
             RemoteData.Error2(response.code().toString(), response.message())
         }
+
+//        hasError.postValue(true)
+//        return null
 
         when (result) {
             is RemoteData.Success ->
@@ -73,24 +80,25 @@ open class BaseRepository @Inject constructor(
                                 return call(onError) { apiCall() }
                             }
                         } else {
-//                            hasError.postValue(true)
+                            hasError.postValue(true)
                             onError?.invoke(result)
                             return null
                         }
                     }
                 } else {
-//                    hasError.postValue(true)
+                    hasError.postValue(true)
                     onError?.invoke(result)
                     return null
                 }
             }
             is RemoteData.Error -> {
                 Log.e("#debug", result.exception.printStackTrace().toString())
-//                onError?.invoke()
+                hasError.postValue(true)
+//                onError?.invoke("")
                 return null
             }
             is RemoteData.Error2->{
-                errorFragment.invoke()
+                hasError.postValue(true)
                 return null
             }
         }
@@ -117,8 +125,12 @@ open class BaseRepository @Inject constructor(
         return result.body()
     }
 
+    suspend fun testFragment(value:Boolean){
+        hasError.postValue(value)
+    }
+
     fun getIsLoading() = isLoading
-//    fun getHasError() = hasError
+    fun getHasError() = hasError
     fun getAccessToken() = "Bearer ${prefs.getString(ACCESS_TOKEN, "")}"
     private fun getAccessTokenRaw() = prefs.getString(ACCESS_TOKEN, "")
     private fun getRefreshToken() = prefs.getString(REFRESH_TOKEN, "")

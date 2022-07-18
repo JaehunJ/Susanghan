@@ -13,13 +13,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences, errorFragmentCallback:()->Unit) :
-    BaseRepository(api, prefs, errorFragmentCallback) {
+class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
+    BaseRepository(api, prefs) {
 
     var userInfoRes: ProfileResponse? = null
 
     suspend fun requestSignIn(id: String, pw: String, onError: (RemoteData.ApiError) -> Unit) =
-        call(onError) {
+        call(onError, false) {
             api.requestSignIn(
                 "clo", SignInRequest(id, pw)
             )

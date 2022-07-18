@@ -36,5 +36,4 @@ class NetworkErrorFragment :
     override fun initAfterBinding() {
 
     }
-
 }

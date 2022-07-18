@@ -3,6 +3,8 @@ package com.oldee.expert.ui.signin
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
@@ -63,13 +65,25 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
                 navController?.navigate(action)
             }
         }
+//        viewModel.hasError().observe(viewLifecycleOwner){
+//            it?.let{
+//                if(it){
+//                    navController?.navigate(R.id.action_global_networkErrorFragment)
+//                }
+//            }
+//        }
     }
 
     override fun initAfterBinding() {
-        if (viewModel.checkAutoLogin()) {
-            val list = viewModel.loadAutoLogin()
-
-            viewModel.requestSignIn(list[0], list[1])
-        }
+//        if (viewModel.checkAutoLogin()) {
+//            val list = viewModel.loadAutoLogin()
+//            viewModel.requestSignIn(list[0], list[1])
+//        }
     }
+//
+//    override fun onViewCreated() {
+//        super.onViewCreated()
+//
+//        viewModel.callErrorFragment()
+//    }
 }

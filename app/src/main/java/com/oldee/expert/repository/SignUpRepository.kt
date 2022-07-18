@@ -10,8 +10,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences, errorFragmentCallback:()->Unit) :
-    BaseRepository(api, prefs, errorFragmentCallback) {
+class SignUpRepository @Inject constructor(api: SusanghanService, prefs: SharedPreferences) :
+    BaseRepository(api, prefs) {
     var name: String = ""
     var phone: String = ""
     var email: String = ""
