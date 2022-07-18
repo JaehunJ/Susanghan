@@ -86,13 +86,11 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
     }
 
     open fun onViewCreated() {
-        viewModel.hasError().observe(viewLifecycleOwner) {
-            if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED) {
-                it?.let {
-                    if(it) findNavController().navigate(R.id.action_global_networkErrorFragment)
-                }
+        viewModel.hasError().observe(viewLifecycleOwner, getObserver(viewLifecycleOwner){
+            it?.let {
+                if(it) findNavController().navigate(R.id.action_global_networkErrorFragment)
             }
-        }
+        })
     }
 
     override fun onDestroyView() {

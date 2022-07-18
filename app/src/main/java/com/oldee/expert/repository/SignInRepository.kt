@@ -19,7 +19,7 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
     var userInfoRes: ProfileResponse? = null
 
     suspend fun requestSignIn(id: String, pw: String, onError: (RemoteData.ApiError) -> Unit) =
-        call(onError, false) {
+        call(onError) {
             api.requestSignIn(
                 "clo", SignInRequest(id, pw)
             )
