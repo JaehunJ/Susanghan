@@ -25,7 +25,7 @@ class AccountViewModel @Inject constructor(repository: SignInRepository) :
 
     fun requestUserProfile(reflash:Boolean = false) {
         Log.e("#debug", "request user profile")
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as SignInRepository).requestUserProfile(reflash)
 
             result?.let {
@@ -37,7 +37,7 @@ class AccountViewModel @Inject constructor(repository: SignInRepository) :
     }
 
     fun requestChangeUserStatus(status: Int, msg: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val data = UserStatusChangeRequest(status, msg)
             val result = (repository as SignInRepository).requestUserStatusChange(data)
 

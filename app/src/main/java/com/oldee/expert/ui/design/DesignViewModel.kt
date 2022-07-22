@@ -21,7 +21,7 @@ class DesignViewModel @Inject constructor(repository: DesignRepository) :
 
     fun requestDesignList(page: Int, limit: Int, status: Int, isAdded: Boolean = false) {
         val repo = super.repository as DesignRepository
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             this@DesignViewModel.page = page
             reformStatus = status
             val result = repo.requestDesignList(page, limit, status)

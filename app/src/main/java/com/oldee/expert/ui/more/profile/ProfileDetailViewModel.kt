@@ -16,7 +16,7 @@ class ProfileDetailViewModel @Inject constructor(repository: SignInRepository) :
     val data = MutableLiveData<ProfileResponse?>()
 
     fun requestUserProfile() {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as SignInRepository).requestUserProfile()
 
             data.postValue(result)

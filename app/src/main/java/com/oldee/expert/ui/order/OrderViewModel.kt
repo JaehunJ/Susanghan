@@ -31,7 +31,7 @@ class OrderViewModel @Inject constructor(
 
     fun requestOrderCount() {
         val repo = repository as OrderListRepository
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = repo.requestOrderCount()
 
             result?.let {
@@ -44,7 +44,7 @@ class OrderViewModel @Inject constructor(
 
     fun requestOderList(page: Int, limit: Int, period: Int, isAdded: Boolean = false) {
         val repo = repository as OrderListRepository
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             this@OrderViewModel.page = page
             this@OrderViewModel.period = period
             val result = repo.requestOderList(page, limit, period)
@@ -62,7 +62,7 @@ class OrderViewModel @Inject constructor(
     }
 
     fun requestUserProfile() {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = signRepo.requestUserProfile()
 
             result?.let {

@@ -22,7 +22,7 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
     val successStatusChange = MutableLiveData<Boolean>()
 
     fun requestOrderDetail(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as OrderListRepository).requestOrderDetail(id)
 
             result?.let {
@@ -34,7 +34,7 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
     }
 
     fun requestChangeStatus(status: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val arr = mutableListOf<Int>()
             data.value?.let {
                 it.data.forEach { d ->
@@ -56,7 +56,7 @@ class OrderDetailViewModel @Inject constructor(repository: OrderListRepository) 
     }
 
     fun requestCarriedCompany() {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as OrderListRepository).requestDeliveryList()
 
             result?.let {

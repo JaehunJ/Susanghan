@@ -16,7 +16,7 @@ class SplashViewModel @Inject constructor(repository: ServerRepository) :
     val data = MutableLiveData<VersionData?>()
 
     fun requestVersionInfo() {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as ServerRepository).requestVersionInfo()
 
             result?.let {

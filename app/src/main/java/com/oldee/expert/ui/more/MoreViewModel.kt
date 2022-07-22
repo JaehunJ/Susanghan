@@ -20,7 +20,7 @@ class MoreViewModel @Inject constructor(repository: SignInRepository) : BaseView
 //    }
 
     fun requestProfile() {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as SignInRepository).requestUserProfile()
 
             result?.let {

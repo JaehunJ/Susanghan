@@ -48,7 +48,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
         isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true
 
     fun requestSignUp() {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             Log.e("#debug", "call signup")
             prevData?.let {
                 val cb0 = if (isCb0.value == true) {

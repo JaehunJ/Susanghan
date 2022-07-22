@@ -32,7 +32,7 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
 
     fun requestSignIn(id: String, pw: String) {
         val repo = repository as SignInRepository
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch(connectionExceptionHandler) {
             val result = repo.requestSignIn(id, pw) {
                 signInResponse.postValue(null)
             }

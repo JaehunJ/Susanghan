@@ -17,7 +17,7 @@ class FaqViewModel @Inject constructor(repository: EtcServiceRepository) :
 
     fun requestFaqList(page: Int, limit: Int) {
         val repo = repository as EtcServiceRepository
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = repo.requestFaq(page, limit)
 
             result?.let {

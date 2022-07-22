@@ -83,7 +83,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     }
 
     fun requestOldDesign(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as DesignRepository).requestDesignDetail(id)
 
             result?.let {
@@ -283,7 +283,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
      * @param onError
      */
     fun onClickPost(context: Context, onError: () -> Unit) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             //get Image
             //미리보기 이미지 리스트
             val list1 = requestPostBluePrintImage(context)

@@ -23,7 +23,7 @@ class WithdrawViewModel @Inject constructor(repository: SignInRepository) :
 
     fun requestUserStatusChange(status: Int, msg: String) {
         val repo = repository as SignInRepository
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val data = UserStatusChangeRequest(status, msg)
             val result = repo.requestUserStatusChange(data)
 

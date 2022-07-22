@@ -16,7 +16,7 @@ class NotiViewModel @Inject constructor(repository: EtcServiceRepository) :
     val notiData = MutableLiveData<MutableList<NoticeData>>()
 
     fun requestNotice(page: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val result = (repository as EtcServiceRepository).requestNotice(page)
 
             result?.let {

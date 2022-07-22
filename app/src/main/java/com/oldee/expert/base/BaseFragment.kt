@@ -76,6 +76,10 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
         initDataBinding()
         initAfterBinding()
 
+//        viewModel.connectionError = {
+//
+//        }
+
         return binding.root
     }
 

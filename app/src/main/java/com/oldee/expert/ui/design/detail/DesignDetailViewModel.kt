@@ -18,7 +18,7 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
     val imageList = MutableLiveData<List<DesignImageAdapter.DesignDetailBigImage>>()
 
     fun requestDesignDetail(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val repo = super.repository as DesignRepository
             val result = repo.requestDesignDetail(id)
 
@@ -36,7 +36,7 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
     }
 
     fun requestDesignDetailStateUpdate(reformId: Int, status: Int, onError: (() -> Unit)? = null) {
-        viewModelScope.launch {
+        viewModelScope.launch(connectionExceptionHandler) {
             val repo = repository as DesignRepository
             val result = repo.requestChangeDesignStatus(reformId, DesignStatusUpdateRequest(status))
 
