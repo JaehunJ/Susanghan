@@ -30,7 +30,7 @@ android {
 
     defaultConfig {
         applicationId "com.oldee.expert"
-        minSdkVersion 23
+        minSdkVersion 28
         targetSdkVersion 31
         versionCode 6
         versionName "1.0.2"
@@ -192,5 +192,9 @@ dependencies {
 
     //splash
     implementation("androidx.core:core-splashscreen:1.0.0-rc01")
+
+    //image
+    implementation files('libs/OldeeImageUtil-release.aar', 'libs/OldeeImageViewer-release.aar')
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }
 

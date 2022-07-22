@@ -12,6 +12,7 @@ import com.oldee.expert.data.OrderStatus
 import com.oldee.expert.data.OrderType
 import com.oldee.expert.databinding.FragmentOrderDetailBinding
 import com.oldee.expert.ui.dialog.OrderCarryDialogFragment
+import com.oldee.imageviewer.ImageViewerDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -39,6 +40,14 @@ class OrderDetailFragment :
 
         subAdapter = OrderDetailSubAdapter { iv, s ->
             viewModel.setImage(iv, s)
+        }
+        subAdapter.onClick = {
+            val dialog = ImageViewerDialog(listOf(it)){iv,str->
+                viewModel.setImage(iv, str)
+            }
+            dialog.isCancelable = false
+
+            dialog.show(requireActivity().supportFragmentManager, "")
         }
         binding.rvSub.adapter = subAdapter
 

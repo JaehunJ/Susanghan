@@ -70,7 +70,6 @@ class TermFragment : BaseFragment<FragmentTermBinding, TermViewModel, NavArgs>()
 
             if(it.position == 2){
                 startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
-//                OssLicensesActivity.title
             }
         }
     }

@@ -2,25 +2,25 @@ package com.oldee.expert.ui.order.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.oldee.expert.databinding.LayoutOrderDetailItemBinding
-import com.oldee.expert.databinding.LayoutOrderDetailItemImageBinding
-import com.oldee.expert.databinding.LayoutOrderSubItemBinding
 import com.oldee.expert.retrofit.response.OrderDetailResponse
 
 class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
     ListAdapter<OrderDetailResponse.OrderDetailSub, OrderDetailSubAdapter.OrderDetailSubViewHolder>(
         OrderDetailDiffUtil()
     ) {
+
+    var onClick: ((String) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         OrderDetailSubViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: OrderDetailSubViewHolder, position: Int) {
-        holder.bind(getItem(position), imageCallback)
+        holder.bind(getItem(position), imageCallback){list->onClick?.invoke(list)}
     }
 
     class OrderDetailSubViewHolder(val binding: LayoutOrderDetailItemBinding) :
@@ -36,14 +36,17 @@ class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
 
         fun bind(
             data: OrderDetailResponse.OrderDetailSub,
-            imageCallback: (ImageView, String) -> Unit
+            imageCallback: (ImageView, String) -> Unit,
+            onClick:(String)->Unit
         ) {
             binding.res = data
             binding.glImage.adapter = null
 
             val imageList = data.images
             if (imageList.isNotEmpty()) {
-                val adapter = OrderDetailImageAdapter(binding.root.context, imageCallback)
+                val adapter = OrderDetailImageAdapter(binding.root.context, imageCallback){str->
+                    onClick.invoke(str)
+                }
                 binding.glImage.adapter = adapter
                 adapter.replaceItem(imageList)
             }

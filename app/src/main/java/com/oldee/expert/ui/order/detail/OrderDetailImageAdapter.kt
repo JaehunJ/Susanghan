@@ -14,7 +14,8 @@ import com.oldee.expert.ui.design.DesignListAdapter
 
 class OrderDetailImageAdapter(
     val context: Context,
-    val imageCallBack: (ImageView, String) -> Unit
+    val imageCallBack: (ImageView, String) -> Unit,
+    val onClick:(String)->Unit
 ) : RecyclerView.Adapter<OrderDetailImageAdapter.DetailImageViewHolder>() {
 
     var list = mutableListOf<String>()
@@ -29,7 +30,7 @@ class OrderDetailImageAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DetailImageViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: DetailImageViewHolder, position: Int) {
-        holder.bind(list[position], imageCallBack)
+        holder.bind(list[position], imageCallBack, onClick)
     }
 
     override fun getItemCount() = list.size
@@ -43,8 +44,11 @@ class OrderDetailImageAdapter(
             }
         }
 
-        fun bind(path:String, callback:(ImageView, String)->Unit){
+        fun bind(path:String, callback:(ImageView, String)->Unit, onClick: (String) -> Unit){
             callback(binding.ivImage, path)
+            binding.ivImage.setOnClickListener {
+                onClick.invoke(path)
+            }
         }
     }
 
