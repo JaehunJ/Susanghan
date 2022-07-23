@@ -2,6 +2,7 @@ package com.oldee.expert.ui.design
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Size
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
@@ -40,7 +41,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
 
     override fun initDataBinding() {
         val adapter = DesignListAdapter(findNavController()) { v, u ->
-            viewModel.setImage(v, u)
+            viewModel.setImage(v, u, Size(155,155))
         }
 //        adapter.registerAdapterDataObserver(object :RecyclerView.AdapterDataObserver(){
 //            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {

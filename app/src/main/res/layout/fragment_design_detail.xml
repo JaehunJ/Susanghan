@@ -184,7 +184,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/iv_after"
                             android:id="@+id/iv_before"
-
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:src="@drawable/icon_empty_image"

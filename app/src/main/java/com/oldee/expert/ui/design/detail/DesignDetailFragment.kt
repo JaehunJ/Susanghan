@@ -2,6 +2,7 @@ package com.oldee.expert.ui.design.detail
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Size
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
@@ -61,8 +62,8 @@ class DesignDetailFragment :
 
     override fun initDataBinding() {
         viewModel.data.observe(viewLifecycleOwner) {
-            viewModel.setImage(binding.ivBefore, it.beforeImageName ?: "")
-            viewModel.setImage(binding.ivAfter, it.afterImageName ?: "")
+            viewModel.setImage(binding.ivBefore, it.beforeImageName ?: "", Size(150, 150))
+            viewModel.setImage(binding.ivAfter, it.afterImageName ?: "", Size(150, 150))
 
             binding.detail = viewModel.data.value
             smallAdapter.submitList(it.items)
@@ -97,7 +98,7 @@ class DesignDetailFragment :
 
         viewModel.imageList.observe(viewLifecycleOwner) {
             adapter = DesignImageAdapter { iv, n ->
-                viewModel.setImage(iv, n)
+                viewModel.setImage(iv, n, Size(360, 360))
             }
             binding.vpImage.adapter = adapter
 

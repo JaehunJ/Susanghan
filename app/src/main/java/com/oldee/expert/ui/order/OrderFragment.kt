@@ -1,6 +1,7 @@
 package com.oldee.expert.ui.order
 
 import android.os.Bundle
+import android.util.Size
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
@@ -51,7 +52,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     override fun initDataBinding() {
         val adapter = OrderListAdapter(navController!!) { iv, s ->
-            viewModel.setImage(iv, s)
+            viewModel.setImage(iv, s, Size(50, 50))
         }
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {

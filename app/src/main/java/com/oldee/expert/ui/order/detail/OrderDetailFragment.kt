@@ -1,6 +1,7 @@
 package com.oldee.expert.ui.order.detail
 
 import android.os.Bundle
+import android.util.Size
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
@@ -12,7 +13,6 @@ import com.oldee.expert.data.OrderStatus
 import com.oldee.expert.data.OrderType
 import com.oldee.expert.databinding.FragmentOrderDetailBinding
 import com.oldee.expert.ui.dialog.OrderCarryDialogFragment
-import com.oldee.imageviewer.ImageViewerDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -39,13 +39,13 @@ class OrderDetailFragment :
         }
 
         subAdapter = OrderDetailSubAdapter { iv, s ->
-            viewModel.setImage(iv, s)
+            viewModel.setImage(iv, s, Size(100, 100))
         }
         subAdapter.onClick = {
-            val dialog = ImageViewerDialog(listOf(it)){iv,str->
+            val dialog = com.oldee.imageviewer.ImageViewerDialog(listOf(it)){ iv, str->
                 viewModel.setImage(iv, str)
             }
-            dialog.isCancelable = false
+//            dialog.isCancelable = false
 
             dialog.show(requireActivity().supportFragmentManager, "")
         }

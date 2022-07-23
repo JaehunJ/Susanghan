@@ -75,10 +75,10 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
     }
 
     override fun initAfterBinding() {
-//        if (viewModel.checkAutoLogin()) {
-//            val list = viewModel.loadAutoLogin()
-//            viewModel.requestSignIn(list[0], list[1])
-//        }
+        if (viewModel.checkAutoLogin()) {
+            val list = viewModel.loadAutoLogin()
+            viewModel.requestSignIn(list[0], list[1])
+        }
     }
 //
 //    override fun onViewCreated() {

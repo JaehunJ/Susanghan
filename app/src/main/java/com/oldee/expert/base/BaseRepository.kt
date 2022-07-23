@@ -60,38 +60,44 @@ open class BaseRepository @Inject constructor(
                     return result.output
                 is RemoteData.ApiError -> {
                     //token 에러일 경우
-                    if (result.errorCode == "404") {
-                        val msgLower = result.errorMessage
+                    when(result.errorCode){
+                        "404"->{
+                            val msgLower = result.errorMessage
 
-                        if (msgLower == null) {
-                            onError?.invoke(result)
-                            return null
-                        }
-
-                        msgLower.let { msg ->
-                            val lower = msg.lowercase()
-
-                            if (lower.contains("token")) {
-                                val re = getNewToken()
-
-                                return if (re == null) {
-                                    Log.e("#debug", "token refresh exception")
-                                    null
-                                } else {
-                                    //토큰 다시 설정하고 다시 콜
-                                    setToken(re.data)
-                                    return call(onError) { apiCall() }
-                                }
-                            } else {
-                                hasError.postValue(true)
+                            if (msgLower == null) {
                                 onError?.invoke(result)
                                 return null
                             }
+
+                            msgLower.let { msg ->
+                                val lower = msg.lowercase()
+
+                                if (lower.contains("token")) {
+                                    val re = getNewToken()
+
+                                    return if (re == null) {
+                                        Log.e("#debug", "token refresh exception")
+                                        null
+                                    } else {
+                                        //토큰 다시 설정하고 다시 콜
+                                        setToken(re.data)
+                                        return call(onError) { apiCall() }
+                                    }
+                                } else {
+                                    hasError.postValue(true)
+                                    onError?.invoke(result)
+                                    return null
+                                }
+                            }
                         }
-                    } else {
-                        hasError.postValue(true)
-                        onError?.invoke(result)
-                        return null
+                        "401"->{
+                            onError?.invoke(result)
+                        }
+                        else->{
+                            hasError.postValue(true)
+                            onError?.invoke(result)
+                            return null
+                        }
                     }
                 }
                 is RemoteData.Error -> {
