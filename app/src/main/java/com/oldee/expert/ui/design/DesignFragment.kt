@@ -41,7 +41,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
 
     override fun initDataBinding() {
         val adapter = DesignListAdapter(findNavController()) { v, u ->
-            viewModel.setImage(v, u, Size(155,155))
+            viewModel.setImage(v, u)
         }
 //        adapter.registerAdapterDataObserver(object :RecyclerView.AdapterDataObserver(){
 //            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {

@@ -39,7 +39,7 @@ class OrderDetailFragment :
         }
 
         subAdapter = OrderDetailSubAdapter { iv, s ->
-            viewModel.setImage(iv, s, Size(100, 100))
+            viewModel.setImage(iv, s, Size(150, 150))
         }
         subAdapter.onClick = {
             val dialog = com.oldee.imageviewer.ImageViewerDialog(listOf(it)){ iv, str->

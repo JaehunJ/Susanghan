@@ -13,6 +13,7 @@ import com.oldee.expert.custom.getFileName
 import com.oldee.expert.custom.getImageBody
 import com.oldee.expert.data.MAX_PRICE
 import com.oldee.expert.repository.DesignRepository
+import com.oldee.expert.retrofit.NoConnectionInterceptor
 import com.oldee.expert.retrofit.request.DesignPostRequest
 import com.oldee.expert.retrofit.response.BaseResponse
 import com.oldee.expert.retrofit.response.DesignDetailResponse
@@ -290,8 +291,9 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
             //수선 전,후 이미지 리스트
             val list2 = requestPostBeforeAfterImage(context)
 
-            if (list1 == null || list2 == null)
-                onError()
+            if (list1 == null || list2 == null){
+                throw NoConnectionInterceptor.NoConnectivityException()
+            }
 
             //미리보기 이미지 처리
             val bluePrintImageList = mutableListOf<DesignPostRequest.ImageData>()

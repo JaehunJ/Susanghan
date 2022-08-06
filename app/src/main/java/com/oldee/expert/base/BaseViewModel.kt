@@ -49,6 +49,7 @@ abstract class BaseViewModel(var repository: BaseRepository) : ViewModel() {
                     Glide.with(imageView.context).load(bitmap).placeholder(R.drawable.icon_empty_image)
                         .error(R.drawable.icon_empty_image).into(imageView)
                 }else{
+
                     Glide.with(imageView.context).load(bitmap).placeholder(R.drawable.icon_empty_image).override(size.width, size.height)
                         .error(R.drawable.icon_empty_image).into(imageView)
                 }
