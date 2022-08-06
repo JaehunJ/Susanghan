@@ -32,8 +32,8 @@ android {
         applicationId "com.oldee.expert"
         minSdkVersion 28
         targetSdkVersion 31
-        versionCode 7
-        versionName "1.0.3"
+        versionCode 8
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
