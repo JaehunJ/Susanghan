@@ -25,6 +25,10 @@ class SignInRepository @Inject constructor(api: SusanghanService, prefs: SharedP
             )
         }
 
+    suspend fun requestSignIn(data:SignInRequest, onError: (RemoteData.ApiError) -> Unit) = call(onError){
+        api.requestSignIn("clo", data)
+    }
+
     fun setUserId(id: String) {
         prefs.edit {
             putString(USER_ID, id)
