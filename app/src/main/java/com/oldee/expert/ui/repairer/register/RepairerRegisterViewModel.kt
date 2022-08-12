@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RepairerRegisterViewModel @Inject constructor(repository: BaseRepository) :
-    BaseViewModel(repository) {
+class RepairerRegisterViewModel @Inject constructor() :
+    BaseViewModel() {
 
 }

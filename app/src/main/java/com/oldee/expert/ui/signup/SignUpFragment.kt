@@ -21,7 +21,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel, NavA
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btnConfirm.setOnClickListener {
-//            moveNext()
             if (viewModel.getValidated()) {
                 viewModel.requestConfirm {
                     if (it.errorMessage == "unauthorized") {

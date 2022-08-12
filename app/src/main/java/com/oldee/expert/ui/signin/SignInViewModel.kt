@@ -3,8 +3,8 @@ package com.oldee.expert.ui.signin
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
-import com.oldee.expert.repository.SignInRepository
 import com.oldee.expert.retrofit.response.SignInResponse
+import com.oldee.expert.usecase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,8 +12,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(repository: SignInRepository) :
-    BaseViewModel(repository) {
+class SignInViewModel @Inject constructor(
+    private val signInUseCase: PostSignInUseCase,
+    private val setTokenUseCase: SetSignInNewTokenUseCase,
+    private val setAutoLoginData: SetLoginDataUseCase,
+    private val getAutoLoginDataUseCase: GetAutoLoginDataUseCase
+) :
+    BaseViewModel() {
     val signInResponse = MutableLiveData<SignInResponse?>()
 
     val isCbAuto = MutableLiveData<Boolean>()
@@ -31,15 +36,14 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
     }
 
     fun requestSignIn(id: String, pw: String) {
-        val repo = repository as SignInRepository
-        CoroutineScope(Dispatchers.IO).launch(connectionExceptionHandler) {
-            val result = repo.requestSignIn(id, pw) {
+        remote {
+            val result = signInUseCase(id, pw) {
                 signInResponse.postValue(null)
             }
 
             result?.let {
                 if (it.errorMessage == null) {
-                    repo.setToken(it.data)
+                    setTokenUseCase(it.data)
 //                    repo.setUserId(id)
 
                     signInResponse.postValue(it)
@@ -52,22 +56,18 @@ class SignInViewModel @Inject constructor(repository: SignInRepository) :
                 }
             }
         }
+        CoroutineScope(Dispatchers.IO).launch(connectionExceptionHandler) {
+
+        }
     }
 
     fun saveAutoLogin(id: String, pw: String) {
-        repository.saveLoginData(id, pw)
+        setAutoLoginData(id, pw)
     }
 
     fun loadAutoLogin(): List<String> {
-        val list = repository.loadLoginData()
+        val list = getAutoLoginDataUseCase()
 
         return list
-    }
-
-    fun callErrorFragment(){
-        viewModelScope.launch {
-            repository.testFragment(true)
-            repository.testFragment(false)
-        }
     }
 }

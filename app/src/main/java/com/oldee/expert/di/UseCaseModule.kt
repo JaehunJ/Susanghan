@@ -13,65 +13,93 @@ import dagger.hilt.components.SingletonComponent
 object UseCaseModule {
 
     @Provides
-    fun provideGetVersionInfoUseCase(repo:ServerRepository) = GetVersionInfoUseCase(repo)
+    fun provideGetVersionInfoUseCase(repo: ServerRepository) = GetVersionInfoUseCase(repo)
 
     @Provides
-    fun providePostSignInUseCase(repo:SignInRepository) = PostSignInUseCase(repo)
+    fun providePostSignInUseCase(repo: SignInRepository) = PostSignInUseCase(repo)
 
     @Provides
-    fun provideSetUserStatusUseCase(repo:SignInRepository) = SetUserStatusUseCase(repo)
+    fun provideGetEditInfoUseCase(repo:SignUpRepository) = GetEditInfoUseCase(repo)
 
     @Provides
-    fun provideGetNewTokenUseCase(repo:BaseRepository) = GetNewTokenUseCase(repo)
+    fun provideSetUserStatusUseCase(repo: SignInRepository) = SetUserStatusUseCase(repo)
 
     @Provides
-    fun providePostSignUpUseCase(repo:SignUpRepository) = PostSignUpUseCase(repo)
+    fun provideGetNewTokenUseCase(repo: BaseRepository) = GetNewTokenUseCase(repo)
 
     @Provides
-    fun provideGetStoreConfirmUseCase(repo:SignUpRepository) = GetStoreConfirmUseCase(repo)
+    fun provideSetSignInNewTokenUseCase(repo:BaseRepository) = SetSignInNewTokenUseCase(repo)
 
     @Provides
-    fun provideGetProfileUseCase(repo:SignInRepository) = GetProfileUseCase(repo)
+    fun provideSetAutoLoginDataUseCase(repo:BaseRepository) = SetLoginDataUseCase(repo)
 
     @Provides
-    fun provideGetOrderListUseCase(repo:OrderListRepository) = GetOrderListUseCase(repo)
+    fun provideGetAutoLoginDataUseCase(repo:BaseRepository) = GetAutoLoginDataUseCase(repo)
 
     @Provides
-    fun provideGetOrderDetailUseCase(repo:OrderListRepository) = GetOrderDetailUseCase(repo)
+    fun provideDoLogoutUseCase(repo:SignInRepository) = DoLogoutUseCase(repo)
 
     @Provides
-    fun provideGetOrderCountUseCase(repo:OrderListRepository) = GetOrderCountUseCase(repo)
+    fun providePostSignUpUseCase(repo: SignUpRepository) = PostSignUpUseCase(repo)
 
     @Provides
-    fun providePostOrderStatusUseCase(repo:OrderListRepository) = PostOrderStatusChangeUseCase(repo)
+    fun provideGetStoreConfirmUseCase(repo: SignUpRepository) = GetStoreConfirmUseCase(repo)
 
     @Provides
-    fun provideGetDesignListUseCase(repo:DesignRepository) = GetDesignListUseCase(repo)
+    fun provideGetProfileUseCase(repo: SignInRepository) = GetProfileUseCase(repo)
 
     @Provides
-    fun provideGetDesignDetailUseCase(repo:DesignRepository) = GetDesignDetailUseCase(repo)
+    fun provideSetProfileUseCase(repo:SignInRepository) = SetProfileUseCase(repo)
 
     @Provides
-    fun providePostDesignStatusChangeUseCase(repo:DesignRepository) = PostDesignStatusChangeUseCase(repo)
+    fun provideGetOrderListUseCase(repo: OrderListRepository) = GetOrderListUseCase(repo)
 
     @Provides
-    fun providePostDesignAddUseCase(repo:DesignRepository) = PostDesignAddUseCase(repo)
+    fun provideGetOrderDetailUseCase(repo: OrderListRepository) = GetOrderDetailUseCase(repo)
 
     @Provides
-    fun providePostDesignModifyUseCase(repo:DesignRepository) = PostDesignModifyUseCase(repo)
+    fun provideGetOrderCountUseCase(repo: OrderListRepository) = GetOrderCountUseCase(repo)
 
     @Provides
-    fun provideGetFaqUseCase(repo:EtcServiceRepository) = GetFaqUseCase(repo)
+    fun providePostOrderStatusUseCase(repo: OrderListRepository) =
+        PostOrderStatusChangeUseCase(repo)
 
     @Provides
-    fun provideGetNoticeUseCase(repo:EtcServiceRepository) = GetNoticeUseCase(repo)
+    fun provideGetDesignListUseCase(repo: DesignRepository) = GetDesignListUseCase(repo)
 
     @Provides
-    fun provideGetImageUseCase(repo:BaseRepository) = GetImageUseCase(repo)
+    fun provideGetDesignDetailUseCase(repo: DesignRepository) = GetDesignDetailUseCase(repo)
 
     @Provides
-    fun providePostImageUseCase(repo:DesignRepository) = PostImageUseCase(repo)
+    fun providePostDesignStatusChangeUseCase(repo: DesignRepository) =
+        PostDesignStatusChangeUseCase(repo)
 
     @Provides
-    fun provideGetDeliveryUseCase(repo:OrderListRepository) = GetDeliveryListUseCase(repo)
+    fun providePostDesignAddUseCase(repo: DesignRepository) = PostDesignAddUseCase(repo)
+
+    @Provides
+    fun providePostDesignModifyUseCase(repo: DesignRepository) = PostDesignModifyUseCase(repo)
+
+    @Provides
+    fun provideGetFaqUseCase(repo: EtcServiceRepository) = GetFaqUseCase(repo)
+
+    @Provides
+    fun provideGetNoticeUseCase(repo: EtcServiceRepository) = GetNoticeUseCase(repo)
+
+    @Provides
+    fun providePostImageUseCase(repo: DesignRepository) = PostImageUseCase(repo)
+
+    @Provides
+    fun provideGetDeliveryUseCase(repo: OrderListRepository) = GetDeliveryListUseCase(repo)
+
+    @Provides
+    fun provideGetImageFromServerUseCase(repo: EtcServiceRepository) = GetImageUseCase(repo)
+
+    @Provides
+    fun provideSetImageFromServerUseCase(getImageUseCase: GetImageUseCase) =
+        SetImageUseCase(getImageUseCase)
+
+    @Provides
+    fun provideSetImageCircleFromServerUseCase(getImageUseCase: GetImageUseCase) =
+        SetImageCircleUseCase(getImageUseCase)
 }

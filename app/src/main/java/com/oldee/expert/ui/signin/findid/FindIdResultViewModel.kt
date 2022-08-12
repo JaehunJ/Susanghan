@@ -6,6 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FindIdResultViewModel @Inject constructor(repository: BaseRepository) :
-    BaseViewModel(repository) {
+class FindIdResultViewModel @Inject constructor() :
+    BaseViewModel() {
 }

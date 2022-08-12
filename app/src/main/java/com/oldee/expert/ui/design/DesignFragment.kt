@@ -2,13 +2,11 @@ package com.oldee.expert.ui.design
 
 import android.os.Bundle
 import android.util.Log
-import android.util.Size
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.tabs.TabLayout
 import com.oldee.expert.R
@@ -53,8 +51,8 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
             ?.observe(
                 viewLifecycleOwner
             ) {
-                it?.let{
-                    if(it.isNotEmpty()){
+                it?.let {
+                    if (it.isNotEmpty()) {
                         enablePostScroll = true
                         Log.e("#debug", "get post_design msg")
 
@@ -74,9 +72,9 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
                 } else {
                     binding.llBlankItem.visibility = View.GONE
                     binding.llExistItem.visibility = View.VISIBLE
-                    adapter.submitList(it){
+                    adapter.submitList(it) {
                         Log.e("#debug", "call back")
-                        if(viewModel.page == 0){
+                        if (viewModel.page == 0) {
                             binding.rvList.post {
                                 Log.e("#debug", " post call back")
                                 binding.rvList.smoothScrollToPosition(0)

@@ -1,11 +1,10 @@
 package com.oldee.expert.ui.more.adjustment.detail
 
-import com.oldee.expert.base.BaseRepository
 import com.oldee.expert.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AdjustmentDetailViewModel @Inject constructor(repository: BaseRepository) :
-    BaseViewModel(repository) {
+class AdjustmentDetailViewModel @Inject constructor() :
+    BaseViewModel() {
 }

@@ -55,7 +55,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
             it?.let { d ->
                 if (!d.profileImg.isNullOrEmpty()) {
                     viewModel.setImageCircle(binding.ivProfile, d.profileImg)
-                }else{
+                } else {
                     viewModel.setImageCircle(binding.ivProfile, "")
                 }
             }

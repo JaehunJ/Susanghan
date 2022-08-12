@@ -1,30 +1,42 @@
 package com.oldee.expert.ui.design
 
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.data.ReformStatus
 import com.oldee.expert.repository.DesignRepository
 import com.oldee.expert.retrofit.response.DesignListResponse
+import com.oldee.expert.usecase.GetDesignListUseCase
+import com.oldee.expert.usecase.SetImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DesignViewModel @Inject constructor(repository: DesignRepository) :
-    BaseViewModel(repository) {
+class DesignViewModel @Inject constructor(
+    private val getDesignListUseCase: GetDesignListUseCase,
+    private val setImageUseCase: SetImageUseCase
+    ) :
+    BaseViewModel() {
 
     val designList = MutableLiveData<List<DesignListResponse.DesignData>?>()
 
     var page = 0
     var reformStatus = ReformStatus.None.value
 
+    fun setImage(imageView: ImageView, url:String){
+        remote {
+            setImageUseCase(imageView, url)
+        }
+    }
+
     fun requestDesignList(page: Int, limit: Int, status: Int, isAdded: Boolean = false) {
-        val repo = super.repository as DesignRepository
-        viewModelScope.launch(connectionExceptionHandler) {
+        remote {
             this@DesignViewModel.page = page
             reformStatus = status
-            val result = repo.requestDesignList(page, limit, status)
+//            val result = repo.requestDesignList(page, limit, status)
+            val result = getDesignListUseCase(page, limit, status)
 
             if (result != null) {
                 if (result.errorMessage == null) {
@@ -54,21 +66,5 @@ class DesignViewModel @Inject constructor(repository: DesignRepository) :
                 designList.postValue(null)
             }
         }
-
-//        Log.e("rx", "add data")
-//        //temp
-//        val tempList = listOf<DesignListAdapter.TempDesignItem>(
-//            DesignListAdapter.TempDesignItem("", "Sony", 5, 0),
-//            DesignListAdapter.TempDesignItem("", "Sony1", 5, 1),
-//            DesignListAdapter.TempDesignItem("", "Sony2", 5, 2),
-//            DesignListAdapter.TempDesignItem("", "Sony3", 5, 3),
-//            DesignListAdapter.TempDesignItem("", "Sony4", 5, 4),
-//            DesignListAdapter.TempDesignItem("", "Sony5", 5, 5),
-//            DesignListAdapter.TempDesignItem("", "Sony6", 5, 6),
-//            DesignListAdapter.TempDesignItem("", "Sony7", 5, 7),
-//            DesignListAdapter.TempDesignItem("", "Sony8", 5, 8)
-//        )
-//
-//        designList.postValue(tempList)
     }
 }

@@ -1,26 +1,37 @@
 package com.oldee.expert.ui.design.detail
 
+import android.util.Size
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
-import com.oldee.expert.repository.DesignRepository
 import com.oldee.expert.retrofit.request.DesignStatusUpdateRequest
 import com.oldee.expert.retrofit.response.DesignDetailResponse
+import com.oldee.expert.usecase.GetDesignDetailUseCase
+import com.oldee.expert.usecase.PostDesignStatusChangeUseCase
+import com.oldee.expert.usecase.SetImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
-    BaseViewModel(repository) {
+class DesignDetailViewModel @Inject constructor(
+    private val getDesignDetailUseCase: GetDesignDetailUseCase,
+    private val postDesignStatusChangeUseCase: PostDesignStatusChangeUseCase,
+    private val setImageUseCase: SetImageUseCase
+) :
+    BaseViewModel() {
 
     val data = MutableLiveData<DesignDetailResponse.DesignDetailData>()
     val imageList = MutableLiveData<List<DesignImageAdapter.DesignDetailBigImage>>()
 
+    fun setImage(imageView: ImageView, url: String, size: Size? = null) {
+        remote {
+            setImageUseCase(imageView, url, size)
+        }
+    }
+
     fun requestDesignDetail(id: Int) {
-        viewModelScope.launch(connectionExceptionHandler) {
-            val repo = super.repository as DesignRepository
-            val result = repo.requestDesignDetail(id)
+        remote {
+            val result = getDesignDetailUseCase(id)
 
             if (result != null) {
                 data.postValue(result.data)
@@ -36,9 +47,8 @@ class DesignDetailViewModel @Inject constructor(repository: DesignRepository) :
     }
 
     fun requestDesignDetailStateUpdate(reformId: Int, status: Int, onError: (() -> Unit)? = null) {
-        viewModelScope.launch(connectionExceptionHandler) {
-            val repo = repository as DesignRepository
-            val result = repo.requestChangeDesignStatus(reformId, DesignStatusUpdateRequest(status))
+        remote {
+            val result = postDesignStatusChangeUseCase(reformId, DesignStatusUpdateRequest(status))
 
             if (result != null) {
                 var data = result.data as String

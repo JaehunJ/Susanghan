@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class NetworkErrorViewModel @Inject constructor(repository: SignInRepository):BaseViewModel(repository){
+class NetworkErrorViewModel @Inject constructor():BaseViewModel(){
     fun restart(){
 
     }

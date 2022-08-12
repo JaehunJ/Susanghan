@@ -3,40 +3,44 @@ package com.oldee.expert.ui.signup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
-import com.oldee.expert.repository.SignUpRepository
 import com.oldee.expert.retrofit.RemoteData
 import com.oldee.expert.retrofit.request.StoreConfirmRequest
 import com.oldee.expert.retrofit.response.StoreConfirmResponse
+import com.oldee.expert.usecase.GetEditInfoUseCase
+import com.oldee.expert.usecase.GetStoreConfirmUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
-    BaseViewModel(repository) {
+class SignUpViewModel @Inject constructor(
+    private val getInfoUseCase: GetEditInfoUseCase,
+    private val getStoreConfirmUseCase: GetStoreConfirmUseCase
+) :
+    BaseViewModel() {
 
     var name: String
-        get() = (repository as SignUpRepository).name
+        get() = getInfoUseCase().name
         set(value) {
-            (repository as SignUpRepository).name = value
+            getInfoUseCase().name = value
         }
 
     var phone: String
-        get() = (repository as SignUpRepository).phone
+        get() = getInfoUseCase().phone
         set(value) {
-            (repository as SignUpRepository).phone = value
+            getInfoUseCase().phone = value
         }
 
     var email: String
-        get() = (repository as SignUpRepository).email
+        get() = getInfoUseCase().email
         set(value) {
-            (repository as SignUpRepository).email = value
+            getInfoUseCase().email = value
         }
 
     var code: String
-        get() = (repository as SignUpRepository).code
+        get() = getInfoUseCase().code
         set(value) {
-            (repository as SignUpRepository).code = value
+            getInfoUseCase().code = value
         }
 
     val confirm = MutableLiveData<StoreConfirmResponse>()
@@ -50,9 +54,9 @@ class SignUpViewModel @Inject constructor(repository: SignUpRepository) :
     )
 
     fun requestConfirm(onError: (RemoteData.ApiError) -> Unit) {
-        viewModelScope.launch(connectionExceptionHandler) {
+        remote {
             val data = getInfo()
-            val result = (repository as SignUpRepository).requestConfirm(data) {
+            val result = getStoreConfirmUseCase(data) {
                 onError.invoke(it)
             }
 

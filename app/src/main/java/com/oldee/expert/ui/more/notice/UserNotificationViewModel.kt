@@ -6,6 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class UserNotificationViewModel @Inject constructor(repository: BaseRepository) :
-    BaseViewModel(repository) {
+class UserNotificationViewModel @Inject constructor() :
+    BaseViewModel() {
 }

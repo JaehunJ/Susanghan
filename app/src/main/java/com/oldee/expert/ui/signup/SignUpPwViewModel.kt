@@ -8,13 +8,14 @@ import com.oldee.expert.repository.SignUpRepository
 import com.oldee.expert.retrofit.request.SignUpRequest
 import com.oldee.expert.retrofit.request.StoreConfirmRequest
 import com.oldee.expert.retrofit.response.SignUpResponse
+import com.oldee.expert.usecase.PostSignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
-    BaseViewModel(repository) {
+class SignUpPwViewModel @Inject constructor(private val postSignUpUseCase: PostSignUpUseCase) :
+    BaseViewModel() {
 
     var prevData: StoreConfirmRequest? = null
 
@@ -48,7 +49,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
         isCb0.value != null && isCb1.value != null && isCb1.value == true && isCb0.value == true
 
     fun requestSignUp() {
-        viewModelScope.launch(connectionExceptionHandler) {
+        remote {
             Log.e("#debug", "call signup")
             prevData?.let {
                 val cb0 = if (isCb0.value == true) {
@@ -69,7 +70,7 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
                     0
                 }
 
-                val result = (repository as SignUpRepository).requestSignUp(
+                val result = postSignUpUseCase(
                     SignUpRequest(
                         it.email,
                         it.name,
@@ -89,7 +90,6 @@ class SignUpPwViewModel @Inject constructor(repository: SignUpRepository) :
                     }
                 }
             }
-
         }
     }
 }

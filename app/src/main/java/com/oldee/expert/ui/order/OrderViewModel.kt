@@ -1,5 +1,7 @@
 package com.oldee.expert.ui.order
 
+import android.util.Size
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -9,17 +11,20 @@ import com.oldee.expert.repository.OrderListRepository
 import com.oldee.expert.repository.SignInRepository
 import com.oldee.expert.retrofit.response.OrderCountResponse
 import com.oldee.expert.retrofit.response.OrderListResponse
+import com.oldee.expert.usecase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(
-    val state: SavedStateHandle,
-    repository: OrderListRepository,
-    private val signRepo: SignInRepository
+    private val getOrderCountUseCase: GetOrderCountUseCase,
+    private val getOrderListUseCase: GetOrderListUseCase,
+    private val getUserProfileUseCase: GetProfileUseCase,
+    private val setUserProfileUseCase: SetProfileUseCase,
+    private val setImageUseCase: SetImageUseCase
 ) :
-    BaseViewModel(repository) {
+    BaseViewModel() {
 
     val orderList = ListLiveData<OrderListResponse.OrderData>()
 
@@ -30,9 +35,8 @@ class OrderViewModel @Inject constructor(
 
 
     fun requestOrderCount() {
-        val repo = repository as OrderListRepository
-        viewModelScope.launch(connectionExceptionHandler) {
-            val result = repo.requestOrderCount()
+        remote {
+            val result = getOrderCountUseCase()
 
             result?.let {
                 if (result.errorMessage.isNullOrEmpty()) {
@@ -40,14 +44,16 @@ class OrderViewModel @Inject constructor(
                 }
             }
         }
+        viewModelScope.launch(connectionExceptionHandler) {
+
+        }
     }
 
     fun requestOderList(page: Int, limit: Int, period: Int, isAdded: Boolean = false) {
-        val repo = repository as OrderListRepository
-        viewModelScope.launch(connectionExceptionHandler) {
+        remote {
             this@OrderViewModel.page = page
             this@OrderViewModel.period = period
-            val result = repo.requestOderList(page, limit, period)
+            val result = getOrderListUseCase(page, limit, period)
             result?.let { newData ->
                 if (result.errorMessage == null) {
                     if (isAdded) {
@@ -63,11 +69,17 @@ class OrderViewModel @Inject constructor(
 
     fun requestUserProfile() {
         viewModelScope.launch(connectionExceptionHandler) {
-            val result = signRepo.requestUserProfile()
+            val result = getUserProfileUseCase()
 
             result?.let {
-                signRepo.userInfoRes = it
+                setUserProfileUseCase(it)
             }
+        }
+    }
+
+    fun setImage(imageView: ImageView, url: String, size: Size? = null){
+        remote {
+            setImageUseCase(imageView, url, size)
         }
     }
 }

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.NavArgs
 import androidx.navigation.NavController
@@ -64,7 +65,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         activityFuncFunction = activity as CommonActivityFuncImpl
-        viewModel.isLoading().observe(viewLifecycleOwner) {
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             Log.e("#debug", "isLoading")
             if (it)
                 activityFuncFunction.showProgress()
@@ -90,7 +91,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
     }
 
     open fun onViewCreated() {
-        viewModel.hasError().observe(viewLifecycleOwner, getObserver(viewLifecycleOwner){
+        viewModel.hasError.observe(viewLifecycleOwner, getObserver(viewLifecycleOwner){
             it?.let {
                 if(it) findNavController().navigate(R.id.action_global_networkErrorFragment)
             }
@@ -102,5 +103,6 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel, NA : NavArg
         _binding = null
     }
 
-
+    fun <T> getObserver(owner: LifecycleOwner, action:(T)->Unit)
+            = Observer<T> { if(owner.lifecycle.currentState == Lifecycle.State.RESUMED) action.invoke(it)}
 }

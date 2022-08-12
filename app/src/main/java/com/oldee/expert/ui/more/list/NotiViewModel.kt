@@ -5,19 +5,20 @@ import androidx.lifecycle.viewModelScope
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.repository.EtcServiceRepository
 import com.oldee.expert.retrofit.response.NoticeData
+import com.oldee.expert.usecase.GetNoticeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NotiViewModel @Inject constructor(repository: EtcServiceRepository) :
-    BaseViewModel(repository) {
+class NotiViewModel @Inject constructor(private val getNoticeUseCase: GetNoticeUseCase) :
+    BaseViewModel() {
 
     val notiData = MutableLiveData<MutableList<NoticeData>>()
 
     fun requestNotice(page: Int) {
-        viewModelScope.launch(connectionExceptionHandler) {
-            val result = (repository as EtcServiceRepository).requestNotice(page)
+        remote {
+            val result = getNoticeUseCase(page)
 
             result?.let {
                 if (it.errorMessage.isNullOrEmpty()) {

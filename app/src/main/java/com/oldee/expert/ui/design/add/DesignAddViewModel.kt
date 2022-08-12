@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.OpenableColumns
 import android.util.Log
+import android.util.Size
+import android.widget.ImageView
 import androidx.core.net.toFile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -17,6 +19,7 @@ import com.oldee.expert.retrofit.NoConnectionInterceptor
 import com.oldee.expert.retrofit.request.DesignPostRequest
 import com.oldee.expert.retrofit.response.BaseResponse
 import com.oldee.expert.retrofit.response.DesignDetailResponse
+import com.oldee.expert.usecase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.File
@@ -25,8 +28,14 @@ import java.io.FileOutputStream
 import javax.inject.Inject
 
 @HiltViewModel
-class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
-    BaseViewModel(repository) {
+class DesignAddViewModel @Inject constructor(
+    private val setImageUseCase: SetImageUseCase,
+    private val postImageUseCase: PostImageUseCase,
+    private val getDesignDetailUseCase: GetDesignDetailUseCase,
+    private val postDesignAddUseCase: PostDesignAddUseCase,
+    private val postDesignModifyUseCase: PostDesignModifyUseCase
+) :
+    BaseViewModel() {
 
     val BLUE_IMAGE_MAX = 5
 
@@ -66,6 +75,12 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         )
     }
 
+    fun setImage(imageView: ImageView, url:String, size: Size? = null){
+        remote {
+            setImageUseCase(imageView, url, size)
+        }
+    }
+
     fun getOfflineImageUriList(context: Context) : List<Uri>{
         val offlinelist = mutableListOf<Uri>()
 
@@ -84,8 +99,8 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
     }
 
     fun requestOldDesign(id: Int) {
-        viewModelScope.launch(connectionExceptionHandler) {
-            val result = (repository as DesignRepository).requestDesignDetail(id)
+        remote {
+            val result = getDesignDetailUseCase(id)
 
             result?.let {
                 if (it.errorMessage.isNullOrEmpty()) {
@@ -127,8 +142,8 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
         //오프라인 파일이 존재하면 서버에 업로드
         if (offlinelist.isNotEmpty()) {
             val multiBody = getImageBody("files", offlinelist)
-            val repo = repository as DesignRepository
-            val res = repo.requestPostImage(null, multiBody) ?: return null
+//            val repo = repository as DesignRepository
+            val res = postImageUseCase(null, multiBody) ?: return null
 
             res.let {
                 val imageList = it.data
@@ -163,8 +178,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
         if (list.isNotEmpty()) {
             val multiBody = getImageBody("files", list)
-            val repo = repository as DesignRepository
-            val res = repo.requestPostImage(null, multiBody)
+            val res = postImageUseCase(null, multiBody)
 
             res?.let {
                 val imageList = it.data
@@ -330,7 +344,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
             //신규 등록이면 post
             if (mode == MODE_WRITE) {
-                val result = (repository as DesignRepository).requestPostDesign(request)
+                val result = postDesignAddUseCase(request)
                 if (result == null) {
 
                 } else {
@@ -339,7 +353,7 @@ class DesignAddViewModel @Inject constructor(repository: DesignRepository) :
 
                 postResult.postValue(result)
             } else { //수정이라면 put
-                val result = (repository as DesignRepository).requestModifyDesign(reformId, request)
+                val result = postDesignModifyUseCase(reformId, request)
                 if (result == null) {
 
                 } else {
