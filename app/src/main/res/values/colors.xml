@@ -5,7 +5,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#101010</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_transparent">#00ffffff</color>
@@ -31,4 +31,51 @@
     <color name="order_status_color_blue">#6F74DD</color>
     <color name="order_status_color_red">#CD0600</color>
     <color name="order_status_color_gray">#666666</color>
+
+    <!--renewal color-->
+    <color name="navy">#001D66</color>
+    <color name="red">#FF3216</color>
+    <color name="sky_1">#F6FAFE</color>
+    <color name="sky_2">#E2EFFC</color>
+    <color name="sky_3">#CDE3FA</color>
+    <color name="sky_4">#B6D6F7</color>
+    <color name="sky_5">#9CC8F5</color>
+    <color name="sky_6">#81B8EF</color>
+    <color name="sky_7">#73A4D5</color>
+    <color name="sky_8">#638DB7</color>
+    <color name="sky_9">#4E6F90</color>
+    <color name="sky_10">#2E4155</color>
+
+    <color name="blush_1">#FEF8F8</color>
+<color name="blush_2">#FDE9E9</color>
+<color name="blush_3">#FBD9D9</color>
+<color name="blush_4">#F9C7C7</color>
+<color name="blush_5">#F7B2B2</color>
+<color name="blush_6">#F49B9B</color>
+<color name="blush_7">#F28383</color>
+<color name="blush_8">#CB6E6E</color>
+<color name="blush_9">#A05757</color>
+<color name="blush_10">#5E3333</color>
+
+    <color name="chees_1">#FAFAEE</color>
+    <color name="chees_2">#F0F0CB</color>
+    <color name="chees_3">#E4E4A4</color>
+    <color name="chees_4">#D8D879</color>
+    <color name="chees_5">#C8C870</color>
+    <color name="chees_6">#B7B767</color>
+    <color name="chees_7">#A4A45C</color>
+    <color name="chees_8">#8C8C4F</color>
+    <color name="chees_9">#6F6F3E</color>
+    <color name="chees_10">#414124</color>
+
+    <color name="gray_1">#F9F9FA</color>
+    <color name="gray_2">#EDEDEE</color>
+    <color name="gray_3">#E0E1E2</color>
+    <color name="gray_4">#D2D3D5</color>
+    <color name="gray_5">#C3C4C6</color>
+    <color name="gray_6">#B2B3B6</color>
+    <color name="gray_7">#9EA0A4</color>
+    <color name="gray_8">#87898E</color>
+    <color name="gray_9">#6A6C72</color>
+    <color name="gray_10">#3C3F47</color>
 </resources>
