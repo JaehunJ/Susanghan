@@ -64,6 +64,8 @@ android {
 
 
 
+
+
     flavorDimensions "server"
 
     productFlavors {
