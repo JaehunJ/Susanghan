@@ -7,12 +7,12 @@
     <!--dialog-->
     <!--service error-->
     <string name="dialog_service_error_0">서비스 이용 안내</string>
-    <string name="dialog_service_error_1">서비스 이용에 불편을 드려 죄송합니다.\n현재 서비스를 이용이 불가합니다.\n</string>
+    <string name="dialog_service_error_1">서비스 이용에 불편을 드려 죄송합니다.\n현재 서비스를 이용이 불가합니다.</string>
     <string name="dialog_service_error_2">재시도를 통해서 문제가 해결되지 않는 경우\n카카오톡 채널"수상한수선집"을 통해 문의해주세요.</string>
 
     <!--service check-->
     <string name="dialog_service_check_0">서비스 점검 안내</string>
-    <string name="dialog_service_check_1">서비스 안정화를 위한 점검이 진행중입니다.\n점검일시: YYYY년 MM월 DD일 HH:mm ~ HH:mm\n</string>
+    <string name="dialog_service_check_1">서비스 안정화를 위한 점검이 진행중입니다.\n점검일시: YYYY년 MM월 DD일 HH:mm ~ HH:mm</string>
     <string name="dialog_service_check_2">빠른 시간 안에 서비를 재개할 수 있도록\n최선을 다하겠습니다.</string>
 
     <!--permission info-->
@@ -82,7 +82,7 @@
     <!--sigin up-->
     <string name="attention">사전에 이메일로 받으신 코드번호를 입력 후 인증하기 버튼을 눌러 인증해주세요. 수상한수선집은 사전 승인 후 가입할 수 있습니다. 사전 승인을 원하시는 경우, 입점신청 페이지에서 신청해주세요.</string>
     <string name="attention_pw">영문, 숫자, 특수문자 중 2종류 이상을 조합하여 8~16자 길이로 구성</string>
-    <string name="signup_result">가입을 환영합니다.</string>
+    <string name="signup_result">가입을 환영합니다!</string>
 
     <!--adjustment-->
     <string name="adjustment_bank_warning">지급일은 매월 15일이며, 전월 1일부터 말일까지 발생한 수선 완료건에 한하여 이루어집니다. 정산일 이후 취소 및 환불이 발생하는 경우 익월 정산 금액에서 처리됩니다.</string>
@@ -117,4 +117,11 @@
 
     <!--error-->
     <string name="network_error">일시적인 문제가 발생했습니다.\n\n이 오류는 잘못된 접근을 했거나 인터넷 연결이\n원활하지 않을 경우 만날 수 있습니다.\n인터넷 연결을 확인 후 다시 시도해 주세요.\n\n이 오류가 반복된다면 ‘문의하기’를 통해\n문제를 해결할 수 있습니다.</string>
+
+    <string-array name="order_sort">
+        <item>전체보기</item>
+        <item>신규</item>
+        <item>진행중</item>
+        <item>완료</item>
+    </string-array>
 </resources>

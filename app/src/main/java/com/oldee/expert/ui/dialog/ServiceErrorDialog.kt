@@ -14,7 +14,7 @@ class ServiceErrorDialog(
         }
 
     override fun setEvent() {
-        binding.llConfirm.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
             dismiss()
             Log.e("#debug", "click confirm")
             onConfirm?.invoke()

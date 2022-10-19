@@ -51,7 +51,7 @@
             android:layout_height="55dp"
             style="@style/BottomNavTextColor"
             app:labelVisibilityMode="labeled"
-            app:itemTextColor="@color/bottom_nav_text_color"
+            app:itemTextColor="@color/selector_nav_menu"
             app:menu="@menu/menu_nav_bottom"/>
     </LinearLayout>
 </LinearLayout>

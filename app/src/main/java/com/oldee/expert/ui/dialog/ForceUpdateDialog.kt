@@ -12,7 +12,7 @@ class ForceUpdateDialog(val onConfirm: (() -> Unit)? = null) :
         }
 
     override fun setEvent() {
-        binding.llConfirm.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
             dismiss()
             onConfirm?.invoke()
         }

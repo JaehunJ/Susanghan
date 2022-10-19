@@ -19,7 +19,7 @@ class SignUpPwFragment :
     override val navArgs: SignUpPwFragmentArgs by navArgs()
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.toolbar.tvTitle.text = ""
+        binding.toolbar.tvTitle.text = "회원가입"
 
         binding.btnConfirm.setOnClickListener {
 //            moveNext()

@@ -28,7 +28,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/Theme.Susanghan"
+        android:theme="@style/Theme.OldeeExpert"
         android:hardwareAccelerated="false"
         android:requestLegacyExternalStorage="true">
         <activity android:name="com.oldee.expert.ui.MainActivity" android:exported="true"

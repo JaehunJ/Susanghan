@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_round_8dp_white_stroke_1dp_black" android:state_enabled="true" android:state_focused="true" />
+    <item android:drawable="@drawable/bg_round_8dp_white_stroke_1dp_gray2" android:state_enabled="true" android:state_focused="false" />
+    <item android:drawable="@drawable/bg_round_8dp_gray_1_stroke_1dp_gray_2" android:state_enabled="false" />
+</selector>

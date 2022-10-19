@@ -3,9 +3,10 @@ package com.oldee.expert.ui.order
 import android.os.Bundle
 import android.util.Size
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.oldee.expert.R
@@ -17,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavArgs>(),
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     override val layoutId: Int = R.layout.fragment_order_old
     override val viewModel: OrderViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -44,10 +45,19 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
         binding.rvList.addOnScrollListener(OnScrollEndListener { addItem() })
 
-        binding.tvTop1.setOnClickListener {
-            findNavController().popBackStack()
-            findNavController().navigate(R.id.orderFragment)
-        }
+//        binding.tvTop1.setOnClickListener {
+//            findNavController().popBackStack()
+//            findNavController().navigate(R.id.orderFragment)
+//        }
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.list_order_sort,
+            listOf("전체보기", "신규", "진행중", "완료")
+        )
+        binding.acSort.setAdapter(adapter)
+        binding.acSort.onItemSelectedListener = this
+        binding.acSort.onItemClickListener = this
     }
 
     override fun initDataBinding() {
@@ -71,14 +81,14 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
             }
         }
         viewModel.orderCount.observe(viewLifecycleOwner) {
-            it?.let {
-                binding.tvTopTabTotal.text = "${getString(R.string.order_top_tab_0)} ${it.totalCnt}"
-                binding.tvTopTabNew.text = "${getString(R.string.order_top_tab_1)} ${it.newCnt}"
-                binding.tvTopTabDoing.text =
-                    "${getString(R.string.order_top_tab_2)} ${it.progressCnt}"
-                binding.tvTopTabComplete.text =
-                    "${getString(R.string.order_top_tab_3)} ${it.completeCnt}"
-            }
+//            it?.let {
+//                binding.tvTopTabTotal.text = "${getString(R.string.order_top_tab_0)} ${it.totalCnt}"
+//                binding.tvTopTabNew.text = "${getString(R.string.order_top_tab_1)} ${it.newCnt}"
+//                binding.tvTopTabDoing.text =
+//                    "${getString(R.string.order_top_tab_2)} ${it.progressCnt}"
+//                binding.tvTopTabComplete.text =
+//                    "${getString(R.string.order_top_tab_3)} ${it.completeCnt}"
+//            }
         }
 
         binding.rvList.adapter = adapter
@@ -91,6 +101,8 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         //첫 탭 선택
         if (viewModel.orderList.getItemCount() == 0)
             topSort[0].root.performClick()
+
+//        binding.acSort.select
     }
 
     private fun selectItem(selectedIdx: Int) {
@@ -112,5 +124,17 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     fun addItem() {
         viewModel.requestOderList(viewModel.page + 1, 10, viewModel.period, true)
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
     }
 }

@@ -108,5 +108,12 @@
             android:textColor="#999999"
             android:textSize="12sp"
             android:text="탈퇴 요청이 처리중입니다.\n탈퇴 요청 중에는 페이지에 연결할 수 없습니다." />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/SkyBigRoundBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="asdasd"/>
     </LinearLayout>
 </layout>

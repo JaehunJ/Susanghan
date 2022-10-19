@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@color/sky_1</item>
     </style>
 
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
@@ -128,16 +128,108 @@
         <item name="endIconTint">#000000</item>
         <item name="boxStrokeWidth">1dp</item>
     </style>
-    
-    <style name="CustomCheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
-        <item name="buttonTint">@color/checkbox_color</item>
-<!--        <item name="colorAccent">#6F74DD</item>-->
-<!--        <item name="android:textColorSecondary">@color/order_status_color_gray</item>-->
+
+    <style name="OrderDropDown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="endIconDrawable">@drawable/selector_drop_down_top_order</item>
+        <item name="endIconTint">#000000</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
     </style>
+<!--    -->
+<!--    <style name="SkyCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">-->
+<!--        <item name="buttonTint">@color/checkbox_color</item>-->
+
+<!--&lt;!&ndash;        <item name="colorAccent">#6F74DD</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:textColorSecondary">@color/order_status_color_gray</item>&ndash;&gt;-->
+<!--    </style>-->
 
 <!--    <style name="WithdrawEditText.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox."-->
 
 <!--    &lt;!&ndash;spalsh&ndash;&gt;-->
 <!--    <-->
 
+    <style name="BoldText" parent="android:TextAppearance">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="NormalText" parent="android:TextAppearance">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/pretendard_medium</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="BigFlatButton" parent="Widget.AppCompat.Button">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="SmallRoundButton" parent="Widget.AppCompat.Button">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="BigRoundButton" parent="Widget.AppCompat.Button">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="SingleEditText" parent="ThemeOverlay.Material3.TextInputEditText">
+        <item name="android:background">@drawable/selector_input_text_single</item>
+        <item name="android:textColor">@color/selector_input_text</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="SkyBigRoundBtn" parent="BigRoundButton">
+        <item name="android:background">@drawable/selector_round_8dp_sky</item>
+        <item name="android:textColor">@color/selector_btn_sky</item>
+
+    </style>
+
+    <style name="RedBigRoundBtn" parent="BigRoundButton">
+        <item name="android:background">@drawable/selector_round_8dp_red</item>
+        <item name="android:textColor">@color/selector_btn_red</item>
+    </style>
+
+    <style name="GrayBigRoundBtn" parent="BigRoundButton">
+        <item name="android:background">@drawable/selector_round_8dp_gray</item>
+        <item name="android:textColor">@color/selector_btn_gray</item>
+    </style>
+
+    <style name="SkySmallRoundBtn" parent="SmallRoundButton">
+        <item name="android:background">@drawable/selector_round_4dp_sky</item>
+        <item name="android:textColor">@color/selector_btn_sky</item>
+    </style>
+
+    <style name="RedSmallRoundBtn" parent="SmallRoundButton">
+        <item name="android:background">@drawable/selector_round_4dp_red</item>
+        <item name="android:textColor">@color/selector_btn_sky</item>
+    </style>
+
+    <style name="RedBigFlatBtn" parent="BigFlatButton">
+        <item name="android:background">@drawable/selector_flat_red</item>
+        <item name="android:textColor">@color/selector_btn_red</item>
+    </style>
+
+    <style name="SkyBigFlatBtn" parent="BigFlatButton">
+        <item name="android:background">@drawable/selector_flat_sky</item>
+        <item name="android:textColor">@color/selector_btn_sky</item>
+    </style>
 </resources>

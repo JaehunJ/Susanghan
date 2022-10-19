@@ -4,150 +4,118 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:background="@color/white"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0">
+    android:padding="24dp">
 
     <TextView
-        android:id="@+id/tv_top_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/dialog_permission_info_top_title"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        android:id="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-
-        android:id="@+id/tv_top_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/dialog_permission_info_top_contents"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_top_0" />
-
-    <TextView
-        android:id="@+id/tv_item0_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/dialog_permission_info_item0_title"
-        android:textSize="11sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_top_1" />
-
-    <TextView
-        android:id="@+id/tv_item0_contents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/dialog_permission_info_item0_contents"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item0_title" />
-
-    <TextView
-        android:id="@+id/tv_item1_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/dialog_permission_info_item1_title"
-        android:textSize="11sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item0_contents" />
-
-    <TextView
-        android:id="@+id/tv_item1_contents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/dialog_permission_info_item1_contents"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item1_title" />
-
-    <View
-        android:id="@+id/v_divide"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="28dp"
-        android:background="#e5e5e5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item1_contents" />
-
-    <TextView
-        android:id="@+id/tv_bottom_contents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:textColor="#999999"
-        android:text="@string/dialog_permission_info_bottom"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/v_divide" />
-
-    <LinearLayout
-        android:id="@+id/ll_confirm"
-        android:layout_marginTop="100dp"
+        style="@style/BoldText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/color_2f389f"
-        android:paddingTop="13dp"
-        android:paddingBottom="13dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tv_bottom_contents"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:textSize="20dp"
+        android:text="접근권한안내"/>
+
+    <TextView
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:id="@+id/tv_contents"
+        style="@style/NormalText"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="서비스 사용을 위해 아래의 권한 허용이 필요합니다."/>
+
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_contents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_iris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_iris"
+                android:tint="@color/navy"/>
+
+            <TextView
+                android:id="@+id/tv_iris_title"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/BoldText"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iv_iris"
+                android:text="카메라(선택)"/>
+
+            <TextView
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_iris_title"
+                style="@style/NormalText"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iv_iris"
+                android:text="제품 등록, 글 작성 및 프로필 이미지 첨부"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_picture"
+                android:tint="@color/navy"/>
+
+            <TextView
+                android:id="@+id/tv_pic_title"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/BoldText"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iv_pic"
+                android:text="사진/미디어/파일 (선택)"/>
+
+            <TextView
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_pic_title"
+                style="@style/NormalText"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iv_pic"
+                android:text="제품 등록, 글 작성 및 프로필 이미지 첨부"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/NormalText"
+            android:textColor="@color/red"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textAlignment="center"
+            android:textSize="12dp"
+            android:text="접근 권한은 더 나은 서비스를 제공하기 위해 사용되며, 허용하지 않아도 서비스 이용이 가능합니다."/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SkyBigRoundBtn"
             android:text="확인"/>
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

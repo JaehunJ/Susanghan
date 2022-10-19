@@ -14,6 +14,7 @@
     </data>
 
     <LinearLayout
+        android:background="@color/sky_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -26,89 +27,78 @@
             android:layout_height="wrap_content"
             android:fillViewport="true">
             <LinearLayout
+                android:background="@color/white"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="18dp"
+                    style="@style/BoldText"
+                    android:layout_marginTop="24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="인증되었습니다."
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textSize="24dp" />
 
                 <TextView
-                    android:layout_marginStart="16dp"
+                    style="@style/NormalText"
+                    android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="비밀번호를 설정하고 회원가입을 완료하세요."
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_marginTop="9dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:background="#f5f5f5"/>
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:id="@+id/ll_name"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="이름"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
+                        style="@style/BoldText"
+                        android:textSize="16dp"/>
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/SingleEditText"
                         android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{user.name}"
-                        android:textSize="14sp"/>
+                        android:textSize="16dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/ll_email"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="이메일"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
+                        style="@style/BoldText"
+                        android:textSize="16dp"/>
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/SingleEditText"
                         android:enabled="false"
                         android:text="@{user.email}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"/>
+                        android:textSize="16dp"/>
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ll_id"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -116,16 +106,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:id="@+id/tv_id"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="아이디"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
+                        style="@style/BoldText"
+                        android:textSize="16dp"/>
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/SingleEditText"
                         android:id="@+id/et_id"
                         app:layout_constraintTop_toBottomOf="@id/tv_id"
                         app:layout_constraintStart_toStartOf="parent"
@@ -134,165 +123,202 @@
                         android:layout_height="wrap_content"
                         android:text="@{user.email}"
                         android:enabled="false"
-                        android:textSize="14sp"/>
+                        android:textSize="16dp"/>
 
-                    <TextView
-                        app:layout_constraintTop_toTopOf="@id/et_id"
-                        app:layout_constraintBottom_toBottomOf="@id/et_id"
-                        app:layout_constraintEnd_toEndOf="@id/et_id"
+                    <ImageView
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/iv_info_round"
+                        app:layout_constraintTop_toBottomOf="@id/et_id"
+                        app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@drawable/ic_info_round"/>
+
+                    <TextView
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintStart_toEndOf="@id/iv_info_round"
+                        app:layout_constraintTop_toTopOf="@id/iv_info_round"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_info_round"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@color/deep_blue"
+                        android:textColor="@color/gray_8"
+                        style="@style/NormalText"
                         android:text="아이디는 메일주소입니다."/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_pw"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="비밀번호"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
+                        style="@style/BoldText"
+                        android:textSize="16dp"/>
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/SingleEditText"
                         android:id="@+id/et_pw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="비밀번호를 입력해주세요."
                         android:inputType="textPassword"
                         android:text="@={viewModel.pw}"
-                        android:textSize="14sp"/>
+                        android:textSize="16dp"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/iv_info_round_2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_info_round"/>
+
                     <TextView
-                        android:id="@+id/tv_pw"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintStart_toEndOf="@id/iv_info_round_2"
+                        app:layout_constraintTop_toTopOf="@id/iv_info_round_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:textSize="12sp"
+                        android:textColor="@color/gray_8"
+                        style="@style/NormalText"
                         android:text="@string/attention_pw"/>
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_pw_confirm"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginBottom="10dp"
+                        style="@style/BoldText"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="비밀번호 확인"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
+                        android:textSize="16dp"/>
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/SingleEditText"
                         android:id="@+id/et_pw_confirm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:text="@={viewModel.pwConfirm}"
                         android:hint="비밀번호를 한 더 입력해주세요."
-                        android:textSize="14sp"/>
+                        android:textSize="16dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_term"
                     android:layout_marginTop="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginBottom="7dp"
+                        style="@style/BoldText"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="약관동의"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
+                        android:textSize="20dp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#f5f5f5"
-                        android:orientation="vertical">
+                        android:background="@drawable/bg_round_8dp_gray_1"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
                         <com.google.android.material.checkbox.MaterialCheckBox
-                            android:layout_marginStart="10dp"
                             android:id="@+id/cb_all"
-                            android:button="@drawable/selector_check"
+                            android:button="@drawable/selector_check_box_sky"
+                            app:useMaterialThemeColors="false"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="@={viewModel.isCbAll()}"
-                            android:text="전체 동의"/>
+                            android:minHeight="0dp"
+                            style="@style/BoldText"
+                            android:paddingLeft="8dp"
+                            android:text="전체 동의"
+                            android:layout_marginBottom="12dp"/>
 
                         <View
+                            android:layout_marginBottom="6dp"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#e5e5e5"
-                            android:layout_marginStart="9dp"
-                            android:layout_marginEnd="9dp"/>
+                            android:background="@color/gray_3" />
 
                         <com.google.android.material.checkbox.MaterialCheckBox
                             android:visibility="gone"
                             android:layout_marginStart="10dp"
                             android:id="@+id/cb_child"
-                            android:button="@drawable/selector_check"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="8dp"
+                            android:minHeight="0dp"
+                            android:button="@drawable/selector_check_box_sky"
+                            app:useMaterialThemeColors="false"
                             android:checked="@={viewModel.isCbChild()}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(필수) 만 14세이상"/>
 
                         <com.google.android.material.checkbox.MaterialCheckBox
-                            android:layout_marginStart="10dp"
+                            android:minHeight="0dp"
                             android:id="@+id/cb_0"
-                            android:button="@drawable/selector_check"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="8dp"
+                            android:button="@drawable/selector_check_box_sky"
+                            app:useMaterialThemeColors="false"
                             android:checked="@={viewModel.isCb0()}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(필수) 이용약관 동의"/>
                         <com.google.android.material.checkbox.MaterialCheckBox
-                            android:layout_marginStart="10dp"
+                            android:minHeight="0dp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="8dp"
                             android:checked="@={viewModel.isCb1()}"
-                            android:button="@drawable/selector_check"
+                            android:button="@drawable/selector_check_box_sky"
+                            app:useMaterialThemeColors="false"
                             android:id="@+id/cb_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(필수) 개인정보처리방침 동의"/>
                         <com.google.android.material.checkbox.MaterialCheckBox
+                            android:minHeight="0dp"
                             android:visibility="gone"
-                            android:layout_marginStart="10dp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="8dp"
                             android:checked="@={viewModel.isCb2()}"
-                            android:button="@drawable/selector_check"
+                            android:button="@drawable/selector_check_box_sky"
+                            app:useMaterialThemeColors="false"
                             android:id="@+id/cb_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -301,26 +327,36 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <RelativeLayout
+                <androidx.appcompat.widget.AppCompatButton
+                    android:enabled="false"
+                    android:id="@+id/btn_confirm"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="56dp"
+                    style="@style/SkyBigRoundBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_marginTop="30dp"
-                        android:id="@+id/btn_confirm"
-                        android:layout_marginBottom="32dp"
-                        android:text="완료"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintVertical_bias="1"
-                        android:layout_marginStart="26dp"
-                        android:layout_marginEnd="26dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/round_white_6dp"
-                        app:backgroundTint="@color/deep_blue"/>
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:text="완료"/>
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="1">-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:id="@+id/btn_confirm"-->
+<!--                        android:layout_marginBottom="32dp"-->
+<!--                        android:text="완료"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintVertical_bias="1"-->
+<!--                        android:layout_marginStart="26dp"-->
+<!--                        android:layout_marginEnd="26dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentBottom="true"-->
+<!--                        android:background="@drawable/round_white_6dp"-->
+<!--                        app:backgroundTint="@color/deep_blue"/>-->
+<!--                </RelativeLayout>-->
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

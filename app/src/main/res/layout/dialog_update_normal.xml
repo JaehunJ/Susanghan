@@ -6,13 +6,14 @@
 
     <TextView
         android:id="@+id/tv_top_0"
+        style="@style/BoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="@string/dialog_update_normal_title"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,70 +21,95 @@
 
     <TextView
         android:id="@+id/tv_top_1"
+        style="@style/NormalText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="@string/dialog_update_normal_contents"
-        android:textSize="14sp"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_top_0" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_confirm"
+        style="@style/SkyBigRoundBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="확인"
+        app:layout_constraintTop_toBottomOf="@id/tv_top_1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cancel"
+        style="@style/GrayBigRoundBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="36dp"
+        android:text="다음에"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_top_1">
+        app:layout_constraintTop_toBottomOf="@id/btn_confirm" />
 
-        <LinearLayout
-            android:id="@+id/ll_cancel"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="31dp"
-            android:layout_weight="2"
-            android:background="#c4c4c4"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_1">
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="25dp"-->
+    <!--        android:layout_marginEnd="25dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tv_top_1">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="다음에"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/ll_cancel"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="48dp"-->
+    <!--            android:layout_marginTop="31dp"-->
+    <!--            android:layout_weight="2"-->
+    <!--            android:background="#c4c4c4"-->
+    <!--            android:gravity="center"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/tv_top_1">-->
 
-        <LinearLayout
-            android:id="@+id/ll_confirm"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="31dp"
-            android:layout_weight="3"
-            android:background="@color/color_2f389f"
-            android:gravity="center">
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="다음에"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="16sp"-->
+    <!--                android:textStyle="bold" />-->
+    <!--        </LinearLayout>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="업데이트"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/ll_confirm"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="48dp"-->
+    <!--            android:layout_marginStart="4dp"-->
+    <!--            android:layout_marginTop="31dp"-->
+    <!--            android:layout_weight="3"-->
+    <!--            android:background="@color/color_2f389f"-->
+    <!--            android:gravity="center">-->
 
-    </LinearLayout>
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="업데이트"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="16sp"-->
+    <!--                android:textStyle="bold" />-->
+    <!--        </LinearLayout>-->
+
+    <!--    </LinearLayout>-->
 
     <!--    <LinearLayout-->
     <!--        android:id="@+id/ll_confirm"-->

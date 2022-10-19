@@ -13,7 +13,7 @@ class ServiceCheckDialog(
         }
 
     override fun setEvent() {
-        binding.llConfirm.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
             dismiss()
             onConfirm?.invoke()
         }

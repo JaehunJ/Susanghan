@@ -35,6 +35,7 @@
     <!--renewal color-->
     <color name="navy">#001D66</color>
     <color name="red">#FF3216</color>
+    <color name="red_alpha">#33FF3216</color>
     <color name="sky_1">#F6FAFE</color>
     <color name="sky_2">#E2EFFC</color>
     <color name="sky_3">#CDE3FA</color>

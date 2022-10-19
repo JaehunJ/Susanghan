@@ -12,12 +12,12 @@ class UpdateDialog(val onCancel: (() -> Unit)? = null, val onConfirm: (() -> Uni
         }
 
     override fun setEvent() {
-        binding.llCancel.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             dismiss()
             onCancel?.invoke()
         }
 
-        binding.llConfirm.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
             dismiss()
             onConfirm?.invoke()
         }
