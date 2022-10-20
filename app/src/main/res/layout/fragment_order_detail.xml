@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,7 +22,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#f5f5f5"
+            android:background="@color/gray_1"
             android:fillViewport="true">
 
             <LinearLayout
@@ -29,27 +30,131 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <include
+                <LinearLayout
                     android:id="@+id/ll_status_bar"
-                    layout="@layout/layout_order_detail_shpiping_graph" />
+                    android:paddingTop="16dp"
+                    android:background="@color/sky_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="16dp"
+                    android:orientation="horizontal">
+
+
+                    <CheckBox
+                        android:id="@+id/cb_ic_0"
+                        android:clickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_cart"
+                        android:drawableTint="@color/selector_check_order_status"
+                        android:text="주문완료"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/selector_check_order_status"
+                        android:textSize="12dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:button="@null"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_dot_0"
+                        android:clickable="false"
+                        android:button="@null"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="@drawable/selector_check_order_status_dotted"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_ic_1"
+                        android:clickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_recycle"
+                        android:drawableTint="@color/selector_check_order_status"
+                        android:text="수선중"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/selector_check_order_status"
+                        android:textSize="12dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:button="@null"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_dot_1"
+                        android:clickable="false"
+                        android:button="@null"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="@drawable/selector_check_order_status_dotted"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_ic_2"
+                        android:clickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_hanger"
+                        android:drawableTint="@color/selector_check_order_status"
+                        android:text="수선완료"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/selector_check_order_status"
+                        android:textSize="12dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:button="@null"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_dot_2"
+                        android:clickable="false"
+                        android:button="@null"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="@drawable/selector_check_order_status_dotted"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_ic_3"
+                        android:clickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_check_normal"
+                        android:drawableTint="@color/selector_check_order_status"
+                        android:text="발송완료"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/selector_check_order_status"
+                        android:textSize="12dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:button="@null"/>
+
+                </LinearLayout>
+
+<!--                <include-->
+<!--                    android:id="@+id/ll_status_bar"-->
+<!--                    layout="@layout/layout_order_detail_shpiping_graph" />-->
 
                 <TextView
+                    android:paddingTop="4dp"
+                    android:paddingEnd="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    style="@style/BoldText"
+                    android:background="@color/sky_7"
+                    tools:text="123123123"
                     android:text="@{@string/unit_no(res.orderNum)}"
-                    android:textAlignment="textEnd"
-                    android:textColor="#999999"
-                    android:textSize="12sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:cardCornerRadius="6dp"
-                    app:strokeColor="#e5e5e5"
-                    app:strokeWidth="1dp">
+                    android:background="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -57,19 +162,19 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/ll_cancel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-
                             <TextView
-                                android:layout_marginTop="20dp"
-                                android:layout_marginBottom="6dp"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="24dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="취소/환불 정보"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
+                                android:textSize="20dp"
+                                style="@style/BoldText"
                                 android:textAlignment="center"/>
                             <View
                                 android:layout_width="match_parent"
@@ -77,8 +182,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="14dp"
-                                android:background="#e5e5e5" />
+                                android:background="@color/gray_3" />
                         </LinearLayout>
 
 
@@ -122,18 +226,18 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="14dp"
-                            android:background="#e5e5e5" />
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:background="@color/gray_3" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="26dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -142,122 +246,153 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="총 금액"
-                                android:textColor="@color/color_3949ab"
-                                android:textSize="14sp" />
+                                style="@style/NormalText"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
                             <TextView
                                 wonText="@{res.orderPrice}"
+                                android:text="10101010"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/color_3949ab"
-                                android:textSize="14sp" />
+                                android:textSize="20dp"
+                                style="@style/BoldText"
+                                android:textColor="@color/navy" />
 
                         </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            style="@style/GrayBigRoundBtn"
+                            android:id="@+id/btn_start"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:text="수선시작"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            style="@style/SkyBigRoundBtn"
+                            android:layout_marginBottom="24dp"
+                            android:id="@+id/btn_complete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:text="수선완료" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            style="@style/GrayBigRoundBtn"
+                            android:layout_marginBottom="24dp"
+                            android:id="@+id/btn_carry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:text="택배 발송 처리" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_start"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/round_white_4dp"
-                    app:backgroundTint="#424CC1"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="수선시작"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_complete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/round_white_4dp"
-                    app:backgroundTint="#424CC1"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="수선완료"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_carry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/round_white_4dp"
-                    app:backgroundTint="#424CC1"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="택배 발송 처리"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_addr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        style="@style/BoldText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="주문자 정보"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textSize="20dp" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="6dp"
-                        app:strokeColor="#e5e5e5"
-                        app:strokeWidth="1dp">
+<!--                    <com.google.android.material.card.MaterialCardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:cardCornerRadius="6dp"-->
+<!--                        app:strokeColor="#e5e5e5"-->
+<!--                        app:strokeWidth="1dp">-->
 
                         <LinearLayout
+                            android:layout_marginTop="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="20dp"
                             android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tv_name"
+                            <TableLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{res.shippingName}"
-                                android:textSize="12sp" />
+                                android:layout_height="wrap_content">
+                                <TableRow>
+                                    <TextView
+                                        style="@style/NormalText"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="수령인"
+                                        android:textSize="16dp"
+                                        />
 
-                            <TextView
-                                android:id="@+id/tv_addr"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp" />
+                                    <TextView
+                                        style="@style/NormalText"
+                                        android:id="@+id/tv_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="정재훈"
+                                        android:text="@{res.shippingName}"
+                                        android:textSize="16dp" />
+                                </TableRow>
+                                <TableRow>
+                                    <TextView
+                                        android:layout_marginTop="12dp"
+                                        style="@style/NormalText"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="주소"
+                                        android:textSize="16dp"
+                                        />
+                                    <TextView
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginEnd="24dp"
+                                        style="@style/NormalText"
+                                        android:id="@+id/tv_addr"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="서울특별시 관악구\n서울특별시 관악구서울특별시 관악구서울특별시 관악구서울특별시 관악구서울특별시 관악구서울특별시 관악구서울특별시 관악구"
+                                        android:textSize="16dp" />
+                                </TableRow>
 
-                            <TextView
-                                android:id="@+id/tv_ph"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{res.userPhone}"
-                                android:textSize="12sp" />
+                                <TableRow>
+                                    <TextView
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginEnd="15dp"
+                                        style="@style/NormalText"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="전화번호"
+                                        android:textSize="16dp"
+                                        />
+
+                                    <TextView
+                                        android:layout_marginTop="12dp"
+                                        style="@style/NormalText"
+                                        android:id="@+id/tv_ph"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{res.userPhone}"
+                                        tools:text="01088335697"
+                                        android:textSize="16dp" />
+                                </TableRow>
+                            </TableLayout>
+
+
+
 
                             <!--                            <View-->
                             <!--                                android:layout_marginTop="10dp"-->
@@ -283,7 +418,7 @@
 
                         </LinearLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
+<!--                    </com.google.android.material.card.MaterialCardView>-->
 
                     <!--                    <LinearLayout-->
                     <!--                        android:id="@+id/ll_order_cs"-->

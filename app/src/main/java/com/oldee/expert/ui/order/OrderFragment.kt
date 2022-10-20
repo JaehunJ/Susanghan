@@ -50,14 +50,18 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 //            findNavController().navigate(R.id.orderFragment)
 //        }
 
+
+
+//        binding.acSort.adapter = adapter
+
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.list_order_sort,
-            listOf("전체보기", "신규", "진행중", "완료")
-        )
-        binding.acSort.setAdapter(adapter)
-        binding.acSort.onItemSelectedListener = this
-        binding.acSort.onItemClickListener = this
+            listOf("전체보기", "신규", "진행중", "완료"))
+                    binding.acSort.setAdapter(adapter)
+        binding.acSort.setDropDownBackgroundDrawable(requireContext().getDrawable(R.drawable.bg_round_4dp_white))
+//        binding.acSort.onItemSelectedListener = this
+//        binding.acSort.onItemClickListener = this
     }
 
     override fun initDataBinding() {
@@ -107,11 +111,12 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     private fun selectItem(selectedIdx: Int) {
         topSort.forEachIndexed { idx, item ->
+            item.tvTabName.isChecked = idx == selectedIdx
             if (idx == selectedIdx) {
-                item.ivIcon.visibility = View.VISIBLE
+//                item.ivIcon.visibility = View.VISIBLE
                 viewModel.requestOderList(0, 10, (selectedIdx + 1) * 3)
             } else {
-                item.ivIcon.visibility = View.GONE
+//                item.ivIcon.visibility = View.GONE
             }
         }
     }

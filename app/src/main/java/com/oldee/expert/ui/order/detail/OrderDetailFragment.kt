@@ -3,6 +3,7 @@ package com.oldee.expert.ui.order.detail
 import android.os.Bundle
 import android.util.Size
 import android.view.View
+import android.widget.CheckBox
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -31,6 +32,9 @@ class OrderDetailFragment :
     }
 
     var mode = OrderType.R
+
+    private var statusIcons = mutableListOf<CheckBox>()
+    private var statusDots = mutableListOf<CheckBox>()
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.toolbar.tvTitle.text = "주문 상세"
@@ -61,6 +65,15 @@ class OrderDetailFragment :
                 viewModel.deliveryList.value?.data ?: listOf()
             ).show(parentFragmentManager, "carry")
         }
+
+        statusDots.add(binding.cbDot0)
+        statusDots.add(binding.cbDot1)
+        statusDots.add(binding.cbDot2)
+
+        statusIcons.add(binding.cbIc0)
+        statusIcons.add(binding.cbIc1)
+        statusIcons.add(binding.cbIc2)
+        statusIcons.add(binding.cbIc3)
     }
 
     override fun initDataBinding() {
@@ -148,47 +161,72 @@ class OrderDetailFragment :
     }
 
     private fun setStatusBarPosition(status: Int) {
-        val statusBar = binding.llStatusBar
-
-        statusBar.tvOrder0.alpha = 0.5f
-        statusBar.tvOrder2.alpha = 0.5f
-        statusBar.tvOrder3.alpha = 0.5f
-        statusBar.tvOrder4.alpha = 0.5f
-
-        val target = when (status) {
-            OrderStatus.Working.value -> {
-                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder2.text.toString())
-                statusBar.tvOrder2.alpha = 1.0f
-                statusBar.tvOrder2.id
+        val maxNum = when(status){
+            OrderStatus.Working.value->{
+                1
             }
-            OrderStatus.WorkComplete.value -> {
-                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder3.text.toString())
-                statusBar.tvOrder3.alpha = 1.0f
-                statusBar.tvOrder3.id
+            OrderStatus.WorkComplete.value->{
+                2
             }
-            OrderStatus.ShipmentComplete.value -> {
-                statusBar.tvProgress.visibility = View.INVISIBLE
-                statusBar.tvComplete.visibility = View.VISIBLE
-                statusBar.tvOrder4.id
+            OrderStatus.ShipmentComplete.value->{
+                3
             }
-            OrderStatus.Cancel.value -> {
-                statusBar.tvRe.visibility = View.VISIBLE
-                statusBar.tvProgress.visibility = View.INVISIBLE
-                statusBar.tvOrder0.id
-            }
-            else -> {
-                statusBar.tvOrder0.text = getBoldText(statusBar.tvOrder0.text.toString())
-                statusBar.tvOrder0.alpha = 1.0f
-                statusBar.tvOrder0.id
-
+            else->{
+                0
             }
         }
 
-        val lm = statusBar.cursor.layoutParams as ConstraintLayout.LayoutParams
-        lm.startToStart = target
-        lm.endToEnd = target
+        if(maxNum != 0){
+            statusIcons.forEachIndexed { index, checkBox ->
+                checkBox.isChecked = index < maxNum
+            }
 
-        statusBar.cursor.layoutParams = lm
+            statusDots.forEachIndexed { index, checkBox ->
+                checkBox.isChecked = index < maxNum - 1
+            }
+        }else{
+            statusIcons[0].isChecked = true
+        }
+
+//        statusBar.tvOrder0.alpha = 0.5f
+//        statusBar.tvOrder2.alpha = 0.5f
+//        statusBar.tvOrder3.alpha = 0.5f
+//        statusBar.tvOrder4.alpha = 0.5f
+//
+//        val target = when (status) {
+//            OrderStatus.Working.value -> {
+//                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder2.text.toString())
+//                statusBar.tvOrder2.alpha = 1.0f
+//                statusBar.tvOrder2.id
+//            }
+//            OrderStatus.WorkComplete.value -> {
+//                statusBar.tvOrder2.text = getBoldText(statusBar.tvOrder3.text.toString())
+//                statusBar.tvOrder3.alpha = 1.0f
+//                statusBar.tvOrder3.id
+//            }
+//            OrderStatus.ShipmentComplete.value -> {
+//                statusBar.tvProgress.visibility = View.INVISIBLE
+//                statusBar.tvComplete.visibility = View.VISIBLE
+//                statusBar.tvOrder4.id
+//            }
+//            OrderStatus.Cancel.value -> {
+//                statusBar.tvRe.visibility = View.VISIBLE
+//                statusBar.tvProgress.visibility = View.INVISIBLE
+//                statusBar.tvOrder0.id
+//            }
+//            else -> {
+//                statusBar.tvOrder0.text = getBoldText(statusBar.tvOrder0.text.toString())
+//                statusBar.tvOrder0.alpha = 1.0f
+//                statusBar.tvOrder0.id
+//
+//            }
+//        }
+//
+//        val lm = statusBar.cursor.layoutParams as ConstraintLayout.LayoutParams
+//        lm.startToStart = target
+//        lm.endToEnd = target
+//
+//        statusBar.cursor.layoutParams = lm
     }
 
     private fun setMode(mode: String) {

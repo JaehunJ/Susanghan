@@ -130,11 +130,17 @@
     </style>
 
     <style name="OrderDropDown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-        <item name="boxStrokeWidth">0dp</item>
-        <item name="boxStrokeWidthFocused">0dp</item>
-        <item name="endIconDrawable">@drawable/selector_drop_down_top_order</item>
-        <item name="endIconTint">#000000</item>
-        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:popupElevation">5dp</item>
+<!--        <item name="boxStrokeWidth">0dp</item>-->
+<!--        <item name="boxStrokeWidthFocused">0dp</item>-->
+<!--        <item name="endIconDrawable">@drawable/selector_drop_down_top_order</item>-->
+<!--        <item name="endIconTint">#000000</item>-->
+<!--        <item name="fontFamily">@font/pretendard_bold</item>-->
+<!--        <item name="popupMenuStyle">@st/bg_round_4dp_red</item>-->
+    </style>
+    
+    <style name="OrderPopUp" parent="android:Widget.AutoCompleteTextView">
+        <item name="popupMenuBackground">@drawable/bg_round_4dp_red_alpha</item>
     </style>
 <!--    -->
 <!--    <style name="SkyCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">-->

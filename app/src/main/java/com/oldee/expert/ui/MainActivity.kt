@@ -43,6 +43,8 @@ class MainActivity: AppCompatActivity(), CommonActivityFuncImpl {
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             prev = destination.id
+            setStatusBarColor(destination.id)
+
             when (destination.id) {
                 R.id.signInFragment -> {
                     useableTwiceBack = true
@@ -170,5 +172,9 @@ class MainActivity: AppCompatActivity(), CommonActivityFuncImpl {
             }
         }
 //        }
+    }
+
+    private fun setStatusBarColor(desId:Int){
+
     }
 }
