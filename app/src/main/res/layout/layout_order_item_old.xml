@@ -11,99 +11,115 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        app:strokeColor="#e5e5e5"
-        app:strokeWidth="1dp"
         app:cardElevation="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             >
 
             <TextView
-                android:layout_marginTop="14dp"
-                android:layout_marginStart="14dp"
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="asdsadasdasdsadasd"
-                tools:text="asd"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="12dp"
+                style="@style/NormalText"
+                android:textColor="@color/gray_8"
+                android:text="@{order.paymentDate}"
+                tools:text="2022.05.10"
+                app:layout_constraintTop_toTopOf="@id/tv_no"
+                app:layout_constraintBottom_toBottomOf="@id/tv_no"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@drawable/bg_round_4dp_gray_2"
+                style="@style/BoldText"
                 android:id="@+id/tv_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/unit_no(order.orderNum)}"
-                android:textColor="#999999"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="10dp"
+                tools:text="102313123"
+                android:textColor="@color/gray_7"
+                android:textSize="12dp"
                 app:layout_constraintVertical_bias="0"
                 app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintTop_toTopOf="@id/tv_date"
-                app:layout_constraintBottom_toBottomOf="@id/tv_date"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_status"
+                app:layout_constraintTop_toTopOf="@id/ll_orders"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_status"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_circle_gray_2"
+                    android:src="@drawable/ic_cart"
+                    android:tint="@color/gray_7"/>
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/tv_status"
+                    style="@style/BoldText"
+                    android:textSize="10dp"
+                    android:textColor="@color/gray_7"
+                    app:layout_constraintTop_toBottomOf="@id/iv_status"
+                    app:layout_constraintStart_toStartOf="@id/iv_status"
+                    app:layout_constraintEnd_toEndOf="@id/iv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="주문"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <LinearLayout
                 android:id="@+id/ll_orders"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toEndOf="@id/cl_status"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintVertical_bias="0"
-                app:layout_constraintTop_toBottomOf="@id/tv_date"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_no"
                 android:orientation="vertical">
             </LinearLayout>
 
-            <View
-                android:id="@+id/v_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="#f3f3f4"
-                app:layout_constraintTop_toBottomOf="@id/ll_orders"
-                />
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                app:layout_constraintTop_toBottomOf="@id/v_bottom"
+                app:layout_constraintTop_toBottomOf="@id/ll_orders"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/ll_orders"
                 app:layout_constraintEnd_toEndOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_status"
-                    android:text="@{order.orderStatusNm}"
-                    android:textSize="10sp"
-                    android:textColor="#666666"
-                    android:layout_marginStart="22dp"
-                    android:textStyle="bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/tv_price"
                     wonText="@{order.orderPrice}"
-                    android:layout_marginEnd="25dp"
-                    android:textSize="14sp"
-                    android:layout_marginStart="22dp"
-                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    style="@style/BoldText"
+                    tools:text="20000원"
+                    android:textColor="@color/navy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

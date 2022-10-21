@@ -19,7 +19,7 @@ abstract class BaseViewModel() : ViewModel() {
 
     fun remote(useProgressBar: Boolean = true, action: suspend () -> Unit) {
         viewModelScope.launch(connectionExceptionHandler) {
-            isLoading.postValue(true)
+            isLoading.postValue(useProgressBar)
 
             action()
 

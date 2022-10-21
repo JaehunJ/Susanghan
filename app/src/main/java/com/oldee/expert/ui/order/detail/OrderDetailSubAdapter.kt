@@ -52,7 +52,7 @@ class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
             }
 
             var prepareItem = ""
-            data.subNmList?.forEachIndexed { index, s ->
+            data.subNmList.forEachIndexed { index, s ->
                 prepareItem += s
                 if (index != data.subNmList.count() - 1) {
                     prepareItem += ", "

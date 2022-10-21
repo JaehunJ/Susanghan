@@ -35,7 +35,7 @@ class OrderViewModel @Inject constructor(
 
 
     fun requestOrderCount() {
-        remote {
+        remote(false) {
             val result = getOrderCountUseCase()
 
             result?.let {
@@ -78,8 +78,14 @@ class OrderViewModel @Inject constructor(
     }
 
     fun setImage(imageView: ImageView, url: String, size: Size? = null){
-        remote {
+        remote(false) {
             setImageUseCase(imageView, url, size)
+        }
+    }
+
+    fun setImageRound(imageView: ImageView, url:String, roundDp:Int){
+        remote(false) {
+            setImageUseCase(imageView, url, roundDp)
         }
     }
 }

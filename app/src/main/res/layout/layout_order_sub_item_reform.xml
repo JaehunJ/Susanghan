@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout -->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="sub"
+            type="com.oldee.expert.retrofit.response.OrderListResponse.OrderSubData" />
+    </data>
+    <LinearLayout
+        android:id="@+id/ll_orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            android:id="@+id/iv_reform"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_round_8dp_gray_5"/>
+
+        <TextView
+            android:layout_marginBottom="8dp"
+            tools:text="샤랄라"
+            android:text="@{sub.mainNm}"
+            style="@style/BoldText"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:id="@+id/tv_reform_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>
+
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

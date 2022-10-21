@@ -16,7 +16,7 @@ enum class UserStatus(val value: Int) {
     Stop(2),
     Withdraw(8)
 }
-
+//0:주문신청, 1:작업실 배송중, 2:작업중, 3:작업완료, 4:배송중, 5:배송완료,0~1:수선시작, 2:수선완료
 enum class OrderStatus(val value: Int) {
     Ready(0),
     OrderComplete(1),
@@ -105,6 +105,20 @@ val PrepareItemMappingStringList = mapOf(
     Pair("09", R.drawable.ic_asset_10),
     Pair("10", R.drawable.ic_asset_11),
     Pair("11", R.drawable.ic_asset_12),
+)
+
+val OrderStatusIconFromCode = mapOf(
+    Pair(OrderStatus.Working, R.drawable.ic_recycle),
+    Pair(OrderStatus.WorkComplete, R.drawable.ic_hanger),
+    Pair(OrderStatus.ShipmentComplete, R.drawable.ic_check_normal),
+    Pair(OrderStatus.OrderComplete, R.drawable.ic_cart)
+)
+
+val OrderStatusIconFromString = mapOf(
+    Pair("주문완료", R.drawable.ic_cart),
+    Pair("수선중", R.drawable.ic_recycle),
+    Pair("수선완료", R.drawable.ic_hanger),
+    Pair("발송완료", R.drawable.ic_check_normal)
 )
 
 

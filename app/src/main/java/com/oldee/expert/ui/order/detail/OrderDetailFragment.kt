@@ -26,11 +26,6 @@ class OrderDetailFragment :
 
     lateinit var subAdapter: OrderDetailSubAdapter
 
-    companion object {
-        const val COLOR_WHITE = "#ffffff"
-        const val COLOR_GRAY = "#"
-    }
-
     var mode = OrderType.R
 
     private var statusIcons = mutableListOf<CheckBox>()
@@ -81,23 +76,20 @@ class OrderDetailFragment :
             subAdapter.submitList(res.data)
 
             res?.let {
-                it.data?.let { d ->
-                    if (d.isNotEmpty()) {
-                        val di = d[0]
+                if (it.data.isNotEmpty()) {
+                    val di = it.data[0]
 
-                        binding.res = d[0]
+                    binding.res = it.data[0]
 
-                        var status = di.orderStatusCode ?: 0
+                    var status = di.orderStatusCode ?: 0
 
-                        setStatusBarPosition(status)
-                        setMode(di.classCode ?: "")
-                        setButton(status)
-                        setMainPanel(status)
+                    setStatusBarPosition(status)
+                    setMode(di.classCode ?: "")
+                    setButton(status)
+                    setMainPanel(status)
 
-                        binding.tvAddr.text = "${di.shippingAddress} ${di.shippingAddressDetail}"
-                    }
+                    binding.tvAddr.text = "${di.shippingAddress} ${di.shippingAddressDetail}"
                 }
-
             }
         }
 
@@ -178,11 +170,11 @@ class OrderDetailFragment :
 
         if(maxNum != 0){
             statusIcons.forEachIndexed { index, checkBox ->
-                checkBox.isChecked = index < maxNum
+                checkBox.isChecked = index <= maxNum
             }
 
             statusDots.forEachIndexed { index, checkBox ->
-                checkBox.isChecked = index < maxNum - 1
+                checkBox.isChecked = index <= maxNum - 1
             }
         }else{
             statusIcons[0].isChecked = true

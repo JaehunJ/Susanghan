@@ -12,6 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.custom.OnScrollEndListener
+import com.oldee.expert.custom.dpToPx
 import com.oldee.expert.databinding.FragmentOrderOldBinding
 import com.oldee.expert.databinding.LayoutTabIconOrderSortBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +25,8 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     override val navArgs: NavArgs by navArgs()
 
     private val topSort = mutableListOf<LayoutTabIconOrderSortBinding>()
+
+    lateinit var adapter:OrderListAdapter
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.btn3m.tvTabName.text = "3개월"
@@ -45,29 +48,18 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
         binding.rvList.addOnScrollListener(OnScrollEndListener { addItem() })
 
-//        binding.tvTop1.setOnClickListener {
-//            findNavController().popBackStack()
-//            findNavController().navigate(R.id.orderFragment)
-//        }
 
-
-
-//        binding.acSort.adapter = adapter
-
-        val adapter = ArrayAdapter(
-            requireContext(),
-            R.layout.list_order_sort,
-            listOf("전체보기", "신규", "진행중", "완료"))
-                    binding.acSort.setAdapter(adapter)
         binding.acSort.setDropDownBackgroundDrawable(requireContext().getDrawable(R.drawable.bg_round_4dp_white))
 //        binding.acSort.onItemSelectedListener = this
 //        binding.acSort.onItemClickListener = this
+
+        adapter = OrderListAdapter(navController!!) { iv, s ->
+            viewModel.setImageRound(iv, s, dpToPx(requireContext(), 8f).toInt())
+        }
     }
 
     override fun initDataBinding() {
-        val adapter = OrderListAdapter(navController!!) { iv, s ->
-            viewModel.setImage(iv, s, Size(150, 150))
-        }
+
         viewModel.orderList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 if (it.isEmpty() && viewModel.page == 0) { // 비엇음, refresh
@@ -101,6 +93,12 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     override fun initAfterBinding() {
         viewModel.requestOrderCount()
         viewModel.requestUserProfile()
+
+        val adapterSort = ArrayAdapter(
+            requireContext(),
+            R.layout.list_order_sort,
+            listOf("전체보기", "신규", "진행중", "완료"))
+        binding.acSort.setAdapter(adapterSort)
 
         //첫 탭 선택
         if (viewModel.orderList.getItemCount() == 0)
