@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
+import com.oldee.expert.custom.dpToPx
 import com.oldee.expert.custom.getBoldText
 import com.oldee.expert.data.OrderStatus
 import com.oldee.expert.data.OrderType
@@ -38,7 +39,7 @@ class OrderDetailFragment :
         }
 
         subAdapter = OrderDetailSubAdapter { iv, s ->
-            viewModel.setImage(iv, s, Size(150, 150))
+            viewModel.setImage(iv, s, dpToPx(requireContext(), 4f).toInt(), Size(150, 150))
         }
         subAdapter.onClick = {
             val dialog = com.oldee.imageviewer.ImageViewerDialog(listOf(it)){ iv, str->

@@ -187,6 +187,7 @@
 
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="14dp"
                             android:overScrollMode="never"
                             android:id="@+id/rv_sub"
                             android:layout_width="match_parent"

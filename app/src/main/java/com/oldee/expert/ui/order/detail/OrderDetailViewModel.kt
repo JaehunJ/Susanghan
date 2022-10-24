@@ -77,4 +77,10 @@ class OrderDetailViewModel @Inject constructor(
             setImageUseCase(iv, url, size)
         }
     }
+
+    fun setImage(iv: ImageView, url:String, dp:Int, size:Size?=null){
+        remote {
+            setImageUseCase(iv,url,dp,size)
+        }
+    }
 }

@@ -146,12 +146,22 @@ class SetImageUseCase @Inject constructor(private val getImageUseCase: GetImageU
         }
     }
 
-    suspend operator fun invoke(imageView: ImageView, url: String, roundDp: Int) {
+    suspend operator fun invoke(
+        imageView: ImageView,
+        url: String,
+        roundDp: Int,
+        size: Size? = null
+    ) {
         val bitmap = getImageUseCase(url)
 
         if (bitmap != null) {
-            Glide.with(imageView.context).load(bitmap)
-                .transform(CenterCrop(), RoundedCorners(roundDp)).into(imageView)
+            if (size == null) {
+                Glide.with(imageView.context).load(bitmap)
+                    .transform(CenterCrop(), RoundedCorners(roundDp)).into(imageView)
+            } else {
+                Glide.with(imageView.context).load(bitmap).override(size.width, size.height)
+                    .transform(CenterCrop(), RoundedCorners(roundDp)).into(imageView)
+            }
         }
     }
 }
