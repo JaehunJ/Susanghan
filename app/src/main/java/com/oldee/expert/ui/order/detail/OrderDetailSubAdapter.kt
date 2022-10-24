@@ -20,7 +20,7 @@ class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
         OrderDetailSubViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: OrderDetailSubViewHolder, position: Int) {
-        holder.bind(getItem(position), imageCallback){list->onClick?.invoke(list)}
+        holder.bind(getItem(position), imageCallback) { list -> onClick?.invoke(list) }
     }
 
     class OrderDetailSubViewHolder(val binding: LayoutOrderDetailItemBinding) :
@@ -37,14 +37,14 @@ class OrderDetailSubAdapter(val imageCallback: (ImageView, String) -> Unit) :
         fun bind(
             data: OrderDetailResponse.OrderDetailSub,
             imageCallback: (ImageView, String) -> Unit,
-            onClick:(String)->Unit
+            onClick: (String) -> Unit
         ) {
             binding.res = data
             binding.glImage.adapter = null
 
             val imageList = data.images
             if (imageList.isNotEmpty()) {
-                val adapter = OrderDetailImageAdapter(binding.root.context, imageCallback){str->
+                val adapter = OrderDetailImageAdapter(binding.root.context, imageCallback) { str ->
                     onClick.invoke(str)
                 }
                 binding.glImage.adapter = adapter
