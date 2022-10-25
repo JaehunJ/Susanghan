@@ -27,7 +27,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.llBlankItem.visibility = View.VISIBLE
-        binding.llExistItem.visibility = View.GONE
+        binding.swList.visibility = View.GONE
         binding.swList.setOnRefreshListener(this)
         binding.rvList.addOnScrollListener(OnScrollEndListener {
             addItem()
@@ -65,13 +65,13 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
             it?.let {
                 if (it.isNullOrEmpty() && viewModel.page == 0) {
                     binding.llBlankItem.visibility = View.VISIBLE
-                    binding.llExistItem.visibility = View.GONE
+                    binding.swList.visibility = View.GONE
                     adapter.submitList(it)
                 } else if (it.isEmpty() && viewModel.page != 0) {
 
                 } else {
                     binding.llBlankItem.visibility = View.GONE
-                    binding.llExistItem.visibility = View.VISIBLE
+                    binding.swList.visibility = View.VISIBLE
                     adapter.submitList(it) {
                         Log.e("#debug", "call back")
                         if (viewModel.page == 0) {
