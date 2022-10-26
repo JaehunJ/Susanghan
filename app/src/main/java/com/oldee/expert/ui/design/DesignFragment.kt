@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavArgs>(),
-    SwipeRefreshLayout.OnRefreshListener, TabLayout.OnTabSelectedListener {
+    SwipeRefreshLayout.OnRefreshListener{
     override val layoutId: Int = R.layout.fragment_design
     override val viewModel: DesignViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
@@ -34,18 +34,14 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         })
 
 
-        binding.topTab.addOnTabSelectedListener(this)
+        setHeaderBehavior()
+//        binding.topTab.addOnTabSelectedListener(this)
     }
 
     override fun initDataBinding() {
         val adapter = DesignListAdapter(findNavController()) { v, u ->
             viewModel.setImage(v, u)
         }
-//        adapter.registerAdapterDataObserver(object :RecyclerView.AdapterDataObserver(){
-//            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-//                super.onItemRangeInserted(positionStart, itemCount)
-//            }
-//        })
 
         navController?.currentBackStackEntry?.savedStateHandle?.getLiveData<String>("post_design")
             ?.observe(
@@ -82,14 +78,6 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
                         }
                     }
                 }
-//
-//                if(enablePostScroll){
-//                    enablePostScroll = false
-//                    Log.e("#debug", "scroll top")
-//                    viewModel.postDelay({
-//
-//                    },100)
-//                }
             }
         }
 
@@ -118,24 +106,28 @@ class DesignFragment : BaseFragment<FragmentDesignBinding, DesignViewModel, NavA
         viewModel.requestDesignList(viewModel.page + 1, 10, viewModel.reformStatus, true)
     }
 
-    override fun onTabSelected(tab: TabLayout.Tab?) {
-        val pos = tab?.position
-
-        pos?.let { p ->
-            val status = when (pos) {
-                0 -> ReformStatus.None
-                1 -> ReformStatus.Start
-                else -> ReformStatus.Stop
-            }
-            viewModel.requestDesignList(0, 10, status.value)
-        }
-    }
-
-    override fun onTabUnselected(tab: TabLayout.Tab?) {
+    private fun setHeaderBehavior(){
 
     }
 
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-
-    }
+//    override fun onTabSelected(tab: TabLayout.Tab?) {
+//        val pos = tab?.position
+//
+//        pos?.let { p ->
+//            val status = when (pos) {
+//                0 -> ReformStatus.None
+//                1 -> ReformStatus.Start
+//                else -> ReformStatus.Stop
+//            }
+//            viewModel.requestDesignList(0, 10, status.value)
+//        }
+//    }
+//
+//    override fun onTabUnselected(tab: TabLayout.Tab?) {
+//
+//    }
+//
+//    override fun onTabReselected(tab: TabLayout.Tab?) {
+//
+//    }
 }

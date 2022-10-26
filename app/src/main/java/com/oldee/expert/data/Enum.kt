@@ -30,7 +30,8 @@ enum class Period(val value: Int) {
     MonthTotal(0),
     Month3(3),
     Month6(6),
-    Month12(12)
+    Month12(12),
+    None(-1)
 }
 
 enum class OrderType(val type: String) {

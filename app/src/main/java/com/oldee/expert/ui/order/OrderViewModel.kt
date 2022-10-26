@@ -2,11 +2,14 @@ package com.oldee.expert.ui.order
 
 import android.util.Size
 import android.widget.ImageView
+import android.widget.RadioGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.oldee.expert.R
 import com.oldee.expert.base.BaseViewModel
 import com.oldee.expert.custom.ListLiveData
+import com.oldee.expert.data.Period
 import com.oldee.expert.repository.OrderListRepository
 import com.oldee.expert.repository.SignInRepository
 import com.oldee.expert.retrofit.response.OrderCountResponse
@@ -31,7 +34,13 @@ class OrderViewModel @Inject constructor(
     val orderCount = MutableLiveData<OrderCountResponse.OrderCountData>()
 
     var page = 0
-    var period = 0
+    var period = MutableLiveData<Period>()
+
+    var checkedRadio = MutableLiveData<Int>()
+
+    init {
+        period.postValue(Period.Month3)
+    }
 
 
     fun requestOrderCount() {
@@ -49,11 +58,10 @@ class OrderViewModel @Inject constructor(
         }
     }
 
-    fun requestOderList(page: Int, limit: Int, period: Int, isAdded: Boolean = false) {
+    fun requestOderList(page: Int, limit: Int, period: Period, isAdded: Boolean = false) {
         remote {
             this@OrderViewModel.page = page
-            this@OrderViewModel.period = period
-            val result = getOrderListUseCase(page, limit, period)
+            val result = getOrderListUseCase(page, limit, period.value)
             result?.let { newData ->
                 if (result.errorMessage == null) {
                     if (isAdded) {
@@ -86,6 +94,20 @@ class OrderViewModel @Inject constructor(
     fun setImageRound(imageView: ImageView, url:String, roundDp:Int){
         remote(false) {
             setImageUseCase(imageView, url, roundDp)
+        }
+    }
+
+    fun onSplitChanged(rg:RadioGroup, id:Int){
+        when(id){
+            R.id.btn_3m->{
+                period.postValue(Period.Month3)
+            }
+            R.id.btn_6m->{
+                period.postValue(Period.Month6)
+            }
+            else->{
+                period.postValue(Period.Month12)
+            }
         }
     }
 }

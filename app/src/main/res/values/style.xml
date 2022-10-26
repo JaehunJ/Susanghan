@@ -64,6 +64,32 @@
         <item name="tabBackground">@drawable/selector_order_sort_tab</item>
     </style>
 
+    <style name="RadioButtonStyle">
+        <item name="android:background">@drawable/selector_order_sort_tab</item>
+        <item name="android:textColor">@color/selector_btn_gray_round</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+    </style>
+
+    <style name="RadioButtonStyleHeader">
+        <item name="android:background">@drawable/selector_order_sort_tab_col</item>
+        <item name="android:textColor">@color/selector_check_order_black</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+    </style>
+
     
     <!--common dialog-->
     <style name="CommonCustomDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
