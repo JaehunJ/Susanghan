@@ -7,9 +7,12 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
+import com.oldee.expert.custom.dpToPx
+import com.oldee.expert.custom.setUnderLine
 import com.oldee.expert.data.DESIGN_START
 import com.oldee.expert.data.DESIGN_STOP
 import com.oldee.expert.databinding.FragmentDesignDetailBinding
@@ -54,16 +57,30 @@ class DesignDetailFragment :
             navController?.navigate(action)
         }
 
-        binding.tvTitleInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        binding.tvTitleBa.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        binding.tvTitlePrepare.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        binding.tvTitleDay.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        adapter = DesignImageAdapter { iv, n ->
+            viewModel.setImage(iv, n)
+        }
+        binding.vpImage.adapter = adapter
+
+        binding.vpImage.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                binding.current = (position+1)
+            }
+        })
+
+//        binding.tvTitleBa.setUnderLine()
+//        binding.tvTitleInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+//        binding.tvTitleBa.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+//        binding.tvTitlePrepare.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+//        binding.tvTitleDay.paintFlags = Paint.UNDERLINE_TEXT_FLAG
     }
 
     override fun initDataBinding() {
         viewModel.data.observe(viewLifecycleOwner) {
-            viewModel.setImage(binding.ivBefore, it.beforeImageName ?: "", Size(400, 400))
-            viewModel.setImage(binding.ivAfter, it.afterImageName ?: "", Size(400, 400))
+            viewModel.setImage(binding.ivBefore, it.beforeImageName ?: "", dpToPx(requireContext(), 8f), Size(400, 400))
+            viewModel.setImage(binding.ivAfter, it.afterImageName ?: "", dpToPx(requireContext(), 8f), Size(400, 400))
 
             binding.detail = viewModel.data.value
             smallAdapter.submitList(it.items)
@@ -97,15 +114,13 @@ class DesignDetailFragment :
         }
 
         viewModel.imageList.observe(viewLifecycleOwner) {
-            adapter = DesignImageAdapter { iv, n ->
-                viewModel.setImage(iv, n)
-            }
-            binding.vpImage.adapter = adapter
-
+            binding.total = it.size
+            binding.current = 1
             adapter.submitList(it)
 
-            binding.indicator.setViewPager2(binding.vpImage)
-            binding.indicator.refreshDots()
+
+//            binding.indicator.setViewPager2(binding.vpImage)
+//            binding.indicator.refreshDots()
         }
 
     }

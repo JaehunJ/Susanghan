@@ -24,8 +24,14 @@ class DesignDetailViewModel @Inject constructor(
     val imageList = MutableLiveData<List<DesignImageAdapter.DesignDetailBigImage>>()
 
     fun setImage(imageView: ImageView, url: String, size: Size? = null) {
-        remote {
+        remote(false) {
             setImageUseCase(imageView, url, size)
+        }
+    }
+
+    fun setImage(imageView: ImageView, url: String, dp:Int, size: Size? = null){
+        remote(false) {
+            setImageUseCase(imageView, url, dp, size)
         }
     }
 

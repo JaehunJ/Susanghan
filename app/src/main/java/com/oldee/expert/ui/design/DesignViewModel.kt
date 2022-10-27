@@ -23,7 +23,12 @@ class DesignViewModel @Inject constructor(
     val designList = MutableLiveData<List<DesignListResponse.DesignData>?>()
 
     var page = 0
-    var reformStatus = ReformStatus.None.value
+    var reformStatus = MutableLiveData<ReformStatus>()
+//    var reformStatusEnum = ReformStatus.None
+
+    init {
+        reformStatus.postValue(ReformStatus.None)
+    }
 
     fun setImage(imageView: ImageView, url:String){
         remote {
@@ -31,12 +36,11 @@ class DesignViewModel @Inject constructor(
         }
     }
 
-    fun requestDesignList(page: Int, limit: Int, status: Int, isAdded: Boolean = false) {
+    fun requestDesignList(page: Int, limit: Int, status: ReformStatus, isAdded: Boolean = false) {
         remote {
             this@DesignViewModel.page = page
-            reformStatus = status
 //            val result = repo.requestDesignList(page, limit, status)
-            val result = getDesignListUseCase(page, limit, status)
+            val result = getDesignListUseCase(page, limit, status.value)
 
             if (result != null) {
                 if (result.errorMessage == null) {

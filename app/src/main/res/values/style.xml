@@ -271,4 +271,9 @@
         <item name="android:background">@drawable/selector_flat_sky</item>
         <item name="android:textColor">@color/selector_btn_sky</item>
     </style>
+
+    <style name="GrayBigFlatBtn" parent="BigFlatButton">
+        <item name="android:background">@drawable/selector_flat_gray</item>
+        <item name="android:textColor">@color/selector_btn_sky</item>
+    </style>
 </resources>

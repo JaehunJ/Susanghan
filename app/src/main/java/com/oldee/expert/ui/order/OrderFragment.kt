@@ -33,7 +33,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.llEmpty.visibility = View.VISIBLE
-        binding.swList.visibility = View.GONE
+        binding.rvList.visibility = View.GONE
         binding.swList.setOnRefreshListener(this)
         binding.rvList.addOnScrollListener(OnScrollEndListener { addItem() })
 
@@ -53,18 +53,25 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
             list?.let {
                 if (it.isEmpty() && viewModel.page == 0) { // 비엇음, refresh
                     binding.llEmpty.visibility = View.VISIBLE
-                    binding.swList.visibility = View.GONE
+                    binding.rvList.visibility = View.GONE
                     adapter.submitList(it.toMutableList())
                     binding.rvList.scrollToPosition(0)
                 } else if (it.isEmpty() && viewModel.page != 0) {
 
                 } else {
                     binding.llEmpty.visibility = View.GONE
-                    binding.swList.visibility = View.VISIBLE
+                    binding.rvList.visibility = View.VISIBLE
                     adapter.submitList(it)
                 }
             }
         }
+
+        viewModel.period.observe(viewLifecycleOwner) {
+            it?.let {
+                viewModel.requestOderList(0, 10, it)
+            }
+        }
+
         viewModel.orderCount.observe(viewLifecycleOwner) {
 //            it?.let {
 //                binding.tvTopTabTotal.text = "${getString(R.string.order_top_tab_0)} ${it.totalCnt}"
@@ -75,12 +82,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 //                    "${getString(R.string.order_top_tab_3)} ${it.completeCnt}"
 //            }
         }
-
-        viewModel.period.observe(viewLifecycleOwner, getObserver(viewLifecycleOwner) {
-            it?.let {
-                viewModel.requestOderList(0, 10, it)
-            }
-        })
     }
 
     override fun initAfterBinding() {
@@ -164,13 +165,13 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
 
             when (checkedId) {
                 R.id.btn_3m -> {
-                    viewModel.requestOderList(0, 10, Period.Month3)
+                    viewModel.period.postValue(Period.Month3)
                 }
                 R.id.btn_6m -> {
-                    viewModel.requestOderList(0, 10, Period.Month6)
+                    viewModel.period.postValue(Period.Month6)
                 }
                 else -> {
-                    viewModel.requestOderList(0, 10, Period.Month12)
+                    viewModel.period.postValue(Period.Month12)
                 }
             }
         }

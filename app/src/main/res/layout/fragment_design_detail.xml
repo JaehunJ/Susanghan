@@ -8,9 +8,18 @@
         <variable
             name="detail"
             type="com.oldee.expert.retrofit.response.DesignDetailResponse.DesignDetailData" />
+
+        <variable
+            name="total"
+            type="Integer" />
+
+        <variable
+            name="current"
+            type="Integer" />
     </data>
 
     <LinearLayout
+        android:background="@color/gray_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -19,7 +28,8 @@
             layout="@layout/layout_basic_toolbar"/>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:fillViewport="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,145 +49,153 @@
                         android:layout_height="0dp"
                         app:layout_constraintDimensionRatio="1:1"/>
 
-                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                        android:id="@+id/indicator"
-                        android:layout_marginBottom="20dp"
+                    <LinearLayout
+                        android:id="@+id/tv_image_indicator"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:dotsColor="#c4c4c4"
-                        app:dotsCornerRadius="4dp"
-                        app:dotsSize="8dp"
-                        app:dotsSpacing="4dp"
-                        app:dotsWidthFactor="2"
-                        app:selectedDotColor="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-
-<!--                    <ImageView-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:src="@mipmap/ic_launcher"-->
-<!--                        app:layout_constraintDimensionRatio="1:1"/>-->
+                        android:gravity="center"
+                        android:background="@drawable/bg_round_4dp_black_alpha"
+                        android:orientation="horizontal">
+                        <TextView
+                            style="@style/NormalText"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1/10"
+                            android:text="@{@string/image_indicator(current,total)}"/>
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
                 <LinearLayout
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_marginStart="16dp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:layout_marginTop="24dp"
+                        style="@style/BoldText"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:textSize="20dp"
+                        tools:text="상품명"
                         android:id="@+id/tv_design_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{detail.reformName}"/>
                     <TextView
-                        android:layout_marginEnd="16dp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="24dp"
+                        style="@style/BoldText"
+                        tools:text="20,000원"
+                        android:layout_marginEnd="24dp"
+                        android:textSize="20dp"
+                        android:textColor="@color/sky_7"
                         android:id="@+id/tv_design_price"
-                        android:textAlignment="textEnd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         wonText="@{detail.price}"/>
+
+                    <View
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_3"/>
                 </LinearLayout>
 
-                <View
-                    android:background="#f3f3f3"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"/>
 
                 <LinearLayout
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        style="@style/BoldText"
                         android:id="@+id/tv_title_info"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="상세정보"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:text="상세정보" />
 
                     <TextView
+                        style="@style/NormalText"
                         android:id="@+id/tv_detail_info"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="24dp"
                         android:text="@{detail.contents}"/>
                 </LinearLayout>
 
-                <View
-                    android:layout_marginStart="10dp"
-                    android:background="#f3f3f3"
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"/>
-
                 <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        style="@style/BoldText"
                         android:id="@+id/tv_title_prepare"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:textSize="20dp"
                         android:text="준비물"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_marginTop="5dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
                         android:id="@+id/rv_item_small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="3"
-                        android:layout_marginBottom="50dp"/>
+                        android:layout_marginBottom="24dp"/>
                 </LinearLayout>
 
-                <View
-                    android:layout_marginStart="10dp"
-                    android:background="#f3f3f3"
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"/>
-
                 <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        style="@style/BoldText"
                         android:id="@+id/tv_title_ba"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:text="이렇게 변했어요(비포&amp;애프터)"/>
+                        android:textSize="20dp"
+                        android:text="이렇게 변했어요"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="24dp"
                         >
                         <ImageView
                             app:layout_constraintTop_toTopOf="parent"
@@ -186,9 +204,8 @@
                             android:id="@+id/iv_before"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:src="@drawable/icon_empty_image"
                             android:adjustViewBounds="true"
-                            android:background="#e8e8e8"
+                            android:background="@drawable/bg_round_8dp_gray_2"
                             app:layout_constraintDimensionRatio="1:1"
                             android:layout_marginEnd="10dp"/>
 
@@ -199,95 +216,113 @@
                             android:id="@+id/iv_after"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:src="@drawable/icon_empty_image"
-                            android:background="#e8e8e8"
+                            android:background="@drawable/bg_round_8dp_gray_2"
                             android:adjustViewBounds="true"
                             app:layout_constraintDimensionRatio="1:1"
                             android:layout_marginStart="10dp"/>
 
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_white_border_black"
+                            android:translationZ="5dp"
+                            android:outlineProvider="@null"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:elevation="0dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arr_right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <View
-                        android:layout_marginStart="10dp"
-                        android:background="#f3f3f3"
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_title_day"
-                            android:textSize="14sp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text="소요시간"/>
-
-                        <TextView
-                            android:id="@+id/tv_date"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="46dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp">
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:id="@+id/btn_modify"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="판매수정"
-                        app:backgroundTint="@color/deep_blue"/>
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:id="@+id/btn_start"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="판매시작"
-                        app:backgroundTint="@color/deep_blue"/>
+                    android:orientation="vertical">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:visibility="gone"
-                        android:id="@+id/btn_stop"
-                        android:layout_width="0dp"
+                    <TextView
+                        style="@style/BoldText"
+                        android:id="@+id/tv_title_day"
+                        android:textSize="20dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="판매중지"
-                        app:backgroundTint="#c4c4c4"/>
+                        android:text="소요시간"/>
 
-                    <LinearLayout
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:visibility="gone"
-                        android:id="@+id/btn_blank"
-                        android:orientation="horizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_marginBottom="24dp"
+                        style="@style/NormalText"
+                        android:textSize="16dp"
+                        android:id="@+id/tv_date"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/SkyBigFlatBtn"
+                android:textSize="16dp"
+                android:id="@+id/btn_modify"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="판매수정" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/RedBigFlatBtn"
+                android:textSize="16dp"
+                android:id="@+id/btn_start"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="판매시작" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/GrayBigFlatBtn"
+                android:backgroundTint="@color/gray_6"
+                android:textColor="@color/gray_3"
+                android:visibility="gone"
+                android:textSize="16dp"
+                android:id="@+id/btn_stop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="판매중지" />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/btn_blank"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

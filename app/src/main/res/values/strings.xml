@@ -124,4 +124,6 @@
         <item>진행중</item>
         <item>완료</item>
     </string-array>
+
+    <string name="image_indicator">%d / %d</string>
 </resources>

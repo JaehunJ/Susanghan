@@ -361,7 +361,7 @@
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:background="@color/gray_1"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/ll_empty"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -385,7 +385,7 @@
                     android:id="@+id/rv_list"
                     android:overScrollMode="never"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layoutAnimation="@anim/layout_animation_fall_down"
                     android:orientation="vertical"
                     tools:listitem="@layout/layout_order_item_old"

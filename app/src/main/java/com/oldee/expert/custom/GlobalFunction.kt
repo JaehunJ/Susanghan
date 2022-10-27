@@ -4,6 +4,7 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.Paint
 import android.graphics.Typeface
 import android.net.Uri
 import android.provider.OpenableColumns
@@ -11,6 +12,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
 import android.util.TypedValue
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -85,12 +87,27 @@ fun getBoldText(
     return sb
 }
 
-fun dpToPx(context: Context?, dp: Float): Float {
+//fun dpToPx(context: Context?, dp: Float): Float {
+//    val resources: Resources? = context?.resources
+//
+//    return TypedValue.applyDimension(
+//        TypedValue.COMPLEX_UNIT_DIP,
+//        dp,
+//        resources?.displayMetrics
+//    )
+//}
+
+fun dpToPx(context: Context?, dp: Float): Int {
     val resources: Resources? = context?.resources
 
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         dp,
         resources?.displayMetrics
-    )
+    ).toInt()
 }
+
+fun TextView.setUnderLine(view:TextView){
+    view.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+}
+

@@ -96,18 +96,4 @@ class OrderViewModel @Inject constructor(
             setImageUseCase(imageView, url, roundDp)
         }
     }
-
-    fun onSplitChanged(rg:RadioGroup, id:Int){
-        when(id){
-            R.id.btn_3m->{
-                period.postValue(Period.Month3)
-            }
-            R.id.btn_6m->{
-                period.postValue(Period.Month6)
-            }
-            else->{
-                period.postValue(Period.Month12)
-            }
-        }
-    }
 }
