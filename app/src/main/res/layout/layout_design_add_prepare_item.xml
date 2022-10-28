@@ -1,61 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <ImageView
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/iv_product"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/background_oval_d3d3d3"
-            android:adjustViewBounds="true"
-            app:layout_constraintDimensionRatio="1:1"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_asset_01"
+            android:tint="@color/black"
+            android:adjustViewBounds="true"/>
 
         <TextView
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/NormalText"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/iv_product"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_product"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="12sp"/>
+            tools:text="asd"
+            android:textSize="16dp"/>
 
-        <ImageView
+        <TextView
+            android:gravity="center"
+            style="@style/NormalText"
+            android:textColor="@color/gray_7"
+            android:text="삭제"
+            android:textSize="12dp"
             android:id="@+id/iv_delete"
-            android:paddingStart="10dp"
-            android:paddingEnd="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_cancel"/>
-
-        <ImageView
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/iv_product"
-            android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/icon_add" />
+            android:layout_height="0dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

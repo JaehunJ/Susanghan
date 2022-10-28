@@ -205,7 +205,7 @@ class DesignAddViewModel @Inject constructor(
     fun addBluePrintImageServer(list: List<String>) {
         val blueList = viewingBluePrintImage.value ?: mutableListOf()
 
-        blueList?.let {
+        blueList.let {
             if (it.size < BLUE_IMAGE_MAX) {
                 list.forEach { item ->
                     val data = ImageData(IMAGE_SERVER, item, null)
@@ -218,7 +218,7 @@ class DesignAddViewModel @Inject constructor(
 
     fun addBluePrintImageList(uri: Uri, onError: () -> Unit) {
         val blueList = viewingBluePrintImage.value ?: mutableListOf()
-        blueList?.let {
+        blueList.let {
             if (it.size < BLUE_IMAGE_MAX) {
                 val match = it.find { old->old.uri == uri }
 

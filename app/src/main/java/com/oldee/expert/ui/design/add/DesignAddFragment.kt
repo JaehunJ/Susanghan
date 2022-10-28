@@ -125,24 +125,26 @@ class DesignAddFragment :
             showFileSelector(IMAGE_AFTER)
         }
 
-        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext(), {
-            showAddPrepareItem()
-        }){
+        prepareItemAdapter = PrepareItemRecyclerViewAdapter(requireContext()) {
             viewModel.deletePrepareItem(it)
         }
         binding.rvPrepareItem.adapter = prepareItemAdapter
 
+        binding.btnAddPrepare.setOnClickListener {
+            showAddPrepareItem()
+        }
+
         binding.btnPost.setOnClickListener {
             if (viewModel.isValueValidated()) {
                 val s = viewModel.price.value
-                s?.let{ priceStr->
+                s?.let { priceStr ->
                     val intPrice = priceStr.toInt()
 
-                    if(intPrice > MAX_PRICE){
+                    if (intPrice > MAX_PRICE) {
                         activityFuncFunction.showToast("판매 금액이 천만 원을 넘는다면 관리자에게 문의해 주세요.")
-                    }else if(intPrice < MIN_PRICE){
+                    } else if (intPrice < MIN_PRICE) {
                         activityFuncFunction.showToast("판매 금액은 천 원을 이상이어야 합니다.")
-                    }else{
+                    } else {
                         viewModel.onClickPost(requireContext()) {
                             activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
                         }
@@ -164,8 +166,17 @@ class DesignAddFragment :
             for (i in 0 until 5) {
                 if (i < it.count()) {
                     setImage(bindingImageView[i].ivProduct, it[i])
+                    bindingImageView[i].btnDelete.visibility = View.VISIBLE
+
+                    bindingImageView[i].flFirst.visibility = if (i == 0) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
                 } else {
                     bindingImageView[i].ivProduct.setImageResource(0)
+                    bindingImageView[i].btnDelete.visibility = View.GONE
+                    bindingImageView[i].flFirst.visibility = View.GONE
                 }
             }
 //            val viewList = mutableListOf<DesignBluePrintImageAdapter.AdapterImageData>()
@@ -222,7 +233,10 @@ class DesignAddFragment :
             it?.let { res ->
                 if (res.errorMessage == null) {
                     Log.e("#debug", "post success")
-                    navController?.previousBackStackEntry?.savedStateHandle?.set("post_design", "success")
+                    navController?.previousBackStackEntry?.savedStateHandle?.set(
+                        "post_design",
+                        "success"
+                    )
                     navController?.popBackStack()
                 } else {
                     activityFuncFunction.showToast("에러")
@@ -372,13 +386,13 @@ class DesignAddFragment :
 
                 selectedImage?.let {
                     val path = it.path
-                    val mimeType = it.let {
-                        returnUri-> context?.contentResolver?.getType(it)
+                    val mimeType = it.let { returnUri ->
+                        context?.contentResolver?.getType(it)
                     }
 
-                    if(mimeType == "image/jpeg"){
+                    if (mimeType == "image/jpeg") {
                         list.add(it)
-                    }else{
+                    } else {
                         activityFuncFunction.showToast("JPG 이미지만 등록할 수 있어요.")
                     }
                 }
@@ -400,29 +414,29 @@ class DesignAddFragment :
 
                     val currentSize = viewModel.getFileSize(requireContext(), list[0])
 
-                    Log.e("#debug", "size:${oldSize+currentSize}")
+                    Log.e("#debug", "size:${oldSize + currentSize}")
 
-                    if(currentSize+oldSize > IMAGE_MAX_SIZE){
+                    if (currentSize + oldSize > IMAGE_MAX_SIZE) {
                         activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
-                    }else{
-                        viewModel.addBluePrintImageList(list[0]){
+                    } else {
+                        viewModel.addBluePrintImageList(list[0]) {
                             activityFuncFunction.showToast("동일한 이미지가 있습니다.")
                         }
                     }
                 }
                 IMAGE_BEFORE -> {
                     val currentSize = viewModel.getFileSize(requireContext(), list[0])
-                    if(currentSize > IMAGE_MAX_SIZE){
+                    if (currentSize > IMAGE_MAX_SIZE) {
                         activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
-                    }else{
+                    } else {
                         viewModel.addBeforeImage(list[0])
                     }
                 }
                 IMAGE_AFTER -> {
                     val currentSize = viewModel.getFileSize(requireContext(), list[0])
-                    if(currentSize > IMAGE_MAX_SIZE){
+                    if (currentSize > IMAGE_MAX_SIZE) {
                         activityFuncFunction.showToast("용량이 큰 이미지 파일은 등록할 수 없어요.")
-                    }else{
+                    } else {
                         viewModel.addAfterImage(list[0])
                     }
                 }

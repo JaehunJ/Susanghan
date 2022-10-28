@@ -89,16 +89,6 @@
                                     android:src="@drawable/ic_tri_down"/>
                             </LinearLayout>
 
-                            <!--            <androidx.appcompat.widget.AppCompatSpinner-->
-                            <!--                android:id="@+id/spinner"-->
-                            <!--                app:layout_constraintTop_toTopOf="parent"-->
-                            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-                            <!--                app:layout_constraintEnd_toEndOf="@id/ll_dummy"-->
-                            <!--                android:layout_width="wrap_content"-->
-                            <!--                android:layout_height="50dp"-->
-                            <!--                android:entries="@array/order_sort"-->
-                            <!--                />-->
-
                             <com.google.android.material.textfield.TextInputLayout
                                 android:paddingEnd="-10dp"
                                 style="@style/OrderDropDown"

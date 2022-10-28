@@ -1,7 +1,9 @@
 package com.oldee.expert.ui.order
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.core.content.ContextCompat
@@ -22,12 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavArgs>(),
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemSelectedListener {
     override val layoutId: Int = R.layout.fragment_order_old
     override val viewModel: OrderViewModel by viewModels()
     override val navArgs: NavArgs by navArgs()
 
     lateinit var adapter: OrderListAdapter
+    lateinit var tabAdapter : ArrayAdapter<String>
 
     lateinit var scrollListener: AppBarStateChangeListener
 
@@ -44,6 +47,13 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
             viewModel.setImageRound(iv, s, dpToPx(requireContext(), 8f).toInt())
         }
         binding.rvList.adapter = adapter
+        tabAdapter = ArrayAdapter(
+            requireContext(),
+            R.layout.list_order_sort,
+            listOf("전체보기", "신규", "진행중", "완료")
+        )
+        binding.acSort.setAdapter(tabAdapter)
+        Log.e("#debug", "data len = ${binding.acSort.adapter!!.count}")
 
         setHeaderBehavior()
     }
@@ -55,6 +65,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                     binding.llEmpty.visibility = View.VISIBLE
                     binding.rvList.visibility = View.GONE
                     adapter.submitList(it.toMutableList())
+                    tabAdapter.notifyDataSetChanged()
                     binding.rvList.scrollToPosition(0)
                 } else if (it.isEmpty() && viewModel.page != 0) {
 
@@ -62,6 +73,7 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                     binding.llEmpty.visibility = View.GONE
                     binding.rvList.visibility = View.VISIBLE
                     adapter.submitList(it)
+                    tabAdapter.notifyDataSetChanged()
                 }
             }
         }
@@ -87,13 +99,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
     override fun initAfterBinding() {
         viewModel.requestOrderCount()
         viewModel.requestUserProfile()
-
-        val adapterSort = ArrayAdapter(
-            requireContext(),
-            R.layout.list_order_sort,
-            listOf("전체보기", "신규", "진행중", "완료")
-        )
-        binding.acSort.setAdapter(adapterSort)
     }
 
     override fun onRefresh() {
@@ -175,5 +180,13 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
                 }
             }
         }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
     }
 }
