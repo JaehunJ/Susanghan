@@ -75,9 +75,9 @@ class DesignAddViewModel @Inject constructor(
         )
     }
 
-    fun setImage(imageView: ImageView, url:String, size: Size? = null){
+    fun setImage(imageView: ImageView, url:String, roundDp:Int, size: Size? = null){
         remote {
-            setImageUseCase(imageView, url, size)
+            setImageUseCase(imageView, url, roundDp, size)
         }
     }
 

@@ -8,6 +8,7 @@
             type="com.oldee.expert.retrofit.response.ProfileResponse.ProfileData" />
     </data>
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -15,112 +16,128 @@
         <include android:id="@+id/toolbar"
             layout="@layout/layout_activity_toolbar"/>
 
+        <ImageView
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_profile_default"/>
+
         <LinearLayout
+            android:layout_marginTop="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:id="@+id/ll_id"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="10dp"
+                style="@style/BoldText"
+                android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="아이디"
-                android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:enabled="false"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{data.userEmail}"
-                android:textSize="14sp"/>
+                android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2">
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:enabled="false"
+                    tools:text="asdasd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.userEmail}"
+                    android:textSize="16dp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="12dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:id="@+id/ll_name"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="10dp"
+                style="@style/BoldText"
+                android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="이름"
-                android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:fontFamily="@font/pretendard_medium"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{data.userName}"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_co_name"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="10dp"
+                style="@style/BoldText"
+                android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="회사명"
-                android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:fontFamily="@font/pretendard_medium"
+                android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{data.storeName}"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_ph"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="10dp"
+                style="@style/BoldText"
+                android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="휴대전화"
-                android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:fontFamily="@font/pretendard_medium"
+                android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{data.userPhone}"
-                android:textSize="14sp"/>
+                android:textSize="16dp"/>
         </LinearLayout>
 
     </LinearLayout>

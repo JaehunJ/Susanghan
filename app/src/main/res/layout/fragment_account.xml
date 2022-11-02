@@ -10,110 +10,109 @@
 
         <LinearLayout
             android:id="@+id/ll_logout"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="13dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            android:padding="24dp"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
+                style="@style/NormalText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
+                android:textSize="16dp"
                 android:text="@string/account_item_0"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_right_light"/>
         </LinearLayout>
+
+        <View
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_2"/>
 
         <LinearLayout
             android:id="@+id/ll_stop"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="13dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            android:paddingTop="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
+                android:layout_marginBottom="24dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
+                android:textSize="16dp"
                 android:text="@string/account_item_1"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_right_light"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_2"/>
         </LinearLayout>
 
+
+
         <LinearLayout
+            android:paddingTop="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:id="@+id/ll_start"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="13dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
+                android:layout_marginBottom="24dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="14sp"
+                android:textSize="16dp"
                 android:text="@string/account_item_3"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_right_light"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_2"/>
         </LinearLayout>
 
         <LinearLayout
+            android:paddingTop="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:id="@+id/ll_withdraw"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="13dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/account_item_2"/>
-
-            <ImageView
+                style="@style/NormalText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_right_light"/>
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:text="@string/account_item_2"/>
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/tv_withdraw_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                android:text="탈퇴 요청이 처리중입니다.\n탈퇴 요청 중에는 페이지에 연결할 수 없습니다." />
+
+            <View
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_2"/>
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_withdraw_sub"
-            android:layout_marginStart="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#999999"
-            android:textSize="12sp"
-            android:text="탈퇴 요청이 처리중입니다.\n탈퇴 요청 중에는 페이지에 연결할 수 없습니다." />
-
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/SkyBigRoundBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="asdasd"/>
     </LinearLayout>
 </layout>

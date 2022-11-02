@@ -314,33 +314,32 @@
                 <LinearLayout
                     android:background="@color/white"
                     android:layout_marginTop="8dp"
-                    android:padding=""
+                    android:padding="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="20dp"
                         android:text="이렇게 변했어요"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="20dp"
+                        style="@style/BoldText" />
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="24dp"
                         android:orientation="horizontal">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/cl_after"
+                            android:id="@+id/cl_before"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/border_dotted">
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1">
 
                             <ImageView
                                 android:id="@+id/iv_before"
@@ -353,28 +352,23 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <LinearLayout
+                                android:layout_margin="4dp"
                                 android:visibility="gone"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
                                 android:id="@+id/ll_delete_before"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
-                                android:background="#99000000"
+                                android:background="@drawable/bg_circle_black_alpha"
                                 android:gravity="center">
 
                                 <ImageView
+                                    android:layout_margin="3dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/icon_cancel_white"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="삭제"
-                                    android:textColor="#ffffff"
-                                    android:textSize="14sp"/>
+                                    android:src="@drawable/ic_delete"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -383,6 +377,7 @@
                                 android:layout_height="0dp"
                                 android:gravity="center"
                                 android:orientation="vertical"
+                                android:background="@drawable/bg_round_8dp_sky_2"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
@@ -391,24 +386,29 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:adjustViewBounds="true"
-                                    android:src="@drawable/icon_add" />
+                                    android:tint="@color/sky_7"
+                                    android:src="@drawable/ic_add_photo" />
 
                                 <TextView
+                                    style="@style/NormalText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="9dp"
                                     android:text="변경 전 사진 등록"
-                                    android:textColor="#3949AB"
-                                    android:textSize="14sp" />
+                                    android:textColor="@color/sky_7"
+                                    android:textSize="12dp" />
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_after"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cl_before"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/border_dotted">
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1">
 
                             <ImageView
                                 android:id="@+id/iv_after"
@@ -421,28 +421,23 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <LinearLayout
+                                android:layout_margin="4dp"
                                 android:visibility="gone"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
                                 android:id="@+id/ll_delete_after"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
-                                android:background="#99000000"
+                                android:background="@drawable/bg_circle_black_alpha"
                                 android:gravity="center">
 
                                 <ImageView
+                                    android:layout_margin="3dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/icon_cancel_white"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="삭제"
-                                    android:textColor="#ffffff"
-                                    android:textSize="14sp"/>
+                                    android:src="@drawable/ic_delete"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -451,6 +446,7 @@
                                 android:layout_height="0dp"
                                 android:gravity="center"
                                 android:orientation="vertical"
+                                android:background="@drawable/bg_round_8dp_sky_2"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
@@ -459,19 +455,42 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:adjustViewBounds="true"
-                                    android:src="@drawable/icon_add" />
+                                    android:src="@drawable/ic_add_photo"
+                                    android:tint="@color/sky_7"/>
 
                                 <TextView
+                                    style="@style/NormalText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="9dp"
                                     android:text="변경 후 사진 등록"
-                                    android:textColor="#3949AB"
-                                    android:textSize="14sp" />
+                                    android:textColor="@color/sky_7"
+                                    android:textSize="12dp" />
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_white_border_black"
+                            android:translationZ="5dp"
+                            android:outlineProvider="@null"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:elevation="0dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arr_right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
 

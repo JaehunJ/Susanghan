@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
+import com.oldee.expert.custom.dpToPx
 import com.oldee.expert.data.MAX_PRICE
 import com.oldee.expert.data.MIN_PRICE
 import com.oldee.expert.databinding.FragmentDesignAddBinding
@@ -305,7 +306,7 @@ class DesignAddFragment :
             Glide.with(requireActivity()).load(data.uri)
                 .into(view)
         } else {
-            viewModel.setImage(view, data.path ?: "")
+            viewModel.setImage(view, data.path ?: "", dpToPx(requireContext(), 8f))
         }
     }
 

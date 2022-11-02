@@ -20,23 +20,24 @@
             android:fillViewport="true">
 
             <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
                 android:id="@+id/ll_dummy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/NormalText"
                     android:id="@+id/tv_contents"
                     android:text="타인과 본인의 점수 gap만 보면 될 것 같은 다면평가 보고서지만, 전문가들은 그 이면에서 훨씬 더 깊은 의미를 다양한 각도에서 유추하여 봅니다. 정답은 없지만 참고하면 도움이 될 수 있습니다. 다면평가의 항목들은 시행 조직마다 조금씩 다르며, 더 다양한 원리들이 있지만 지면 관계상 여기서는 주로 편협된 해석이 되지 않도록 유의할 사안 중심으로만 언급합니다.
 
 결과 해석의 목적은 짜디 짠 평가를 해놓은 ‘범인’을 찾거나 gap점수 계산에 자괴감에 빠지는 게 아닙니다. 보고서 이면에 담긴 ‘신호의 자산화’가 목적입니다. 그를 통해 달을 가리키는 손가락만 보지 말고, 진짜 달을 보자는 것이지요. 방법의 관점과 스킬은 한마디로 ‘이것이 내가 가려는 길에 어떤 신호일까?’라는 질문을 바탕으로, 관조를 하며 맥락 속에서 해석을 하면 됩니다."
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"/>
+                    android:textSize="16dp"/>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

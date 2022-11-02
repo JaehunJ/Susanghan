@@ -262,6 +262,11 @@
         <item name="android:textColor">@color/selector_btn_sky</item>
     </style>
 
+    <style name="NavyStrokeSmallRoundBtn" parent="SmallRoundButton">
+        <item name="android:background">@drawable/selector_round_8dp_stroke_navy</item>
+        <item name="android:textColor">@color/selector_btn_navy</item>
+    </style>
+
     <style name="RedBigFlatBtn" parent="BigFlatButton">
         <item name="android:background">@drawable/selector_flat_red</item>
         <item name="android:textColor">@color/selector_btn_red</item>
@@ -276,4 +281,6 @@
         <item name="android:background">@drawable/selector_flat_gray</item>
         <item name="android:textColor">@color/selector_btn_sky</item>
     </style>
+
+
 </resources>

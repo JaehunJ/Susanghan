@@ -20,8 +20,8 @@ class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel, NavArgs>() {
     lateinit var adapter: FaqListAdapter
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.toolbar.tvTitle.text = "FAQ"
-        binding.toolbar.ivBack.setOnClickListener {
+        binding.tvTitle.text = "FAQ"
+        binding.ivBack.setOnClickListener {
             navController?.popBackStack()
         }
 

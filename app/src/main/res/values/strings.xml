@@ -58,7 +58,7 @@
     <string name="more_common_item_1">문의하기</string>
     <string name="more_common_item_2">약관 및 정책</string>
 
-    <string name="more_common_item_version">앱버전 V %s</string>
+    <string name="more_common_item_version">%s</string>
 
     <!--design top tab-->
     <string name="design_top_tab_0">전체</string>

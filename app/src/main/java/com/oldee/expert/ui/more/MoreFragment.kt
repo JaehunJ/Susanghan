@@ -1,9 +1,12 @@
 package com.oldee.expert.ui.more
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
 import com.oldee.expert.databinding.FragmentMoreBinding
@@ -47,6 +50,12 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
         }
 
         binding.vm = viewModel
+
+        binding.btnUpdate.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(BuildConfig.STORE_SCHEME)
+            startActivity(intent)
+        }
     }
 
     override fun initDataBinding() {
@@ -56,8 +65,16 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel, NavArgs>()
                 if (!d.profileImg.isNullOrEmpty()) {
                     viewModel.setImageCircle(binding.ivProfile, d.profileImg)
                 } else {
-                    viewModel.setImageCircle(binding.ivProfile, "")
+                    binding.ivProfile.setImageResource(R.drawable.ic_profile_default)
                 }
+            }
+        }
+        viewModel.versionInfo.observe(viewLifecycleOwner) {
+            it?.let {
+                val localVersion = BuildConfig.VERSION_CODE
+                val remoteVersion = it.versionId
+
+                binding.btnUpdate.isEnabled = localVersion < remoteVersion
             }
         }
     }
