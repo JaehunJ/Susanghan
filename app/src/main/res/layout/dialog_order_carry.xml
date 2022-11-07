@@ -3,8 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -21,101 +19,87 @@
 
         <TextView
             android:layout_marginTop="30dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="택배사 선택"
-            android:layout_marginBottom="5dp"
-            android:textSize="12sp"
-            android:textStyle="bold"/>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/UnderLineDropDown"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            style="@style/BoldText"/>
+
+        <FrameLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_width="match_parent"
-            android:textSize="12sp"
-            app:hintEnabled="false"
-            android:layout_height="wrap_content">
-            <AutoCompleteTextView
-                android:includeFontPadding="false"
-                android:paddingTop="10dp"
-                android:id="@+id/ac_carry"
-                android:backgroundTint="#ffffff"
-                android:textSize="12sp"
-                android:cursorVisible="false"
-                android:inputType="none"
-                android:focusable="true"
-                android:clickable="true"
-                android:hint="택배사를 선택해주세요."
+            android:layout_height="48dp"
+            android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray_3">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_margin="3dp"
+                style="@style/PostDropDown"
+                app:boxBackgroundColor="@color/color_transparent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
+                android:textSize="16dp"
+                app:hintEnabled="false"
+                android:layout_height="wrap_content">
+                <AutoCompleteTextView
+                    style="@style/NormalText"
+                    android:includeFontPadding="false"
+                    android:id="@+id/ac_carry"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="11dp"
+                    android:textSize="16dp"
+                    android:cursorVisible="false"
+                    android:inputType="none"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:textColorHint="@color/gray_3"
+                    android:hint="택배사를 선택해주세요."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </FrameLayout>
         <TextView
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="송장번호 입력"
-            android:layout_marginBottom="5dp"
-            android:textSize="12sp"
-            android:textStyle="bold"/>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/UnderLineEditText"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            style="@style/BoldText"/>
+        <FrameLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:hintEnabled="false"
-            android:textSize="12sp"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_num"
-                android:textSize="12sp"
-                android:background="#ffffff"
-                android:inputType="number"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray_3">
+            <EditText
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/color_transparent"
+                style="@style/NormalText"
+                android:textSize="16dp"
                 android:hint="송장번호를 숫자만 입력해주세요."
+                android:textColorHint="@color/gray_3"
+                android:inputType="number"
+                android:id="@+id/et_num"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent">
+            </EditText>
+        </FrameLayout>
 
-        <LinearLayout
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="100dp"
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="36dp"
+            android:id="@+id/btn_ok"
+            style="@style/SkyBigRoundBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:stateListAnimator="@null"
-                app:elevation="0dp"
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:elevation="0dp"
-                android:text="취소"
-                android:layout_marginEnd="2dp"
-                app:backgroundTint="#c4c4c4"/>
-            <com.google.android.material.button.MaterialButton
-                android:stateListAnimator="@null"
-                android:elevation="0dp"
-                app:elevation="0dp"
-                android:id="@+id/btn_ok"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_marginStart="2dp"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="확인"
-                app:backgroundTint="#2f389f"/>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:text="확인"/>
     </LinearLayout>
 </layout>

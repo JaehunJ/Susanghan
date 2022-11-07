@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowBackground">@color/sky_1</item>
     </style>
@@ -11,12 +12,17 @@
     <style name="Widget.AppTheme.BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item> <!-- This is important -->
         <item name="android:statusBarColor">@color/color_transparent</item> <!-- And then this will be needed -->
+        <item name="android:windowSoftInputMode">adjustResize</item>
         <!--        <item name="android:navigationBarColor">@color/bottom_sheet_background</item>-->
         <item name="android:colorBackground">@color/bottom_sheet_background</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
 
+    <style name="EditTextBottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
+    </style>
 
     <!--Textview-->
     <style name="SusanghanTextview" parent="Widget.AppCompat.TextView">
@@ -34,9 +40,11 @@
         <item name="itemTextAppearanceActive">@style/ActiveText</item>
         <item name="itemTextAppearanceInactive">@style/InactiveText</item>
     </style>
+
     <style name="ActiveText">
         <item name="android:textColor">@color/bottom_nav_select</item>
     </style>
+
     <style name="InactiveText">
         <item name="android:textColor">@color/bottom_nav_nor</item>
     </style>
@@ -56,8 +64,8 @@
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">@color/gray_9</item>
         <item name="tabTextAppearance">@style/BoldText</item>
-<!--        <item name="tabSelectedTextColor">#2F389F</item>-->
-<!--        <item name="tabTextColor">#666666</item>-->
+        <!--        <item name="tabSelectedTextColor">#2F389F</item>-->
+        <!--        <item name="tabTextColor">#666666</item>-->
     </style>
 
     <style name="TabDesignListNew" parent="Base.Widget.Design.TabLayout">
@@ -90,17 +98,21 @@
         <item name="android:fontFamily">@font/pretendard_medium</item>
     </style>
 
-    
+
     <!--common dialog-->
     <style name="CommonCustomDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
         <item name="buttonBarNegativeButtonStyle">@style/CommonCustomDialog.NeBtn</item>
         <item name="buttonBarPositiveButtonStyle">@style/CommonCustomDialog.PoBtn</item>
         <item name="materialAlertDialogTitleTextStyle">@style/MyTitle_MaterialAlertDialog</item>
-        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextAppearance.MaterialComponents.Body2</item>
+        <item name="materialAlertDialogBodyTextStyle">
+            @style/BodyTextAppearance.MaterialComponents.Body2
+        </item>
     </style>
 
     <style name="MyTitle_MaterialAlertDialog" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
-        <item name="android:textAppearance">@style/MyTitle_TextAppearance.MaterialComponents.Subtitle1</item>
+        <item name="android:textAppearance">
+            @style/MyTitle_TextAppearance.MaterialComponents.Subtitle1
+        </item>
     </style>
 
     <style name="MyTitle_TextAppearance.MaterialComponents.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
@@ -108,7 +120,7 @@
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textSize">20dp</item>
         <item name="android:textStyle">bold</item>
-<!--        <item name="android:textStyle">.....</item>-->
+        <!--        <item name="android:textStyle">.....</item>-->
     </style>
 
     <style name="BodyTextAppearance.MaterialComponents.Body2" parent="@style/MaterialAlertDialog.MaterialComponents.Body.Text">
@@ -118,19 +130,19 @@
         <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
-<!--    <style name="CommonCustomDialog.Message" parent="MaterialAlertDialog.Material3.Body.Text">-->
-<!--        <item name="android:textAppearance">@style/CommonCustomDialog.Message.Text</item>-->
-<!--    </style>-->
+    <!--    <style name="CommonCustomDialog.Message" parent="MaterialAlertDialog.Material3.Body.Text">-->
+    <!--        <item name="android:textAppearance">@style/CommonCustomDialog.Message.Text</item>-->
+    <!--    </style>-->
 
-<!--    <style name="CommonCustomDialog.Message.Text">-->
-<!--        <item name="android:textSize">12dp</item>-->
-<!--        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>-->
-<!--    </style>-->
+    <!--    <style name="CommonCustomDialog.Message.Text">-->
+    <!--        <item name="android:textSize">12dp</item>-->
+    <!--        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>-->
+    <!--    </style>-->
 
-<!--    <style name="CommonCustomDialog.Title" parent="@style/RtlOverlay.DialogWindowTitle.AppCompat">-->
-<!--        <item name="android:textSize">20dp</item>-->
-<!--        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>-->
-<!--    </style>-->
+    <!--    <style name="CommonCustomDialog.Title" parent="@style/RtlOverlay.DialogWindowTitle.AppCompat">-->
+    <!--        <item name="android:textSize">20dp</item>-->
+    <!--        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>-->
+    <!--    </style>-->
 
     <style name="CommonCustomDialog.PoBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/dialog_424CC1</item>
@@ -147,7 +159,7 @@
         <item name="boxStrokeColor">#e5e5e5</item>
         <item name="boxStrokeWidth">1dp</item>
     </style>
-    
+
     <style name="UnderLineEditText" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxStrokeColor">#dadada</item>
         <item name="colorControlNormal">#dadada</item>
@@ -164,29 +176,39 @@
 
     <style name="OrderDropDown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
         <item name="android:popupElevation">5dp</item>
-<!--        <item name="boxStrokeWidth">0dp</item>-->
-<!--        <item name="boxStrokeWidthFocused">0dp</item>-->
-<!--        <item name="endIconDrawable">@drawable/selector_drop_down_top_order</item>-->
-<!--        <item name="endIconTint">#000000</item>-->
-<!--        <item name="fontFamily">@font/pretendard_bold</item>-->
-<!--        <item name="popupMenuStyle">@st/bg_round_4dp_red</item>-->
+        <!--        <item name="boxStrokeWidth">0dp</item>-->
+        <!--        <item name="boxStrokeWidthFocused">0dp</item>-->
+        <!--        <item name="endIconDrawable">@drawable/selector_drop_down_top_order</item>-->
+        <!--        <item name="endIconTint">#000000</item>-->
+        <!--        <item name="fontFamily">@font/pretendard_bold</item>-->
+        <!--        <item name="popupMenuStyle">@st/bg_round_4dp_red</item>-->
     </style>
-    
+
+
+
+    <style name="PostDropDown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="endIconDrawable">@drawable/selector_drop_down_top_order</item>
+        <item name="endIconTint">#000000</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
+    </style>
+
     <style name="OrderPopUp" parent="android:Widget.AutoCompleteTextView">
         <item name="popupMenuBackground">@drawable/bg_round_4dp_red_alpha</item>
     </style>
-<!--    -->
-<!--    <style name="SkyCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">-->
-<!--        <item name="buttonTint">@color/checkbox_color</item>-->
+    <!--    -->
+    <!--    <style name="SkyCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">-->
+    <!--        <item name="buttonTint">@color/checkbox_color</item>-->
 
-<!--&lt;!&ndash;        <item name="colorAccent">#6F74DD</item>&ndash;&gt;-->
-<!--&lt;!&ndash;        <item name="android:textColorSecondary">@color/order_status_color_gray</item>&ndash;&gt;-->
-<!--    </style>-->
+    <!--&lt;!&ndash;        <item name="colorAccent">#6F74DD</item>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <item name="android:textColorSecondary">@color/order_status_color_gray</item>&ndash;&gt;-->
+    <!--    </style>-->
 
-<!--    <style name="WithdrawEditText.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox."-->
+    <!--    <style name="WithdrawEditText.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox."-->
 
-<!--    &lt;!&ndash;spalsh&ndash;&gt;-->
-<!--    <-->
+    <!--    &lt;!&ndash;spalsh&ndash;&gt;-->
+    <!--    <-->
 
     <style name="BoldText" parent="android:TextAppearance">
         <item name="android:includeFontPadding">false</item>
