@@ -40,9 +40,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
         binding.swList.setOnRefreshListener(this)
         binding.rvList.addOnScrollListener(OnScrollEndListener { addItem() })
 
-
-        binding.acSort.setDropDownBackgroundDrawable(requireContext().getDrawable(R.drawable.bg_round_4dp_white))
-
         adapter = OrderListAdapter(navController!!) { iv, s ->
             viewModel.setImageRound(iv, s, dpToPx(requireContext(), 8f).toInt())
         }
@@ -52,8 +49,6 @@ class OrderFragment : BaseFragment<FragmentOrderOldBinding, OrderViewModel, NavA
             R.layout.list_order_sort,
             listOf("전체보기", "신규", "진행중", "완료")
         )
-        binding.acSort.setAdapter(tabAdapter)
-        Log.e("#debug", "data len = ${binding.acSort.adapter!!.count}")
 
         setHeaderBehavior()
     }

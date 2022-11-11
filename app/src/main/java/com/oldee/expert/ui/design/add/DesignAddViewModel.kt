@@ -66,12 +66,7 @@ class DesignAddViewModel @Inject constructor(
     init {
         viewingBluePrintImage.postValue(mutableListOf())
         prepareItemList.postValue(
-            mutableListOf(
-                PrepareItemRecyclerViewAdapter.PrepareItem(
-                    "99",
-                    ""
-                )
-            )
+            mutableListOf()
         )
     }
 
@@ -257,17 +252,12 @@ class DesignAddViewModel @Inject constructor(
     }
 
     fun addPrepareItem(item: PrepareItemRecyclerViewAdapter.PrepareItem) {
-        val end = PrepareItemRecyclerViewAdapter.PrepareItem("99", "")
         val add = item
 
         val list = prepareItemList.value
 
         list?.let {
-            val lastItem = it[list.lastIndex]
-            it.remove(lastItem)
             it.add(add)
-            it.add(end)
-
             prepareItemList.postValue(it)
             minDay.value.isNullOrEmpty()
         }

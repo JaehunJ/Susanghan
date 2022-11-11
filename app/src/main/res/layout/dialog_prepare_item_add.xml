@@ -3,14 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="24dp">
 
         <TextView
-            android:layout_marginTop="18dp"
-            android:layout_marginStart="16dp"
+            style="@style/BoldText"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -19,15 +17,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="준비물 추가"/>
 
         <ImageView
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@id/tv_title"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/iv_close"
@@ -35,196 +30,164 @@
             android:layout_height="wrap_content"
             android:src="@drawable/icon_close"/>
 
-        <TextView
-            android:layout_marginTop="35dp"
-            android:layout_marginStart="20dp"
+        <LinearLayout
+            android:background="@drawable/bg_round_8dp_gray_1"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
-            android:id="@+id/tv_subtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:maxLines="1"
-            android:text="준비물 아이콘을 선택해주세요."/>
-
-        <GridLayout
-            android:layout_marginTop="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-            android:id="@+id/gl_prepare_item"
+            android:id="@+id/ll_prepare_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:columnCount="4">
-
-<!--            <com.google.android.material.radiobutton.MaterialRadioButton-->
-
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="16dp"
+                style="@style/BoldText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                android:id="@+id/tv_subtitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="12dp"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:text="준비물 아이콘을 선택해주세요."/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
+            <GridLayout
+                android:layout_margin="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+                android:id="@+id/gl_prepare_item"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:columnCount="5">
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <!--            <com.google.android.material.radiobutton.MaterialRadioButton-->
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-            <include layout="@layout/layout_design_add_dialog_prepare_item"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
 
-        </GridLayout>
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
+
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
+
+                <include layout="@layout/layout_design_add_dialog_prepare_item"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"/>
+
+            </GridLayout>
+        </LinearLayout>
+
+
 
         <TextView
-            android:layout_marginTop="22dp"
-            android:layout_marginStart="20dp"
+            style="@style/BoldText"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gl_prepare_item"
+            app:layout_constraintTop_toBottomOf="@id/ll_prepare_item"
             android:id="@+id/tv_prepare_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="16dp"
             android:text="준비물 이름을 입력해주세요."/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/et_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_prepare_title"
+        <EditText
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColorHint="@color/gray_3"
+            android:hint="블라우스, 청바지 등 종류를 입력해주세요"
+            android:textSize="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_prepare_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="블라우스, 청바지등 종류를 입력하세요."
-            app:boxStrokeColor="#d3d3d3"
-            app:hintTextColor="#d3d3d3">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-            </com.google.android.material.textfield.TextInputEditText>
-
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray_3"
+            android:id="@+id/et_name"/>
 
 
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/SkyBigRoundBtn"
             android:id="@+id/btn_confirm"
-            android:layout_marginBottom="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
             app:layout_constraintTop_toBottomOf="@id/et_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="등록"
-            app:backgroundTint="@color/deep_blue"/>
+            android:text="등록"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

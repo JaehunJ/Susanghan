@@ -9,20 +9,21 @@
             type="com.oldee.expert.data.PrepareItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <ImageView
+            android:tint="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/iv_product"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/background_oval_d3d3d3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_asset_01"
             android:adjustViewBounds="true"
-            android:clipToOutline="true"
             app:layout_constraintDimensionRatio="1:1"/>
 
         <ImageView
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@drawable/icon_check_circle"/>
+            android:src="@drawable/ic_check_on"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -228,6 +228,13 @@ class DesignAddFragment :
             }
         }
         viewModel.prepareItemList.observe(viewLifecycleOwner) {
+            Log.e("#debug", "size = ${it.size}")
+            binding.rvPrepareItem.visibility = if(it.size > 0){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+
             (binding.rvPrepareItem.adapter as PrepareItemRecyclerViewAdapter).submitList(it?.toMutableList())
         }
         viewModel.postResult.observe(viewLifecycleOwner) {
