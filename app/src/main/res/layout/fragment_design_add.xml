@@ -21,9 +21,9 @@
             layout="@layout/layout_basic_toolbar" />
 
         <androidx.core.widget.NestedScrollView
-            android:background="@color/gray_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/gray_1"
             android:fillViewport="true">
 
             <LinearLayout
@@ -32,23 +32,24 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:padding="24dp"
-                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
                     <TextView
                         style="@style/BoldText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="사진 등록"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
-                        android:layout_marginTop="8dp"
                         style="@style/NormalText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="사진은 최대 5개까지 등록 가능하며, 대표 사진을 1장 선택할 수 있습니다."
                         android:textSize="16dp" />
 
@@ -70,77 +71,77 @@
                         android:columnCount="3">
 
                         <include
-                            android:layout_marginBottom="4dp"
                             layout="@layout/layout_design_add_image"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
-                            android:layout_marginEnd="4dp"/>
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp" />
 
                         <include
-                            android:layout_marginBottom="4dp"
+                            layout="@layout/layout_design_add_image"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
                             android:layout_marginStart="4dp"
                             android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp" />
+
+                        <include
                             layout="@layout/layout_design_add_image"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1" />
-
-                        <include
-                            android:layout_marginBottom="4dp"
+                            android:layout_columnWeight="1"
                             android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp" />
+
+                        <include
                             layout="@layout/layout_design_add_image"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1" />
-
-                        <include
+                            android:layout_columnWeight="1"
                             android:layout_marginTop="8dp"
-                            android:layout_marginEnd="4dp"
-                            layout="@layout/layout_design_add_image"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1" />
+                            android:layout_marginEnd="4dp" />
 
                         <include
-                            android:layout_marginTop="8dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp"
                             layout="@layout/layout_design_add_image"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1" />
+                            android:layout_columnWeight="1"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="4dp" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_marginTop="8dp"
-                            android:layout_marginStart="4dp"
                             android:id="@+id/ll_add_image"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
                             android:gravity="center">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                app:layout_constraintDimensionRatio="1:1"
                                 android:background="@drawable/bg_round_8dp_sky_2"
-                                >
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
                                 <ImageView
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
                                     android:id="@+id/btn_add"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:adjustViewBounds="true"
                                     android:src="@drawable/ic_add_photo"
-                                    android:tint="@color/sky_7"/>
+                                    android:tint="@color/sky_7"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -149,15 +150,15 @@
                 </LinearLayout>
 
 
-
                 <!--old grid-->
                 <LinearLayout
-                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
                     android:background="@color/white"
-                    android:padding="24dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
                     <TextView
                         style="@style/BoldText"
                         android:layout_width="match_parent"
@@ -174,28 +175,24 @@
                         android:textSize="16dp" />
 
                     <FrameLayout
-                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2">
-                        <com.google.android.material.textfield.TextInputLayout
-                            app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="8dp">
 
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/NormalText"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:hintEnabled="false"
-                            app:boxStrokeColor="@color/white">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                style="@style/NormalText"
-                                android:textSize="16dp"
-                                android:hint="상품명을 입력해주세요."
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColorHint="@color/gray_4"
-                                android:text="@={data.reformName}" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_input_text_single"
+                            android:hint="상품명을 입력해주세요."
+                            android:paddingStart="16dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="12dp"
+                            android:text="@={data.reformName}"
+                            android:textColor="@color/selector_input_text"
+                            android:textColorHint="@color/gray_4"
+                            android:textSize="16dp" />
                     </FrameLayout>
 
 
@@ -205,76 +202,73 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:text="가격"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp"
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2">
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:boxStrokeWidth="0dp"
-                            app:hintEnabled="false"
-                            app:boxStrokeColor="@color/gray_2">
+                        android:orientation="horizontal">
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                style="@style/NormalText"
-                                android:textSize="16dp"
-                                android:textColorHint="@color/gray_4"
-                                android:hint="가격을 숫자로 입력해주세요."
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
-                                android:text="@={data.price}"
-                                android:maxLength="8"/>
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:paddingStart="16dp"
+                            android:paddingEnd="35dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:textColorHint="@color/gray_4"
+                            style="@style/NormalText"
+                            android:maxLines="1"
+                            android:textColor="@color/selector_input_text"
+                            android:background="@drawable/selector_input_text_single"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="가격을 숫자로 입력해주세요."
+                            android:inputType="numberDecimal"
+                            android:maxLength="8"
+                            android:text="@={data.price}"
+                            android:textSize="16dp" />
+
                         <TextView
+                            android:layout_gravity="center_vertical|end"
                             style="@style/BoldText"
-                            android:textSize="12dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="원"/>
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:text="원"
+                            android:textSize="12dp" />
 
-                    </LinearLayout>
+                    </FrameLayout>
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         style="@style/BoldText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:text="상세정보"
                         android:textSize="16dp" />
+
                     <FrameLayout
-                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2">
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:hintEnabled="false"
-                            app:boxStrokeWidth="0dp">
-
+                        android:layout_marginTop="8dp">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
                                 style="@style/NormalText"
-                                android:textSize="16dp"
+                                android:textColor="@color/selector_input_text"
+                                android:background="@drawable/selector_input_text_single"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="디자인에 대한 설명을 입력해주세요."
-                                android:textColorHint="@color/gray_4"
                                 android:gravity="top"
+                                android:hint="디자인에 대한 설명을 입력해주세요."
                                 android:lines="5"
-                                android:text="@={data.contents}" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                                android:text="@={data.contents}"
+                                android:textColorHint="@color/gray_4"
+                                android:textSize="16dp" />
                     </FrameLayout>
 
 
@@ -288,39 +282,40 @@
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginTop="8dp"
-                        android:padding="8dp"
-                        android:background="@drawable/bg_round_8dp_gray_1"
                         android:id="@+id/rv_prepare_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_round_8dp_gray_1"
                         android:orientation="vertical"
+                        android:padding="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:itemCount="1"
-                        tools:listitem="@layout/layout_design_add_prepare_item"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        tools:listitem="@layout/layout_design_add_prepare_item" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_add_prepare"
-                        android:layout_marginTop="8dp"
                         style="@style/SkyBigRoundBtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="준비물 추가하기"/>
+                        android:layout_marginTop="8dp"
+                        android:text="준비물 추가하기" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:background="@color/white"
-                    android:layout_marginTop="8dp"
-                    android:padding="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
                     <TextView
+                        style="@style/BoldText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="이렇게 변했어요"
-                        android:textSize="20dp"
-                        style="@style/BoldText" />
+                        android:textSize="20dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -329,14 +324,14 @@
                         android:orientation="horizontal">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/cl_after"
                             android:id="@+id/cl_before"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="4dp"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            app:layout_constraintEnd_toStartOf="@id/cl_after"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
                                 android:id="@+id/iv_before"
@@ -349,32 +344,31 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <LinearLayout
-                                android:layout_margin="4dp"
-                                android:visibility="gone"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
                                 android:id="@+id/ll_delete_before"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
+                                android:layout_margin="4dp"
                                 android:background="@drawable/bg_circle_black_alpha"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:layout_margin="3dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_delete"
-                                    />
+                                    android:layout_margin="3dp"
+                                    android:src="@drawable/ic_delete" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/ll_add_before"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
+                                android:background="@drawable/bg_round_8dp_sky_2"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:background="@drawable/bg_round_8dp_sky_2"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
@@ -383,8 +377,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:adjustViewBounds="true"
-                                    android:tint="@color/sky_7"
-                                    android:src="@drawable/ic_add_photo" />
+                                    android:src="@drawable/ic_add_photo"
+                                    android:tint="@color/sky_7" />
 
                                 <TextView
                                     style="@style/NormalText"
@@ -399,13 +393,13 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_after"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/cl_before"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cl_before"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
                                 android:id="@+id/iv_after"
@@ -418,32 +412,31 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <LinearLayout
-                                android:layout_margin="4dp"
-                                android:visibility="gone"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
                                 android:id="@+id/ll_delete_after"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
+                                android:layout_margin="4dp"
                                 android:background="@drawable/bg_circle_black_alpha"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:layout_margin="3dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_delete"
-                                    />
+                                    android:layout_margin="3dp"
+                                    android:src="@drawable/ic_delete" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/ll_add_after"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
+                                android:background="@drawable/bg_round_8dp_sky_2"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:background="@drawable/bg_round_8dp_sky_2"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
@@ -453,7 +446,7 @@
                                     android:layout_height="wrap_content"
                                     android:adjustViewBounds="true"
                                     android:src="@drawable/ic_add_photo"
-                                    android:tint="@color/sky_7"/>
+                                    android:tint="@color/sky_7" />
 
                                 <TextView
                                     style="@style/NormalText"
@@ -470,17 +463,17 @@
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:background="@drawable/bg_circle_white_border_black"
-                            android:translationZ="5dp"
                             android:outlineProvider="@null"
+                            android:translationZ="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
-                                android:elevation="0dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:elevation="0dp"
                                 android:src="@drawable/ic_arr_right"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -492,130 +485,128 @@
 
 
                 <LinearLayout
-                    android:padding="24dp"
-                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:orientation="vertical"
-                    android:background="@color/white">
+                    android:padding="24dp">
+
                     <TextView
                         style="@style/BoldText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="소요시간"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
-                        android:layout_marginTop="8dp"
                         style="@style/NormalText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="실제 리폼에 필요한 작업 일수를 입력해주세요."
                         android:textSize="16dp" />
 
 
                     <TextView
-                        android:layout_marginTop="24dp"
                         style="@style/BoldText"
-                        android:textSize="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="최소"/>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="24dp"
+                        android:text="최소"
+                        android:textSize="16dp" />
+
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2">
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:boxStrokeWidth="0dp"
-                            app:hintEnabled="false"
-                            app:boxStrokeColor="@color/gray_2">
+                        android:orientation="horizontal">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/NormalText"
-                                android:textSize="16dp"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="35dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
                                 android:textColorHint="@color/gray_4"
-                                android:hint="최소 소요일을 숫자로 입력해주세요"
+                                style="@style/NormalText"
+                                android:textColor="@color/selector_input_text"
+                                android:background="@drawable/selector_input_text_single"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:hint="최소 소요일을 숫자로 입력해주세요"
                                 android:inputType="numberDecimal"
+                                android:maxLength="8"
                                 android:text="@={data.price}"
-                                android:maxLength="8"/>
-                        </com.google.android.material.textfield.TextInputLayout>
+                                android:textSize="16dp" />
+
                         <TextView
+                            android:layout_gravity="end|center_vertical"
                             style="@style/BoldText"
-                            android:textSize="12dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="일"/>
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:text="일"
+                            android:textSize="12dp" />
 
-                    </LinearLayout>
+                    </FrameLayout>
 
                     <TextView
-                        android:layout_marginTop="12dp"
                         style="@style/BoldText"
-                        android:textSize="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="최대"/>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
+                        android:text="최대"
+                        android:textSize="16dp" />
+
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/bg_round_8dp_white_stroke_1dp_gray2">
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:boxStrokeWidth="0dp"
-                            app:hintEnabled="false"
-                            app:boxStrokeColor="@color/gray_2">
+                        android:orientation="horizontal">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:paddingStart="16dp"
+                                android:paddingEnd="35dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
                                 style="@style/NormalText"
-                                android:textSize="16dp"
-                                android:textColorHint="@color/gray_4"
-                                android:hint="최대 소요일을 숫자로 입력해주세요"
+                                android:textColor="@color/selector_input_text"
+                                android:background="@drawable/selector_input_text_single"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:hint="최대 소요일을 숫자로 입력해주세요"
                                 android:inputType="numberDecimal"
+                                android:maxLength="8"
                                 android:text="@={data.price}"
-                                android:maxLength="8"/>
-                        </com.google.android.material.textfield.TextInputLayout>
+                                android:textColorHint="@color/gray_4"
+                                android:textSize="16dp" />
+
                         <TextView
+                            android:layout_gravity="center_vertical|end"
                             style="@style/BoldText"
-                            android:textSize="12dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="일"/>
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:text="일"
+                            android:textSize="12dp" />
 
-                    </LinearLayout>
+                    </FrameLayout>
 
 
                 </LinearLayout>
 
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_marginTop="66dp"
+                    android:id="@+id/btn_post"
                     style="@style/SkyBigFlatBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btn_post"
-                    android:text="디자인 저장"
-                />
+                    android:layout_marginTop="66dp"
+                    android:text="디자인 저장" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

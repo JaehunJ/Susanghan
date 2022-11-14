@@ -11,6 +11,7 @@ import android.provider.OpenableColumns
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import android.text.style.UnderlineSpan
 import android.util.TypedValue
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -83,6 +84,17 @@ fun getBoldText(
     val sb = SpannableString(inputText)
     val end = if (inputText.length < 3) 2 else 3
     sb.setSpan(StyleSpan(Typeface.BOLD), 0, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+
+    return sb
+}
+
+fun getUnderLineText(
+    inputText: String,
+    targetText:String = ""
+):SpannableString{
+    val sb = SpannableString(inputText)
+    val startIdx = inputText.indexOf(targetText)
+    sb.setSpan(UnderlineSpan(), startIdx, startIdx + targetText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
     return sb
 }

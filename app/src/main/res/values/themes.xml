@@ -16,7 +16,6 @@
         <!-- Status bar color. -->
         <item name="bottomSheetDialogTheme">@style/Widget.AppTheme.BottomSheet</item>
         <!-- Customize your theme here. -->
-
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textColor">@color/black</item>
     </style>

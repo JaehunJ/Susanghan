@@ -3,6 +3,8 @@ package com.oldee.expert.ui.signin
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -11,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.oldee.expert.BuildConfig
 import com.oldee.expert.R
 import com.oldee.expert.base.BaseFragment
+import com.oldee.expert.custom.getUnderLineText
 import com.oldee.expert.databinding.FragmentSignInBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,6 +55,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel, NavA
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.STORE_URL))
             startActivity(intent)
         }
+
+//        val startIdx = binding.tvSignin.text.toString().indexOf("입점문의")
+//        val spanStr = SpannableString(binding.tvSignin.text.toString())
+//        spanStr.setSpan(UnderlineSpan(), startIdx, 4, 0)
+        binding.tvSignin.text = getUnderLineText(binding.tvSignin.text.toString(), "입점문의")
     }
 
     override fun initDataBinding() {
